@@ -1,0 +1,17 @@
+{
+    "version": "0.2.1",
+    "defaults": {},
+    "configurations":
+    [
+        {
+            "type": "default",
+            "project": "..\\..\\sdk\\eka2l1\\eka2l1_qt.exe",
+            "projectTarget": "wordle.exe",
+            "name": "wordle.exe",
+            "args": [
+                "--app",
+                "E:\\wordle.exe"
+            ]
+        }
+    ]
+}

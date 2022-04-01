@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "name": "Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "INSTALL_EKA2L1",
+          "value": "True",
+          "type": "BOOL"
+        }
+      ]
+    }
+  ]
+}
