@@ -141,7 +141,7 @@ int game_update(game_t *core)
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_2:
-                        if (*current_letter >= 'A' && *current_letter < 'C')
+                        if (*current_letter > 'A' && *current_letter < 'C')
                         {
                             *current_letter += 1;
                         }
@@ -151,7 +151,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_3:
-                        if (*current_letter >= 'D' && *current_letter < 'F')
+                        if (*current_letter > 'D' && *current_letter < 'F')
                         {
                             *current_letter += 1;
                         }
@@ -161,7 +161,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_4:
-                        if (*current_letter >= 'G' && *current_letter < 'I')
+                        if (*current_letter > 'G' && *current_letter < 'I')
                         {
                             *current_letter += 1;
                         }
@@ -171,7 +171,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_5:
-                        if (*current_letter >= 'J' && *current_letter < 'L')
+                        if (*current_letter > 'J' && *current_letter < 'L')
                         {
                             *current_letter += 1;
                         }
@@ -181,7 +181,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_6:
-                        if (*current_letter >= 'M' && *current_letter < 'O')
+                        if (*current_letter > 'M' && *current_letter < 'O')
                         {
                             *current_letter += 1;
                         }
@@ -191,7 +191,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_7:
-                        if (*current_letter >= 'P' && *current_letter < 'S')
+                        if (*current_letter > 'P' && *current_letter < 'S')
                         {
                             *current_letter += 1;
                         }
@@ -201,7 +201,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_8:
-                        if (*current_letter >= 'T' && *current_letter < 'V')
+                        if (*current_letter > 'T' && *current_letter < 'V')
                         {
                             *current_letter += 1;
                         }
@@ -211,7 +211,7 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_9:
-                        if (*current_letter >= 'W' && *current_letter < 'Z')
+                        if (*current_letter > 'W' && *current_letter < 'Z')
                         {
                             *current_letter += 1;
                         }
@@ -220,7 +220,44 @@ int game_update(game_t *core)
                             *current_letter = 'W';
                         }
                         break;
+                    case SDLK_UP:
+                        if (*current_letter >= 'A' && *current_letter <= 'Z')
+                        {
+                            *current_letter += 1;
+                            if (*current_letter > 'Z')
+                            {
+                                *current_letter = 'A';
+                            }
+                        }
+                        break;
+                    case SDLK_DOWN:
+                        if (*current_letter >= 'A' && *current_letter <= 'Z')
+                        {
+                            *current_letter -= 1;
+                            if (*current_letter < 'A')
+                            {
+                                *current_letter = 'Z';
+                            }
+                        }
+                        break;
                     case SDLK_BACKSPACE:
+                    case SDLK_LEFT:
+                        *current_letter      = 0;
+                        core->current_index -= 1;
+                        core->current_index  = SDL_clamp(core->current_index, 0, 24);
+                        break;
+                    case SDLK_0:
+                    case SDLK_ASTERISK:
+                    case SDLK_RIGHT:
+                        if (*current_letter != 0)
+                        {
+                            core->current_index                    += 1;
+                            core->current_index                     = SDL_clamp(core->current_index, 0, 24);
+                            core->tile[core->current_index].letter  = 'A';
+                        }
+                        break;
+                    case SDLK_F1:
+                    case SDLK_F2:
                         core->is_running = SDL_FALSE;
                         return 0;
                 }
