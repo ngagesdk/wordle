@@ -38,6 +38,7 @@ typedef struct game
     Uint32        time_a;
     Uint32        time_b;
     SDL_bool      is_running;
+    SDL_bool      title_screen;
     tile_t        tile[25];
     int           current_index;
     char          previous_letter;

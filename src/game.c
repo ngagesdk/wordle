@@ -10,6 +10,7 @@
 #include <SDL.h>
 #include "game.h"
 
+static void clear_tiles(game_t* core);
 static int  draw_tiles(game_t* core);
 static void goto_next_letter(game_t* core);
 static void delete_letter(game_t* core);
@@ -85,7 +86,26 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    (*core)->is_running = SDL_TRUE;
+    (*core)->tile[0].letter = 'N';
+    (*core)->tile[1].letter = 'G';
+    (*core)->tile[2].letter = 'A';
+    (*core)->tile[3].letter = 'G';
+    (*core)->tile[4].letter = 'E';
+
+    (*core)->tile[5].letter = 'W';
+    (*core)->tile[6].letter = 'O';
+    (*core)->tile[7].letter = 'R';
+    (*core)->tile[8].letter = 'D';
+    (*core)->tile[9].letter = 'L';
+
+    (*core)->tile[0].state = CORRECT_LETTER;
+    (*core)->tile[1].state = WRONG_POSITION;
+    (*core)->tile[2].state = WRONG_LETTER;
+    (*core)->tile[3].state = WRONG_LETTER;
+    (*core)->tile[4].state = WRONG_LETTER;
+
+    (*core)->title_screen = SDL_TRUE;
+    (*core)->is_running   = SDL_TRUE;
 
     return status;
 }
@@ -117,6 +137,11 @@ int game_update(game_t *core)
         core->tile[0].letter = 'A';
     }
 
+    if (SDL_TRUE == core->title_screen)
+    {
+        redraw_tiles = SDL_TRUE;
+    }
+
     core->time_b = core->time_a;
     core->time_a = SDL_GetTicks();
 
@@ -130,11 +155,6 @@ int game_update(game_t *core)
     }
     core->time_since_last_frame = delta_time;
 
-    if (keystate[SDL_SCANCODE_RIGHT])
-    {
-        //
-    }
-
     if (SDL_PollEvent(&event))
     {
         char* current_letter = &core->tile[core->current_index].letter;
@@ -143,6 +163,12 @@ int game_update(game_t *core)
         {
             case SDL_KEYDOWN:
             {
+                if (SDL_TRUE == core->title_screen)
+                {
+                    core->title_screen = SDL_FALSE;
+                    clear_tiles(core);
+                }
+
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_2:
@@ -328,6 +354,22 @@ void game_quit(game_t* core)
     }
 
     SDL_Quit();
+}
+
+static void clear_tiles(game_t* core)
+{
+    int index;
+
+    if (NULL == core)
+    {
+        return;
+    }
+
+    for (index = 0; index < 25; index += 1)
+    {
+        core->tile[index].letter = 0;
+        core->tile[index].state  = LETTER_SELECT;
+    }
 }
 
 static int draw_tiles(game_t* core)
