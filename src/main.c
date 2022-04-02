@@ -19,7 +19,7 @@
 int main(int argc, char *argv[])
 {
     int     status = 0;
-    game_t *core  = NULL;
+    game_t* core   = NULL;
 
     status = game_init(RES_FILE, "Wordle", &core);
     if (0 != status)

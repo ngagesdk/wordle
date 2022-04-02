@@ -14,11 +14,10 @@
 
 typedef enum
 {
-    EMPTY = 0,
-    CORRECT,
+    LETTER_SELECT = 0,
+    CORRECT_LETTER,
     WRONG_LETTER,
     WRONG_POSITION,
-    YET_UNKNOWN
 
 } state_t;
 
@@ -33,7 +32,7 @@ typedef struct game
 {
     SDL_Renderer* renderer;
     SDL_Texture*  render_target;
-    SDL_Texture*  tiles;
+    SDL_Texture*  tile_texture;
     SDL_Window*   window;
     Uint32        time_since_last_frame;
     Uint32        time_a;
@@ -41,6 +40,8 @@ typedef struct game
     SDL_bool      is_running;
     tile_t        tile[25];
     int           current_index;
+    char          previous_letter;
+    char          current_letter;
 
 } game_t;
 
