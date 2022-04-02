@@ -41,7 +41,6 @@ typedef struct game
     tile_t        tile[25];
     int           current_index;
     char          previous_letter;
-    char          current_letter;
 
 } game_t;
 

@@ -10,7 +10,12 @@
 #include <SDL.h>
 #include "game.h"
 
-static int draw_tiles(game_t* core);
+static int  draw_tiles(game_t* core);
+static void goto_next_letter(game_t* core);
+static void delete_letter(game_t* core);
+
+extern const char answers[2309][6];
+extern const char allowed_guesses[10638][6];
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -242,19 +247,12 @@ int game_update(game_t *core)
                         break;
                     case SDLK_BACKSPACE:
                     case SDLK_LEFT:
-                        *current_letter      = 0;
-                        core->current_index -= 1;
-                        core->current_index  = SDL_clamp(core->current_index, 0, 24);
+                        delete_letter(core);
                         break;
                     case SDLK_0:
                     case SDLK_ASTERISK:
                     case SDLK_RIGHT:
-                        if (*current_letter != 0)
-                        {
-                            core->current_index                    += 1;
-                            core->current_index                     = SDL_clamp(core->current_index, 0, 24);
-                            core->tile[core->current_index].letter  = 'A';
-                        }
+                        goto_next_letter(core);
                         break;
                     case SDLK_F1:
                     case SDLK_F2:
@@ -401,4 +399,31 @@ static int draw_tiles(game_t* core)
     }
 
     return 0;
+}
+
+static void goto_next_letter(game_t* core)
+{
+    if (NULL == core)
+    {
+        return;
+    }
+
+    if (core->tile[core->current_index].letter != 0)
+    {
+        core->current_index                    += 1;
+        core->current_index                     = SDL_clamp(core->current_index, 0, 24);
+        core->tile[core->current_index].letter  = 'A';
+    }
+}
+
+static void delete_letter(game_t* core)
+{
+    if (NULL == core)
+    {
+        return;
+    }
+
+    core->tile[core->current_index].letter  = 0;
+    core->current_index                    -= 1;
+    core->current_index                     = SDL_clamp(core->current_index, 0, 24);
 }
