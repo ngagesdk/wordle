@@ -44,8 +44,7 @@ set(wordle_sources
     "${SRC_DIR}/game.c"
     "${SRC_DIR}/pfs.c"
     "${SRC_DIR}/utils.c"
-    "${SRC_DIR}/answers.c"
-    "${SRC_DIR}/allowed_guesses.c")
+    "${SRC_DIR}/wordlist.c")
 
 set(wordle_resources
     "tiles.bmp")

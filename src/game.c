@@ -12,10 +12,9 @@
 
 static void clear_tiles(game_t* core);
 static int  draw_tiles(game_t* core);
+static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
 static void goto_next_letter(game_t* core);
 static void delete_letter(game_t* core);
-
-extern const char answers[2309][6];
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -97,14 +96,18 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     (*core)->tile[8].letter = 'D';
     (*core)->tile[9].letter = 'L';
 
-    (*core)->tile[0].state = CORRECT_LETTER;
-    (*core)->tile[1].state = WRONG_POSITION;
-    (*core)->tile[2].state = WRONG_LETTER;
-    (*core)->tile[3].state = WRONG_LETTER;
-    (*core)->tile[4].state = WRONG_LETTER;
+    (*core)->tile[0].state  = CORRECT_LETTER;
+    (*core)->tile[1].state  = WRONG_POSITION;
+    (*core)->tile[2].state  = WRONG_LETTER;
+    (*core)->tile[3].state  = WRONG_LETTER;
+    (*core)->tile[4].state  = WRONG_LETTER;
 
-    (*core)->title_screen = SDL_TRUE;
-    (*core)->is_running   = SDL_TRUE;
+    // DEBUG
+    (*core)->valid_answer_index = 6; // ABIDE
+    // DEBUG
+
+    (*core)->title_screen   = SDL_TRUE;
+    (*core)->is_running     = SDL_TRUE;
 
     return status;
 }
@@ -270,6 +273,36 @@ int game_update(game_t *core)
                             }
                         }
                         break;
+                    case SDLK_RETURN:
+                        if (core->attempt < 5)
+                        {
+                            if (0 == ((core->current_index + 1) % 5))
+                            {
+                                int  index;
+                                int  letter_index;
+                                int  end_index;
+
+                                get_index_limits(&index, &end_index, core);
+
+                                for (letter_index = 0; letter_index < 5; letter_index += 1)
+                                {
+                                    core->current_guess[letter_index]  = core->tile[index].letter;
+                                    index                             += 1;
+                                }
+
+                                if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
+                                {
+                                    validate_current_guess(core);
+                                    core->attempt += 1;
+                                    goto_next_letter(core);
+                                }
+                                else
+                                {
+                                    // Word not valid: shake row?
+                                }
+                            }
+                        }
+                        break;
                     case SDLK_BACKSPACE:
                     case SDLK_LEFT:
                         delete_letter(core);
@@ -364,7 +397,7 @@ static void clear_tiles(game_t* core)
         return;
     }
 
-    for (index = 0; index < 25; index += 1)
+    for (index = 0; index < 30; index += 1)
     {
         core->tile[index].letter = 0;
         core->tile[index].state  = LETTER_SELECT;
@@ -373,8 +406,8 @@ static void clear_tiles(game_t* core)
 
 static int draw_tiles(game_t* core)
 {
-    SDL_Rect src   = { 0,  0, 32, 32 };
-    SDL_Rect dst   = { 4, 20, 32, 32 };
+    SDL_Rect src   = { 0, 0, 32, 32 };
+    SDL_Rect dst   = { 4, 2, 32, 32 };
     int      index = 0;
     int      count = 0;
 
@@ -398,7 +431,7 @@ static int draw_tiles(game_t* core)
         return 1;
     }
 
-    for (index = 0; index < 25; index += 1)
+    for (index = 0; index < 30; index += 1)
     {
         switch(core->tile[index].state)
         {
@@ -428,6 +461,15 @@ static int draw_tiles(game_t* core)
         }
 
         SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
+
+        if (index == core->current_index && SDL_FALSE == core->title_screen)
+        {
+            SDL_Rect inner_frame = { dst.x + 1, dst.y + 1, dst.w - 2, dst.h - 2 };
+            SDL_SetRenderDrawColor(core->renderer, 0xf5, 0x79, 0x3a, 0x00);
+            SDL_RenderDrawRect(core->renderer, &dst);
+            SDL_RenderDrawRect(core->renderer, &inner_frame);
+        }
+
         dst.x += 34;
         count += 1;
 
@@ -442,29 +484,83 @@ static int draw_tiles(game_t* core)
     return 0;
 }
 
-static void goto_next_letter(game_t* core)
+static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core)
 {
     if (NULL == core)
     {
         return;
     }
 
+    switch (core->attempt)
+    {
+        default:
+        case 0:
+            *lower_limit = 0;
+            *upper_limit = 4;
+            break;
+        case 1:
+            *lower_limit = 5;
+            *upper_limit = 9;
+            break;
+        case 2:
+            *lower_limit = 10;
+            *upper_limit = 14;
+            break;
+        case 3:
+            *lower_limit = 15;
+            *upper_limit = 19;
+            break;
+        case 4:
+            *lower_limit = 20;
+            *upper_limit = 24;
+            break;
+        case 5:
+            *lower_limit = 25;
+            *upper_limit = 29;
+            break;
+    }
+}
+
+static void goto_next_letter(game_t* core)
+{
+    int lower_index_limit = 0;
+    int upper_index_limit = 0;
+
+    if (NULL == core)
+    {
+        return;
+    }
+
+    get_index_limits(&lower_index_limit, &upper_index_limit, core);
+
     if (core->tile[core->current_index].letter != 0)
     {
         core->current_index                    += 1;
-        core->current_index                     = SDL_clamp(core->current_index, 0, 25);
+        core->current_index                     = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
         core->tile[core->current_index].letter  = 'A';
     }
 }
 
 static void delete_letter(game_t* core)
 {
+    int lower_index_limit = 0;
+    int upper_index_limit = 0;
+
     if (NULL == core)
     {
         return;
     }
 
-    core->tile[core->current_index].letter  = 0;
-    core->current_index                    -= 1;
-    core->current_index                     = SDL_clamp(core->current_index, 0, 25);
+    get_index_limits(&lower_index_limit, &upper_index_limit, core);
+
+    if (core->current_index > lower_index_limit)
+    {
+        core->tile[core->current_index].letter = 0;
+    }
+    else
+    {
+        core->tile[core->current_index].letter = 'A';
+    }
+    core->current_index -= 1;
+    core->current_index  = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
 }
