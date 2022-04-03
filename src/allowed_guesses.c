@@ -4,10643 +4,10708 @@
  *
  **/
 
-const char allowed_guesses[10638][6] = {
-    "AAHED",
-    "AALII",
-    "AARGH",
-    "AARTI",
-    "ABACA",
-    "ABACI",
-    "ABACS",
-    "ABAFT",
-    "ABAKA",
-    "ABAMP",
-    "ABAND",
-    "ABASH",
-    "ABASK",
-    "ABAYA",
-    "ABBAS",
-    "ABBED",
-    "ABBES",
-    "ABCEE",
-    "ABEAM",
-    "ABEAR",
-    "ABELE",
-    "ABERS",
-    "ABETS",
-    "ABIES",
-    "ABLER",
-    "ABLES",
-    "ABLET",
-    "ABLOW",
-    "ABMHO",
-    "ABOHM",
-    "ABOIL",
-    "ABOMA",
-    "ABOON",
-    "ABORD",
-    "ABORE",
-    "ABRAM",
-    "ABRAY",
-    "ABRIM",
-    "ABRIN",
-    "ABRIS",
-    "ABSEY",
-    "ABSIT",
-    "ABUNA",
-    "ABUNE",
-    "ABUTS",
-    "ABUZZ",
-    "ABYES",
-    "ABYSM",
-    "ACAIS",
-    "ACARI",
-    "ACCAS",
-    "ACCOY",
-    "ACERB",
-    "ACERS",
-    "ACETA",
-    "ACHAR",
-    "ACHED",
-    "ACHES",
-    "ACHOO",
-    "ACIDS",
-    "ACIDY",
-    "ACING",
-    "ACINI",
-    "ACKEE",
-    "ACKER",
-    "ACMES",
-    "ACMIC",
-    "ACNED",
-    "ACNES",
-    "ACOCK",
-    "ACOLD",
-    "ACRED",
-    "ACRES",
-    "ACROS",
-    "ACTED",
-    "ACTIN",
-    "ACTON",
-    "ACYLS",
-    "ADAWS",
-    "ADAYS",
-    "ADBOT",
-    "ADDAX",
-    "ADDED",
-    "ADDER",
-    "ADDIO",
-    "ADDLE",
-    "ADEEM",
-    "ADHAN",
-    "ADIEU",
-    "ADIOS",
-    "ADITS",
-    "ADMAN",
-    "ADMEN",
-    "ADMIX",
-    "ADOBO",
-    "ADOWN",
-    "ADOZE",
-    "ADRAD",
-    "ADRED",
-    "ADSUM",
-    "ADUKI",
-    "ADUNC",
-    "ADUST",
-    "ADVEW",
-    "ADYTA",
-    "ADZED",
-    "ADZES",
-    "AECIA",
-    "AEDES",
-    "AEGIS",
-    "AEONS",
-    "AERIE",
-    "AEROS",
-    "AESIR",
-    "AFALD",
-    "AFARA",
-    "AFARS",
-    "AFEAR",
-    "AFLAJ",
-    "AFORE",
-    "AFRIT",
-    "AFROS",
-    "AGAMA",
-    "AGAMI",
-    "AGARS",
-    "AGAST",
-    "AGAVE",
-    "AGAZE",
-    "AGENE",
-    "AGERS",
-    "AGGER",
-    "AGGIE",
-    "AGGRI",
-    "AGGRO",
-    "AGGRY",
-    "AGHAS",
-    "AGILA",
-    "AGIOS",
-    "AGISM",
-    "AGIST",
-    "AGITA",
-    "AGLEE",
-    "AGLET",
-    "AGLEY",
-    "AGLOO",
-    "AGLUS",
-    "AGMAS",
-    "AGOGE",
-    "AGONE",
-    "AGONS",
-    "AGOOD",
-    "AGRIA",
-    "AGRIN",
-    "AGROS",
-    "AGUED",
-    "AGUES",
-    "AGUNA",
-    "AGUTI",
-    "AHEAP",
-    "AHENT",
-    "AHIGH",
-    "AHIND",
-    "AHING",
-    "AHINT",
-    "AHOLD",
-    "AHULL",
-    "AHURU",
-    "AIDAS",
-    "AIDED",
-    "AIDES",
-    "AIDOI",
-    "AIDOS",
-    "AIERY",
-    "AIGAS",
-    "AIGHT",
-    "AILED",
-    "AIMED",
-    "AIMER",
-    "AINEE",
-    "AINGA",
-    "AIOLI",
-    "AIRED",
-    "AIRER",
-    "AIRNS",
-    "AIRTH",
-    "AIRTS",
-    "AITCH",
-    "AITUS",
-    "AIVER",
-    "AIYEE",
-    "AIZLE",
-    "AJIES",
-    "AJIVA",
-    "AJUGA",
-    "AJWAN",
-    "AKEES",
-    "AKELA",
-    "AKENE",
-    "AKING",
-    "AKITA",
-    "AKKAS",
-    "ALAAP",
-    "ALACK",
-    "ALAMO",
-    "ALAND",
-    "ALANE",
-    "ALANG",
-    "ALANS",
-    "ALANT",
-    "ALAPA",
-    "ALAPS",
-    "ALARY",
-    "ALATE",
-    "ALAYS",
-    "ALBAS",
-    "ALBEE",
-    "ALCID",
-    "ALCOS",
-    "ALDEA",
-    "ALDER",
-    "ALDOL",
-    "ALECK",
-    "ALECS",
-    "ALEFS",
-    "ALEFT",
-    "ALEPH",
-    "ALEWS",
-    "ALEYE",
-    "ALFAS",
-    "ALGAL",
-    "ALGAS",
-    "ALGID",
-    "ALGIN",
-    "ALGOR",
-    "ALGUM",
-    "ALIAS",
-    "ALIFS",
-    "ALINE",
-    "ALIST",
-    "ALIYA",
-    "ALKIE",
-    "ALKOS",
-    "ALKYD",
-    "ALKYL",
-    "ALLEE",
-    "ALLEL",
-    "ALLIS",
-    "ALLOD",
-    "ALLYL",
-    "ALMAH",
-    "ALMAS",
-    "ALMEH",
-    "ALMES",
-    "ALMUD",
-    "ALMUG",
-    "ALODS",
-    "ALOED",
-    "ALOES",
-    "ALOHA",
-    "ALOIN",
-    "ALOOS",
-    "ALOWE",
-    "ALTHO",
-    "ALTOS",
-    "ALULA",
-    "ALUMS",
-    "ALURE",
-    "ALVAR",
-    "ALWAY",
-    "AMAHS",
-    "AMAIN",
-    "AMATE",
-    "AMAUT",
-    "AMBAN",
-    "AMBIT",
-    "AMBOS",
-    "AMBRY",
-    "AMEBA",
-    "AMEER",
-    "AMENE",
-    "AMENS",
-    "AMENT",
-    "AMIAS",
-    "AMICE",
-    "AMICI",
-    "AMIDE",
-    "AMIDO",
-    "AMIDS",
-    "AMIES",
-    "AMIGA",
-    "AMIGO",
-    "AMINE",
-    "AMINO",
-    "AMINS",
-    "AMIRS",
-    "AMLAS",
-    "AMMAN",
-    "AMMON",
-    "AMMOS",
-    "AMNIA",
-    "AMNIC",
-    "AMNIO",
-    "AMOKS",
-    "AMOLE",
-    "AMORT",
-    "AMOUR",
-    "AMOVE",
-    "AMOWT",
-    "AMPED",
-    "AMPUL",
-    "AMRIT",
-    "AMUCK",
-    "AMYLS",
-    "ANANA",
-    "ANATA",
-    "ANCHO",
-    "ANCLE",
-    "ANCON",
-    "ANDRO",
-    "ANEAR",
-    "ANELE",
-    "ANENT",
-    "ANGAS",
-    "ANGLO",
-    "ANIGH",
-    "ANILE",
-    "ANILS",
-    "ANIMA",
-    "ANIMI",
-    "ANION",
-    "ANISE",
-    "ANKER",
-    "ANKHS",
-    "ANKUS",
-    "ANLAS",
-    "ANNAL",
-    "ANNAS",
-    "ANNAT",
-    "ANOAS",
-    "ANOLE",
-    "ANOMY",
-    "ANSAE",
-    "ANTAE",
-    "ANTAR",
-    "ANTAS",
-    "ANTED",
-    "ANTES",
-    "ANTIS",
-    "ANTRA",
-    "ANTRE",
-    "ANTSY",
-    "ANURA",
-    "ANYON",
-    "APACE",
-    "APAGE",
-    "APAID",
-    "APAYD",
-    "APAYS",
-    "APEAK",
-    "APEEK",
-    "APERS",
-    "APERT",
-    "APERY",
-    "APGAR",
-    "APHIS",
-    "APIAN",
-    "APIOL",
-    "APISH",
-    "APISM",
-    "APODE",
-    "APODS",
-    "APOOP",
-    "APORT",
-    "APPAL",
-    "APPAY",
-    "APPEL",
-    "APPRO",
-    "APPUI",
-    "APPUY",
-    "APRES",
-    "APSES",
-    "APSIS",
-    "APSOS",
-    "APTED",
-    "APTER",
-    "AQUAE",
-    "AQUAS",
-    "ARABA",
-    "ARAKS",
-    "ARAME",
-    "ARARS",
-    "ARBAS",
-    "ARCED",
-    "ARCHI",
-    "ARCOS",
-    "ARCUS",
-    "ARDEB",
-    "ARDRI",
-    "AREAD",
-    "AREAE",
-    "AREAL",
-    "AREAR",
-    "AREAS",
-    "ARECA",
-    "AREDD",
-    "AREDE",
-    "AREFY",
-    "AREIC",
-    "ARENE",
-    "AREPA",
-    "ARERE",
-    "ARETE",
-    "ARETS",
-    "ARETT",
-    "ARGAL",
-    "ARGAN",
-    "ARGIL",
-    "ARGLE",
-    "ARGOL",
-    "ARGON",
-    "ARGOT",
-    "ARGUS",
-    "ARHAT",
-    "ARIAS",
-    "ARIEL",
-    "ARIKI",
-    "ARILS",
-    "ARIOT",
-    "ARISH",
-    "ARKED",
-    "ARLED",
-    "ARLES",
-    "ARMED",
-    "ARMER",
-    "ARMET",
-    "ARMIL",
-    "ARNAS",
-    "ARNUT",
-    "AROBA",
-    "AROHA",
-    "AROID",
-    "ARPAS",
-    "ARPEN",
-    "ARRAH",
-    "ARRAS",
-    "ARRET",
-    "ARRIS",
-    "ARROZ",
-    "ARSED",
-    "ARSES",
-    "ARSEY",
-    "ARSIS",
-    "ARTAL",
-    "ARTEL",
-    "ARTIC",
-    "ARTIS",
-    "ARUHE",
-    "ARUMS",
-    "ARVAL",
-    "ARVEE",
-    "ARVOS",
-    "ARYLS",
-    "ASANA",
-    "ASCON",
-    "ASCUS",
-    "ASDIC",
-    "ASHED",
-    "ASHES",
-    "ASHET",
-    "ASKED",
-    "ASKER",
-    "ASKOI",
-    "ASKOS",
-    "ASPEN",
-    "ASPER",
-    "ASPIC",
-    "ASPIE",
-    "ASPIS",
-    "ASPRO",
-    "ASSAI",
-    "ASSAM",
-    "ASSES",
-    "ASSEZ",
-    "ASSOT",
-    "ASTER",
-    "ASTIR",
-    "ASTUN",
-    "ASURA",
-    "ASWAY",
-    "ASWIM",
-    "ASYLA",
-    "ATAPS",
-    "ATAXY",
-    "ATIGI",
-    "ATILT",
-    "ATIMY",
-    "ATLAS",
-    "ATMAN",
-    "ATMAS",
-    "ATMOS",
-    "ATOCS",
-    "ATOKE",
-    "ATOKS",
-    "ATOMS",
-    "ATOMY",
-    "ATONY",
-    "ATOPY",
-    "ATRIA",
-    "ATRIP",
-    "ATTAP",
-    "ATTAR",
-    "ATUAS",
-    "AUDAD",
-    "AUGER",
-    "AUGHT",
-    "AULAS",
-    "AULIC",
-    "AULOI",
-    "AULOS",
-    "AUMIL",
-    "AUNES",
-    "AUNTS",
-    "AURAE",
-    "AURAL",
-    "AURAR",
-    "AURAS",
-    "AUREI",
-    "AURES",
-    "AURIC",
-    "AURIS",
-    "AURUM",
-    "AUTOS",
-    "AUXIN",
-    "AVALE",
-    "AVANT",
-    "AVAST",
-    "AVELS",
-    "AVENS",
-    "AVERS",
-    "AVGAS",
-    "AVINE",
-    "AVION",
-    "AVISE",
-    "AVISO",
-    "AVIZE",
-    "AVOWS",
-    "AVYZE",
-    "AWARN",
-    "AWATO",
-    "AWAVE",
-    "AWAYS",
-    "AWDLS",
-    "AWEEL",
-    "AWETO",
-    "AWING",
-    "AWMRY",
-    "AWNED",
-    "AWNER",
-    "AWOLS",
-    "AWORK",
-    "AXELS",
-    "AXILE",
-    "AXILS",
-    "AXING",
-    "AXITE",
-    "AXLED",
-    "AXLES",
-    "AXMAN",
-    "AXMEN",
-    "AXOID",
-    "AXONE",
-    "AXONS",
-    "AYAHS",
-    "AYAYA",
-    "AYELP",
-    "AYGRE",
-    "AYINS",
-    "AYONT",
-    "AYRES",
-    "AYRIE",
-    "AZANS",
-    "AZIDE",
-    "AZIDO",
-    "AZINE",
-    "AZLON",
-    "AZOIC",
-    "AZOLE",
-    "AZONS",
-    "AZOTE",
-    "AZOTH",
-    "AZUKI",
-    "AZURN",
-    "AZURY",
-    "AZYGY",
-    "AZYME",
-    "AZYMS",
-    "BAAED",
-    "BAALS",
-    "BABAS",
-    "BABEL",
-    "BABES",
-    "BABKA",
-    "BABOO",
-    "BABUL",
-    "BABUS",
-    "BACCA",
-    "BACCO",
-    "BACCY",
-    "BACHA",
-    "BACHS",
-    "BACKS",
-    "BADDY",
-    "BAELS",
-    "BAFFS",
-    "BAFFY",
-    "BAFTS",
-    "BAGHS",
-    "BAGIE",
-    "BAHTS",
-    "BAHUS",
-    "BAHUT",
-    "BAILS",
-    "BAIRN",
-    "BAISA",
-    "BAITH",
-    "BAITS",
-    "BAIZA",
-    "BAIZE",
-    "BAJAN",
-    "BAJRA",
-    "BAJRI",
-    "BAJUS",
-    "BAKED",
-    "BAKEN",
-    "BAKES",
-    "BAKRA",
-    "BALAS",
-    "BALDS",
-    "BALDY",
-    "BALED",
-    "BALES",
-    "BALKS",
-    "BALKY",
-    "BALLS",
-    "BALLY",
-    "BALMS",
-    "BALOO",
-    "BALSA",
-    "BALTI",
-    "BALUN",
-    "BALUS",
-    "BAMBI",
-    "BANAK",
-    "BANCO",
-    "BANCS",
-    "BANDA",
-    "BANDH",
-    "BANDS",
-    "BANDY",
-    "BANED",
-    "BANES",
-    "BANGS",
-    "BANIA",
-    "BANKS",
-    "BANNS",
-    "BANTS",
-    "BANTU",
-    "BANTY",
-    "BANYA",
-    "BAPUS",
-    "BARBE",
-    "BARBS",
-    "BARBY",
-    "BARCA",
-    "BARDE",
-    "BARDO",
-    "BARDS",
-    "BARDY",
-    "BARED",
-    "BARER",
-    "BARES",
-    "BARFI",
-    "BARFS",
-    "BARIC",
-    "BARKS",
-    "BARKY",
-    "BARMS",
-    "BARMY",
-    "BARNS",
-    "BARNY",
-    "BARPS",
-    "BARRA",
-    "BARRE",
-    "BARRO",
-    "BARRY",
-    "BARYE",
-    "BASAN",
-    "BASED",
-    "BASEN",
-    "BASER",
-    "BASES",
-    "BASHO",
-    "BASIJ",
-    "BASKS",
-    "BASON",
-    "BASSE",
-    "BASSI",
-    "BASSO",
-    "BASSY",
-    "BASTA",
-    "BASTI",
-    "BASTO",
-    "BASTS",
-    "BATED",
-    "BATES",
-    "BATHS",
-    "BATIK",
-    "BATTA",
-    "BATTS",
-    "BATTU",
-    "BAUDS",
-    "BAUKS",
-    "BAULK",
-    "BAURS",
-    "BAVIN",
-    "BAWDS",
-    "BAWKS",
-    "BAWLS",
-    "BAWNS",
-    "BAWRS",
-    "BAWTY",
-    "BAYED",
-    "BAYER",
-    "BAYES",
-    "BAYLE",
-    "BAYTS",
-    "BAZAR",
-    "BAZOO",
-    "BEADS",
-    "BEAKS",
-    "BEAKY",
-    "BEALS",
-    "BEAMS",
-    "BEAMY",
-    "BEANO",
-    "BEANS",
-    "BEANY",
-    "BEARE",
-    "BEARS",
-    "BEATH",
-    "BEATS",
-    "BEATY",
-    "BEAUS",
-    "BEAUT",
-    "BEAUX",
-    "BEBOP",
-    "BECAP",
-    "BECKE",
-    "BECKS",
-    "BEDAD",
-    "BEDEL",
-    "BEDES",
-    "BEDEW",
-    "BEDIM",
-    "BEDYE",
-    "BEEDI",
-    "BEEFS",
-    "BEEPS",
-    "BEERS",
-    "BEERY",
-    "BEETS",
-    "BEFOG",
-    "BEGAD",
-    "BEGAR",
-    "BEGEM",
-    "BEGOT",
-    "BEGUM",
-    "BEIGE",
-    "BEIGY",
-    "BEINS",
-    "BEKAH",
-    "BELAH",
-    "BELAR",
-    "BELAY",
-    "BELEE",
-    "BELGA",
-    "BELLS",
-    "BELON",
-    "BELTS",
-    "BEMAD",
-    "BEMAS",
-    "BEMIX",
-    "BEMUD",
-    "BENDS",
-    "BENDY",
-    "BENES",
-    "BENET",
-    "BENGA",
-    "BENIS",
-    "BENNE",
-    "BENNI",
-    "BENNY",
-    "BENTO",
-    "BENTS",
-    "BENTY",
-    "BEPAT",
-    "BERAY",
-    "BERES",
-    "BERGS",
-    "BERKO",
-    "BERKS",
-    "BERME",
-    "BERMS",
-    "BEROB",
-    "BERYL",
-    "BESAT",
-    "BESAW",
-    "BESEE",
-    "BESES",
-    "BESIT",
-    "BESOM",
-    "BESOT",
-    "BESTI",
-    "BESTS",
-    "BETAS",
-    "BETED",
-    "BETES",
-    "BETHS",
-    "BETID",
-    "BETON",
-    "BETTA",
-    "BETTY",
-    "BEVER",
-    "BEVOR",
-    "BEVUE",
-    "BEVVY",
-    "BEWET",
-    "BEWIG",
-    "BEZES",
-    "BEZIL",
-    "BEZZY",
-    "BHAIS",
-    "BHAJI",
-    "BHANG",
-    "BHATS",
-    "BHELS",
-    "BHOOT",
-    "BHUNA",
-    "BHUTS",
-    "BIACH",
-    "BIALI",
-    "BIALY",
-    "BIBBS",
-    "BIBES",
-    "BICCY",
-    "BICES",
-    "BIDED",
-    "BIDER",
-    "BIDES",
-    "BIDET",
-    "BIDIS",
-    "BIDON",
-    "BIELD",
-    "BIERS",
-    "BIFFO",
-    "BIFFS",
-    "BIFFY",
-    "BIFID",
-    "BIGAE",
-    "BIGGS",
-    "BIGGY",
-    "BIGHA",
-    "BIGHT",
-    "BIGLY",
-    "BIGOS",
-    "BIJOU",
-    "BIKED",
-    "BIKER",
-    "BIKES",
-    "BIKIE",
-    "BILBO",
-    "BILBY",
-    "BILED",
-    "BILES",
-    "BILGY",
-    "BILKS",
-    "BILLS",
-    "BIMAH",
-    "BIMAS",
-    "BIMBO",
-    "BINAL",
-    "BINDI",
-    "BINDS",
-    "BINER",
-    "BINES",
-    "BINGS",
-    "BINGY",
-    "BINIT",
-    "BINKS",
-    "BINTS",
-    "BIOGS",
-    "BIONT",
-    "BIOTA",
-    "BIPED",
-    "BIPOD",
-    "BIRDS",
-    "BIRKS",
-    "BIRLE",
-    "BIRLS",
-    "BIROS",
-    "BIRRS",
-    "BIRSE",
-    "BIRSY",
-    "BISES",
-    "BISKS",
-    "BISOM",
-    "BITER",
-    "BITES",
-    "BITOS",
-    "BITOU",
-    "BITSY",
-    "BITTE",
-    "BITTS",
-    "BIVIA",
-    "BIVVY",
-    "BIZES",
-    "BIZZO",
-    "BIZZY",
-    "BLABS",
-    "BLADS",
-    "BLADY",
-    "BLAER",
-    "BLAES",
-    "BLAFF",
-    "BLAGS",
-    "BLAHS",
-    "BLAIN",
-    "BLAMS",
-    "BLART",
-    "BLASE",
-    "BLASH",
-    "BLATE",
-    "BLATS",
-    "BLATT",
-    "BLAUD",
-    "BLAWN",
-    "BLAWS",
-    "BLAYS",
-    "BLEAR",
-    "BLEBS",
-    "BLECH",
-    "BLEES",
-    "BLENT",
-    "BLERT",
-    "BLEST",
-    "BLETS",
-    "BLEYS",
-    "BLIMY",
-    "BLING",
-    "BLINI",
-    "BLINS",
-    "BLINY",
-    "BLIPS",
-    "BLIST",
-    "BLITE",
-    "BLITS",
-    "BLIVE",
-    "BLOBS",
-    "BLOCS",
-    "BLOGS",
-    "BLOOK",
-    "BLOOP",
-    "BLORE",
-    "BLOTS",
-    "BLOWS",
-    "BLOWY",
-    "BLUBS",
-    "BLUDE",
-    "BLUDS",
-    "BLUDY",
-    "BLUED",
-    "BLUES",
-    "BLUET",
-    "BLUEY",
-    "BLUID",
-    "BLUME",
-    "BLUNK",
-    "BLURS",
-    "BLYPE",
-    "BOABS",
-    "BOAKS",
-    "BOARS",
-    "BOART",
-    "BOATS",
-    "BOBAC",
-    "BOBAK",
-    "BOBAS",
-    "BOBOL",
-    "BOBOS",
-    "BOCCA",
-    "BOCCE",
-    "BOCCI",
-    "BOCHE",
-    "BOCKS",
-    "BODED",
-    "BODES",
-    "BODGE",
-    "BODHI",
-    "BODLE",
-    "BOEPS",
-    "BOETS",
-    "BOEUF",
-    "BOFFO",
-    "BOFFS",
-    "BOGAN",
-    "BOGEY",
-    "BOGGY",
-    "BOGIE",
-    "BOGLE",
-    "BOGUE",
-    "BOGUS",
-    "BOHEA",
-    "BOHOS",
-    "BOILS",
-    "BOING",
-    "BOINK",
-    "BOITE",
-    "BOKED",
-    "BOKEH",
-    "BOKES",
-    "BOKOS",
-    "BOLAR",
-    "BOLAS",
-    "BOLDS",
-    "BOLES",
-    "BOLIX",
-    "BOLLS",
-    "BOLOS",
-    "BOLTS",
-    "BOLUS",
-    "BOMAS",
-    "BOMBE",
-    "BOMBO",
-    "BOMBS",
-    "BONCE",
-    "BONDS",
-    "BONED",
-    "BONER",
-    "BONES",
-    "BONGS",
-    "BONIE",
-    "BONKS",
-    "BONNE",
-    "BONNY",
-    "BONZA",
-    "BONZE",
-    "BOOAI",
-    "BOOAY",
-    "BOOBS",
-    "BOODY",
-    "BOOED",
-    "BOOFY",
-    "BOOGY",
-    "BOOHS",
-    "BOOKS",
-    "BOOKY",
-    "BOOLS",
-    "BOOMS",
-    "BOOMY",
-    "BOONG",
-    "BOONS",
-    "BOORD",
-    "BOORS",
-    "BOOSE",
-    "BOOTS",
-    "BOPPY",
-    "BORAK",
-    "BORAL",
-    "BORAS",
-    "BORDE",
-    "BORDS",
-    "BORED",
-    "BOREE",
-    "BOREL",
-    "BORER",
-    "BORES",
-    "BORGO",
-    "BORIC",
-    "BORKS",
-    "BORMS",
-    "BORNA",
-    "BORON",
-    "BORTS",
-    "BORTY",
-    "BORTZ",
-    "BOSIE",
-    "BOSKS",
-    "BOSKY",
-    "BOSON",
-    "BOSUN",
-    "BOTAS",
-    "BOTEL",
-    "BOTES",
-    "BOTHY",
-    "BOTTE",
-    "BOTTS",
-    "BOTTY",
-    "BOUGE",
-    "BOUKS",
-    "BOULT",
-    "BOUNS",
-    "BOURD",
-    "BOURG",
-    "BOURN",
-    "BOUSE",
-    "BOUSY",
-    "BOUTS",
-    "BOVID",
-    "BOWAT",
-    "BOWED",
-    "BOWER",
-    "BOWES",
-    "BOWET",
-    "BOWIE",
-    "BOWLS",
-    "BOWNE",
-    "BOWRS",
-    "BOWSE",
-    "BOXED",
-    "BOXEN",
-    "BOXES",
-    "BOXLA",
-    "BOXTY",
-    "BOYAR",
-    "BOYAU",
-    "BOYED",
-    "BOYFS",
-    "BOYGS",
-    "BOYLA",
-    "BOYOS",
-    "BOYSY",
-    "BOZOS",
-    "BRAAI",
-    "BRACH",
-    "BRACK",
-    "BRACT",
-    "BRADS",
-    "BRAES",
-    "BRAGS",
-    "BRAIL",
-    "BRAKS",
-    "BRAKY",
-    "BRAME",
-    "BRANE",
-    "BRANK",
-    "BRANS",
-    "BRANT",
-    "BRAST",
-    "BRATS",
-    "BRAVA",
-    "BRAVI",
-    "BRAWS",
-    "BRAXY",
-    "BRAYS",
-    "BRAZA",
-    "BRAZE",
-    "BREAM",
-    "BREDE",
-    "BREDS",
-    "BREEM",
-    "BREER",
-    "BREES",
-    "BREID",
-    "BREIS",
-    "BREME",
-    "BRENS",
-    "BRENT",
-    "BRERE",
-    "BRERS",
-    "BREVE",
-    "BREWS",
-    "BREYS",
-    "BRIER",
-    "BRIES",
-    "BRIGS",
-    "BRIKI",
-    "BRIKS",
-    "BRILL",
-    "BRIMS",
-    "BRINS",
-    "BRIOS",
-    "BRISE",
-    "BRISS",
-    "BRITH",
-    "BRITS",
-    "BRITT",
-    "BRIZE",
-    "BROCH",
-    "BROCK",
-    "BRODS",
-    "BROGH",
-    "BROGS",
-    "BROME",
-    "BROMO",
-    "BRONC",
-    "BROND",
-    "BROOL",
-    "BROOS",
-    "BROSE",
-    "BROSY",
-    "BROWS",
-    "BRUGH",
-    "BRUIN",
-    "BRUIT",
-    "BRULE",
-    "BRUME",
-    "BRUNG",
-    "BRUSK",
-    "BRUST",
-    "BRUTS",
-    "BUATS",
-    "BUAZE",
-    "BUBAL",
-    "BUBAS",
-    "BUBBA",
-    "BUBBE",
-    "BUBBY",
-    "BUBUS",
-    "BUCHU",
-    "BUCKO",
-    "BUCKS",
-    "BUCKU",
-    "BUDAS",
-    "BUDIS",
-    "BUDOS",
-    "BUFFA",
-    "BUFFE",
-    "BUFFI",
-    "BUFFO",
-    "BUFFS",
-    "BUFFY",
-    "BUFOS",
-    "BUFTY",
-    "BUHLS",
-    "BUHRS",
-    "BUIKS",
-    "BUIST",
-    "BUKES",
-    "BULBS",
-    "BULGY",
-    "BULKS",
-    "BULLA",
-    "BULLS",
-    "BULSE",
-    "BUMBO",
-    "BUMFS",
-    "BUMPH",
-    "BUMPS",
-    "BUMPY",
-    "BUNAS",
-    "BUNCE",
-    "BUNCO",
-    "BUNDE",
-    "BUNDH",
-    "BUNDS",
-    "BUNDT",
-    "BUNDU",
-    "BUNDY",
-    "BUNGS",
-    "BUNGY",
-    "BUNIA",
-    "BUNJE",
-    "BUNJY",
-    "BUNKO",
-    "BUNKS",
-    "BUNNS",
-    "BUNTS",
-    "BUNTY",
-    "BUNYA",
-    "BUOYS",
-    "BUPPY",
-    "BURAN",
-    "BURAS",
-    "BURBS",
-    "BURDS",
-    "BURET",
-    "BURFI",
-    "BURGH",
-    "BURGS",
-    "BURIN",
-    "BURKA",
-    "BURKE",
-    "BURKS",
-    "BURLS",
-    "BURNS",
-    "BUROO",
-    "BURPS",
-    "BURQA",
-    "BURRO",
-    "BURRS",
-    "BURRY",
-    "BURSA",
-    "BURSE",
-    "BUSBY",
-    "BUSES",
-    "BUSKS",
-    "BUSKY",
-    "BUSSU",
-    "BUSTI",
-    "BUSTS",
-    "BUSTY",
-    "BUTEO",
-    "BUTES",
-    "BUTLE",
-    "BUTOH",
-    "BUTTS",
-    "BUTTY",
-    "BUTUT",
-    "BUTYL",
-    "BUZZY",
-    "BWANA",
-    "BWAZI",
-    "BYDED",
-    "BYDES",
-    "BYKED",
-    "BYKES",
-    "BYRES",
-    "BYRLS",
-    "BYSSI",
-    "BYTES",
-    "BYWAY",
-    "CAAED",
-    "CABAS",
-    "CABER",
-    "CABOB",
-    "CABOC",
-    "CABRE",
-    "CACAS",
-    "CACKS",
-    "CACKY",
-    "CADEE",
-    "CADES",
-    "CADGE",
-    "CADGY",
-    "CADIE",
-    "CADIS",
-    "CADRE",
-    "CAECA",
-    "CAESE",
-    "CAFES",
-    "CAFFS",
-    "CAGED",
-    "CAGER",
-    "CAGES",
-    "CAGOT",
-    "CAHOW",
-    "CAIDS",
-    "CAINS",
-    "CAIRD",
-    "CAJON",
-    "CAJUN",
-    "CAKED",
-    "CAKES",
-    "CAKEY",
-    "CALFS",
-    "CALID",
-    "CALIF",
-    "CALIX",
-    "CALKS",
-    "CALLA",
-    "CALLS",
-    "CALMS",
-    "CALMY",
-    "CALOS",
-    "CALPA",
-    "CALPS",
-    "CALVE",
-    "CALYX",
-    "CAMAN",
-    "CAMAS",
-    "CAMES",
-    "CAMIS",
-    "CAMOS",
-    "CAMPI",
-    "CAMPO",
-    "CAMPS",
-    "CAMPY",
-    "CAMUS",
-    "CANED",
-    "CANEH",
-    "CANER",
-    "CANES",
-    "CANGS",
-    "CANID",
-    "CANNA",
-    "CANNS",
-    "CANSO",
-    "CANST",
-    "CANTO",
-    "CANTS",
-    "CANTY",
-    "CAPAS",
-    "CAPED",
-    "CAPES",
-    "CAPEX",
-    "CAPHS",
-    "CAPIZ",
-    "CAPLE",
-    "CAPON",
-    "CAPOS",
-    "CAPOT",
-    "CAPRI",
-    "CAPUL",
-    "CARAP",
-    "CARBO",
-    "CARBS",
-    "CARBY",
-    "CARDI",
-    "CARDS",
-    "CARDY",
-    "CARED",
-    "CARER",
-    "CARES",
-    "CARET",
-    "CAREX",
-    "CARKS",
-    "CARLE",
-    "CARLS",
-    "CARNS",
-    "CARNY",
-    "CAROB",
-    "CAROM",
-    "CARON",
-    "CARPI",
-    "CARPS",
-    "CARRS",
-    "CARSE",
-    "CARTA",
-    "CARTE",
-    "CARTS",
-    "CARVY",
-    "CASAS",
-    "CASCO",
-    "CASED",
-    "CASES",
-    "CASKS",
-    "CASKY",
-    "CASTS",
-    "CASUS",
-    "CATES",
-    "CAUDA",
-    "CAUKS",
-    "CAULD",
-    "CAULS",
-    "CAUMS",
-    "CAUPS",
-    "CAURI",
-    "CAUSA",
-    "CAVAS",
-    "CAVED",
-    "CAVEL",
-    "CAVER",
-    "CAVES",
-    "CAVIE",
-    "CAWED",
-    "CAWKS",
-    "CAXON",
-    "CEAZE",
-    "CEBID",
-    "CECAL",
-    "CECUM",
-    "CEDED",
-    "CEDER",
-    "CEDES",
-    "CEDIS",
-    "CEIBA",
-    "CEILI",
-    "CEILS",
-    "CELEB",
-    "CELLA",
-    "CELLI",
-    "CELLS",
-    "CELOM",
-    "CELTS",
-    "CENSE",
-    "CENTO",
-    "CENTS",
-    "CENTU",
-    "CEORL",
-    "CEPES",
-    "CERCI",
-    "CERED",
-    "CERES",
-    "CERGE",
-    "CERIA",
-    "CERIC",
-    "CERNE",
-    "CEROC",
-    "CEROS",
-    "CERTS",
-    "CERTY",
-    "CESSE",
-    "CESTA",
-    "CESTI",
-    "CETES",
-    "CETYL",
-    "CEZVE",
-    "CHACE",
-    "CHACK",
-    "CHACO",
-    "CHADO",
-    "CHADS",
-    "CHAFT",
-    "CHAIS",
-    "CHALS",
-    "CHAMS",
-    "CHANA",
-    "CHANG",
-    "CHANK",
-    "CHAPE",
-    "CHAPS",
-    "CHAPT",
-    "CHARA",
-    "CHARE",
-    "CHARK",
-    "CHARR",
-    "CHARS",
-    "CHARY",
-    "CHATS",
-    "CHAVE",
-    "CHAVS",
-    "CHAWK",
-    "CHAWS",
-    "CHAYA",
-    "CHAYS",
-    "CHEEP",
-    "CHEFS",
-    "CHEKA",
-    "CHELA",
-    "CHELP",
-    "CHEMO",
-    "CHEMS",
-    "CHERE",
-    "CHERT",
-    "CHETH",
-    "CHEVY",
-    "CHEWS",
-    "CHEWY",
-    "CHIAO",
-    "CHIAS",
-    "CHIBS",
-    "CHICA",
-    "CHICH",
-    "CHICO",
-    "CHICS",
-    "CHIEL",
-    "CHIKS",
-    "CHILE",
-    "CHIMB",
-    "CHIMO",
-    "CHIMP",
-    "CHINE",
-    "CHING",
-    "CHINO",
-    "CHINS",
-    "CHIPS",
-    "CHIRK",
-    "CHIRL",
-    "CHIRM",
-    "CHIRO",
-    "CHIRR",
-    "CHIRT",
-    "CHIRU",
-    "CHITS",
-    "CHIVE",
-    "CHIVS",
-    "CHIVY",
-    "CHIZZ",
-    "CHOCO",
-    "CHOCS",
-    "CHODE",
-    "CHOGS",
-    "CHOIL",
-    "CHOKO",
-    "CHOKY",
-    "CHOLA",
-    "CHOLI",
-    "CHOLO",
-    "CHOMP",
-    "CHONS",
-    "CHOOF",
-    "CHOOK",
-    "CHOOM",
-    "CHOON",
-    "CHOPS",
-    "CHOTA",
-    "CHOTT",
-    "CHOUT",
-    "CHOUX",
-    "CHOWK",
-    "CHOWS",
-    "CHUBS",
-    "CHUFA",
-    "CHUFF",
-    "CHUGS",
-    "CHUMS",
-    "CHURL",
-    "CHURR",
-    "CHUSE",
-    "CHUTS",
-    "CHYLE",
-    "CHYME",
-    "CHYND",
-    "CIBOL",
-    "CIDED",
-    "CIDES",
-    "CIELS",
-    "CIGGY",
-    "CILIA",
-    "CILLS",
-    "CIMAR",
-    "CIMEX",
-    "CINCT",
-    "CINES",
-    "CINQS",
-    "CIONS",
-    "CIPPI",
-    "CIRCS",
-    "CIRES",
-    "CIRLS",
-    "CIRRI",
-    "CISCO",
-    "CISSY",
-    "CISTS",
-    "CITAL",
-    "CITED",
-    "CITER",
-    "CITES",
-    "CIVES",
-    "CIVET",
-    "CIVIE",
-    "CIVVY",
-    "CLACH",
-    "CLADE",
-    "CLADS",
-    "CLAES",
-    "CLAGS",
-    "CLAME",
-    "CLAMS",
-    "CLANS",
-    "CLAPS",
-    "CLAPT",
-    "CLARO",
-    "CLART",
-    "CLARY",
-    "CLAST",
-    "CLATS",
-    "CLAUT",
-    "CLAVE",
-    "CLAVI",
-    "CLAWS",
-    "CLAYS",
-    "CLECK",
-    "CLEEK",
-    "CLEEP",
-    "CLEFS",
-    "CLEGS",
-    "CLEIK",
-    "CLEMS",
-    "CLEPE",
-    "CLEPT",
-    "CLEVE",
-    "CLEWS",
-    "CLIED",
-    "CLIES",
-    "CLIFT",
-    "CLIME",
-    "CLINE",
-    "CLINT",
-    "CLIPE",
-    "CLIPS",
-    "CLIPT",
-    "CLITS",
-    "CLOAM",
-    "CLODS",
-    "CLOFF",
-    "CLOGS",
-    "CLOKE",
-    "CLOMB",
-    "CLOMP",
-    "CLONK",
-    "CLONS",
-    "CLOOP",
-    "CLOOT",
-    "CLOPS",
-    "CLOTE",
-    "CLOTS",
-    "CLOUR",
-    "CLOUS",
-    "CLOWS",
-    "CLOYE",
-    "CLOYS",
-    "CLOZE",
-    "CLUBS",
-    "CLUES",
-    "CLUEY",
-    "CLUNK",
-    "CLYPE",
-    "CNIDA",
-    "COACT",
-    "COADY",
-    "COALA",
-    "COALS",
-    "COALY",
-    "COAPT",
-    "COARB",
-    "COATE",
-    "COATI",
-    "COATS",
-    "COBBS",
-    "COBBY",
-    "COBIA",
-    "COBLE",
-    "COBZA",
-    "COCAS",
-    "COCCI",
-    "COCCO",
-    "COCKS",
-    "COCKY",
-    "COCOS",
-    "CODAS",
-    "CODEC",
-    "CODED",
-    "CODEN",
-    "CODER",
-    "CODES",
-    "CODEX",
-    "CODON",
-    "COEDS",
-    "COFFS",
-    "COGIE",
-    "COGON",
-    "COGUE",
-    "COHAB",
-    "COHEN",
-    "COHOE",
-    "COHOG",
-    "COHOS",
-    "COIFS",
-    "COIGN",
-    "COILS",
-    "COINS",
-    "COIRS",
-    "COITS",
-    "COKED",
-    "COKES",
-    "COLAS",
-    "COLBY",
-    "COLDS",
-    "COLED",
-    "COLES",
-    "COLEY",
-    "COLIC",
-    "COLIN",
-    "COLLS",
-    "COLLY",
-    "COLOG",
-    "COLTS",
-    "COLZA",
-    "COMAE",
-    "COMAL",
-    "COMAS",
-    "COMBE",
-    "COMBI",
-    "COMBO",
-    "COMBS",
-    "COMBY",
-    "COMER",
-    "COMES",
-    "COMIX",
-    "COMMO",
-    "COMMS",
-    "COMMY",
-    "COMPO",
-    "COMPS",
-    "COMPT",
-    "COMTE",
-    "COMUS",
-    "CONED",
-    "CONES",
-    "CONEY",
-    "CONFS",
-    "CONGA",
-    "CONGE",
-    "CONGO",
-    "CONIA",
-    "CONIN",
-    "CONKS",
-    "CONKY",
-    "CONNE",
-    "CONNS",
-    "CONTE",
-    "CONTO",
-    "CONUS",
-    "CONVO",
-    "COOCH",
-    "COOED",
-    "COOEE",
-    "COOER",
-    "COOEY",
-    "COOFS",
-    "COOKS",
-    "COOKY",
-    "COOLS",
-    "COOLY",
-    "COOMB",
-    "COOMS",
-    "COOMY",
-    "COOPS",
-    "COOPT",
-    "COOST",
-    "COOTS",
-    "COOZE",
-    "COPAL",
-    "COPAY",
-    "COPED",
-    "COPEN",
-    "COPER",
-    "COPES",
-    "COPPY",
-    "COPRA",
-    "COPSY",
-    "COQUI",
-    "CORAM",
-    "CORBE",
-    "CORBY",
-    "CORDS",
-    "CORED",
-    "CORES",
-    "COREY",
-    "CORGI",
-    "CORIA",
-    "CORKS",
-    "CORKY",
-    "CORMS",
-    "CORNI",
-    "CORNO",
-    "CORNS",
-    "CORNU",
-    "CORPS",
-    "CORSE",
-    "CORSO",
-    "COSEC",
-    "COSED",
-    "COSES",
-    "COSET",
-    "COSEY",
-    "COSIE",
-    "COSTA",
-    "COSTE",
-    "COSTS",
-    "COTAN",
-    "COTED",
-    "COTES",
-    "COTHS",
-    "COTTA",
-    "COTTS",
-    "COUDE",
-    "COUPS",
-    "COURB",
-    "COURD",
-    "COURE",
-    "COURS",
-    "COUTA",
-    "COUTH",
-    "COVED",
-    "COVES",
-    "COVIN",
-    "COWAL",
-    "COWAN",
-    "COWED",
-    "COWKS",
-    "COWLS",
-    "COWPS",
-    "COWRY",
-    "COXAE",
-    "COXAL",
-    "COXED",
-    "COXES",
-    "COXIB",
-    "COYAU",
-    "COYED",
-    "COYER",
-    "COYPU",
-    "COZED",
-    "COZEN",
-    "COZES",
-    "COZEY",
-    "COZIE",
-    "CRAAL",
-    "CRABS",
-    "CRAGS",
-    "CRAIC",
-    "CRAIG",
-    "CRAKE",
-    "CRAME",
-    "CRAMS",
-    "CRANS",
-    "CRAPE",
-    "CRAPS",
-    "CRAPY",
-    "CRARE",
-    "CRAWS",
-    "CRAYS",
-    "CREDS",
-    "CREEL",
-    "CREES",
-    "CREMS",
-    "CRENA",
-    "CREPS",
-    "CREPY",
-    "CREWE",
-    "CREWS",
-    "CRIAS",
-    "CRIBS",
-    "CRIES",
-    "CRIMS",
-    "CRINE",
-    "CRIOS",
-    "CRIPE",
-    "CRIPS",
-    "CRISE",
-    "CRITH",
-    "CRITS",
-    "CROCI",
-    "CROCS",
-    "CROFT",
-    "CROGS",
-    "CROMB",
-    "CROME",
-    "CRONK",
-    "CRONS",
-    "CROOL",
-    "CROON",
-    "CROPS",
-    "CRORE",
-    "CROST",
-    "CROUT",
-    "CROWS",
-    "CROZE",
-    "CRUCK",
-    "CRUDO",
-    "CRUDS",
-    "CRUDY",
-    "CRUES",
-    "CRUET",
-    "CRUFT",
-    "CRUNK",
-    "CRUOR",
-    "CRURA",
-    "CRUSE",
-    "CRUSY",
-    "CRUVE",
-    "CRWTH",
-    "CRYER",
-    "CTENE",
-    "CUBBY",
-    "CUBEB",
-    "CUBED",
-    "CUBER",
-    "CUBES",
-    "CUBIT",
-    "CUDDY",
-    "CUFFO",
-    "CUFFS",
-    "CUIFS",
-    "CUING",
-    "CUISH",
-    "CUITS",
-    "CUKES",
-    "CULCH",
-    "CULET",
-    "CULEX",
-    "CULLS",
-    "CULLY",
-    "CULMS",
-    "CULPA",
-    "CULTI",
-    "CULTS",
-    "CULTY",
-    "CUMEC",
-    "CUNDY",
-    "CUNEI",
-    "CUNIT",
-    "CUNTS",
-    "CUPEL",
-    "CUPID",
-    "CUPPA",
-    "CUPPY",
-    "CURAT",
-    "CURBS",
-    "CURCH",
-    "CURDS",
-    "CURDY",
-    "CURED",
-    "CURER",
-    "CURES",
-    "CURET",
-    "CURFS",
-    "CURIA",
-    "CURIE",
-    "CURLI",
-    "CURLS",
-    "CURNS",
-    "CURNY",
-    "CURRS",
-    "CURSI",
-    "CURST",
-    "CUSEC",
-    "CUSHY",
-    "CUSKS",
-    "CUSPS",
-    "CUSPY",
-    "CUSSO",
-    "CUSUM",
-    "CUTCH",
-    "CUTER",
-    "CUTES",
-    "CUTEY",
-    "CUTIN",
-    "CUTIS",
-    "CUTTO",
-    "CUTTY",
-    "CUTUP",
-    "CUVEE",
-    "CUZES",
-    "CWTCH",
-    "CYANO",
-    "CYANS",
-    "CYCAD",
-    "CYCAS",
-    "CYCLO",
-    "CYDER",
-    "CYLIX",
-    "CYMAE",
-    "CYMAR",
-    "CYMAS",
-    "CYMES",
-    "CYMOL",
-    "CYSTS",
-    "CYTES",
-    "CYTON",
-    "CZARS",
-    "DAALS",
-    "DABBA",
-    "DACES",
-    "DACHA",
-    "DACKS",
-    "DADAH",
-    "DADAS",
-    "DADOS",
-    "DAFFS",
-    "DAFFY",
-    "DAGGA",
-    "DAGGY",
-    "DAGOS",
-    "DAHLS",
-    "DAIKO",
-    "DAINE",
-    "DAINT",
-    "DAKER",
-    "DALED",
-    "DALES",
-    "DALIS",
-    "DALLE",
-    "DALTS",
-    "DAMAN",
-    "DAMAR",
-    "DAMES",
-    "DAMME",
-    "DAMNS",
-    "DAMPS",
-    "DAMPY",
-    "DANCY",
-    "DANGS",
-    "DANIO",
-    "DANKS",
-    "DANNY",
-    "DANTS",
-    "DARAF",
-    "DARBS",
-    "DARCY",
-    "DARED",
-    "DARER",
-    "DARES",
-    "DARGA",
-    "DARGS",
-    "DARIC",
-    "DARIS",
-    "DARKS",
-    "DARNS",
-    "DARRE",
-    "DARTS",
-    "DARZI",
-    "DASHI",
-    "DASHY",
-    "DATAL",
-    "DATED",
-    "DATER",
-    "DATES",
-    "DATOS",
-    "DATTO",
-    "DAUBE",
-    "DAUBS",
-    "DAUBY",
-    "DAUDS",
-    "DAULT",
-    "DAURS",
-    "DAUTS",
-    "DAVEN",
-    "DAVIT",
-    "DAWAH",
-    "DAWDS",
-    "DAWED",
-    "DAWEN",
-    "DAWKS",
-    "DAWNS",
-    "DAWTS",
-    "DAYAN",
-    "DAYCH",
-    "DAYNT",
-    "DAZED",
-    "DAZER",
-    "DAZES",
-    "DEADS",
-    "DEAIR",
-    "DEALS",
-    "DEANS",
-    "DEARE",
-    "DEARN",
-    "DEARS",
-    "DEARY",
-    "DEASH",
-    "DEAVE",
-    "DEAWS",
-    "DEAWY",
-    "DEBAG",
-    "DEBBY",
-    "DEBEL",
-    "DEBES",
-    "DEBTS",
-    "DEBUD",
-    "DEBUR",
-    "DEBUS",
-    "DEBYE",
-    "DECAD",
-    "DECAF",
-    "DECAN",
-    "DECKO",
-    "DECKS",
-    "DECOS",
-    "DEDAL",
-    "DEEDS",
-    "DEEDY",
-    "DEELY",
-    "DEEMS",
-    "DEENS",
-    "DEEPS",
-    "DEERE",
-    "DEERS",
-    "DEETS",
-    "DEEVE",
-    "DEEVS",
-    "DEFAT",
-    "DEFFO",
-    "DEFIS",
-    "DEFOG",
-    "DEGAS",
-    "DEGUM",
-    "DEGUS",
-    "DEICE",
-    "DEIDS",
-    "DEIFY",
-    "DEILS",
-    "DEISM",
-    "DEIST",
-    "DEKED",
-    "DEKES",
-    "DEKKO",
-    "DELED",
-    "DELES",
-    "DELFS",
-    "DELFT",
-    "DELIS",
-    "DELLS",
-    "DELLY",
-    "DELOS",
-    "DELPH",
-    "DELTS",
-    "DEMAN",
-    "DEMES",
-    "DEMIC",
-    "DEMIT",
-    "DEMOB",
-    "DEMOI",
-    "DEMOS",
-    "DEMPT",
-    "DENAR",
-    "DENAY",
-    "DENCH",
-    "DENES",
-    "DENET",
-    "DENIS",
-    "DENTS",
-    "DEOXY",
-    "DERAT",
-    "DERAY",
-    "DERED",
-    "DERES",
-    "DERIG",
-    "DERMA",
-    "DERMS",
-    "DERNS",
-    "DERNY",
-    "DEROS",
-    "DERRO",
-    "DERRY",
-    "DERTH",
-    "DERVS",
-    "DESEX",
-    "DESHI",
-    "DESIS",
-    "DESKS",
-    "DESSE",
-    "DEVAS",
-    "DEVEL",
-    "DEVIS",
-    "DEVON",
-    "DEVOS",
-    "DEVOT",
-    "DEWAN",
-    "DEWAR",
-    "DEWAX",
-    "DEWED",
-    "DEXES",
-    "DEXIE",
-    "DHABA",
-    "DHAKS",
-    "DHALS",
-    "DHIKR",
-    "DHOBI",
-    "DHOLE",
-    "DHOLL",
-    "DHOLS",
-    "DHOTI",
-    "DHOWS",
-    "DHUTI",
-    "DIACT",
-    "DIALS",
-    "DIANE",
-    "DIAZO",
-    "DIBBS",
-    "DICED",
-    "DICER",
-    "DICES",
-    "DICHT",
-    "DICKS",
-    "DICKY",
-    "DICOT",
-    "DICTA",
-    "DICTS",
-    "DICTY",
-    "DIDDY",
-    "DIDIE",
-    "DIDOS",
-    "DIDST",
-    "DIEBS",
-    "DIELS",
-    "DIENE",
-    "DIETS",
-    "DIFFS",
-    "DIGHT",
-    "DIKAS",
-    "DIKED",
-    "DIKER",
-    "DIKES",
-    "DIKEY",
-    "DILDO",
-    "DILLI",
-    "DILLS",
-    "DIMBO",
-    "DIMER",
-    "DIMES",
-    "DIMPS",
-    "DINAR",
-    "DINED",
-    "DINES",
-    "DINGE",
-    "DINGS",
-    "DINIC",
-    "DINKS",
-    "DINKY",
-    "DINNA",
-    "DINOS",
-    "DINTS",
-    "DIOLS",
-    "DIOTA",
-    "DIPPY",
-    "DIPSO",
-    "DIRAM",
-    "DIRER",
-    "DIRKE",
-    "DIRKS",
-    "DIRLS",
-    "DIRTS",
-    "DISAS",
-    "DISCI",
-    "DISCS",
-    "DISHY",
-    "DISKS",
-    "DISME",
-    "DITAL",
-    "DITAS",
-    "DITED",
-    "DITES",
-    "DITSY",
-    "DITTS",
-    "DITZY",
-    "DIVAN",
-    "DIVAS",
-    "DIVED",
-    "DIVES",
-    "DIVIS",
-    "DIVNA",
-    "DIVOS",
-    "DIVOT",
-    "DIVVY",
-    "DIWAN",
-    "DIXIE",
-    "DIXIT",
-    "DIYAS",
-    "DIZEN",
-    "DJINN",
-    "DJINS",
-    "DOABS",
-    "DOATS",
-    "DOBBY",
-    "DOBES",
-    "DOBIE",
-    "DOBLA",
-    "DOBRA",
-    "DOBRO",
-    "DOCHT",
-    "DOCKS",
-    "DOCOS",
-    "DOCUS",
-    "DODDY",
-    "DODOS",
-    "DOEKS",
-    "DOERS",
-    "DOEST",
-    "DOETH",
-    "DOFFS",
-    "DOGAN",
-    "DOGES",
-    "DOGEY",
-    "DOGGO",
-    "DOGGY",
-    "DOGIE",
-    "DOHYO",
-    "DOILT",
-    "DOILY",
-    "DOITS",
-    "DOJOS",
-    "DOLCE",
-    "DOLCI",
-    "DOLED",
-    "DOLES",
-    "DOLIA",
-    "DOLLS",
-    "DOLMA",
-    "DOLOR",
-    "DOLOS",
-    "DOLTS",
-    "DOMAL",
-    "DOMED",
-    "DOMES",
-    "DOMIC",
-    "DONAH",
-    "DONAS",
-    "DONEE",
-    "DONER",
-    "DONGA",
-    "DONGS",
-    "DONKO",
-    "DONNA",
-    "DONNE",
-    "DONNY",
-    "DONSY",
-    "DOOBS",
-    "DOOCE",
-    "DOODY",
-    "DOOKS",
-    "DOOLE",
-    "DOOLS",
-    "DOOLY",
-    "DOOMS",
-    "DOOMY",
-    "DOONA",
-    "DOORN",
-    "DOORS",
-    "DOOZY",
-    "DOPAS",
-    "DOPED",
-    "DOPER",
-    "DOPES",
-    "DORAD",
-    "DORBA",
-    "DORBS",
-    "DOREE",
-    "DORES",
-    "DORIC",
-    "DORIS",
-    "DORKS",
-    "DORKY",
-    "DORMS",
-    "DORMY",
-    "DORPS",
-    "DORRS",
-    "DORSA",
-    "DORSE",
-    "DORTS",
-    "DORTY",
-    "DOSAI",
-    "DOSAS",
-    "DOSED",
-    "DOSEH",
-    "DOSER",
-    "DOSES",
-    "DOSHA",
-    "DOTAL",
-    "DOTED",
-    "DOTER",
-    "DOTES",
-    "DOTTY",
-    "DOUAR",
-    "DOUCE",
-    "DOUCS",
-    "DOUKS",
-    "DOULA",
-    "DOUMA",
-    "DOUMS",
-    "DOUPS",
-    "DOURA",
-    "DOUSE",
-    "DOUTS",
-    "DOVED",
-    "DOVEN",
-    "DOVER",
-    "DOVES",
-    "DOVIE",
-    "DOWAR",
-    "DOWDS",
-    "DOWED",
-    "DOWER",
-    "DOWIE",
-    "DOWLE",
-    "DOWLS",
-    "DOWLY",
-    "DOWNA",
-    "DOWNS",
-    "DOWPS",
-    "DOWSE",
-    "DOWTS",
-    "DOXED",
-    "DOXES",
-    "DOXIE",
-    "DOYEN",
-    "DOYLY",
-    "DOZED",
-    "DOZER",
-    "DOZES",
-    "DRABS",
-    "DRACK",
-    "DRACO",
-    "DRAFF",
-    "DRAGS",
-    "DRAIL",
-    "DRAMS",
-    "DRANT",
-    "DRAPS",
-    "DRATS",
-    "DRAVE",
-    "DRAWS",
-    "DRAYS",
-    "DREAR",
-    "DRECK",
-    "DREED",
-    "DREER",
-    "DREES",
-    "DREGS",
-    "DREKS",
-    "DRENT",
-    "DRERE",
-    "DREST",
-    "DREYS",
-    "DRIBS",
-    "DRICE",
-    "DRIES",
-    "DRILY",
-    "DRIPS",
-    "DRIPT",
-    "DROID",
-    "DROIL",
-    "DROKE",
-    "DROLE",
-    "DROME",
-    "DRONY",
-    "DROOB",
-    "DROOG",
-    "DROOK",
-    "DROPS",
-    "DROPT",
-    "DROUK",
-    "DROWS",
-    "DRUBS",
-    "DRUGS",
-    "DRUMS",
-    "DRUPE",
-    "DRUSE",
-    "DRUSY",
-    "DRUXY",
-    "DRYAD",
-    "DRYAS",
-    "DSOBO",
-    "DSOMO",
-    "DUADS",
-    "DUALS",
-    "DUANS",
-    "DUARS",
-    "DUBBO",
-    "DUCAL",
-    "DUCAT",
-    "DUCES",
-    "DUCKS",
-    "DUCKY",
-    "DUCTS",
-    "DUDDY",
-    "DUDED",
-    "DUDES",
-    "DUELS",
-    "DUETS",
-    "DUETT",
-    "DUFFS",
-    "DUFUS",
-    "DUING",
-    "DUITS",
-    "DUKAS",
-    "DUKED",
-    "DUKES",
-    "DUKKA",
-    "DULCE",
-    "DULES",
-    "DULIA",
-    "DULLS",
-    "DULSE",
-    "DUMAS",
-    "DUMBO",
-    "DUMBS",
-    "DUMKA",
-    "DUMKY",
-    "DUMPS",
-    "DUNAM",
-    "DUNCH",
-    "DUNES",
-    "DUNGS",
-    "DUNGY",
-    "DUNKS",
-    "DUNNO",
-    "DUNNY",
-    "DUNSH",
-    "DUNTS",
-    "DUOMI",
-    "DUOMO",
-    "DUPED",
-    "DUPER",
-    "DUPES",
-    "DUPLE",
-    "DUPLY",
-    "DUPPY",
-    "DURAL",
-    "DURAS",
-    "DURED",
-    "DURES",
-    "DURGY",
-    "DURNS",
-    "DUROC",
-    "DUROS",
-    "DUROY",
-    "DURRA",
-    "DURRS",
-    "DURRY",
-    "DURST",
-    "DURUM",
-    "DURZI",
-    "DUSKS",
-    "DUSTS",
-    "DUXES",
-    "DWAAL",
-    "DWALE",
-    "DWALM",
-    "DWAMS",
-    "DWANG",
-    "DWAUM",
-    "DWEEB",
-    "DWILE",
-    "DWINE",
-    "DYADS",
-    "DYERS",
-    "DYKON",
-    "DYNEL",
-    "DYNES",
-    "DZHOS",
-    "EAGRE",
-    "EALED",
-    "EALES",
-    "EANED",
-    "EARDS",
-    "EARED",
-    "EARLS",
-    "EARNS",
-    "EARNT",
-    "EARST",
-    "EASED",
-    "EASER",
-    "EASES",
-    "EASLE",
-    "EASTS",
-    "EATHE",
-    "EAVED",
-    "EAVES",
-    "EBBED",
-    "EBBET",
-    "EBONS",
-    "EBOOK",
-    "ECADS",
-    "ECHED",
-    "ECHES",
-    "ECHOS",
-    "ECRUS",
-    "EDEMA",
-    "EDGED",
-    "EDGER",
-    "EDGES",
-    "EDILE",
-    "EDITS",
-    "EDUCE",
-    "EDUCT",
-    "EEJIT",
-    "EENSY",
-    "EEVEN",
-    "EEVNS",
-    "EFFED",
-    "EGADS",
-    "EGERS",
-    "EGEST",
-    "EGGAR",
-    "EGGED",
-    "EGGER",
-    "EGMAS",
-    "EHING",
-    "EIDER",
-    "EIDOS",
-    "EIGNE",
-    "EIKED",
-    "EIKON",
-    "EILDS",
-    "EISEL",
-    "EJIDO",
-    "EKKAS",
-    "ELAIN",
-    "ELAND",
-    "ELANS",
-    "ELCHI",
-    "ELDIN",
-    "ELEMI",
-    "ELFED",
-    "ELIAD",
-    "ELINT",
-    "ELMEN",
-    "ELOGE",
-    "ELOGY",
-    "ELOIN",
-    "ELOPS",
-    "ELPEE",
-    "ELSIN",
-    "ELUTE",
-    "ELVAN",
-    "ELVEN",
-    "ELVER",
-    "ELVES",
-    "EMACS",
-    "EMBAR",
-    "EMBAY",
-    "EMBOG",
-    "EMBOW",
-    "EMBOX",
-    "EMBUS",
-    "EMEER",
-    "EMEND",
-    "EMERG",
-    "EMERY",
-    "EMEUS",
-    "EMICS",
-    "EMIRS",
-    "EMITS",
-    "EMMAS",
-    "EMMER",
-    "EMMET",
-    "EMMEW",
-    "EMMYS",
-    "EMOJI",
-    "EMONG",
-    "EMOTE",
-    "EMOVE",
-    "EMPTS",
-    "EMULE",
-    "EMURE",
-    "EMYDE",
-    "EMYDS",
-    "ENARM",
-    "ENATE",
-    "ENDED",
-    "ENDER",
-    "ENDEW",
-    "ENDUE",
-    "ENEWS",
-    "ENFIX",
-    "ENIAC",
-    "ENLIT",
-    "ENMEW",
-    "ENNOG",
-    "ENOKI",
-    "ENOLS",
-    "ENORM",
-    "ENOWS",
-    "ENROL",
-    "ENSEW",
-    "ENSKY",
-    "ENTIA",
-    "ENURE",
-    "ENURN",
-    "ENVOI",
-    "ENZYM",
-    "EORLS",
-    "EOSIN",
-    "EPACT",
-    "EPEES",
-    "EPHAH",
-    "EPHAS",
-    "EPHOD",
-    "EPHOR",
-    "EPICS",
-    "EPODE",
-    "EPOPT",
-    "EPRIS",
-    "EQUES",
-    "EQUID",
-    "ERBIA",
-    "EREVS",
-    "ERGON",
-    "ERGOS",
-    "ERGOT",
-    "ERHUS",
-    "ERICA",
-    "ERICK",
-    "ERICS",
-    "ERING",
-    "ERNED",
-    "ERNES",
-    "EROSE",
-    "ERRED",
-    "ERSES",
-    "ERUCT",
-    "ERUGO",
-    "ERUVS",
-    "ERVEN",
-    "ERVIL",
-    "ESCAR",
-    "ESCOT",
-    "ESILE",
-    "ESKAR",
-    "ESKER",
-    "ESNES",
-    "ESSES",
-    "ESTOC",
-    "ESTOP",
-    "ESTRO",
-    "ETAGE",
-    "ETAPE",
-    "ETATS",
-    "ETENS",
-    "ETHAL",
-    "ETHNE",
-    "ETHYL",
-    "ETICS",
-    "ETNAS",
-    "ETTIN",
-    "ETTLE",
-    "ETUIS",
-    "ETWEE",
-    "ETYMA",
-    "EUGHS",
-    "EUKED",
-    "EUPAD",
-    "EUROS",
-    "EUSOL",
-    "EVENS",
-    "EVERT",
-    "EVETS",
-    "EVHOE",
-    "EVILS",
-    "EVITE",
-    "EVOHE",
-    "EWERS",
-    "EWEST",
-    "EWHOW",
-    "EWKED",
-    "EXAMS",
-    "EXEAT",
-    "EXECS",
-    "EXEEM",
-    "EXEME",
-    "EXFIL",
-    "EXIES",
-    "EXINE",
-    "EXING",
-    "EXITS",
-    "EXODE",
-    "EXOME",
-    "EXONS",
-    "EXPAT",
-    "EXPOS",
-    "EXUDE",
-    "EXULS",
-    "EXURB",
-    "EYASS",
-    "EYERS",
-    "EYOTS",
-    "EYRAS",
-    "EYRES",
-    "EYRIE",
-    "EYRIR",
-    "EZINE",
-    "FABBY",
-    "FACED",
-    "FACER",
-    "FACES",
-    "FACIA",
-    "FACTA",
-    "FACTS",
-    "FADDY",
-    "FADED",
-    "FADER",
-    "FADES",
-    "FADGE",
-    "FADOS",
-    "FAENA",
-    "FAERY",
-    "FAFFS",
-    "FAFFY",
-    "FAGIN",
-    "FAIKS",
-    "FAILS",
-    "FAINE",
-    "FAINS",
-    "FAIRS",
-    "FAKED",
-    "FAKER",
-    "FAKES",
-    "FAKEY",
-    "FAKIE",
-    "FAKIR",
-    "FALAJ",
-    "FALLS",
-    "FAMED",
-    "FAMES",
-    "FANAL",
-    "FANDS",
-    "FANES",
-    "FANGA",
-    "FANGO",
-    "FANGS",
-    "FANKS",
-    "FANON",
-    "FANOS",
-    "FANUM",
-    "FAQIR",
-    "FARAD",
-    "FARCI",
-    "FARCY",
-    "FARDS",
-    "FARED",
-    "FARER",
-    "FARES",
-    "FARLE",
-    "FARLS",
-    "FARMS",
-    "FAROS",
-    "FARRO",
-    "FARSE",
-    "FARTS",
-    "FASCI",
-    "FASTI",
-    "FASTS",
-    "FATED",
-    "FATES",
-    "FATLY",
-    "FATSO",
-    "FATWA",
-    "FAUGH",
-    "FAULD",
-    "FAUNS",
-    "FAURD",
-    "FAUTS",
-    "FAUVE",
-    "FAVAS",
-    "FAVEL",
-    "FAVER",
-    "FAVES",
-    "FAVUS",
-    "FAWNS",
-    "FAWNY",
-    "FAXED",
-    "FAXES",
-    "FAYED",
-    "FAYER",
-    "FAYNE",
-    "FAYRE",
-    "FAZED",
-    "FAZES",
-    "FEALS",
-    "FEARE",
-    "FEARS",
-    "FEART",
-    "FEASE",
-    "FEATS",
-    "FEAZE",
-    "FECES",
-    "FECHT",
-    "FECIT",
-    "FECKS",
-    "FEDEX",
-    "FEEBS",
-    "FEEDS",
-    "FEELS",
-    "FEENS",
-    "FEERS",
-    "FEESE",
-    "FEEZE",
-    "FEHME",
-    "FEINT",
-    "FEIST",
-    "FELCH",
-    "FELID",
-    "FELLS",
-    "FELLY",
-    "FELTS",
-    "FELTY",
-    "FEMAL",
-    "FEMES",
-    "FEMMY",
-    "FENDS",
-    "FENDY",
-    "FENIS",
-    "FENKS",
-    "FENNY",
-    "FENTS",
-    "FEODS",
-    "FEOFF",
-    "FERER",
-    "FERES",
-    "FERIA",
-    "FERLY",
-    "FERMI",
-    "FERMS",
-    "FERNS",
-    "FERNY",
-    "FESSE",
-    "FESTA",
-    "FESTS",
-    "FESTY",
-    "FETAS",
-    "FETED",
-    "FETES",
-    "FETOR",
-    "FETTA",
-    "FETTS",
-    "FETWA",
-    "FEUAR",
-    "FEUDS",
-    "FEUED",
-    "FEYED",
-    "FEYER",
-    "FEYLY",
-    "FEZES",
-    "FEZZY",
-    "FIARS",
-    "FIATS",
-    "FIBRO",
-    "FICES",
-    "FICHE",
-    "FICHU",
-    "FICIN",
-    "FICOS",
-    "FIDES",
-    "FIDGE",
-    "FIDOS",
-    "FIEFS",
-    "FIENT",
-    "FIERE",
-    "FIERS",
-    "FIEST",
-    "FIFED",
-    "FIFER",
-    "FIFES",
-    "FIFIS",
-    "FIGGY",
-    "FIGOS",
-    "FIKED",
-    "FIKES",
-    "FILAR",
-    "FILCH",
-    "FILED",
-    "FILES",
-    "FILII",
-    "FILKS",
-    "FILLE",
-    "FILLO",
-    "FILLS",
-    "FILMI",
-    "FILMS",
-    "FILOS",
-    "FILUM",
-    "FINCA",
-    "FINDS",
-    "FINED",
-    "FINES",
-    "FINIS",
-    "FINKS",
-    "FINNY",
-    "FINOS",
-    "FIORD",
-    "FIQHS",
-    "FIQUE",
-    "FIRED",
-    "FIRER",
-    "FIRES",
-    "FIRIE",
-    "FIRKS",
-    "FIRMS",
-    "FIRNS",
-    "FIRRY",
-    "FIRTH",
-    "FISCS",
-    "FISKS",
-    "FISTS",
-    "FISTY",
-    "FITCH",
-    "FITLY",
-    "FITNA",
-    "FITTE",
-    "FITTS",
-    "FIVER",
-    "FIVES",
-    "FIXED",
-    "FIXES",
-    "FIXIT",
-    "FJELD",
-    "FLABS",
-    "FLAFF",
-    "FLAGS",
-    "FLAKS",
-    "FLAMM",
-    "FLAMS",
-    "FLAMY",
-    "FLANE",
-    "FLANS",
-    "FLAPS",
-    "FLARY",
-    "FLATS",
-    "FLAVA",
-    "FLAWN",
-    "FLAWS",
-    "FLAWY",
-    "FLAXY",
-    "FLAYS",
-    "FLEAM",
-    "FLEAS",
-    "FLEEK",
-    "FLEER",
-    "FLEES",
-    "FLEGS",
-    "FLEME",
-    "FLEUR",
-    "FLEWS",
-    "FLEXI",
-    "FLEXO",
-    "FLEYS",
-    "FLICS",
-    "FLIED",
-    "FLIES",
-    "FLIMP",
-    "FLIMS",
-    "FLIPS",
-    "FLIRS",
-    "FLISK",
-    "FLITE",
-    "FLITS",
-    "FLITT",
-    "FLOBS",
-    "FLOCS",
-    "FLOES",
-    "FLOGS",
-    "FLONG",
-    "FLOPS",
-    "FLORS",
-    "FLORY",
-    "FLOSH",
-    "FLOTA",
-    "FLOTE",
-    "FLOWS",
-    "FLUBS",
-    "FLUED",
-    "FLUES",
-    "FLUEY",
-    "FLUKY",
-    "FLUMP",
-    "FLUOR",
-    "FLURR",
-    "FLUTY",
-    "FLUYT",
-    "FLYBY",
-    "FLYPE",
-    "FLYTE",
-    "FOALS",
-    "FOAMS",
-    "FOEHN",
-    "FOGEY",
-    "FOGIE",
-    "FOGLE",
-    "FOGOU",
-    "FOHNS",
-    "FOIDS",
-    "FOILS",
-    "FOINS",
-    "FOLDS",
-    "FOLEY",
-    "FOLIA",
-    "FOLIC",
-    "FOLIE",
-    "FOLKS",
-    "FOLKY",
-    "FOMES",
-    "FONDA",
-    "FONDS",
-    "FONDU",
-    "FONES",
-    "FONLY",
-    "FONTS",
-    "FOODS",
-    "FOODY",
-    "FOOLS",
-    "FOOTS",
-    "FOOTY",
-    "FORAM",
-    "FORBS",
-    "FORBY",
-    "FORDO",
-    "FORDS",
-    "FOREL",
-    "FORES",
-    "FOREX",
-    "FORKS",
-    "FORKY",
-    "FORME",
-    "FORMS",
-    "FORTS",
-    "FORZA",
-    "FORZE",
-    "FOSSA",
-    "FOSSE",
-    "FOUAT",
-    "FOUDS",
-    "FOUER",
-    "FOUET",
-    "FOULE",
-    "FOULS",
-    "FOUNT",
-    "FOURS",
-    "FOUTH",
-    "FOVEA",
-    "FOWLS",
-    "FOWTH",
-    "FOXED",
-    "FOXES",
-    "FOXIE",
-    "FOYLE",
-    "FOYNE",
-    "FRABS",
-    "FRACK",
-    "FRACT",
-    "FRAGS",
-    "FRAIM",
-    "FRANC",
-    "FRAPE",
-    "FRAPS",
-    "FRASS",
-    "FRATE",
-    "FRATI",
-    "FRATS",
-    "FRAUS",
-    "FRAYS",
-    "FREES",
-    "FREET",
-    "FREIT",
-    "FREMD",
-    "FRENA",
-    "FREON",
-    "FRERE",
-    "FRETS",
-    "FRIBS",
-    "FRIER",
-    "FRIES",
-    "FRIGS",
-    "FRISE",
-    "FRIST",
-    "FRITH",
-    "FRITS",
-    "FRITT",
-    "FRIZE",
-    "FRIZZ",
-    "FROES",
-    "FROGS",
-    "FRONS",
-    "FRORE",
-    "FRORN",
-    "FRORY",
-    "FROSH",
-    "FROWS",
-    "FROWY",
-    "FRUGS",
-    "FRUMP",
-    "FRUSH",
-    "FRUST",
-    "FRYER",
-    "FUBAR",
-    "FUBBY",
-    "FUBSY",
-    "FUCKS",
-    "FUCUS",
-    "FUDDY",
-    "FUDGY",
-    "FUELS",
-    "FUERO",
-    "FUFFS",
-    "FUFFY",
-    "FUGAL",
-    "FUGGY",
-    "FUGIE",
-    "FUGIO",
-    "FUGLE",
-    "FUGLY",
-    "FUGUS",
-    "FUJIS",
-    "FULLS",
-    "FUMED",
-    "FUMER",
-    "FUMES",
-    "FUMET",
-    "FUNDI",
-    "FUNDS",
-    "FUNDY",
-    "FUNGO",
-    "FUNGS",
-    "FUNKS",
-    "FURAL",
-    "FURAN",
-    "FURCA",
-    "FURLS",
-    "FUROL",
-    "FURRS",
-    "FURTH",
-    "FURZE",
-    "FURZY",
-    "FUSED",
-    "FUSEE",
-    "FUSEL",
-    "FUSES",
-    "FUSIL",
-    "FUSKS",
-    "FUSTS",
-    "FUSTY",
-    "FUTON",
-    "FUZED",
-    "FUZEE",
-    "FUZES",
-    "FUZIL",
-    "FYCES",
-    "FYKED",
-    "FYKES",
-    "FYLES",
-    "FYRDS",
-    "FYTTE",
-    "GABBA",
-    "GABBY",
-    "GABLE",
-    "GADDI",
-    "GADES",
-    "GADGE",
-    "GADID",
-    "GADIS",
-    "GADJE",
-    "GADJO",
-    "GADSO",
-    "GAFFS",
-    "GAGED",
-    "GAGER",
-    "GAGES",
-    "GAIDS",
-    "GAINS",
-    "GAIRS",
-    "GAITA",
-    "GAITS",
-    "GAITT",
-    "GAJOS",
-    "GALAH",
-    "GALAS",
-    "GALAX",
-    "GALEA",
-    "GALED",
-    "GALES",
-    "GALLS",
-    "GALLY",
-    "GALOP",
-    "GALUT",
-    "GALVO",
-    "GAMAS",
-    "GAMAY",
-    "GAMBA",
-    "GAMBE",
-    "GAMBO",
-    "GAMBS",
-    "GAMED",
-    "GAMES",
-    "GAMEY",
-    "GAMIC",
-    "GAMIN",
-    "GAMME",
-    "GAMMY",
-    "GAMPS",
-    "GANCH",
-    "GANDY",
-    "GANEF",
-    "GANEV",
-    "GANGS",
-    "GANJA",
-    "GANOF",
-    "GANTS",
-    "GAOLS",
-    "GAPED",
-    "GAPER",
-    "GAPES",
-    "GAPOS",
-    "GAPPY",
-    "GARBE",
-    "GARBO",
-    "GARBS",
-    "GARDA",
-    "GARES",
-    "GARIS",
-    "GARMS",
-    "GARNI",
-    "GARRE",
-    "GARTH",
-    "GARUM",
-    "GASES",
-    "GASPS",
-    "GASPY",
-    "GASTS",
-    "GATCH",
-    "GATED",
-    "GATER",
-    "GATES",
-    "GATHS",
-    "GATOR",
-    "GAUCH",
-    "GAUCY",
-    "GAUDS",
-    "GAUJE",
-    "GAULT",
-    "GAUMS",
-    "GAUMY",
-    "GAUPS",
-    "GAURS",
-    "GAUSS",
-    "GAUZY",
-    "GAVOT",
-    "GAWCY",
-    "GAWDS",
-    "GAWKS",
-    "GAWPS",
-    "GAWSY",
-    "GAYAL",
-    "GAZAL",
-    "GAZAR",
-    "GAZED",
-    "GAZES",
-    "GAZON",
-    "GAZOO",
-    "GEALS",
-    "GEANS",
-    "GEARE",
-    "GEARS",
-    "GEATS",
-    "GEBUR",
-    "GECKS",
-    "GEEKS",
-    "GEEPS",
-    "GEEST",
-    "GEIST",
-    "GEITS",
-    "GELDS",
-    "GELEE",
-    "GELID",
-    "GELLY",
-    "GELTS",
-    "GEMEL",
-    "GEMMA",
-    "GEMMY",
-    "GEMOT",
-    "GENAL",
-    "GENAS",
-    "GENES",
-    "GENET",
-    "GENIC",
-    "GENII",
-    "GENIP",
-    "GENNY",
-    "GENOA",
-    "GENOM",
-    "GENRO",
-    "GENTS",
-    "GENTY",
-    "GENUA",
-    "GENUS",
-    "GEODE",
-    "GEOID",
-    "GERAH",
-    "GERBE",
-    "GERES",
-    "GERLE",
-    "GERMS",
-    "GERMY",
-    "GERNE",
-    "GESSE",
-    "GESSO",
-    "GESTE",
-    "GESTS",
-    "GETAS",
-    "GETUP",
-    "GEUMS",
-    "GEYAN",
-    "GEYER",
-    "GHAST",
-    "GHATS",
-    "GHAUT",
-    "GHAZI",
-    "GHEES",
-    "GHEST",
-    "GHYLL",
-    "GIBED",
-    "GIBEL",
-    "GIBER",
-    "GIBES",
-    "GIBLI",
-    "GIBUS",
-    "GIFTS",
-    "GIGAS",
-    "GIGHE",
-    "GIGOT",
-    "GIGUE",
-    "GILAS",
-    "GILDS",
-    "GILET",
-    "GILLS",
-    "GILLY",
-    "GILPY",
-    "GILTS",
-    "GIMEL",
-    "GIMME",
-    "GIMPS",
-    "GIMPY",
-    "GINCH",
-    "GINGE",
-    "GINGS",
-    "GINKS",
-    "GINNY",
-    "GINZO",
-    "GIPON",
-    "GIPPO",
-    "GIPPY",
-    "GIRDS",
-    "GIRLS",
-    "GIRNS",
-    "GIRON",
-    "GIROS",
-    "GIRRS",
-    "GIRSH",
-    "GIRTS",
-    "GISMO",
-    "GISMS",
-    "GISTS",
-    "GITCH",
-    "GITES",
-    "GIUST",
-    "GIVED",
-    "GIVES",
-    "GIZMO",
-    "GLACE",
-    "GLADS",
-    "GLADY",
-    "GLAIK",
-    "GLAIR",
-    "GLAMS",
-    "GLANS",
-    "GLARY",
-    "GLAUM",
-    "GLAUR",
-    "GLAZY",
-    "GLEBA",
-    "GLEBE",
-    "GLEBY",
-    "GLEDE",
-    "GLEDS",
-    "GLEED",
-    "GLEEK",
-    "GLEES",
-    "GLEET",
-    "GLEIS",
-    "GLENS",
-    "GLENT",
-    "GLEYS",
-    "GLIAL",
-    "GLIAS",
-    "GLIBS",
-    "GLIFF",
-    "GLIFT",
-    "GLIKE",
-    "GLIME",
-    "GLIMS",
-    "GLISK",
-    "GLITS",
-    "GLITZ",
-    "GLOAM",
-    "GLOBI",
-    "GLOBS",
-    "GLOBY",
-    "GLODE",
-    "GLOGG",
-    "GLOMS",
-    "GLOOP",
-    "GLOPS",
-    "GLOST",
-    "GLOUT",
-    "GLOWS",
-    "GLOZE",
-    "GLUED",
-    "GLUER",
-    "GLUES",
-    "GLUEY",
-    "GLUGS",
-    "GLUME",
-    "GLUMS",
-    "GLUON",
-    "GLUTE",
-    "GLUTS",
-    "GNARL",
-    "GNARR",
-    "GNARS",
-    "GNATS",
-    "GNAWN",
-    "GNAWS",
-    "GNOWS",
-    "GOADS",
-    "GOAFS",
-    "GOALS",
-    "GOARY",
-    "GOATS",
-    "GOATY",
-    "GOBAN",
-    "GOBAR",
-    "GOBBI",
-    "GOBBO",
-    "GOBBY",
-    "GOBIS",
-    "GOBOS",
-    "GODET",
-    "GODSO",
-    "GOELS",
-    "GOERS",
-    "GOEST",
-    "GOETH",
-    "GOETY",
-    "GOFER",
-    "GOFFS",
-    "GOGGA",
-    "GOGOS",
-    "GOIER",
-    "GOJIS",
-    "GOLDS",
-    "GOLDY",
-    "GOLES",
-    "GOLFS",
-    "GOLPE",
-    "GOLPS",
-    "GOMBO",
-    "GOMER",
-    "GOMPA",
-    "GONCH",
-    "GONEF",
-    "GONGS",
-    "GONIA",
-    "GONIF",
-    "GONKS",
-    "GONNA",
-    "GONOF",
-    "GONYS",
-    "GONZO",
-    "GOOBY",
-    "GOODS",
-    "GOOFS",
-    "GOOGS",
-    "GOOKY",
-    "GOOLD",
-    "GOOLS",
-    "GOOLY",
-    "GOONS",
-    "GOONY",
-    "GOOPS",
-    "GOOPY",
-    "GOORS",
-    "GOORY",
-    "GOOSY",
-    "GOPAK",
-    "GOPIK",
-    "GORAL",
-    "GORAS",
-    "GORED",
-    "GORES",
-    "GORIS",
-    "GORMS",
-    "GORMY",
-    "GORPS",
-    "GORSE",
-    "GORSY",
-    "GOSHT",
-    "GOSSE",
-    "GOTCH",
-    "GOTHS",
-    "GOTHY",
-    "GOTTA",
-    "GOUCH",
-    "GOUKS",
-    "GOURA",
-    "GOUTS",
-    "GOUTY",
-    "GOWAN",
-    "GOWDS",
-    "GOWFS",
-    "GOWKS",
-    "GOWLS",
-    "GOWNS",
-    "GOXES",
-    "GOYIM",
-    "GOYLE",
-    "GRAAL",
-    "GRABS",
-    "GRADS",
-    "GRAFF",
-    "GRAIP",
-    "GRAMA",
-    "GRAME",
-    "GRAMP",
-    "GRAMS",
-    "GRANA",
-    "GRANS",
-    "GRAPY",
-    "GRAVS",
-    "GRAYS",
-    "GREBE",
-    "GREBO",
-    "GRECE",
-    "GREEK",
-    "GREES",
-    "GREGE",
-    "GREGO",
-    "GREIN",
-    "GRENS",
-    "GRESE",
-    "GREVE",
-    "GREWS",
-    "GREYS",
-    "GRICE",
-    "GRIDE",
-    "GRIDS",
-    "GRIFF",
-    "GRIFT",
-    "GRIGS",
-    "GRIKE",
-    "GRINS",
-    "GRIOT",
-    "GRIPS",
-    "GRIPT",
-    "GRIPY",
-    "GRISE",
-    "GRIST",
-    "GRISY",
-    "GRITH",
-    "GRITS",
-    "GRIZE",
-    "GROAT",
-    "GRODY",
-    "GROGS",
-    "GROKS",
-    "GROMA",
-    "GRONE",
-    "GROOF",
-    "GROSZ",
-    "GROTS",
-    "GROUF",
-    "GROVY",
-    "GROWS",
-    "GRRLS",
-    "GRRRL",
-    "GRUBS",
-    "GRUED",
-    "GRUES",
-    "GRUFE",
-    "GRUME",
-    "GRUMP",
-    "GRUND",
-    "GRYCE",
-    "GRYDE",
-    "GRYKE",
-    "GRYPE",
-    "GRYPT",
-    "GUACO",
-    "GUANA",
-    "GUANO",
-    "GUANS",
-    "GUARS",
-    "GUCKS",
-    "GUCKY",
-    "GUDES",
-    "GUFFS",
-    "GUGAS",
-    "GUIDS",
-    "GUIMP",
-    "GUIRO",
-    "GULAG",
-    "GULAR",
-    "GULAS",
-    "GULES",
-    "GULET",
-    "GULFS",
-    "GULFY",
-    "GULLS",
-    "GULPH",
-    "GULPS",
-    "GULPY",
-    "GUMMA",
-    "GUMMI",
-    "GUMPS",
-    "GUNDY",
-    "GUNGE",
-    "GUNGY",
-    "GUNKS",
-    "GUNKY",
-    "GUNNY",
-    "GUQIN",
-    "GURDY",
-    "GURGE",
-    "GURLS",
-    "GURLY",
-    "GURNS",
-    "GURRY",
-    "GURSH",
-    "GURUS",
-    "GUSHY",
-    "GUSLA",
-    "GUSLE",
-    "GUSLI",
-    "GUSSY",
-    "GUSTS",
-    "GUTSY",
-    "GUTTA",
-    "GUTTY",
-    "GUYED",
-    "GUYLE",
-    "GUYOT",
-    "GUYSE",
-    "GWINE",
-    "GYALS",
-    "GYANS",
-    "GYBED",
-    "GYBES",
-    "GYELD",
-    "GYMPS",
-    "GYNAE",
-    "GYNIE",
-    "GYNNY",
-    "GYNOS",
-    "GYOZA",
-    "GYPOS",
-    "GYPPO",
-    "GYPPY",
-    "GYRAL",
-    "GYRED",
-    "GYRES",
-    "GYRON",
-    "GYROS",
-    "GYRUS",
-    "GYTES",
-    "GYVED",
-    "GYVES",
-    "HAAFS",
-    "HAARS",
-    "HABLE",
-    "HABUS",
-    "HACEK",
-    "HACKS",
-    "HADAL",
-    "HADED",
-    "HADES",
-    "HADJI",
-    "HADST",
-    "HAEMS",
-    "HAETS",
-    "HAFFS",
-    "HAFIZ",
-    "HAFTS",
-    "HAGGS",
-    "HAHAS",
-    "HAICK",
-    "HAIKA",
-    "HAIKS",
-    "HAIKU",
-    "HAILS",
-    "HAILY",
-    "HAINS",
-    "HAINT",
-    "HAIRS",
-    "HAITH",
-    "HAJES",
-    "HAJIS",
-    "HAJJI",
-    "HAKAM",
-    "HAKAS",
-    "HAKEA",
-    "HAKES",
-    "HAKIM",
-    "HAKUS",
-    "HALAL",
-    "HALED",
-    "HALER",
-    "HALES",
-    "HALFA",
-    "HALFS",
-    "HALID",
-    "HALLO",
-    "HALLS",
-    "HALMA",
-    "HALMS",
-    "HALON",
-    "HALOS",
-    "HALSE",
-    "HALTS",
-    "HALVA",
-    "HALWA",
-    "HAMAL",
-    "HAMBA",
-    "HAMED",
-    "HAMES",
-    "HAMMY",
-    "HAMZA",
-    "HANAP",
-    "HANCE",
-    "HANCH",
-    "HANDS",
-    "HANGI",
-    "HANGS",
-    "HANKS",
-    "HANKY",
-    "HANSA",
-    "HANSE",
-    "HANTS",
-    "HAOLE",
-    "HAOMA",
-    "HAPAX",
-    "HAPLY",
-    "HAPPI",
-    "HAPUS",
-    "HARAM",
-    "HARDS",
-    "HARED",
-    "HARES",
-    "HARIM",
-    "HARKS",
-    "HARLS",
-    "HARMS",
-    "HARNS",
-    "HAROS",
-    "HARPS",
-    "HARTS",
-    "HASHY",
-    "HASKS",
-    "HASPS",
-    "HASTA",
-    "HATED",
-    "HATES",
-    "HATHA",
-    "HAUDS",
-    "HAUFS",
-    "HAUGH",
-    "HAULD",
-    "HAULM",
-    "HAULS",
-    "HAULT",
-    "HAUNS",
-    "HAUSE",
-    "HAVER",
-    "HAVES",
-    "HAWED",
-    "HAWKS",
-    "HAWMS",
-    "HAWSE",
-    "HAYED",
-    "HAYER",
-    "HAYEY",
-    "HAYLE",
-    "HAZAN",
-    "HAZED",
-    "HAZER",
-    "HAZES",
-    "HEADS",
-    "HEALD",
-    "HEALS",
-    "HEAME",
-    "HEAPS",
-    "HEAPY",
-    "HEARE",
-    "HEARS",
-    "HEAST",
-    "HEATS",
-    "HEBEN",
-    "HEBES",
-    "HECHT",
-    "HECKS",
-    "HEDER",
-    "HEDGY",
-    "HEEDS",
-    "HEEDY",
-    "HEELS",
-    "HEEZE",
-    "HEFTE",
-    "HEFTS",
-    "HEIDS",
-    "HEIGH",
-    "HEILS",
-    "HEIRS",
-    "HEJAB",
-    "HEJRA",
-    "HELED",
-    "HELES",
-    "HELIO",
-    "HELLS",
-    "HELMS",
-    "HELOS",
-    "HELOT",
-    "HELPS",
-    "HELVE",
-    "HEMAL",
-    "HEMES",
-    "HEMIC",
-    "HEMIN",
-    "HEMPS",
-    "HEMPY",
-    "HENCH",
-    "HENDS",
-    "HENGE",
-    "HENNA",
-    "HENNY",
-    "HENRY",
-    "HENTS",
-    "HEPAR",
-    "HERBS",
-    "HERBY",
-    "HERDS",
-    "HERES",
-    "HERLS",
-    "HERMA",
-    "HERMS",
-    "HERNS",
-    "HEROS",
-    "HERRY",
-    "HERSE",
-    "HERTZ",
-    "HERYE",
-    "HESPS",
-    "HESTS",
-    "HETES",
-    "HETHS",
-    "HEUCH",
-    "HEUGH",
-    "HEVEA",
-    "HEWED",
-    "HEWER",
-    "HEWGH",
-    "HEXAD",
-    "HEXED",
-    "HEXER",
-    "HEXES",
-    "HEXYL",
-    "HEYED",
-    "HIANT",
-    "HICKS",
-    "HIDED",
-    "HIDER",
-    "HIDES",
-    "HIEMS",
-    "HIGHS",
-    "HIGHT",
-    "HIJAB",
-    "HIJRA",
-    "HIKED",
-    "HIKER",
-    "HIKES",
-    "HIKOI",
-    "HILAR",
-    "HILCH",
-    "HILLO",
-    "HILLS",
-    "HILTS",
-    "HILUM",
-    "HILUS",
-    "HIMBO",
-    "HINAU",
-    "HINDS",
-    "HINGS",
-    "HINKY",
-    "HINNY",
-    "HINTS",
-    "HIOIS",
-    "HIPLY",
-    "HIRED",
-    "HIREE",
-    "HIRER",
-    "HIRES",
-    "HISSY",
-    "HISTS",
-    "HITHE",
-    "HIVED",
-    "HIVER",
-    "HIVES",
-    "HIZEN",
-    "HOAED",
-    "HOAGY",
-    "HOARS",
-    "HOARY",
-    "HOAST",
-    "HOBOS",
-    "HOCKS",
-    "HOCUS",
-    "HODAD",
-    "HODJA",
-    "HOERS",
-    "HOGAN",
-    "HOGEN",
-    "HOGGS",
-    "HOGHS",
-    "HOHED",
-    "HOICK",
-    "HOIED",
-    "HOIKS",
-    "HOING",
-    "HOISE",
-    "HOKAS",
-    "HOKED",
-    "HOKES",
-    "HOKEY",
-    "HOKIS",
-    "HOKKU",
-    "HOKUM",
-    "HOLDS",
-    "HOLED",
-    "HOLES",
-    "HOLEY",
-    "HOLKS",
-    "HOLLA",
-    "HOLLO",
-    "HOLME",
-    "HOLMS",
-    "HOLON",
-    "HOLOS",
-    "HOLTS",
-    "HOMAS",
-    "HOMED",
-    "HOMES",
-    "HOMEY",
-    "HOMIE",
-    "HOMME",
-    "HONAN",
-    "HONDA",
-    "HONDS",
-    "HONED",
-    "HONER",
-    "HONES",
-    "HONGI",
-    "HONGS",
-    "HONKS",
-    "HONKY",
-    "HOOCH",
-    "HOODS",
-    "HOODY",
-    "HOOEY",
-    "HOOFS",
-    "HOOKA",
-    "HOOKS",
-    "HOOKY",
-    "HOOLY",
-    "HOONS",
-    "HOOPS",
-    "HOORD",
-    "HOORS",
-    "HOOSH",
-    "HOOTS",
-    "HOOTY",
-    "HOOVE",
-    "HOPAK",
-    "HOPED",
-    "HOPER",
-    "HOPES",
-    "HOPPY",
-    "HORAH",
-    "HORAL",
-    "HORAS",
-    "HORIS",
-    "HORKS",
-    "HORME",
-    "HORNS",
-    "HORST",
-    "HORSY",
-    "HOSED",
-    "HOSEL",
-    "HOSEN",
-    "HOSER",
-    "HOSES",
-    "HOSEY",
-    "HOSTA",
-    "HOSTS",
-    "HOTCH",
-    "HOTEN",
-    "HOTTY",
-    "HOUFF",
-    "HOUFS",
-    "HOUGH",
-    "HOURI",
-    "HOURS",
-    "HOUTS",
-    "HOVEA",
-    "HOVED",
-    "HOVEN",
-    "HOVES",
-    "HOWBE",
-    "HOWES",
-    "HOWFF",
-    "HOWFS",
-    "HOWKS",
-    "HOWLS",
-    "HOWRE",
-    "HOWSO",
-    "HOXED",
-    "HOXES",
-    "HOYAS",
-    "HOYED",
-    "HOYLE",
-    "HUBBY",
-    "HUCKS",
-    "HUDNA",
-    "HUDUD",
-    "HUERS",
-    "HUFFS",
-    "HUFFY",
-    "HUGER",
-    "HUGGY",
-    "HUHUS",
-    "HUIAS",
-    "HULAS",
-    "HULES",
-    "HULKS",
-    "HULKY",
-    "HULLO",
-    "HULLS",
-    "HULLY",
-    "HUMAS",
-    "HUMFS",
-    "HUMIC",
-    "HUMPS",
-    "HUMPY",
-    "HUNKS",
-    "HUNTS",
-    "HURDS",
-    "HURLS",
-    "HURLY",
-    "HURRA",
-    "HURST",
-    "HURTS",
-    "HUSHY",
-    "HUSKS",
-    "HUSOS",
-    "HUTIA",
-    "HUZZA",
-    "HUZZY",
-    "HWYLS",
-    "HYDRA",
-    "HYENS",
-    "HYGGE",
-    "HYING",
-    "HYKES",
-    "HYLAS",
-    "HYLEG",
-    "HYLES",
-    "HYLIC",
-    "HYMNS",
-    "HYNDE",
-    "HYOID",
-    "HYPED",
-    "HYPES",
-    "HYPHA",
-    "HYPHY",
-    "HYPOS",
-    "HYRAX",
-    "HYSON",
-    "HYTHE",
-    "IAMBI",
-    "IAMBS",
-    "IBRIK",
-    "ICERS",
-    "ICHED",
-    "ICHES",
-    "ICHOR",
-    "ICIER",
-    "ICKER",
-    "ICKLE",
-    "ICONS",
-    "ICTAL",
-    "ICTIC",
-    "ICTUS",
-    "IDANT",
-    "IDEAS",
-    "IDEES",
-    "IDENT",
-    "IDLED",
-    "IDLES",
-    "IDOLA",
-    "IDOLS",
-    "IDYLS",
-    "IFTAR",
-    "IGAPO",
-    "IGGED",
-    "IGLUS",
-    "IHRAM",
-    "IKANS",
-    "IKATS",
-    "IKONS",
-    "ILEAC",
-    "ILEAL",
-    "ILEUM",
-    "ILEUS",
-    "ILIAD",
-    "ILIAL",
-    "ILIUM",
-    "ILLER",
-    "ILLTH",
-    "IMAGO",
-    "IMAMS",
-    "IMARI",
-    "IMAUM",
-    "IMBAR",
-    "IMBED",
-    "IMIDE",
-    "IMIDO",
-    "IMIDS",
-    "IMINE",
-    "IMINO",
-    "IMMEW",
-    "IMMIT",
-    "IMMIX",
-    "IMPED",
-    "IMPIS",
-    "IMPOT",
-    "IMPRO",
-    "IMSHI",
-    "IMSHY",
-    "INAPT",
-    "INARM",
-    "INBYE",
-    "INCEL",
-    "INCLE",
-    "INCOG",
-    "INCUS",
-    "INCUT",
-    "INDEW",
-    "INDIA",
-    "INDIE",
-    "INDOL",
-    "INDOW",
-    "INDRI",
-    "INDUE",
-    "INERM",
-    "INFIX",
-    "INFOS",
-    "INFRA",
-    "INGAN",
-    "INGLE",
-    "INION",
-    "INKED",
-    "INKER",
-    "INKLE",
-    "INNED",
-    "INNIT",
-    "INORB",
-    "INRUN",
-    "INSET",
-    "INSPO",
-    "INTEL",
-    "INTIL",
-    "INTIS",
-    "INTRA",
-    "INULA",
-    "INURE",
-    "INURN",
-    "INUST",
-    "INVAR",
-    "INWIT",
-    "IODIC",
-    "IODID",
-    "IODIN",
-    "IOTAS",
-    "IPPON",
-    "IRADE",
-    "IRIDS",
-    "IRING",
-    "IRKED",
-    "IROKO",
-    "IRONE",
-    "IRONS",
-    "ISBAS",
-    "ISHES",
-    "ISLED",
-    "ISLES",
-    "ISNAE",
-    "ISSEI",
-    "ISTLE",
-    "ITEMS",
-    "ITHER",
-    "IVIED",
-    "IVIES",
-    "IXIAS",
-    "IXNAY",
-    "IXORA",
-    "IXTLE",
-    "IZARD",
-    "IZARS",
-    "IZZAT",
-    "JAAPS",
-    "JABOT",
-    "JACAL",
-    "JACKS",
-    "JACKY",
-    "JADED",
-    "JADES",
-    "JAFAS",
-    "JAFFA",
-    "JAGAS",
-    "JAGER",
-    "JAGGS",
-    "JAGGY",
-    "JAGIR",
-    "JAGRA",
-    "JAILS",
-    "JAKER",
-    "JAKES",
-    "JAKEY",
-    "JALAP",
-    "JALOP",
-    "JAMBE",
-    "JAMBO",
-    "JAMBS",
-    "JAMBU",
-    "JAMES",
-    "JAMMY",
-    "JAMON",
-    "JANES",
-    "JANNS",
-    "JANNY",
-    "JANTY",
-    "JAPAN",
-    "JAPED",
-    "JAPER",
-    "JAPES",
-    "JARKS",
-    "JARLS",
-    "JARPS",
-    "JARTA",
-    "JARUL",
-    "JASEY",
-    "JASPE",
-    "JASPS",
-    "JATOS",
-    "JAUKS",
-    "JAUPS",
-    "JAVAS",
-    "JAVEL",
-    "JAWAN",
-    "JAWED",
-    "JAXIE",
-    "JEANS",
-    "JEATS",
-    "JEBEL",
-    "JEDIS",
-    "JEELS",
-    "JEELY",
-    "JEEPS",
-    "JEERS",
-    "JEEZE",
-    "JEFES",
-    "JEFFS",
-    "JEHAD",
-    "JEHUS",
-    "JELAB",
-    "JELLO",
-    "JELLS",
-    "JEMBE",
-    "JEMMY",
-    "JENNY",
-    "JEONS",
-    "JERID",
-    "JERKS",
-    "JERRY",
-    "JESSE",
-    "JESTS",
-    "JESUS",
-    "JETES",
-    "JETON",
-    "JEUNE",
-    "JEWED",
-    "JEWIE",
-    "JHALA",
-    "JIAOS",
-    "JIBBA",
-    "JIBBS",
-    "JIBED",
-    "JIBER",
-    "JIBES",
-    "JIFFS",
-    "JIGGY",
-    "JIGOT",
-    "JIHAD",
-    "JILLS",
-    "JILTS",
-    "JIMMY",
-    "JIMPY",
-    "JINGO",
-    "JINKS",
-    "JINNE",
-    "JINNI",
-    "JINNS",
-    "JIRDS",
-    "JIRGA",
-    "JIRRE",
-    "JISMS",
-    "JIVED",
-    "JIVER",
-    "JIVES",
-    "JIVEY",
-    "JNANA",
-    "JOBED",
-    "JOBES",
-    "JOCKO",
-    "JOCKS",
-    "JOCKY",
-    "JOCOS",
-    "JODEL",
-    "JOEYS",
-    "JOHNS",
-    "JOINS",
-    "JOKED",
-    "JOKES",
-    "JOKEY",
-    "JOKOL",
-    "JOLED",
-    "JOLES",
-    "JOLLS",
-    "JOLTS",
-    "JOLTY",
-    "JOMON",
-    "JOMOS",
-    "JONES",
-    "JONGS",
-    "JONTY",
-    "JOOKS",
-    "JORAM",
-    "JORUM",
-    "JOTAS",
-    "JOTTY",
-    "JOTUN",
-    "JOUAL",
-    "JOUGS",
-    "JOUKS",
-    "JOULE",
-    "JOURS",
-    "JOWAR",
-    "JOWED",
-    "JOWLS",
-    "JOWLY",
-    "JOYED",
-    "JUBAS",
-    "JUBES",
-    "JUCOS",
-    "JUDAS",
-    "JUDGY",
-    "JUDOS",
-    "JUGAL",
-    "JUGUM",
-    "JUJUS",
-    "JUKED",
-    "JUKES",
-    "JUKUS",
-    "JULEP",
-    "JUMAR",
-    "JUMBY",
-    "JUMPS",
-    "JUNCO",
-    "JUNKS",
-    "JUNKY",
-    "JUPES",
-    "JUPON",
-    "JURAL",
-    "JURAT",
-    "JUREL",
-    "JURES",
-    "JUSTS",
-    "JUTES",
-    "JUTTY",
-    "JUVES",
-    "JUVIE",
-    "KAAMA",
-    "KABAB",
-    "KABAR",
-    "KABOB",
-    "KACHA",
-    "KACKS",
-    "KADAI",
-    "KADES",
-    "KADIS",
-    "KAFIR",
-    "KAGOS",
-    "KAGUS",
-    "KAHAL",
-    "KAIAK",
-    "KAIDS",
-    "KAIES",
-    "KAIFS",
-    "KAIKA",
-    "KAIKS",
-    "KAILS",
-    "KAIMS",
-    "KAING",
-    "KAINS",
-    "KAKAS",
-    "KAKIS",
-    "KALAM",
-    "KALES",
-    "KALIF",
-    "KALIS",
-    "KALPA",
-    "KAMAS",
-    "KAMES",
-    "KAMIK",
-    "KAMIS",
-    "KAMME",
-    "KANAE",
-    "KANAS",
-    "KANDY",
-    "KANEH",
-    "KANES",
-    "KANGA",
-    "KANGS",
-    "KANJI",
-    "KANTS",
-    "KANZU",
-    "KAONS",
-    "KAPAS",
-    "KAPHS",
-    "KAPOK",
-    "KAPOW",
-    "KAPUS",
-    "KAPUT",
-    "KARAS",
-    "KARAT",
-    "KARKS",
-    "KARNS",
-    "KAROO",
-    "KAROS",
-    "KARRI",
-    "KARST",
-    "KARSY",
-    "KARTS",
-    "KARZY",
-    "KASHA",
-    "KASME",
-    "KATAL",
-    "KATAS",
-    "KATIS",
-    "KATTI",
-    "KAUGH",
-    "KAURI",
-    "KAURU",
-    "KAURY",
-    "KAVAL",
-    "KAVAS",
-    "KAWAS",
-    "KAWAU",
-    "KAWED",
-    "KAYLE",
-    "KAYOS",
-    "KAZIS",
-    "KAZOO",
-    "KBARS",
-    "KEBAR",
-    "KEBOB",
-    "KECKS",
-    "KEDGE",
-    "KEDGY",
-    "KEECH",
-    "KEEFS",
-    "KEEKS",
-    "KEELS",
-    "KEEMA",
-    "KEENO",
-    "KEENS",
-    "KEEPS",
-    "KEETS",
-    "KEEVE",
-    "KEFIR",
-    "KEHUA",
-    "KEIRS",
-    "KELEP",
-    "KELIM",
-    "KELLS",
-    "KELLY",
-    "KELPS",
-    "KELPY",
-    "KELTS",
-    "KELTY",
-    "KEMBO",
-    "KEMBS",
-    "KEMPS",
-    "KEMPT",
-    "KEMPY",
-    "KENAF",
-    "KENCH",
-    "KENDO",
-    "KENOS",
-    "KENTE",
-    "KENTS",
-    "KEPIS",
-    "KERBS",
-    "KEREL",
-    "KERFS",
-    "KERKY",
-    "KERMA",
-    "KERNE",
-    "KERNS",
-    "KEROS",
-    "KERRY",
-    "KERVE",
-    "KESAR",
-    "KESTS",
-    "KETAS",
-    "KETCH",
-    "KETES",
-    "KETOL",
-    "KEVEL",
-    "KEVIL",
-    "KEXES",
-    "KEYED",
-    "KEYER",
-    "KHADI",
-    "KHAFS",
-    "KHANS",
-    "KHAPH",
-    "KHATS",
-    "KHAYA",
-    "KHAZI",
-    "KHEDA",
-    "KHETH",
-    "KHETS",
-    "KHOJA",
-    "KHORS",
-    "KHOUM",
-    "KHUDS",
-    "KIAAT",
-    "KIACK",
-    "KIANG",
-    "KIBBE",
-    "KIBBI",
-    "KIBEI",
-    "KIBES",
-    "KIBLA",
-    "KICKS",
-    "KICKY",
-    "KIDDO",
-    "KIDDY",
-    "KIDEL",
-    "KIDGE",
-    "KIEFS",
-    "KIERS",
-    "KIEVE",
-    "KIEVS",
-    "KIGHT",
-    "KIKOI",
-    "KILEY",
-    "KILIM",
-    "KILLS",
-    "KILNS",
-    "KILOS",
-    "KILPS",
-    "KILTS",
-    "KILTY",
-    "KIMBO",
-    "KINAS",
-    "KINDA",
-    "KINDS",
-    "KINDY",
-    "KINES",
-    "KINGS",
-    "KININ",
-    "KINKS",
-    "KINOS",
-    "KIORE",
-    "KIPES",
-    "KIPPA",
-    "KIPPS",
-    "KIRBY",
-    "KIRKS",
-    "KIRNS",
-    "KIRRI",
-    "KISAN",
-    "KISSY",
-    "KISTS",
-    "KITED",
-    "KITER",
-    "KITES",
-    "KITHE",
-    "KITHS",
-    "KITUL",
-    "KIVAS",
-    "KIWIS",
-    "KLANG",
-    "KLAPS",
-    "KLETT",
-    "KLICK",
-    "KLIEG",
-    "KLIKS",
-    "KLONG",
-    "KLOOF",
-    "KLUGE",
-    "KLUTZ",
-    "KNAGS",
-    "KNAPS",
-    "KNARL",
-    "KNARS",
-    "KNAUR",
-    "KNAWE",
-    "KNEES",
-    "KNELL",
-    "KNISH",
-    "KNITS",
-    "KNIVE",
-    "KNOBS",
-    "KNOPS",
-    "KNOSP",
-    "KNOTS",
-    "KNOUT",
-    "KNOWE",
-    "KNOWS",
-    "KNUBS",
-    "KNURL",
-    "KNURR",
-    "KNURS",
-    "KNUTS",
-    "KOANS",
-    "KOAPS",
-    "KOBAN",
-    "KOBOS",
-    "KOELS",
-    "KOFFS",
-    "KOFTA",
-    "KOGAL",
-    "KOHAS",
-    "KOHEN",
-    "KOHLS",
-    "KOINE",
-    "KOJIS",
-    "KOKAM",
-    "KOKAS",
-    "KOKER",
-    "KOKRA",
-    "KOKUM",
-    "KOLAS",
-    "KOLOS",
-    "KOMBU",
-    "KONBU",
-    "KONDO",
-    "KONKS",
-    "KOOKS",
-    "KOOKY",
-    "KOORI",
-    "KOPEK",
-    "KOPHS",
-    "KOPJE",
-    "KOPPA",
-    "KORAI",
-    "KORAS",
-    "KORAT",
-    "KORES",
-    "KORMA",
-    "KOROS",
-    "KORUN",
-    "KORUS",
-    "KOSES",
-    "KOTCH",
-    "KOTOS",
-    "KOTOW",
-    "KOURA",
-    "KRAAL",
-    "KRABS",
-    "KRAFT",
-    "KRAIS",
-    "KRAIT",
-    "KRANG",
-    "KRANS",
-    "KRANZ",
-    "KRAUT",
-    "KRAYS",
-    "KREEP",
-    "KRENG",
-    "KREWE",
-    "KRONA",
-    "KRONE",
-    "KROON",
-    "KRUBI",
-    "KRUNK",
-    "KSARS",
-    "KUBIE",
-    "KUDOS",
-    "KUDUS",
-    "KUDZU",
-    "KUFIS",
-    "KUGEL",
-    "KUIAS",
-    "KUKRI",
-    "KUKUS",
-    "KULAK",
-    "KULAN",
-    "KULAS",
-    "KULFI",
-    "KUMIS",
-    "KUMYS",
-    "KURIS",
-    "KURRE",
-    "KURTA",
-    "KURUS",
-    "KUSSO",
-    "KUTAS",
-    "KUTCH",
-    "KUTIS",
-    "KUTUS",
-    "KUZUS",
-    "KVASS",
-    "KVELL",
-    "KWELA",
-    "KYACK",
-    "KYAKS",
-    "KYANG",
-    "KYARS",
-    "KYATS",
-    "KYBOS",
-    "KYDST",
-    "KYLES",
-    "KYLIE",
-    "KYLIN",
-    "KYLIX",
-    "KYLOE",
-    "KYNDE",
-    "KYNDS",
-    "KYPES",
-    "KYRIE",
-    "KYTES",
-    "KYTHE",
-    "LAARI",
-    "LABDA",
-    "LABIA",
-    "LABIS",
-    "LABRA",
-    "LACED",
-    "LACER",
-    "LACES",
-    "LACET",
-    "LACEY",
-    "LACKS",
-    "LADDY",
-    "LADED",
-    "LADER",
-    "LADES",
-    "LAERS",
-    "LAEVO",
-    "LAGAN",
-    "LAHAL",
-    "LAHAR",
-    "LAICH",
-    "LAICS",
-    "LAIDS",
-    "LAIGH",
-    "LAIKA",
-    "LAIKS",
-    "LAIRD",
-    "LAIRS",
-    "LAIRY",
-    "LAITH",
-    "LAITY",
-    "LAKED",
-    "LAKER",
-    "LAKES",
-    "LAKHS",
-    "LAKIN",
-    "LAKSA",
-    "LALDY",
-    "LALLS",
-    "LAMAS",
-    "LAMBS",
-    "LAMBY",
-    "LAMED",
-    "LAMER",
-    "LAMES",
-    "LAMIA",
-    "LAMMY",
-    "LAMPS",
-    "LANAI",
-    "LANAS",
-    "LANCH",
-    "LANDE",
-    "LANDS",
-    "LANES",
-    "LANKS",
-    "LANTS",
-    "LAPIN",
-    "LAPIS",
-    "LAPJE",
-    "LARCH",
-    "LARDS",
-    "LARDY",
-    "LAREE",
-    "LARES",
-    "LARGO",
-    "LARIS",
-    "LARKS",
-    "LARKY",
-    "LARNS",
-    "LARNT",
-    "LARUM",
-    "LASED",
-    "LASER",
-    "LASES",
-    "LASSI",
-    "LASSU",
-    "LASSY",
-    "LASTS",
-    "LATAH",
-    "LATED",
-    "LATEN",
-    "LATEX",
-    "LATHI",
-    "LATHS",
-    "LATHY",
-    "LATKE",
-    "LATUS",
-    "LAUAN",
-    "LAUCH",
-    "LAUDS",
-    "LAUFS",
-    "LAUND",
-    "LAURA",
-    "LAVAL",
-    "LAVAS",
-    "LAVED",
-    "LAVER",
-    "LAVES",
-    "LAVRA",
-    "LAVVY",
-    "LAWED",
-    "LAWER",
-    "LAWIN",
-    "LAWKS",
-    "LAWNS",
-    "LAWNY",
-    "LAXED",
-    "LAXER",
-    "LAXES",
-    "LAXLY",
-    "LAYED",
-    "LAYIN",
-    "LAYUP",
-    "LAZAR",
-    "LAZED",
-    "LAZES",
-    "LAZOS",
-    "LAZZI",
-    "LAZZO",
-    "LEADS",
-    "LEADY",
-    "LEAFS",
-    "LEAKS",
-    "LEAMS",
-    "LEANS",
-    "LEANY",
-    "LEAPS",
-    "LEARE",
-    "LEARS",
-    "LEARY",
-    "LEATS",
-    "LEAVY",
-    "LEAZE",
-    "LEBEN",
-    "LECCY",
-    "LEDES",
-    "LEDGY",
-    "LEDUM",
-    "LEEAR",
-    "LEEKS",
-    "LEEPS",
-    "LEERS",
-    "LEESE",
-    "LEETS",
-    "LEEZE",
-    "LEFTE",
-    "LEFTS",
-    "LEGER",
-    "LEGES",
-    "LEGGE",
-    "LEGGO",
-    "LEGIT",
-    "LEHRS",
-    "LEHUA",
-    "LEIRS",
-    "LEISH",
-    "LEMAN",
-    "LEMED",
-    "LEMEL",
-    "LEMES",
-    "LEMMA",
-    "LEMME",
-    "LENDS",
-    "LENES",
-    "LENGS",
-    "LENIS",
-    "LENOS",
-    "LENSE",
-    "LENTI",
-    "LENTO",
-    "LEONE",
-    "LEPID",
-    "LEPRA",
-    "LEPTA",
-    "LERED",
-    "LERES",
-    "LERPS",
-    "LESES",
-    "LESTS",
-    "LETCH",
-    "LETHE",
-    "LETUP",
-    "LEUCH",
-    "LEUCO",
-    "LEUDS",
-    "LEUGH",
-    "LEVAS",
-    "LEVEE",
-    "LEVES",
-    "LEVIN",
-    "LEVIS",
-    "LEWIS",
-    "LEXES",
-    "LEXIS",
-    "LEZES",
-    "LEZZA",
-    "LEZZY",
-    "LIANA",
-    "LIANE",
-    "LIANG",
-    "LIARD",
-    "LIARS",
-    "LIART",
-    "LIBER",
-    "LIBRA",
-    "LIBRI",
-    "LICHI",
-    "LICHT",
-    "LICIT",
-    "LICKS",
-    "LIDAR",
-    "LIDOS",
-    "LIEFS",
-    "LIENS",
-    "LIERS",
-    "LIEUS",
-    "LIEVE",
-    "LIFER",
-    "LIFES",
-    "LIFTS",
-    "LIGAN",
-    "LIGER",
-    "LIGGE",
-    "LIGNE",
-    "LIKED",
-    "LIKER",
-    "LIKES",
-    "LIKIN",
-    "LILLS",
-    "LILOS",
-    "LILTS",
-    "LIMAN",
-    "LIMAS",
-    "LIMAX",
-    "LIMBA",
-    "LIMBI",
-    "LIMBS",
-    "LIMBY",
-    "LIMED",
-    "LIMEN",
-    "LIMES",
-    "LIMEY",
-    "LIMMA",
-    "LIMNS",
-    "LIMOS",
-    "LIMPA",
-    "LIMPS",
-    "LINAC",
-    "LINCH",
-    "LINDS",
-    "LINDY",
-    "LINED",
-    "LINES",
-    "LINEY",
-    "LINGA",
-    "LINGS",
-    "LINGY",
-    "LININ",
-    "LINKS",
-    "LINKY",
-    "LINNS",
-    "LINNY",
-    "LINOS",
-    "LINTS",
-    "LINTY",
-    "LINUM",
-    "LINUX",
-    "LIONS",
-    "LIPAS",
-    "LIPES",
-    "LIPIN",
-    "LIPOS",
-    "LIPPY",
-    "LIRAS",
-    "LIRKS",
-    "LIROT",
-    "LISKS",
-    "LISLE",
-    "LISPS",
-    "LISTS",
-    "LITAI",
-    "LITAS",
-    "LITED",
-    "LITER",
-    "LITES",
-    "LITHO",
-    "LITHS",
-    "LITRE",
-    "LIVED",
-    "LIVEN",
-    "LIVES",
-    "LIVOR",
-    "LIVRE",
-    "LLANO",
-    "LOACH",
-    "LOADS",
-    "LOAFS",
-    "LOAMS",
-    "LOANS",
-    "LOAST",
-    "LOAVE",
-    "LOBAR",
-    "LOBED",
-    "LOBES",
-    "LOBOS",
-    "LOBUS",
-    "LOCHE",
-    "LOCHS",
-    "LOCIE",
-    "LOCIS",
-    "LOCKS",
-    "LOCOS",
-    "LOCUM",
-    "LODEN",
-    "LODES",
-    "LOESS",
-    "LOFTS",
-    "LOGAN",
-    "LOGES",
-    "LOGGY",
-    "LOGIA",
-    "LOGIE",
-    "LOGOI",
-    "LOGON",
-    "LOGOS",
-    "LOHAN",
-    "LOIDS",
-    "LOINS",
-    "LOIPE",
-    "LOIRS",
-    "LOKES",
-    "LOLLS",
-    "LOLLY",
-    "LOLOG",
-    "LOMAS",
-    "LOMED",
-    "LOMES",
-    "LONER",
-    "LONGA",
-    "LONGE",
-    "LONGS",
-    "LOOBY",
-    "LOOED",
-    "LOOEY",
-    "LOOFA",
-    "LOOFS",
-    "LOOIE",
-    "LOOKS",
-    "LOOKY",
-    "LOOMS",
-    "LOONS",
-    "LOONY",
-    "LOOPS",
-    "LOORD",
-    "LOOTS",
-    "LOPED",
-    "LOPER",
-    "LOPES",
-    "LOPPY",
-    "LORAL",
-    "LORAN",
-    "LORDS",
-    "LORDY",
-    "LOREL",
-    "LORES",
-    "LORIC",
-    "LORIS",
-    "LOSED",
-    "LOSEL",
-    "LOSEN",
-    "LOSES",
-    "LOSSY",
-    "LOTAH",
-    "LOTAS",
-    "LOTES",
-    "LOTIC",
-    "LOTOS",
-    "LOTSA",
-    "LOTTA",
-    "LOTTE",
-    "LOTTO",
-    "LOTUS",
-    "LOUED",
-    "LOUGH",
-    "LOUIE",
-    "LOUIS",
-    "LOUMA",
-    "LOUND",
-    "LOUNS",
-    "LOUPE",
-    "LOUPS",
-    "LOURE",
-    "LOURS",
-    "LOURY",
-    "LOUTS",
-    "LOVAT",
-    "LOVED",
-    "LOVES",
-    "LOVEY",
-    "LOVIE",
-    "LOWAN",
-    "LOWED",
-    "LOWES",
-    "LOWND",
-    "LOWNE",
-    "LOWNS",
-    "LOWPS",
-    "LOWRY",
-    "LOWSE",
-    "LOWTS",
-    "LOXED",
-    "LOXES",
-    "LOZEN",
-    "LUACH",
-    "LUAUS",
-    "LUBED",
-    "LUBES",
-    "LUBRA",
-    "LUCES",
-    "LUCKS",
-    "LUCRE",
-    "LUDES",
-    "LUDIC",
-    "LUDOS",
-    "LUFFA",
-    "LUFFS",
-    "LUGED",
-    "LUGER",
-    "LUGES",
-    "LULLS",
-    "LULUS",
-    "LUMAS",
-    "LUMBI",
-    "LUMME",
-    "LUMMY",
-    "LUMPS",
-    "LUNAS",
-    "LUNES",
-    "LUNET",
-    "LUNGI",
-    "LUNGS",
-    "LUNKS",
-    "LUNTS",
-    "LUPIN",
-    "LURED",
-    "LURER",
-    "LURES",
-    "LUREX",
-    "LURGI",
-    "LURGY",
-    "LURKS",
-    "LURRY",
-    "LURVE",
-    "LUSER",
-    "LUSHY",
-    "LUSKS",
-    "LUSTS",
-    "LUSUS",
-    "LUTEA",
-    "LUTED",
-    "LUTER",
-    "LUTES",
-    "LUVVY",
-    "LUXED",
-    "LUXER",
-    "LUXES",
-    "LWEIS",
-    "LYAMS",
-    "LYARD",
-    "LYART",
-    "LYASE",
-    "LYCEA",
-    "LYCEE",
-    "LYCRA",
-    "LYMES",
-    "LYNES",
-    "LYRES",
-    "LYSED",
-    "LYSES",
-    "LYSIN",
-    "LYSIS",
-    "LYSOL",
-    "LYSSA",
-    "LYTED",
-    "LYTES",
-    "LYTHE",
-    "LYTIC",
-    "LYTTA",
-    "MAAED",
-    "MAARE",
-    "MAARS",
-    "MABES",
-    "MACAS",
-    "MACED",
-    "MACER",
-    "MACES",
-    "MACHE",
-    "MACHI",
-    "MACHS",
-    "MACKS",
-    "MACLE",
-    "MACON",
-    "MADGE",
-    "MADID",
-    "MADRE",
-    "MAERL",
-    "MAFIC",
-    "MAGES",
-    "MAGGS",
-    "MAGOT",
-    "MAGUS",
-    "MAHOE",
-    "MAHUA",
-    "MAHWA",
-    "MAIDS",
-    "MAIKO",
-    "MAIKS",
-    "MAILE",
-    "MAILL",
-    "MAILS",
-    "MAIMS",
-    "MAINS",
-    "MAIRE",
-    "MAIRS",
-    "MAISE",
-    "MAIST",
-    "MAKAR",
-    "MAKES",
-    "MAKIS",
-    "MAKOS",
-    "MALAM",
-    "MALAR",
-    "MALAS",
-    "MALAX",
-    "MALES",
-    "MALIC",
-    "MALIK",
-    "MALIS",
-    "MALLS",
-    "MALMS",
-    "MALMY",
-    "MALTS",
-    "MALTY",
-    "MALUS",
-    "MALVA",
-    "MALWA",
-    "MAMAS",
-    "MAMBA",
-    "MAMEE",
-    "MAMEY",
-    "MAMIE",
-    "MANAS",
-    "MANAT",
-    "MANDI",
-    "MANEB",
-    "MANED",
-    "MANEH",
-    "MANES",
-    "MANET",
-    "MANGS",
-    "MANIS",
-    "MANKY",
-    "MANNA",
-    "MANOS",
-    "MANSE",
-    "MANTA",
-    "MANTO",
-    "MANTY",
-    "MANUL",
-    "MANUS",
-    "MAPAU",
-    "MAQUI",
-    "MARAE",
-    "MARAH",
-    "MARAS",
-    "MARCS",
-    "MARDY",
-    "MARES",
-    "MARGE",
-    "MARGS",
-    "MARIA",
-    "MARID",
-    "MARKA",
-    "MARKS",
-    "MARLE",
-    "MARLS",
-    "MARLY",
-    "MARMS",
-    "MARON",
-    "MAROR",
-    "MARRA",
-    "MARRI",
-    "MARSE",
-    "MARTS",
-    "MARVY",
-    "MASAS",
-    "MASED",
-    "MASER",
-    "MASES",
-    "MASHY",
-    "MASKS",
-    "MASSA",
-    "MASSY",
-    "MASTS",
-    "MASTY",
-    "MASUS",
-    "MATAI",
-    "MATED",
-    "MATER",
-    "MATES",
-    "MATHS",
-    "MATIN",
-    "MATLO",
-    "MATTE",
-    "MATTS",
-    "MATZA",
-    "MATZO",
-    "MAUBY",
-    "MAUDS",
-    "MAULS",
-    "MAUND",
-    "MAURI",
-    "MAUSY",
-    "MAUTS",
-    "MAUZY",
-    "MAVEN",
-    "MAVIE",
-    "MAVIN",
-    "MAVIS",
-    "MAWED",
-    "MAWKS",
-    "MAWKY",
-    "MAWNS",
-    "MAWRS",
-    "MAXED",
-    "MAXES",
-    "MAXIS",
-    "MAYAN",
-    "MAYAS",
-    "MAYED",
-    "MAYOS",
-    "MAYST",
-    "MAZED",
-    "MAZER",
-    "MAZES",
-    "MAZEY",
-    "MAZUT",
-    "MBIRA",
-    "MEADS",
-    "MEALS",
-    "MEANE",
-    "MEANS",
-    "MEANY",
-    "MEARE",
-    "MEASE",
-    "MEATH",
-    "MEATS",
-    "MEBOS",
-    "MECHS",
-    "MECKS",
-    "MEDII",
-    "MEDLE",
-    "MEEDS",
-    "MEERS",
-    "MEETS",
-    "MEFFS",
-    "MEINS",
-    "MEINT",
-    "MEINY",
-    "MEITH",
-    "MEKKA",
-    "MELAS",
-    "MELBA",
-    "MELDS",
-    "MELIC",
-    "MELIK",
-    "MELLS",
-    "MELTS",
-    "MELTY",
-    "MEMES",
-    "MEMOS",
-    "MENAD",
-    "MENDS",
-    "MENED",
-    "MENES",
-    "MENGE",
-    "MENGS",
-    "MENSA",
-    "MENSE",
-    "MENSH",
-    "MENTA",
-    "MENTO",
-    "MENUS",
-    "MEOUS",
-    "MEOWS",
-    "MERCH",
-    "MERCS",
-    "MERDE",
-    "MERED",
-    "MEREL",
-    "MERER",
-    "MERES",
-    "MERIL",
-    "MERIS",
-    "MERKS",
-    "MERLE",
-    "MERLS",
-    "MERSE",
-    "MESAL",
-    "MESAS",
-    "MESEL",
-    "MESES",
-    "MESHY",
-    "MESIC",
-    "MESNE",
-    "MESON",
-    "MESSY",
-    "MESTO",
-    "METED",
-    "METES",
-    "METHO",
-    "METHS",
-    "METIC",
-    "METIF",
-    "METIS",
-    "METOL",
-    "METRE",
-    "MEUSE",
-    "MEVED",
-    "MEVES",
-    "MEWED",
-    "MEWLS",
-    "MEYNT",
-    "MEZES",
-    "MEZZE",
-    "MEZZO",
-    "MHORR",
-    "MIAOU",
-    "MIAOW",
-    "MIASM",
-    "MIAUL",
-    "MICAS",
-    "MICHE",
-    "MICHT",
-    "MICKS",
-    "MICKY",
-    "MICOS",
-    "MICRA",
-    "MIDDY",
-    "MIDGY",
-    "MIDIS",
-    "MIENS",
-    "MIEVE",
-    "MIFFS",
-    "MIFFY",
-    "MIFTY",
-    "MIGGS",
-    "MIHAS",
-    "MIHIS",
-    "MIKED",
-    "MIKES",
-    "MIKRA",
-    "MIKVA",
-    "MILCH",
-    "MILDS",
-    "MILER",
-    "MILES",
-    "MILFS",
-    "MILIA",
-    "MILKO",
-    "MILKS",
-    "MILLE",
-    "MILLS",
-    "MILOR",
-    "MILOS",
-    "MILPA",
-    "MILTS",
-    "MILTY",
-    "MILTZ",
-    "MIMED",
-    "MIMEO",
-    "MIMER",
-    "MIMES",
-    "MIMSY",
-    "MINAE",
-    "MINAR",
-    "MINAS",
-    "MINCY",
-    "MINDS",
-    "MINED",
-    "MINES",
-    "MINGE",
-    "MINGS",
-    "MINGY",
-    "MINIS",
-    "MINKE",
-    "MINKS",
-    "MINNY",
-    "MINOS",
-    "MINTS",
-    "MIRED",
-    "MIRES",
-    "MIREX",
-    "MIRID",
-    "MIRIN",
-    "MIRKS",
-    "MIRKY",
-    "MIRLY",
-    "MIROS",
-    "MIRVS",
-    "MIRZA",
-    "MISCH",
-    "MISDO",
-    "MISES",
-    "MISGO",
-    "MISOS",
-    "MISSA",
-    "MISTS",
-    "MISTY",
-    "MITCH",
-    "MITER",
-    "MITES",
-    "MITIS",
-    "MITRE",
-    "MITTS",
-    "MIXED",
-    "MIXEN",
-    "MIXER",
-    "MIXES",
-    "MIXTE",
-    "MIXUP",
-    "MIZEN",
-    "MIZZY",
-    "MNEME",
-    "MOANS",
-    "MOATS",
-    "MOBBY",
-    "MOBES",
-    "MOBEY",
-    "MOBIE",
-    "MOBLE",
-    "MOCHI",
-    "MOCHS",
-    "MOCHY",
-    "MOCKS",
-    "MODER",
-    "MODES",
-    "MODGE",
-    "MODII",
-    "MODUS",
-    "MOERS",
-    "MOFOS",
-    "MOGGY",
-    "MOHEL",
-    "MOHOS",
-    "MOHRS",
-    "MOHUA",
-    "MOHUR",
-    "MOILE",
-    "MOILS",
-    "MOIRA",
-    "MOIRE",
-    "MOITS",
-    "MOJOS",
-    "MOKES",
-    "MOKIS",
-    "MOKOS",
-    "MOLAL",
-    "MOLAS",
-    "MOLDS",
-    "MOLED",
-    "MOLES",
-    "MOLLA",
-    "MOLLS",
-    "MOLLY",
-    "MOLTO",
-    "MOLTS",
-    "MOLYS",
-    "MOMES",
-    "MOMMA",
-    "MOMMY",
-    "MOMUS",
-    "MONAD",
-    "MONAL",
-    "MONAS",
-    "MONDE",
-    "MONDO",
-    "MONER",
-    "MONGO",
-    "MONGS",
-    "MONIC",
-    "MONIE",
-    "MONKS",
-    "MONOS",
-    "MONTE",
-    "MONTY",
-    "MOOBS",
-    "MOOCH",
-    "MOODS",
-    "MOOED",
-    "MOOKS",
-    "MOOLA",
-    "MOOLI",
-    "MOOLS",
-    "MOOLY",
-    "MOONG",
-    "MOONS",
-    "MOONY",
-    "MOOPS",
-    "MOORS",
-    "MOORY",
-    "MOOTS",
-    "MOOVE",
-    "MOPED",
-    "MOPER",
-    "MOPES",
-    "MOPEY",
-    "MOPPY",
-    "MOPSY",
-    "MOPUS",
-    "MORAE",
-    "MORAS",
-    "MORAT",
-    "MORAY",
-    "MOREL",
-    "MORES",
-    "MORIA",
-    "MORNE",
-    "MORNS",
-    "MORRA",
-    "MORRO",
-    "MORSE",
-    "MORTS",
-    "MOSED",
-    "MOSES",
-    "MOSEY",
-    "MOSKS",
-    "MOSSO",
-    "MOSTE",
-    "MOSTS",
-    "MOTED",
-    "MOTEN",
-    "MOTES",
-    "MOTET",
-    "MOTEY",
-    "MOTHS",
-    "MOTHY",
-    "MOTIS",
-    "MOTTE",
-    "MOTTS",
-    "MOTTY",
-    "MOTUS",
-    "MOTZA",
-    "MOUCH",
-    "MOUES",
-    "MOULD",
-    "MOULS",
-    "MOUPS",
-    "MOUST",
-    "MOUSY",
-    "MOVED",
-    "MOVES",
-    "MOWAS",
-    "MOWED",
-    "MOWRA",
-    "MOXAS",
-    "MOXIE",
-    "MOYAS",
-    "MOYLE",
-    "MOYLS",
-    "MOZED",
-    "MOZES",
-    "MOZOS",
-    "MPRET",
-    "MUCHO",
-    "MUCIC",
-    "MUCID",
-    "MUCIN",
-    "MUCKS",
-    "MUCOR",
-    "MUCRO",
-    "MUDGE",
-    "MUDIR",
-    "MUDRA",
-    "MUFFS",
-    "MUFTI",
-    "MUGGA",
-    "MUGGS",
-    "MUGGY",
-    "MUHLY",
-    "MUIDS",
-    "MUILS",
-    "MUIRS",
-    "MUIST",
-    "MUJIK",
-    "MULCT",
-    "MULED",
-    "MULES",
-    "MULEY",
-    "MULGA",
-    "MULIE",
-    "MULLA",
-    "MULLS",
-    "MULSE",
-    "MULSH",
-    "MUMMS",
-    "MUMPS",
-    "MUMSY",
-    "MUMUS",
-    "MUNGA",
-    "MUNGE",
-    "MUNGO",
-    "MUNGS",
-    "MUNIS",
-    "MUNTS",
-    "MUNTU",
-    "MUONS",
-    "MURAS",
-    "MURED",
-    "MURES",
-    "MUREX",
-    "MURID",
-    "MURKS",
-    "MURLS",
-    "MURLY",
-    "MURRA",
-    "MURRE",
-    "MURRI",
-    "MURRS",
-    "MURRY",
-    "MURTI",
-    "MURVA",
-    "MUSAR",
-    "MUSCA",
-    "MUSED",
-    "MUSER",
-    "MUSES",
-    "MUSET",
-    "MUSHA",
-    "MUSIT",
-    "MUSKS",
-    "MUSOS",
-    "MUSSE",
-    "MUSSY",
-    "MUSTH",
-    "MUSTS",
-    "MUTCH",
-    "MUTED",
-    "MUTER",
-    "MUTES",
-    "MUTHA",
-    "MUTIS",
-    "MUTON",
-    "MUTTS",
-    "MUXED",
-    "MUXES",
-    "MUZAK",
-    "MUZZY",
-    "MVULE",
-    "MYALL",
-    "MYLAR",
-    "MYNAH",
-    "MYNAS",
-    "MYOID",
-    "MYOMA",
-    "MYOPE",
-    "MYOPS",
-    "MYOPY",
-    "MYSID",
-    "MYTHI",
-    "MYTHS",
-    "MYTHY",
-    "MYXOS",
-    "MZEES",
-    "NAAMS",
-    "NAANS",
-    "NABES",
-    "NABIS",
-    "NABKS",
-    "NABLA",
-    "NABOB",
-    "NACHE",
-    "NACHO",
-    "NACRE",
-    "NADAS",
-    "NAEVE",
-    "NAEVI",
-    "NAFFS",
-    "NAGAS",
-    "NAGGY",
-    "NAGOR",
-    "NAHAL",
-    "NAIAD",
-    "NAIFS",
-    "NAIKS",
-    "NAILS",
-    "NAIRA",
-    "NAIRU",
-    "NAKED",
-    "NAKER",
-    "NAKFA",
-    "NALAS",
-    "NALED",
-    "NALLA",
-    "NAMED",
-    "NAMER",
-    "NAMES",
-    "NAMMA",
-    "NAMUS",
-    "NANAS",
-    "NANCE",
-    "NANCY",
-    "NANDU",
-    "NANNA",
-    "NANOS",
-    "NANUA",
-    "NAPAS",
-    "NAPED",
-    "NAPES",
-    "NAPOO",
-    "NAPPA",
-    "NAPPE",
-    "NAPPY",
-    "NARAS",
-    "NARCO",
-    "NARCS",
-    "NARDS",
-    "NARES",
-    "NARIC",
-    "NARIS",
-    "NARKS",
-    "NARKY",
-    "NARRE",
-    "NASHI",
-    "NATCH",
-    "NATES",
-    "NATIS",
-    "NATTY",
-    "NAUCH",
-    "NAUNT",
-    "NAVAR",
-    "NAVES",
-    "NAVEW",
-    "NAVVY",
-    "NAWAB",
-    "NAZES",
-    "NAZIR",
-    "NAZIS",
-    "NDUJA",
-    "NEAFE",
-    "NEALS",
-    "NEAPS",
-    "NEARS",
-    "NEATH",
-    "NEATS",
-    "NEBEK",
-    "NEBEL",
-    "NECKS",
-    "NEDDY",
-    "NEEDS",
-    "NEELD",
-    "NEELE",
-    "NEEMB",
-    "NEEMS",
-    "NEEPS",
-    "NEESE",
-    "NEEZE",
-    "NEGRO",
-    "NEGUS",
-    "NEIFS",
-    "NEIST",
-    "NEIVE",
-    "NELIS",
-    "NELLY",
-    "NEMAS",
-    "NEMNS",
-    "NEMPT",
-    "NENES",
-    "NEONS",
-    "NEPER",
-    "NEPIT",
-    "NERAL",
-    "NERDS",
-    "NERKA",
-    "NERKS",
-    "NEROL",
-    "NERTS",
-    "NERTZ",
-    "NERVY",
-    "NESTS",
-    "NETES",
-    "NETOP",
-    "NETTS",
-    "NETTY",
-    "NEUKS",
-    "NEUME",
-    "NEUMS",
-    "NEVEL",
-    "NEVES",
-    "NEVUS",
-    "NEWBS",
-    "NEWED",
-    "NEWEL",
-    "NEWIE",
-    "NEWSY",
-    "NEWTS",
-    "NEXTS",
-    "NEXUS",
-    "NGAIO",
-    "NGANA",
-    "NGATI",
-    "NGOMA",
-    "NGWEE",
-    "NICAD",
-    "NICHT",
-    "NICKS",
-    "NICOL",
-    "NIDAL",
-    "NIDED",
-    "NIDES",
-    "NIDOR",
-    "NIDUS",
-    "NIEFS",
-    "NIEVE",
-    "NIFES",
-    "NIFFS",
-    "NIFFY",
-    "NIFTY",
-    "NIGER",
-    "NIGHS",
-    "NIHIL",
-    "NIKAB",
-    "NIKAH",
-    "NIKAU",
-    "NILLS",
-    "NIMBI",
-    "NIMBS",
-    "NIMPS",
-    "NINER",
-    "NINES",
-    "NINON",
-    "NIPAS",
-    "NIPPY",
-    "NIQAB",
-    "NIRLS",
-    "NIRLY",
-    "NISEI",
-    "NISSE",
-    "NISUS",
-    "NITER",
-    "NITES",
-    "NITID",
-    "NITON",
-    "NITRE",
-    "NITRO",
-    "NITRY",
-    "NITTY",
-    "NIVAL",
-    "NIXED",
-    "NIXER",
-    "NIXES",
-    "NIXIE",
-    "NIZAM",
-    "NKOSI",
-    "NOAHS",
-    "NOBBY",
-    "NOCKS",
-    "NODAL",
-    "NODDY",
-    "NODES",
-    "NODUS",
-    "NOELS",
-    "NOGGS",
-    "NOHOW",
-    "NOILS",
-    "NOILY",
-    "NOINT",
-    "NOIRS",
-    "NOLES",
-    "NOLLS",
-    "NOLOS",
-    "NOMAS",
-    "NOMEN",
-    "NOMES",
-    "NOMIC",
-    "NOMOI",
-    "NOMOS",
-    "NONAS",
-    "NONCE",
-    "NONES",
-    "NONET",
-    "NONGS",
-    "NONIS",
-    "NONNY",
-    "NONYL",
-    "NOOBS",
-    "NOOIT",
-    "NOOKS",
-    "NOOKY",
-    "NOONS",
-    "NOOPS",
-    "NOPAL",
-    "NORIA",
-    "NORIS",
-    "NORKS",
-    "NORMA",
-    "NORMS",
-    "NOSED",
-    "NOSER",
-    "NOSES",
-    "NOTAL",
-    "NOTED",
-    "NOTER",
-    "NOTES",
-    "NOTUM",
-    "NOULD",
-    "NOULE",
-    "NOULS",
-    "NOUNS",
-    "NOUNY",
-    "NOUPS",
-    "NOVAE",
-    "NOVAS",
-    "NOVUM",
-    "NOWAY",
-    "NOWED",
-    "NOWLS",
-    "NOWTS",
-    "NOWTY",
-    "NOXAL",
-    "NOXES",
-    "NOYAU",
-    "NOYED",
-    "NOYES",
-    "NUBBY",
-    "NUBIA",
-    "NUCHA",
-    "NUDDY",
-    "NUDER",
-    "NUDES",
-    "NUDIE",
-    "NUDZH",
-    "NUFFS",
-    "NUGAE",
-    "NUKED",
-    "NUKES",
-    "NULLA",
-    "NULLS",
-    "NUMBS",
-    "NUMEN",
-    "NUMMY",
-    "NUNNY",
-    "NURDS",
-    "NURDY",
-    "NURLS",
-    "NURRS",
-    "NUTSO",
-    "NUTSY",
-    "NYAFF",
-    "NYALA",
-    "NYING",
-    "NYSSA",
-    "OAKED",
-    "OAKER",
-    "OAKUM",
-    "OARED",
-    "OASES",
-    "OASIS",
-    "OASTS",
-    "OATEN",
-    "OATER",
-    "OATHS",
-    "OAVES",
-    "OBANG",
-    "OBEAH",
-    "OBELI",
-    "OBEYS",
-    "OBIAS",
-    "OBIED",
-    "OBIIT",
-    "OBITS",
-    "OBJET",
-    "OBOES",
-    "OBOLE",
-    "OBOLI",
-    "OBOLS",
-    "OCCAM",
-    "OCHER",
-    "OCHES",
-    "OCHRE",
-    "OCHRY",
-    "OCKER",
-    "OCREA",
-    "OCTAD",
-    "OCTAN",
-    "OCTAS",
-    "OCTYL",
-    "OCULI",
-    "ODAHS",
-    "ODALS",
-    "ODEON",
-    "ODEUM",
-    "ODISM",
-    "ODIST",
-    "ODIUM",
-    "ODORS",
-    "ODOUR",
-    "ODYLE",
-    "ODYLS",
-    "OFAYS",
-    "OFFED",
-    "OFFIE",
-    "OFLAG",
-    "OFTER",
-    "OGAMS",
-    "OGEED",
-    "OGEES",
-    "OGGIN",
-    "OGHAM",
-    "OGIVE",
-    "OGLED",
-    "OGLER",
-    "OGLES",
-    "OGMIC",
-    "OGRES",
-    "OHIAS",
-    "OHING",
-    "OHMIC",
-    "OHONE",
-    "OIDIA",
-    "OILED",
-    "OILER",
-    "OINKS",
-    "OINTS",
-    "OJIME",
-    "OKAPI",
-    "OKAYS",
-    "OKEHS",
-    "OKRAS",
-    "OKTAS",
-    "OLDIE",
-    "OLEIC",
-    "OLEIN",
-    "OLENT",
-    "OLEOS",
-    "OLEUM",
-    "OLIOS",
-    "OLLAS",
-    "OLLAV",
-    "OLLER",
-    "OLLIE",
-    "OLOGY",
-    "OLPAE",
-    "OLPES",
-    "OMASA",
-    "OMBER",
-    "OMBUS",
-    "OMENS",
-    "OMERS",
-    "OMITS",
-    "OMLAH",
-    "OMOVS",
-    "OMRAH",
-    "ONCER",
-    "ONCES",
-    "ONCET",
-    "ONCUS",
-    "ONELY",
-    "ONERS",
-    "ONERY",
-    "ONIUM",
-    "ONKUS",
-    "ONLAY",
-    "ONNED",
-    "ONTIC",
-    "OOBIT",
-    "OOHED",
-    "OOMPH",
-    "OONTS",
-    "OOPED",
-    "OORIE",
-    "OOSES",
-    "OOTID",
-    "OOZED",
-    "OOZES",
-    "OPAHS",
-    "OPALS",
-    "OPENS",
-    "OPEPE",
-    "OPING",
-    "OPPOS",
-    "OPSIN",
-    "OPTED",
-    "OPTER",
-    "ORACH",
-    "ORACY",
-    "ORALS",
-    "ORANG",
-    "ORANT",
-    "ORATE",
-    "ORBED",
-    "ORCAS",
-    "ORCIN",
-    "ORDOS",
-    "OREAD",
-    "ORFES",
-    "ORGIA",
-    "ORGIC",
-    "ORGUE",
-    "ORIBI",
-    "ORIEL",
-    "ORIXA",
-    "ORLES",
-    "ORLON",
-    "ORLOP",
-    "ORMER",
-    "ORNIS",
-    "ORPIN",
-    "ORRIS",
-    "ORTHO",
-    "ORVAL",
-    "ORZOS",
-    "OSCAR",
-    "OSHAC",
-    "OSIER",
-    "OSMIC",
-    "OSMOL",
-    "OSSIA",
-    "OSTIA",
-    "OTAKU",
-    "OTARY",
-    "OTTAR",
-    "OTTOS",
-    "OUBIT",
-    "OUCHT",
-    "OUENS",
-    "OUIJA",
-    "OULKS",
-    "OUMAS",
-    "OUNDY",
-    "OUPAS",
-    "OUPED",
-    "OUPHE",
-    "OUPHS",
-    "OURIE",
-    "OUSEL",
-    "OUSTS",
-    "OUTBY",
-    "OUTED",
-    "OUTRE",
-    "OUTRO",
-    "OUTTA",
-    "OUZEL",
-    "OUZOS",
-    "OVALS",
-    "OVELS",
-    "OVENS",
-    "OVERS",
-    "OVIST",
-    "OVOLI",
-    "OVOLO",
-    "OVULE",
-    "OWCHE",
-    "OWIES",
-    "OWLED",
-    "OWLER",
-    "OWLET",
-    "OWNED",
-    "OWRES",
-    "OWRIE",
-    "OWSEN",
-    "OXBOW",
-    "OXERS",
-    "OXEYE",
-    "OXIDS",
-    "OXIES",
-    "OXIME",
-    "OXIMS",
-    "OXLIP",
-    "OXTER",
-    "OYERS",
-    "OZEKI",
-    "OZZIE",
-    "PAALS",
-    "PAANS",
-    "PACAS",
-    "PACED",
-    "PACER",
-    "PACES",
-    "PACEY",
-    "PACHA",
-    "PACKS",
-    "PACOS",
-    "PACTA",
-    "PACTS",
-    "PADIS",
-    "PADLE",
-    "PADMA",
-    "PADRE",
-    "PADRI",
-    "PAEAN",
-    "PAEDO",
-    "PAEON",
-    "PAGED",
-    "PAGER",
-    "PAGES",
-    "PAGLE",
-    "PAGOD",
-    "PAGRI",
-    "PAIKS",
-    "PAILS",
-    "PAINS",
-    "PAIRE",
-    "PAIRS",
-    "PAISA",
-    "PAISE",
-    "PAKKA",
-    "PALAS",
-    "PALAY",
-    "PALEA",
-    "PALED",
-    "PALES",
-    "PALET",
-    "PALIS",
-    "PALKI",
-    "PALLA",
-    "PALLS",
-    "PALLY",
-    "PALMS",
-    "PALMY",
-    "PALPI",
-    "PALPS",
-    "PALSA",
-    "PAMPA",
-    "PANAX",
-    "PANCE",
-    "PANDA",
-    "PANDS",
-    "PANDY",
-    "PANED",
-    "PANES",
-    "PANGA",
-    "PANGS",
-    "PANIM",
-    "PANKO",
-    "PANNE",
-    "PANNI",
-    "PANTO",
-    "PANTS",
-    "PANTY",
-    "PAOLI",
-    "PAOLO",
-    "PAPAS",
-    "PAPAW",
-    "PAPES",
-    "PAPPI",
-    "PAPPY",
-    "PARAE",
-    "PARAS",
-    "PARCH",
-    "PARDI",
-    "PARDS",
-    "PARDY",
-    "PARED",
-    "PAREN",
-    "PAREO",
-    "PARES",
-    "PAREU",
-    "PAREV",
-    "PARGE",
-    "PARGO",
-    "PARIS",
-    "PARKI",
-    "PARKS",
-    "PARKY",
-    "PARLE",
-    "PARLY",
-    "PARMA",
-    "PAROL",
-    "PARPS",
-    "PARRA",
-    "PARRS",
-    "PARTI",
-    "PARTS",
-    "PARVE",
-    "PARVO",
-    "PASEO",
-    "PASES",
-    "PASHA",
-    "PASHM",
-    "PASKA",
-    "PASPY",
-    "PASSE",
-    "PASTS",
-    "PATED",
-    "PATEN",
-    "PATER",
-    "PATES",
-    "PATHS",
-    "PATIN",
-    "PATKA",
-    "PATLY",
-    "PATTE",
-    "PATUS",
-    "PAUAS",
-    "PAULS",
-    "PAVAN",
-    "PAVED",
-    "PAVEN",
-    "PAVER",
-    "PAVES",
-    "PAVID",
-    "PAVIN",
-    "PAVIS",
-    "PAWAS",
-    "PAWAW",
-    "PAWED",
-    "PAWER",
-    "PAWKS",
-    "PAWKY",
-    "PAWLS",
-    "PAWNS",
-    "PAXES",
-    "PAYED",
-    "PAYOR",
-    "PAYSD",
-    "PEAGE",
-    "PEAGS",
-    "PEAKS",
-    "PEAKY",
-    "PEALS",
-    "PEANS",
-    "PEARE",
-    "PEARS",
-    "PEART",
-    "PEASE",
-    "PEATS",
-    "PEATY",
-    "PEAVY",
-    "PEAZE",
-    "PEBAS",
-    "PECHS",
-    "PECKE",
-    "PECKS",
-    "PECKY",
-    "PEDES",
-    "PEDIS",
-    "PEDRO",
-    "PEECE",
-    "PEEKS",
-    "PEELS",
-    "PEENS",
-    "PEEOY",
-    "PEEPE",
-    "PEEPS",
-    "PEERS",
-    "PEERY",
-    "PEEVE",
-    "PEGGY",
-    "PEGHS",
-    "PEINS",
-    "PEISE",
-    "PEIZE",
-    "PEKAN",
-    "PEKES",
-    "PEKIN",
-    "PEKOE",
-    "PELAS",
-    "PELAU",
-    "PELES",
-    "PELFS",
-    "PELLS",
-    "PELMA",
-    "PELON",
-    "PELTA",
-    "PELTS",
-    "PENDS",
-    "PENDU",
-    "PENED",
-    "PENES",
-    "PENGO",
-    "PENIE",
-    "PENIS",
-    "PENKS",
-    "PENNA",
-    "PENNI",
-    "PENTS",
-    "PEONS",
-    "PEONY",
-    "PEPLA",
-    "PEPOS",
-    "PEPPY",
-    "PEPSI",
-    "PERAI",
-    "PERCE",
-    "PERCS",
-    "PERDU",
-    "PERDY",
-    "PEREA",
-    "PERES",
-    "PERIS",
-    "PERKS",
-    "PERMS",
-    "PERNS",
-    "PEROG",
-    "PERPS",
-    "PERRY",
-    "PERSE",
-    "PERST",
-    "PERTS",
-    "PERVE",
-    "PERVO",
-    "PERVS",
-    "PERVY",
-    "PESOS",
-    "PESTS",
-    "PESTY",
-    "PETAR",
-    "PETER",
-    "PETIT",
-    "PETRE",
-    "PETRI",
-    "PETTI",
-    "PETTO",
-    "PEWEE",
-    "PEWIT",
-    "PEYSE",
-    "PHAGE",
-    "PHANG",
-    "PHARE",
-    "PHARM",
-    "PHEER",
-    "PHENE",
-    "PHEON",
-    "PHESE",
-    "PHIAL",
-    "PHISH",
-    "PHIZZ",
-    "PHLOX",
-    "PHOCA",
-    "PHONO",
-    "PHONS",
-    "PHOTS",
-    "PHPHT",
-    "PHUTS",
-    "PHYLA",
-    "PHYLE",
-    "PIANI",
-    "PIANS",
-    "PIBAL",
-    "PICAL",
-    "PICAS",
-    "PICCY",
-    "PICKS",
-    "PICOT",
-    "PICRA",
-    "PICUL",
-    "PIEND",
-    "PIERS",
-    "PIERT",
-    "PIETA",
-    "PIETS",
-    "PIEZO",
-    "PIGHT",
-    "PIGMY",
-    "PIING",
-    "PIKAS",
-    "PIKAU",
-    "PIKED",
-    "PIKER",
-    "PIKES",
-    "PIKEY",
-    "PIKIS",
-    "PIKUL",
-    "PILAE",
-    "PILAF",
-    "PILAO",
-    "PILAR",
-    "PILAU",
-    "PILAW",
-    "PILCH",
-    "PILEA",
-    "PILED",
-    "PILEI",
-    "PILER",
-    "PILES",
-    "PILIS",
-    "PILLS",
-    "PILOW",
-    "PILUM",
-    "PILUS",
-    "PIMAS",
-    "PIMPS",
-    "PINAS",
-    "PINED",
-    "PINES",
-    "PINGO",
-    "PINGS",
-    "PINKO",
-    "PINKS",
-    "PINNA",
-    "PINNY",
-    "PINON",
-    "PINOT",
-    "PINTA",
-    "PINTS",
-    "PINUP",
-    "PIONS",
-    "PIONY",
-    "PIOUS",
-    "PIOYE",
-    "PIOYS",
-    "PIPAL",
-    "PIPAS",
-    "PIPED",
-    "PIPES",
-    "PIPET",
-    "PIPIS",
-    "PIPIT",
-    "PIPPY",
-    "PIPUL",
-    "PIRAI",
-    "PIRLS",
-    "PIRNS",
-    "PIROG",
-    "PISCO",
-    "PISES",
-    "PISKY",
-    "PISOS",
-    "PISSY",
-    "PISTE",
-    "PITAS",
-    "PITHS",
-    "PITON",
-    "PITOT",
-    "PITTA",
-    "PIUMS",
-    "PIXES",
-    "PIZED",
-    "PIZES",
-    "PLAAS",
-    "PLACK",
-    "PLAGE",
-    "PLANS",
-    "PLAPS",
-    "PLASH",
-    "PLASM",
-    "PLAST",
-    "PLATS",
-    "PLATT",
-    "PLATY",
-    "PLAYA",
-    "PLAYS",
-    "PLEAS",
-    "PLEBE",
-    "PLEBS",
-    "PLENA",
-    "PLEON",
-    "PLESH",
-    "PLEWS",
-    "PLICA",
-    "PLIES",
-    "PLIMS",
-    "PLING",
-    "PLINK",
-    "PLOAT",
-    "PLODS",
-    "PLONG",
-    "PLONK",
-    "PLOOK",
-    "PLOPS",
-    "PLOTS",
-    "PLOTZ",
-    "PLOUK",
-    "PLOWS",
-    "PLOYE",
-    "PLOYS",
-    "PLUES",
-    "PLUFF",
-    "PLUGS",
-    "PLUMS",
-    "PLUMY",
-    "PLUOT",
-    "PLUTO",
-    "PLYER",
-    "POACH",
-    "POAKA",
-    "POAKE",
-    "POBOY",
-    "POCKS",
-    "POCKY",
-    "PODAL",
-    "PODDY",
-    "PODEX",
-    "PODGE",
-    "PODGY",
-    "PODIA",
-    "POEMS",
-    "POEPS",
-    "POETS",
-    "POGEY",
-    "POGGE",
-    "POGOS",
-    "POHED",
-    "POILU",
-    "POIND",
-    "POKAL",
-    "POKED",
-    "POKES",
-    "POKEY",
-    "POKIE",
-    "POLED",
-    "POLER",
-    "POLES",
-    "POLEY",
-    "POLIO",
-    "POLIS",
-    "POLJE",
-    "POLKS",
-    "POLLS",
-    "POLLY",
-    "POLOS",
-    "POLTS",
-    "POLYS",
-    "POMBE",
-    "POMES",
-    "POMMY",
-    "POMOS",
-    "POMPS",
-    "PONCE",
-    "PONCY",
-    "PONDS",
-    "PONES",
-    "PONEY",
-    "PONGA",
-    "PONGO",
-    "PONGS",
-    "PONGY",
-    "PONKS",
-    "PONTS",
-    "PONTY",
-    "PONZU",
-    "POODS",
-    "POOED",
-    "POOFS",
-    "POOFY",
-    "POOHS",
-    "POOJA",
-    "POOKA",
-    "POOKS",
-    "POOLS",
-    "POONS",
-    "POOPS",
-    "POOPY",
-    "POORI",
-    "POORT",
-    "POOTS",
-    "POOVE",
-    "POOVY",
-    "POPES",
-    "POPPA",
-    "POPSY",
-    "PORAE",
-    "PORAL",
-    "PORED",
-    "PORER",
-    "PORES",
-    "PORGE",
-    "PORGY",
-    "PORIN",
-    "PORKS",
-    "PORKY",
-    "PORNO",
-    "PORNS",
-    "PORNY",
-    "PORTA",
-    "PORTS",
-    "PORTY",
-    "POSED",
-    "POSES",
-    "POSEY",
-    "POSHO",
-    "POSTS",
-    "POTAE",
-    "POTCH",
-    "POTED",
-    "POTES",
-    "POTIN",
-    "POTOO",
-    "POTSY",
-    "POTTO",
-    "POTTS",
-    "POTTY",
-    "POUFF",
-    "POUFS",
-    "POUKE",
-    "POUKS",
-    "POULE",
-    "POULP",
-    "POULT",
-    "POUPE",
-    "POUPT",
-    "POURS",
-    "POUTS",
-    "POWAN",
-    "POWIN",
-    "POWND",
-    "POWNS",
-    "POWNY",
-    "POWRE",
-    "POXED",
-    "POXES",
-    "POYNT",
-    "POYOU",
-    "POYSE",
-    "POZZY",
-    "PRAAM",
-    "PRADS",
-    "PRAHU",
-    "PRAMS",
-    "PRANA",
-    "PRANG",
-    "PRAOS",
-    "PRASE",
-    "PRATE",
-    "PRATS",
-    "PRATT",
-    "PRATY",
-    "PRAUS",
-    "PRAYS",
-    "PREDY",
-    "PREED",
-    "PREES",
-    "PREIF",
-    "PREMS",
-    "PREMY",
-    "PRENT",
-    "PREON",
-    "PREOP",
-    "PREPS",
-    "PRESA",
-    "PRESE",
-    "PREST",
-    "PREVE",
-    "PREXY",
-    "PREYS",
-    "PRIAL",
-    "PRICY",
-    "PRIEF",
-    "PRIER",
-    "PRIES",
-    "PRIGS",
-    "PRILL",
-    "PRIMA",
-    "PRIMI",
-    "PRIMP",
-    "PRIMS",
-    "PRIMY",
-    "PRINK",
-    "PRION",
-    "PRISE",
-    "PRISS",
-    "PROAS",
-    "PROBS",
-    "PRODS",
-    "PROEM",
-    "PROFS",
-    "PROGS",
-    "PROIN",
-    "PROKE",
-    "PROLE",
-    "PROLL",
-    "PROMO",
-    "PROMS",
-    "PRONK",
-    "PROPS",
-    "PRORE",
-    "PROSO",
-    "PROSS",
-    "PROST",
-    "PROSY",
-    "PROTO",
-    "PROUL",
-    "PROWS",
-    "PROYN",
-    "PRUNT",
-    "PRUTA",
-    "PRYER",
-    "PRYSE",
-    "PSEUD",
-    "PSHAW",
-    "PSION",
-    "PSOAE",
-    "PSOAI",
-    "PSOAS",
-    "PSORA",
-    "PSYCH",
-    "PSYOP",
-    "PUBCO",
-    "PUBES",
-    "PUBIS",
-    "PUCAN",
-    "PUCER",
-    "PUCES",
-    "PUCKA",
-    "PUCKS",
-    "PUDDY",
-    "PUDGE",
-    "PUDIC",
-    "PUDOR",
-    "PUDSY",
-    "PUDUS",
-    "PUERS",
-    "PUFFA",
-    "PUFFS",
-    "PUGGY",
-    "PUGIL",
-    "PUHAS",
-    "PUJAH",
-    "PUJAS",
-    "PUKAS",
-    "PUKED",
-    "PUKER",
-    "PUKES",
-    "PUKEY",
-    "PUKKA",
-    "PUKUS",
-    "PULAO",
-    "PULAS",
-    "PULED",
-    "PULER",
-    "PULES",
-    "PULIK",
-    "PULIS",
-    "PULKA",
-    "PULKS",
-    "PULLI",
-    "PULLS",
-    "PULLY",
-    "PULMO",
-    "PULPS",
-    "PULUS",
-    "PUMAS",
-    "PUMIE",
-    "PUMPS",
-    "PUNAS",
-    "PUNCE",
-    "PUNGA",
-    "PUNGS",
-    "PUNJI",
-    "PUNKA",
-    "PUNKS",
-    "PUNKY",
-    "PUNNY",
-    "PUNTO",
-    "PUNTS",
-    "PUNTY",
-    "PUPAE",
-    "PUPAS",
-    "PUPUS",
-    "PURDA",
-    "PURED",
-    "PURES",
-    "PURIN",
-    "PURIS",
-    "PURLS",
-    "PURPY",
-    "PURRS",
-    "PURSY",
-    "PURTY",
-    "PUSES",
-    "PUSLE",
-    "PUTID",
-    "PUTON",
-    "PUTTI",
-    "PUTTO",
-    "PUTTS",
-    "PUZEL",
-    "PWNED",
-    "PYATS",
-    "PYETS",
-    "PYGAL",
-    "PYINS",
-    "PYLON",
-    "PYNED",
-    "PYNES",
-    "PYOID",
-    "PYOTS",
-    "PYRAL",
-    "PYRAN",
-    "PYRES",
-    "PYREX",
-    "PYRIC",
-    "PYROS",
-    "PYXED",
-    "PYXES",
-    "PYXIE",
-    "PYXIS",
-    "PZAZZ",
-    "QADIS",
-    "QAIDS",
-    "QAJAQ",
-    "QANAT",
-    "QAPIK",
-    "QIBLA",
-    "QOPHS",
-    "QORMA",
-    "QUADS",
-    "QUAFF",
-    "QUAGS",
-    "QUAIR",
-    "QUAIS",
-    "QUAKY",
-    "QUALE",
-    "QUANT",
-    "QUARE",
-    "QUASS",
-    "QUATE",
-    "QUATS",
-    "QUAYD",
-    "QUAYS",
-    "QUBIT",
-    "QUEAN",
-    "QUEME",
-    "QUENA",
-    "QUERN",
-    "QUEYN",
-    "QUEYS",
-    "QUICH",
-    "QUIDS",
-    "QUIFF",
-    "QUIMS",
-    "QUINA",
-    "QUINE",
-    "QUINO",
-    "QUINS",
-    "QUINT",
-    "QUIPO",
-    "QUIPS",
-    "QUIPU",
-    "QUIRE",
-    "QUIRT",
-    "QUIST",
-    "QUITS",
-    "QUOAD",
-    "QUODS",
-    "QUOIF",
-    "QUOIN",
-    "QUOIT",
-    "QUOLL",
-    "QUONK",
-    "QUOPS",
-    "QURSH",
-    "QUYTE",
-    "RABAT",
-    "RABIC",
-    "RABIS",
-    "RACED",
-    "RACES",
-    "RACHE",
-    "RACKS",
-    "RACON",
-    "RADGE",
-    "RADIX",
-    "RADON",
-    "RAFFS",
-    "RAFTS",
-    "RAGAS",
-    "RAGDE",
-    "RAGED",
-    "RAGEE",
-    "RAGER",
-    "RAGES",
-    "RAGGA",
-    "RAGGS",
-    "RAGGY",
-    "RAGIS",
-    "RAGUS",
-    "RAHED",
-    "RAHUI",
-    "RAIAS",
-    "RAIDS",
-    "RAIKS",
-    "RAILE",
-    "RAILS",
-    "RAINE",
-    "RAINS",
-    "RAIRD",
-    "RAITA",
-    "RAITS",
-    "RAJAS",
-    "RAJES",
-    "RAKED",
-    "RAKEE",
-    "RAKER",
-    "RAKES",
-    "RAKIA",
-    "RAKIS",
-    "RAKUS",
-    "RALES",
-    "RAMAL",
-    "RAMEE",
-    "RAMET",
-    "RAMIE",
-    "RAMIN",
-    "RAMIS",
-    "RAMMY",
-    "RAMPS",
-    "RAMUS",
-    "RANAS",
-    "RANCE",
-    "RANDS",
-    "RANEE",
-    "RANGA",
-    "RANGI",
-    "RANGS",
-    "RANGY",
-    "RANID",
-    "RANIS",
-    "RANKE",
-    "RANKS",
-    "RANTS",
-    "RAPED",
-    "RAPER",
-    "RAPES",
-    "RAPHE",
-    "RAPPE",
-    "RARED",
-    "RAREE",
-    "RARES",
-    "RARKS",
-    "RASED",
-    "RASER",
-    "RASES",
-    "RASPS",
-    "RASSE",
-    "RASTA",
-    "RATAL",
-    "RATAN",
-    "RATAS",
-    "RATCH",
-    "RATED",
-    "RATEL",
-    "RATER",
-    "RATES",
-    "RATHA",
-    "RATHE",
-    "RATHS",
-    "RATOO",
-    "RATOS",
-    "RATUS",
-    "RAUNS",
-    "RAUPO",
-    "RAVED",
-    "RAVEL",
-    "RAVER",
-    "RAVES",
-    "RAVEY",
-    "RAVIN",
-    "RAWER",
-    "RAWIN",
-    "RAWLY",
-    "RAWNS",
-    "RAXED",
-    "RAXES",
-    "RAYAH",
-    "RAYAS",
-    "RAYED",
-    "RAYLE",
-    "RAYNE",
-    "RAZED",
-    "RAZEE",
-    "RAZER",
-    "RAZES",
-    "RAZOO",
-    "READD",
-    "READS",
-    "REAIS",
-    "REAKS",
-    "REALO",
-    "REALS",
-    "REAME",
-    "REAMS",
-    "REAMY",
-    "REANS",
-    "REAPS",
-    "REARS",
-    "REAST",
-    "REATA",
-    "REATE",
-    "REAVE",
-    "REBBE",
-    "REBEC",
-    "REBID",
-    "REBIT",
-    "REBOP",
-    "REBUY",
-    "RECAL",
-    "RECCE",
-    "RECCO",
-    "RECCY",
-    "RECIT",
-    "RECKS",
-    "RECON",
-    "RECTA",
-    "RECTI",
-    "RECTO",
-    "REDAN",
-    "REDDS",
-    "REDDY",
-    "REDED",
-    "REDES",
-    "REDIA",
-    "REDID",
-    "REDIP",
-    "REDLY",
-    "REDON",
-    "REDOS",
-    "REDOX",
-    "REDRY",
-    "REDUB",
-    "REDUX",
-    "REDYE",
-    "REECH",
-    "REEDE",
-    "REEDS",
-    "REEFS",
-    "REEFY",
-    "REEKS",
-    "REEKY",
-    "REELS",
-    "REENS",
-    "REEST",
-    "REEVE",
-    "REFED",
-    "REFEL",
-    "REFFO",
-    "REFIS",
-    "REFIX",
-    "REFLY",
-    "REFRY",
-    "REGAR",
-    "REGES",
-    "REGGO",
-    "REGIE",
-    "REGMA",
-    "REGNA",
-    "REGOS",
-    "REGUR",
-    "REHEM",
-    "REIFS",
-    "REIFY",
-    "REIKI",
-    "REIKS",
-    "REINK",
-    "REINS",
-    "REIRD",
-    "REIST",
-    "REIVE",
-    "REJIG",
-    "REJON",
-    "REKED",
-    "REKES",
-    "REKEY",
-    "RELET",
-    "RELIE",
-    "RELIT",
-    "RELLO",
-    "REMAN",
-    "REMAP",
-    "REMEN",
-    "REMET",
-    "REMEX",
-    "REMIX",
-    "RENAY",
-    "RENDS",
-    "RENEY",
-    "RENGA",
-    "RENIG",
-    "RENIN",
-    "RENNE",
-    "RENOS",
-    "RENTE",
-    "RENTS",
-    "REOIL",
-    "REORG",
-    "REPEG",
-    "REPIN",
-    "REPLA",
-    "REPOS",
-    "REPOT",
-    "REPPS",
-    "REPRO",
-    "RERAN",
-    "RERIG",
-    "RESAT",
-    "RESAW",
-    "RESAY",
-    "RESEE",
-    "RESES",
-    "RESEW",
-    "RESID",
-    "RESIT",
-    "RESOD",
-    "RESOW",
-    "RESTO",
-    "RESTS",
-    "RESTY",
-    "RESUS",
-    "RETAG",
-    "RETAX",
-    "RETEM",
-    "RETIA",
-    "RETIE",
-    "RETOX",
-    "REVET",
-    "REVIE",
-    "REWAN",
-    "REWAX",
-    "REWED",
-    "REWET",
-    "REWIN",
-    "REWON",
-    "REWTH",
-    "REXES",
-    "REZES",
-    "RHEAS",
-    "RHEME",
-    "RHEUM",
-    "RHIES",
-    "RHIME",
-    "RHINE",
-    "RHODY",
-    "RHOMB",
-    "RHONE",
-    "RHUMB",
-    "RHYNE",
-    "RHYTA",
-    "RIADS",
-    "RIALS",
-    "RIANT",
-    "RIATA",
-    "RIBAS",
-    "RIBBY",
-    "RIBES",
-    "RICED",
-    "RICER",
-    "RICES",
-    "RICEY",
-    "RICHT",
-    "RICIN",
-    "RICKS",
-    "RIDES",
-    "RIDGY",
-    "RIDIC",
-    "RIELS",
-    "RIEMS",
-    "RIEVE",
-    "RIFER",
-    "RIFFS",
-    "RIFTE",
-    "RIFTS",
-    "RIFTY",
-    "RIGGS",
-    "RIGOL",
-    "RILED",
-    "RILES",
-    "RILEY",
-    "RILLE",
-    "RILLS",
-    "RIMAE",
-    "RIMED",
-    "RIMER",
-    "RIMES",
-    "RIMUS",
-    "RINDS",
-    "RINDY",
-    "RINES",
-    "RINGS",
-    "RINKS",
-    "RIOJA",
-    "RIOTS",
-    "RIPED",
-    "RIPES",
-    "RIPPS",
-    "RISES",
-    "RISHI",
-    "RISKS",
-    "RISPS",
-    "RISUS",
-    "RITES",
-    "RITTS",
-    "RITZY",
-    "RIVAS",
-    "RIVED",
-    "RIVEL",
-    "RIVEN",
-    "RIVES",
-    "RIYAL",
-    "RIZAS",
-    "ROADS",
-    "ROAMS",
-    "ROANS",
-    "ROARS",
-    "ROARY",
-    "ROATE",
-    "ROBED",
-    "ROBES",
-    "ROBLE",
-    "ROCKS",
-    "RODED",
-    "RODES",
-    "ROGUY",
-    "ROHES",
-    "ROIDS",
-    "ROILS",
-    "ROILY",
-    "ROINS",
-    "ROIST",
-    "ROJAK",
-    "ROJIS",
-    "ROKED",
-    "ROKER",
-    "ROKES",
-    "ROLAG",
-    "ROLES",
-    "ROLFS",
-    "ROLLS",
-    "ROMAL",
-    "ROMAN",
-    "ROMEO",
-    "ROMPS",
-    "RONDE",
-    "RONDO",
-    "RONEO",
-    "RONES",
-    "RONIN",
-    "RONNE",
-    "RONTE",
-    "RONTS",
-    "ROODS",
-    "ROOFS",
-    "ROOFY",
-    "ROOKS",
-    "ROOKY",
-    "ROOMS",
-    "ROONS",
-    "ROOPS",
-    "ROOPY",
-    "ROOSA",
-    "ROOSE",
-    "ROOTS",
-    "ROOTY",
-    "ROPED",
-    "ROPER",
-    "ROPES",
-    "ROPEY",
-    "ROQUE",
-    "RORAL",
-    "RORES",
-    "RORIC",
-    "RORID",
-    "RORIE",
-    "RORTS",
-    "RORTY",
-    "ROSED",
-    "ROSES",
-    "ROSET",
-    "ROSHI",
-    "ROSIN",
-    "ROSIT",
-    "ROSTI",
-    "ROSTS",
-    "ROTAL",
-    "ROTAN",
-    "ROTAS",
-    "ROTCH",
-    "ROTED",
-    "ROTES",
-    "ROTIS",
-    "ROTLS",
-    "ROTON",
-    "ROTOS",
-    "ROTTE",
-    "ROUEN",
-    "ROUES",
-    "ROULE",
-    "ROULS",
-    "ROUMS",
-    "ROUPS",
-    "ROUPY",
-    "ROUST",
-    "ROUTH",
-    "ROUTS",
-    "ROVED",
-    "ROVEN",
-    "ROVES",
-    "ROWAN",
-    "ROWED",
-    "ROWEL",
-    "ROWEN",
-    "ROWIE",
-    "ROWME",
-    "ROWND",
-    "ROWTH",
-    "ROWTS",
-    "ROYNE",
-    "ROYST",
-    "ROZET",
-    "ROZIT",
-    "RUANA",
-    "RUBAI",
-    "RUBBY",
-    "RUBEL",
-    "RUBES",
-    "RUBIN",
-    "RUBLE",
-    "RUBLI",
-    "RUBUS",
-    "RUCHE",
-    "RUCKS",
-    "RUDAS",
-    "RUDDS",
-    "RUDES",
-    "RUDIE",
-    "RUDIS",
-    "RUEDA",
-    "RUERS",
-    "RUFFE",
-    "RUFFS",
-    "RUGAE",
-    "RUGAL",
-    "RUGGY",
-    "RUING",
-    "RUINS",
-    "RUKHS",
-    "RULED",
-    "RULES",
-    "RUMAL",
-    "RUMBO",
-    "RUMEN",
-    "RUMES",
-    "RUMLY",
-    "RUMMY",
-    "RUMPO",
-    "RUMPS",
-    "RUMPY",
-    "RUNCH",
-    "RUNDS",
-    "RUNED",
-    "RUNES",
-    "RUNGS",
-    "RUNIC",
-    "RUNNY",
-    "RUNTS",
-    "RUNTY",
-    "RUPIA",
-    "RURPS",
-    "RURUS",
-    "RUSAS",
-    "RUSES",
-    "RUSHY",
-    "RUSKS",
-    "RUSMA",
-    "RUSSE",
-    "RUSTS",
-    "RUTHS",
-    "RUTIN",
-    "RUTTY",
-    "RYALS",
-    "RYBAT",
-    "RYKED",
-    "RYKES",
-    "RYMME",
-    "RYNDS",
-    "RYOTS",
-    "RYPER",
-    "SAAGS",
-    "SABAL",
-    "SABED",
-    "SABER",
-    "SABES",
-    "SABHA",
-    "SABIN",
-    "SABIR",
-    "SABLE",
-    "SABOT",
-    "SABRA",
-    "SABRE",
-    "SACKS",
-    "SACRA",
-    "SADDO",
-    "SADES",
-    "SADHE",
-    "SADHU",
-    "SADIS",
-    "SADOS",
-    "SADZA",
-    "SAFED",
-    "SAFES",
-    "SAGAS",
-    "SAGER",
-    "SAGES",
-    "SAGGY",
-    "SAGOS",
-    "SAGUM",
-    "SAHEB",
-    "SAHIB",
-    "SAICE",
-    "SAICK",
-    "SAICS",
-    "SAIDS",
-    "SAIGA",
-    "SAILS",
-    "SAIMS",
-    "SAINE",
-    "SAINS",
-    "SAIRS",
-    "SAIST",
-    "SAITH",
-    "SAJOU",
-    "SAKAI",
-    "SAKER",
-    "SAKES",
-    "SAKIA",
-    "SAKIS",
-    "SAKTI",
-    "SALAL",
-    "SALAT",
-    "SALEP",
-    "SALES",
-    "SALET",
-    "SALIC",
-    "SALIX",
-    "SALLE",
-    "SALMI",
-    "SALOL",
-    "SALOP",
-    "SALPA",
-    "SALPS",
-    "SALSE",
-    "SALTO",
-    "SALTS",
-    "SALUE",
-    "SALUT",
-    "SAMAN",
-    "SAMAS",
-    "SAMBA",
-    "SAMBO",
-    "SAMEK",
-    "SAMEL",
-    "SAMEN",
-    "SAMES",
-    "SAMEY",
-    "SAMFU",
-    "SAMMY",
-    "SAMPI",
-    "SAMPS",
-    "SANDS",
-    "SANED",
-    "SANES",
-    "SANGA",
-    "SANGH",
-    "SANGO",
-    "SANGS",
-    "SANKO",
-    "SANSA",
-    "SANTO",
-    "SANTS",
-    "SAOLA",
-    "SAPAN",
-    "SAPID",
-    "SAPOR",
-    "SARAN",
-    "SARDS",
-    "SARED",
-    "SAREE",
-    "SARGE",
-    "SARGO",
-    "SARIN",
-    "SARIS",
-    "SARKS",
-    "SARKY",
-    "SAROD",
-    "SAROS",
-    "SARUS",
-    "SASER",
-    "SASIN",
-    "SASSE",
-    "SATAI",
-    "SATAY",
-    "SATED",
-    "SATEM",
-    "SATES",
-    "SATIS",
-    "SAUBA",
-    "SAUCH",
-    "SAUGH",
-    "SAULS",
-    "SAULT",
-    "SAUNT",
-    "SAURY",
-    "SAUTS",
-    "SAVED",
-    "SAVER",
-    "SAVES",
-    "SAVEY",
-    "SAVIN",
-    "SAWAH",
-    "SAWED",
-    "SAWER",
-    "SAXES",
-    "SAYED",
-    "SAYER",
-    "SAYID",
-    "SAYNE",
-    "SAYON",
-    "SAYST",
-    "SAZES",
-    "SCABS",
-    "SCADS",
-    "SCAFF",
-    "SCAGS",
-    "SCAIL",
-    "SCALA",
-    "SCALL",
-    "SCAMS",
-    "SCAND",
-    "SCANS",
-    "SCAPA",
-    "SCAPE",
-    "SCAPI",
-    "SCARP",
-    "SCARS",
-    "SCART",
-    "SCATH",
-    "SCATS",
-    "SCATT",
-    "SCAUD",
-    "SCAUP",
-    "SCAUR",
-    "SCAWS",
-    "SCEAT",
-    "SCENA",
-    "SCEND",
-    "SCHAV",
-    "SCHMO",
-    "SCHUL",
-    "SCHWA",
-    "SCLIM",
-    "SCODY",
-    "SCOGS",
-    "SCOOG",
-    "SCOOT",
-    "SCOPA",
-    "SCOPS",
-    "SCOTS",
-    "SCOUG",
-    "SCOUP",
-    "SCOWP",
-    "SCOWS",
-    "SCRAB",
-    "SCRAE",
-    "SCRAG",
-    "SCRAN",
-    "SCRAT",
-    "SCRAW",
-    "SCRAY",
-    "SCRIM",
-    "SCRIP",
-    "SCROB",
-    "SCROD",
-    "SCROG",
-    "SCROW",
-    "SCUDI",
-    "SCUDO",
-    "SCUDS",
-    "SCUFF",
-    "SCUFT",
-    "SCUGS",
-    "SCULK",
-    "SCULL",
-    "SCULP",
-    "SCULS",
-    "SCUMS",
-    "SCUPS",
-    "SCURF",
-    "SCURS",
-    "SCUSE",
-    "SCUTA",
-    "SCUTE",
-    "SCUTS",
-    "SCUZZ",
-    "SCYES",
-    "SDAYN",
-    "SDEIN",
-    "SEALS",
-    "SEAME",
-    "SEAMS",
-    "SEAMY",
-    "SEANS",
-    "SEARE",
-    "SEARS",
-    "SEASE",
-    "SEATS",
-    "SEAZE",
-    "SEBUM",
-    "SECCO",
-    "SECHS",
-    "SECTS",
-    "SEDER",
-    "SEDES",
-    "SEDGE",
-    "SEDGY",
-    "SEDUM",
-    "SEEDS",
-    "SEEKS",
-    "SEELD",
-    "SEELS",
-    "SEELY",
-    "SEEMS",
-    "SEEPS",
-    "SEEPY",
-    "SEERS",
-    "SEFER",
-    "SEGAR",
-    "SEGNI",
-    "SEGNO",
-    "SEGOL",
-    "SEGOS",
-    "SEHRI",
-    "SEIFS",
-    "SEILS",
-    "SEINE",
-    "SEIRS",
-    "SEISE",
-    "SEISM",
-    "SEITY",
-    "SEIZA",
-    "SEKOS",
-    "SEKTS",
-    "SELAH",
-    "SELES",
-    "SELFS",
-    "SELLA",
-    "SELLE",
-    "SELLS",
-    "SELVA",
-    "SEMEE",
-    "SEMES",
-    "SEMIE",
-    "SEMIS",
-    "SENAS",
-    "SENDS",
-    "SENES",
-    "SENGI",
-    "SENNA",
-    "SENOR",
-    "SENSA",
-    "SENSI",
-    "SENTE",
-    "SENTI",
-    "SENTS",
-    "SENVY",
-    "SENZA",
-    "SEPAD",
-    "SEPAL",
-    "SEPIC",
-    "SEPOY",
-    "SEPTA",
-    "SEPTS",
-    "SERAC",
-    "SERAI",
-    "SERAL",
-    "SERED",
-    "SERER",
-    "SERES",
-    "SERFS",
-    "SERGE",
-    "SERIC",
-    "SERIN",
-    "SERKS",
-    "SERON",
-    "SEROW",
-    "SERRA",
-    "SERRE",
-    "SERRS",
-    "SERRY",
-    "SERVO",
-    "SESEY",
-    "SESSA",
-    "SETAE",
-    "SETAL",
-    "SETON",
-    "SETTS",
-    "SEWAN",
-    "SEWAR",
-    "SEWED",
-    "SEWEL",
-    "SEWEN",
-    "SEWIN",
-    "SEXED",
-    "SEXER",
-    "SEXES",
-    "SEXTO",
-    "SEXTS",
-    "SEYEN",
-    "SHADS",
-    "SHAGS",
-    "SHAHS",
-    "SHAKO",
-    "SHAKT",
-    "SHALM",
-    "SHALY",
-    "SHAMA",
-    "SHAMS",
-    "SHAND",
-    "SHANS",
-    "SHAPS",
-    "SHARN",
-    "SHASH",
-    "SHAUL",
-    "SHAWM",
-    "SHAWN",
-    "SHAWS",
-    "SHAYA",
-    "SHAYS",
-    "SHCHI",
-    "SHEAF",
-    "SHEAL",
-    "SHEAS",
-    "SHEDS",
-    "SHEEL",
-    "SHEND",
-    "SHENT",
-    "SHEOL",
-    "SHERD",
-    "SHERE",
-    "SHERO",
-    "SHETS",
-    "SHEVA",
-    "SHEWN",
-    "SHEWS",
-    "SHIAI",
-    "SHIEL",
-    "SHIER",
-    "SHIES",
-    "SHILL",
-    "SHILY",
-    "SHIMS",
-    "SHINS",
-    "SHIPS",
-    "SHIRR",
-    "SHIRS",
-    "SHISH",
-    "SHISO",
-    "SHIST",
-    "SHITE",
-    "SHITS",
-    "SHIUR",
-    "SHIVA",
-    "SHIVE",
-    "SHIVS",
-    "SHLEP",
-    "SHLUB",
-    "SHMEK",
-    "SHMOE",
-    "SHOAT",
-    "SHOED",
-    "SHOER",
-    "SHOES",
-    "SHOGI",
-    "SHOGS",
-    "SHOJI",
-    "SHOJO",
-    "SHOLA",
-    "SHOOL",
-    "SHOON",
-    "SHOOS",
-    "SHOPE",
-    "SHOPS",
-    "SHORL",
-    "SHOTE",
-    "SHOTS",
-    "SHOTT",
-    "SHOWD",
-    "SHOWS",
-    "SHOYU",
-    "SHRED",
-    "SHRIS",
-    "SHROW",
-    "SHTIK",
-    "SHTUM",
-    "SHTUP",
-    "SHULE",
-    "SHULN",
-    "SHULS",
-    "SHUNS",
-    "SHURA",
-    "SHUTE",
-    "SHUTS",
-    "SHWAS",
-    "SHYER",
-    "SIALS",
-    "SIBBS",
-    "SIBYL",
-    "SICES",
-    "SICHT",
-    "SICKO",
-    "SICKS",
-    "SICKY",
-    "SIDAS",
-    "SIDED",
-    "SIDER",
-    "SIDES",
-    "SIDHA",
-    "SIDHE",
-    "SIDLE",
-    "SIELD",
-    "SIENS",
-    "SIENT",
-    "SIETH",
-    "SIEUR",
-    "SIFTS",
-    "SIGHS",
-    "SIGIL",
-    "SIGLA",
-    "SIGNA",
-    "SIGNS",
-    "SIJOS",
-    "SIKAS",
-    "SIKER",
-    "SIKES",
-    "SILDS",
-    "SILED",
-    "SILEN",
-    "SILER",
-    "SILES",
-    "SILEX",
-    "SILKS",
-    "SILLS",
-    "SILOS",
-    "SILTS",
-    "SILTY",
-    "SILVA",
-    "SIMAR",
-    "SIMAS",
-    "SIMBA",
-    "SIMIS",
-    "SIMPS",
-    "SIMUL",
-    "SINDS",
-    "SINED",
-    "SINES",
-    "SINGS",
-    "SINHS",
-    "SINKS",
-    "SINKY",
-    "SINUS",
-    "SIPED",
-    "SIPES",
-    "SIPPY",
-    "SIRED",
-    "SIREE",
-    "SIRES",
-    "SIRIH",
-    "SIRIS",
-    "SIROC",
-    "SIRRA",
-    "SIRUP",
-    "SISAL",
-    "SISES",
-    "SISTA",
-    "SISTS",
-    "SITAR",
-    "SITED",
-    "SITES",
-    "SITHE",
-    "SITKA",
-    "SITUP",
-    "SITUS",
-    "SIVER",
-    "SIXER",
-    "SIXES",
-    "SIXMO",
-    "SIXTE",
-    "SIZAR",
-    "SIZED",
-    "SIZEL",
-    "SIZER",
-    "SIZES",
-    "SKAGS",
-    "SKAIL",
-    "SKALD",
-    "SKANK",
-    "SKART",
-    "SKATS",
-    "SKATT",
-    "SKAWS",
-    "SKEAN",
-    "SKEAR",
-    "SKEDS",
-    "SKEED",
-    "SKEEF",
-    "SKEEN",
-    "SKEER",
-    "SKEES",
-    "SKEET",
-    "SKEGG",
-    "SKEGS",
-    "SKEIN",
-    "SKELF",
-    "SKELL",
-    "SKELM",
-    "SKELP",
-    "SKENE",
-    "SKENS",
-    "SKEOS",
-    "SKEPS",
-    "SKERS",
-    "SKETS",
-    "SKEWS",
-    "SKIDS",
-    "SKIED",
-    "SKIES",
-    "SKIEY",
-    "SKIMO",
-    "SKIMS",
-    "SKINK",
-    "SKINS",
-    "SKINT",
-    "SKIOS",
-    "SKIPS",
-    "SKIRL",
-    "SKIRR",
-    "SKITE",
-    "SKITS",
-    "SKIVE",
-    "SKIVY",
-    "SKLIM",
-    "SKOAL",
-    "SKODY",
-    "SKOFF",
-    "SKOGS",
-    "SKOLS",
-    "SKOOL",
-    "SKORT",
-    "SKOSH",
-    "SKRAN",
-    "SKRIK",
-    "SKUAS",
-    "SKUGS",
-    "SKYED",
-    "SKYER",
-    "SKYEY",
-    "SKYFS",
-    "SKYRE",
-    "SKYRS",
-    "SKYTE",
-    "SLABS",
-    "SLADE",
-    "SLAES",
-    "SLAGS",
-    "SLAID",
-    "SLAKE",
-    "SLAMS",
-    "SLANE",
-    "SLANK",
-    "SLAPS",
-    "SLART",
-    "SLATS",
-    "SLATY",
-    "SLAWS",
-    "SLAYS",
-    "SLEBS",
-    "SLEDS",
-    "SLEER",
-    "SLEWS",
-    "SLEYS",
-    "SLIER",
-    "SLILY",
-    "SLIMS",
-    "SLIPE",
-    "SLIPS",
-    "SLIPT",
-    "SLISH",
-    "SLITS",
-    "SLIVE",
-    "SLOAN",
-    "SLOBS",
-    "SLOES",
-    "SLOGS",
-    "SLOID",
-    "SLOJD",
-    "SLOMO",
-    "SLOOM",
-    "SLOOT",
-    "SLOPS",
-    "SLOPY",
-    "SLORM",
-    "SLOTS",
-    "SLOVE",
-    "SLOWS",
-    "SLOYD",
-    "SLUBB",
-    "SLUBS",
-    "SLUED",
-    "SLUES",
-    "SLUFF",
-    "SLUGS",
-    "SLUIT",
-    "SLUMS",
-    "SLURB",
-    "SLURS",
-    "SLUSE",
-    "SLYER",
-    "SLYPE",
-    "SMAAK",
-    "SMAIK",
-    "SMALM",
-    "SMALT",
-    "SMARM",
-    "SMAZE",
-    "SMEEK",
-    "SMEES",
-    "SMEIK",
-    "SMEKE",
-    "SMERK",
-    "SMEWS",
-    "SMIRR",
-    "SMIRS",
-    "SMITS",
-    "SMOGS",
-    "SMOKO",
-    "SMOLT",
-    "SMOOR",
-    "SMOOT",
-    "SMORE",
-    "SMORG",
-    "SMOUT",
-    "SMOWT",
-    "SMUGS",
-    "SMURS",
-    "SMUSH",
-    "SMUTS",
-    "SNABS",
-    "SNAFU",
-    "SNAGS",
-    "SNAPS",
-    "SNARF",
-    "SNARK",
-    "SNARS",
-    "SNARY",
-    "SNASH",
-    "SNATH",
-    "SNAWS",
-    "SNEAD",
-    "SNEAP",
-    "SNEBS",
-    "SNECK",
-    "SNEDS",
-    "SNEED",
-    "SNEES",
-    "SNELL",
-    "SNIBS",
-    "SNICK",
-    "SNIES",
-    "SNIFT",
-    "SNIGS",
-    "SNIPS",
-    "SNIPY",
-    "SNIRT",
-    "SNITS",
-    "SNOBS",
-    "SNODS",
-    "SNOEK",
-    "SNOEP",
-    "SNOGS",
-    "SNOKE",
-    "SNOOD",
-    "SNOOK",
-    "SNOOL",
-    "SNOOT",
-    "SNOTS",
-    "SNOWK",
-    "SNOWS",
-    "SNUBS",
-    "SNUGS",
-    "SNUSH",
-    "SNYES",
-    "SOAKS",
-    "SOAPS",
-    "SOARE",
-    "SOARS",
-    "SOAVE",
-    "SOBAS",
-    "SOCAS",
-    "SOCES",
-    "SOCKO",
-    "SOCKS",
-    "SOCLE",
-    "SODAS",
-    "SODDY",
-    "SODIC",
-    "SODOM",
-    "SOFAR",
-    "SOFAS",
-    "SOFTA",
-    "SOFTS",
-    "SOFTY",
-    "SOGER",
-    "SOHUR",
-    "SOILS",
-    "SOILY",
-    "SOJAS",
-    "SOJUS",
-    "SOKAH",
-    "SOKEN",
-    "SOKES",
-    "SOKOL",
-    "SOLAH",
-    "SOLAN",
-    "SOLAS",
-    "SOLDE",
-    "SOLDI",
-    "SOLDO",
-    "SOLDS",
-    "SOLED",
-    "SOLEI",
-    "SOLER",
-    "SOLES",
-    "SOLON",
-    "SOLOS",
-    "SOLUM",
-    "SOLUS",
-    "SOMAN",
-    "SOMAS",
-    "SONCE",
-    "SONDE",
-    "SONES",
-    "SONGS",
-    "SONLY",
-    "SONNE",
-    "SONNY",
-    "SONSE",
-    "SONSY",
-    "SOOEY",
-    "SOOKS",
-    "SOOKY",
-    "SOOLE",
-    "SOOLS",
-    "SOOMS",
-    "SOOPS",
-    "SOOTE",
-    "SOOTS",
-    "SOPHS",
-    "SOPHY",
-    "SOPOR",
-    "SOPPY",
-    "SOPRA",
-    "SORAL",
-    "SORAS",
-    "SORBO",
-    "SORBS",
-    "SORDA",
-    "SORDO",
-    "SORDS",
-    "SORED",
-    "SOREE",
-    "SOREL",
-    "SORER",
-    "SORES",
-    "SOREX",
-    "SORGO",
-    "SORNS",
-    "SORRA",
-    "SORTA",
-    "SORTS",
-    "SORUS",
-    "SOTHS",
-    "SOTOL",
-    "SOUCE",
-    "SOUCT",
-    "SOUGH",
-    "SOUKS",
-    "SOULS",
-    "SOUMS",
-    "SOUPS",
-    "SOUPY",
-    "SOURS",
-    "SOUSE",
-    "SOUTS",
-    "SOWAR",
-    "SOWCE",
-    "SOWED",
-    "SOWFF",
-    "SOWFS",
-    "SOWLE",
-    "SOWLS",
-    "SOWMS",
-    "SOWND",
-    "SOWNE",
-    "SOWPS",
-    "SOWSE",
-    "SOWTH",
-    "SOYAS",
-    "SOYLE",
-    "SOYUZ",
-    "SOZIN",
-    "SPACY",
-    "SPADO",
-    "SPAED",
-    "SPAER",
-    "SPAES",
-    "SPAGS",
-    "SPAHI",
-    "SPAIL",
-    "SPAIN",
-    "SPAIT",
-    "SPAKE",
-    "SPALD",
-    "SPALE",
-    "SPALL",
-    "SPALT",
-    "SPAMS",
-    "SPANE",
-    "SPANG",
-    "SPANS",
-    "SPARD",
-    "SPARS",
-    "SPART",
-    "SPATE",
-    "SPATS",
-    "SPAUL",
-    "SPAWL",
-    "SPAWS",
-    "SPAYD",
-    "SPAYS",
-    "SPAZA",
-    "SPAZZ",
-    "SPEAL",
-    "SPEAN",
-    "SPEAT",
-    "SPECS",
-    "SPECT",
-    "SPEEL",
-    "SPEER",
-    "SPEIL",
-    "SPEIR",
-    "SPEKS",
-    "SPELD",
-    "SPELK",
-    "SPEOS",
-    "SPETS",
-    "SPEUG",
-    "SPEWS",
-    "SPEWY",
-    "SPIAL",
-    "SPICA",
-    "SPIDE",
-    "SPIER",
-    "SPIES",
-    "SPIFF",
-    "SPIFS",
-    "SPILE",
-    "SPIMS",
-    "SPINA",
-    "SPINK",
-    "SPINS",
-    "SPIRT",
-    "SPIRY",
-    "SPITS",
-    "SPITZ",
-    "SPIVS",
-    "SPLAY",
-    "SPLOG",
-    "SPODE",
-    "SPODS",
-    "SPOOM",
-    "SPOOR",
-    "SPOOT",
-    "SPORK",
-    "SPOSH",
-    "SPOTS",
-    "SPRAD",
-    "SPRAG",
-    "SPRAT",
-    "SPRED",
-    "SPREW",
-    "SPRIT",
-    "SPROD",
-    "SPROG",
-    "SPRUE",
-    "SPRUG",
-    "SPUDS",
-    "SPUED",
-    "SPUER",
-    "SPUES",
-    "SPUGS",
-    "SPULE",
-    "SPUME",
-    "SPUMY",
-    "SPURS",
-    "SPUTA",
-    "SPYAL",
-    "SPYRE",
-    "SQUAB",
-    "SQUAW",
-    "SQUEG",
-    "SQUID",
-    "SQUIT",
-    "SQUIZ",
-    "STABS",
-    "STADE",
-    "STAGS",
-    "STAGY",
-    "STAIG",
-    "STANE",
-    "STANG",
-    "STAPH",
-    "STAPS",
-    "STARN",
-    "STARR",
-    "STARS",
-    "STATS",
-    "STAUN",
-    "STAWS",
-    "STAYS",
-    "STEAN",
-    "STEAR",
-    "STEDD",
-    "STEDE",
-    "STEDS",
-    "STEEK",
-    "STEEM",
-    "STEEN",
-    "STEIL",
-    "STELA",
-    "STELE",
-    "STELL",
-    "STEME",
-    "STEMS",
-    "STEND",
-    "STENO",
-    "STENS",
-    "STENT",
-    "STEPS",
-    "STEPT",
-    "STERE",
-    "STETS",
-    "STEWS",
-    "STEWY",
-    "STEYS",
-    "STICH",
-    "STIED",
-    "STIES",
-    "STILB",
-    "STILE",
-    "STIME",
-    "STIMS",
-    "STIMY",
-    "STIPA",
-    "STIPE",
-    "STIRE",
-    "STIRK",
-    "STIRP",
-    "STIRS",
-    "STIVE",
-    "STIVY",
-    "STOAE",
-    "STOAI",
-    "STOAS",
-    "STOAT",
-    "STOBS",
-    "STOEP",
-    "STOGY",
-    "STOIT",
-    "STOLN",
-    "STOMA",
-    "STOND",
-    "STONG",
-    "STONK",
-    "STONN",
-    "STOOK",
-    "STOOR",
-    "STOPE",
-    "STOPS",
-    "STOPT",
-    "STOSS",
-    "STOTS",
-    "STOTT",
-    "STOUN",
-    "STOUP",
-    "STOUR",
-    "STOWN",
-    "STOWP",
-    "STOWS",
-    "STRAD",
-    "STRAE",
-    "STRAG",
-    "STRAK",
-    "STREP",
-    "STREW",
-    "STRIA",
-    "STRIG",
-    "STRIM",
-    "STROP",
-    "STROW",
-    "STROY",
-    "STRUM",
-    "STUBS",
-    "STUDE",
-    "STUDS",
-    "STULL",
-    "STULM",
-    "STUMM",
-    "STUMS",
-    "STUNS",
-    "STUPA",
-    "STUPE",
-    "STURE",
-    "STURT",
-    "STYED",
-    "STYES",
-    "STYLI",
-    "STYLO",
-    "STYME",
-    "STYMY",
-    "STYRE",
-    "STYTE",
-    "SUBAH",
-    "SUBAS",
-    "SUBBY",
-    "SUBER",
-    "SUBHA",
-    "SUCCI",
-    "SUCKS",
-    "SUCKY",
-    "SUCRE",
-    "SUDDS",
-    "SUDOR",
-    "SUDSY",
-    "SUEDE",
-    "SUENT",
-    "SUERS",
-    "SUETE",
-    "SUETS",
-    "SUETY",
-    "SUGAN",
-    "SUGHS",
-    "SUGOS",
-    "SUHUR",
-    "SUIDS",
-    "SUINT",
-    "SUITS",
-    "SUJEE",
-    "SUKHS",
-    "SUKUK",
-    "SULCI",
-    "SULFA",
-    "SULFO",
-    "SULKS",
-    "SULPH",
-    "SULUS",
-    "SUMIS",
-    "SUMMA",
-    "SUMOS",
-    "SUMPH",
-    "SUMPS",
-    "SUNIS",
-    "SUNKS",
-    "SUNNA",
-    "SUNNS",
-    "SUNUP",
-    "SUPES",
-    "SUPRA",
-    "SURAH",
-    "SURAL",
-    "SURAS",
-    "SURAT",
-    "SURDS",
-    "SURED",
-    "SURES",
-    "SURFS",
-    "SURFY",
-    "SURGY",
-    "SURRA",
-    "SUSED",
-    "SUSES",
-    "SUSUS",
-    "SUTOR",
-    "SUTRA",
-    "SUTTA",
-    "SWABS",
-    "SWACK",
-    "SWADS",
-    "SWAGE",
-    "SWAGS",
-    "SWAIL",
-    "SWAIN",
-    "SWALE",
-    "SWALY",
-    "SWAMY",
-    "SWANG",
-    "SWANK",
-    "SWANS",
-    "SWAPS",
-    "SWAPT",
-    "SWARD",
-    "SWARE",
-    "SWARF",
-    "SWART",
-    "SWATS",
-    "SWAYL",
-    "SWAYS",
-    "SWEAL",
-    "SWEDE",
-    "SWEED",
-    "SWEEL",
-    "SWEER",
-    "SWEES",
-    "SWEIR",
-    "SWELT",
-    "SWERF",
-    "SWEYS",
-    "SWIES",
-    "SWIGS",
-    "SWILE",
-    "SWIMS",
-    "SWINK",
-    "SWIPE",
-    "SWIRE",
-    "SWISS",
-    "SWITH",
-    "SWITS",
-    "SWIVE",
-    "SWIZZ",
-    "SWOBS",
-    "SWOLE",
-    "SWOLN",
-    "SWOPS",
-    "SWOPT",
-    "SWOTS",
-    "SWOUN",
-    "SYBBE",
-    "SYBIL",
-    "SYBOE",
-    "SYBOW",
-    "SYCEE",
-    "SYCES",
-    "SYCON",
-    "SYENS",
-    "SYKER",
-    "SYKES",
-    "SYLIS",
-    "SYLPH",
-    "SYLVA",
-    "SYMAR",
-    "SYNCH",
-    "SYNCS",
-    "SYNDS",
-    "SYNED",
-    "SYNES",
-    "SYNTH",
-    "SYPED",
-    "SYPES",
-    "SYPHS",
-    "SYRAH",
-    "SYREN",
-    "SYSOP",
-    "SYTHE",
-    "SYVER",
-    "TAALS",
-    "TAATA",
-    "TABER",
-    "TABES",
-    "TABID",
-    "TABIS",
-    "TABLA",
-    "TABOR",
-    "TABUN",
-    "TABUS",
-    "TACAN",
-    "TACES",
-    "TACET",
-    "TACHE",
-    "TACHO",
-    "TACHS",
-    "TACKS",
-    "TACOS",
-    "TACTS",
-    "TAELS",
-    "TAFIA",
-    "TAGGY",
-    "TAGMA",
-    "TAHAS",
-    "TAHRS",
-    "TAIGA",
-    "TAIGS",
-    "TAIKO",
-    "TAILS",
-    "TAINS",
-    "TAIRA",
-    "TAISH",
-    "TAITS",
-    "TAJES",
-    "TAKAS",
-    "TAKES",
-    "TAKHI",
-    "TAKIN",
-    "TAKIS",
-    "TAKKY",
-    "TALAK",
-    "TALAQ",
-    "TALAR",
-    "TALAS",
-    "TALCS",
-    "TALCY",
-    "TALEA",
-    "TALER",
-    "TALES",
-    "TALKS",
-    "TALKY",
-    "TALLS",
-    "TALMA",
-    "TALPA",
-    "TALUK",
-    "TALUS",
-    "TAMAL",
-    "TAMED",
-    "TAMES",
-    "TAMIN",
-    "TAMIS",
-    "TAMMY",
-    "TAMPS",
-    "TANAS",
-    "TANGA",
-    "TANGI",
-    "TANGS",
-    "TANHS",
-    "TANKA",
-    "TANKS",
-    "TANKY",
-    "TANNA",
-    "TANSY",
-    "TANTI",
-    "TANTO",
-    "TANTY",
-    "TAPAS",
-    "TAPED",
-    "TAPEN",
-    "TAPES",
-    "TAPET",
-    "TAPIS",
-    "TAPPA",
-    "TAPUS",
-    "TARAS",
-    "TARDO",
-    "TARED",
-    "TARES",
-    "TARGA",
-    "TARGE",
-    "TARNS",
-    "TAROC",
-    "TAROK",
-    "TAROS",
-    "TARPS",
-    "TARRE",
-    "TARRY",
-    "TARSI",
-    "TARTS",
-    "TARTY",
-    "TASAR",
-    "TASED",
-    "TASER",
-    "TASES",
-    "TASKS",
-    "TASSA",
-    "TASSE",
-    "TASSO",
-    "TATAR",
-    "TATER",
-    "TATES",
-    "TATHS",
-    "TATIE",
-    "TATOU",
-    "TATTS",
-    "TATUS",
-    "TAUBE",
-    "TAULD",
-    "TAUON",
-    "TAUPE",
-    "TAUTS",
-    "TAVAH",
-    "TAVAS",
-    "TAVER",
-    "TAWAI",
-    "TAWAS",
-    "TAWED",
-    "TAWER",
-    "TAWIE",
-    "TAWSE",
-    "TAWTS",
-    "TAXED",
-    "TAXER",
-    "TAXES",
-    "TAXIS",
-    "TAXOL",
-    "TAXON",
-    "TAXOR",
-    "TAXUS",
-    "TAYRA",
-    "TAZZA",
-    "TAZZE",
-    "TEADE",
-    "TEADS",
-    "TEAED",
-    "TEAKS",
-    "TEALS",
-    "TEAMS",
-    "TEARS",
-    "TEATS",
-    "TEAZE",
-    "TECHS",
-    "TECHY",
-    "TECTA",
-    "TEELS",
-    "TEEMS",
-    "TEEND",
-    "TEENE",
-    "TEENS",
-    "TEENY",
-    "TEERS",
-    "TEFFS",
-    "TEGGS",
-    "TEGUA",
-    "TEGUS",
-    "TEHRS",
-    "TEIID",
-    "TEILS",
-    "TEIND",
-    "TEINS",
-    "TELAE",
-    "TELCO",
-    "TELES",
-    "TELEX",
-    "TELIA",
-    "TELIC",
-    "TELLS",
-    "TELLY",
-    "TELOI",
-    "TELOS",
-    "TEMED",
-    "TEMES",
-    "TEMPI",
-    "TEMPS",
-    "TEMPT",
-    "TEMSE",
-    "TENCH",
-    "TENDS",
-    "TENDU",
-    "TENES",
-    "TENGE",
-    "TENIA",
-    "TENNE",
-    "TENNO",
-    "TENNY",
-    "TENON",
-    "TENTS",
-    "TENTY",
-    "TENUE",
-    "TEPAL",
-    "TEPAS",
-    "TEPOY",
-    "TERAI",
-    "TERAS",
-    "TERCE",
-    "TEREK",
-    "TERES",
-    "TERFE",
-    "TERFS",
-    "TERGA",
-    "TERMS",
-    "TERNE",
-    "TERNS",
-    "TERRY",
-    "TERTS",
-    "TESLA",
-    "TESTA",
-    "TESTE",
-    "TESTS",
-    "TETES",
-    "TETHS",
-    "TETRA",
-    "TETRI",
-    "TEUCH",
-    "TEUGH",
-    "TEWED",
-    "TEWEL",
-    "TEWIT",
-    "TEXAS",
-    "TEXES",
-    "TEXTS",
-    "THACK",
-    "THAGI",
-    "THAIM",
-    "THALE",
-    "THALI",
-    "THANA",
-    "THANE",
-    "THANG",
-    "THANS",
-    "THANX",
-    "THARM",
-    "THARS",
-    "THAWS",
-    "THAWY",
-    "THEBE",
-    "THECA",
-    "THEED",
-    "THEEK",
-    "THEES",
-    "THEGN",
-    "THEIC",
-    "THEIN",
-    "THELF",
-    "THEMA",
-    "THENS",
-    "THEOW",
-    "THERM",
-    "THESP",
-    "THETE",
-    "THEWS",
-    "THEWY",
-    "THIGS",
-    "THILK",
-    "THILL",
-    "THINE",
-    "THINS",
-    "THIOL",
-    "THIRL",
-    "THOFT",
-    "THOLE",
-    "THOLI",
-    "THORO",
-    "THORP",
-    "THOUS",
-    "THOWL",
-    "THRAE",
-    "THRAW",
-    "THRID",
-    "THRIP",
-    "THROE",
-    "THUDS",
-    "THUGS",
-    "THUJA",
-    "THUNK",
-    "THURL",
-    "THUYA",
-    "THYMI",
-    "THYMY",
-    "TIANS",
-    "TIARS",
-    "TICAL",
-    "TICCA",
-    "TICED",
-    "TICES",
-    "TICHY",
-    "TICKS",
-    "TICKY",
-    "TIDDY",
-    "TIDED",
-    "TIDES",
-    "TIERS",
-    "TIFFS",
-    "TIFOS",
-    "TIFTS",
-    "TIGES",
-    "TIGON",
-    "TIKAS",
-    "TIKES",
-    "TIKIS",
-    "TIKKA",
-    "TILAK",
-    "TILED",
-    "TILER",
-    "TILES",
-    "TILLS",
-    "TILLY",
-    "TILTH",
-    "TILTS",
-    "TIMBO",
-    "TIMED",
-    "TIMES",
-    "TIMON",
-    "TIMPS",
-    "TINAS",
-    "TINCT",
-    "TINDS",
-    "TINEA",
-    "TINED",
-    "TINES",
-    "TINGE",
-    "TINGS",
-    "TINKS",
-    "TINNY",
-    "TINTS",
-    "TINTY",
-    "TIPIS",
-    "TIPPY",
-    "TIRED",
-    "TIRES",
-    "TIRLS",
-    "TIROS",
-    "TIRRS",
-    "TITCH",
-    "TITER",
-    "TITIS",
-    "TITRE",
-    "TITTY",
-    "TITUP",
-    "TIYIN",
-    "TIYNS",
-    "TIZES",
-    "TIZZY",
-    "TOADS",
-    "TOADY",
-    "TOAZE",
-    "TOCKS",
-    "TOCKY",
-    "TOCOS",
-    "TODDE",
-    "TOEAS",
-    "TOFFS",
-    "TOFFY",
-    "TOFTS",
-    "TOFUS",
-    "TOGAE",
-    "TOGAS",
-    "TOGED",
-    "TOGES",
-    "TOGUE",
-    "TOHOS",
-    "TOILE",
-    "TOILS",
-    "TOING",
-    "TOISE",
-    "TOITS",
-    "TOKAY",
-    "TOKED",
-    "TOKER",
-    "TOKES",
-    "TOKOS",
-    "TOLAN",
-    "TOLAR",
-    "TOLAS",
-    "TOLED",
-    "TOLES",
-    "TOLLS",
-    "TOLLY",
-    "TOLTS",
-    "TOLUS",
-    "TOLYL",
-    "TOMAN",
-    "TOMBS",
-    "TOMES",
-    "TOMIA",
-    "TOMMY",
-    "TOMOS",
-    "TONDI",
-    "TONDO",
-    "TONED",
-    "TONER",
-    "TONES",
-    "TONEY",
-    "TONGS",
-    "TONKA",
-    "TONKS",
-    "TONNE",
-    "TONUS",
-    "TOOLS",
-    "TOOMS",
-    "TOONS",
-    "TOOTS",
-    "TOPED",
-    "TOPEE",
-    "TOPEK",
-    "TOPER",
-    "TOPES",
-    "TOPHE",
-    "TOPHI",
-    "TOPHS",
-    "TOPIS",
-    "TOPOI",
-    "TOPOS",
-    "TOPPY",
-    "TOQUE",
-    "TORAH",
-    "TORAN",
-    "TORAS",
-    "TORCS",
-    "TORES",
-    "TORIC",
-    "TORII",
-    "TOROS",
-    "TOROT",
-    "TORRS",
-    "TORSE",
-    "TORSI",
-    "TORSK",
-    "TORTA",
-    "TORTE",
-    "TORTS",
-    "TOSAS",
-    "TOSED",
-    "TOSES",
-    "TOSHY",
-    "TOSSY",
-    "TOTED",
-    "TOTER",
-    "TOTES",
-    "TOTTY",
-    "TOUKS",
-    "TOUNS",
-    "TOURS",
-    "TOUSE",
-    "TOUSY",
-    "TOUTS",
-    "TOUZE",
-    "TOUZY",
-    "TOWED",
-    "TOWIE",
-    "TOWNS",
-    "TOWNY",
-    "TOWSE",
-    "TOWSY",
-    "TOWTS",
-    "TOWZE",
-    "TOWZY",
-    "TOYED",
-    "TOYER",
-    "TOYON",
-    "TOYOS",
-    "TOZED",
-    "TOZES",
-    "TOZIE",
-    "TRABS",
-    "TRADS",
-    "TRAGI",
-    "TRAIK",
-    "TRAMS",
-    "TRANK",
-    "TRANQ",
-    "TRANS",
-    "TRANT",
-    "TRAPE",
-    "TRAPS",
-    "TRAPT",
-    "TRASS",
-    "TRATS",
-    "TRATT",
-    "TRAVE",
-    "TRAYF",
-    "TRAYS",
-    "TRECK",
-    "TREED",
-    "TREEN",
-    "TREES",
-    "TREFA",
-    "TREIF",
-    "TREKS",
-    "TREMA",
-    "TREMS",
-    "TRESS",
-    "TREST",
-    "TRETS",
-    "TREWS",
-    "TREYF",
-    "TREYS",
-    "TRIAC",
-    "TRIDE",
-    "TRIER",
-    "TRIES",
-    "TRIFF",
-    "TRIGO",
-    "TRIGS",
-    "TRIKE",
-    "TRILD",
-    "TRILL",
-    "TRIMS",
-    "TRINE",
-    "TRINS",
-    "TRIOL",
-    "TRIOR",
-    "TRIOS",
-    "TRIPS",
-    "TRIPY",
-    "TRIST",
-    "TROAD",
-    "TROAK",
-    "TROAT",
-    "TROCK",
-    "TRODE",
-    "TRODS",
-    "TROGS",
-    "TROIS",
-    "TROKE",
-    "TROMP",
-    "TRONA",
-    "TRONC",
-    "TRONE",
-    "TRONK",
-    "TRONS",
-    "TROOZ",
-    "TROTH",
-    "TROTS",
-    "TROWS",
-    "TROYS",
-    "TRUED",
-    "TRUES",
-    "TRUGO",
-    "TRUGS",
-    "TRULL",
-    "TRYER",
-    "TRYKE",
-    "TRYMA",
-    "TRYPS",
-    "TSADE",
-    "TSADI",
-    "TSARS",
-    "TSKED",
-    "TSUBA",
-    "TSUBO",
-    "TUANS",
-    "TUART",
-    "TUATH",
-    "TUBAE",
-    "TUBAR",
-    "TUBAS",
-    "TUBBY",
-    "TUBED",
-    "TUBES",
-    "TUCKS",
-    "TUFAS",
-    "TUFFE",
-    "TUFFS",
-    "TUFTS",
-    "TUFTY",
-    "TUGRA",
-    "TUILE",
-    "TUINA",
-    "TUISM",
-    "TUKTU",
-    "TULES",
-    "TULPA",
-    "TULSI",
-    "TUMID",
-    "TUMMY",
-    "TUMPS",
-    "TUMPY",
-    "TUNAS",
-    "TUNDS",
-    "TUNED",
-    "TUNER",
-    "TUNES",
-    "TUNGS",
-    "TUNNY",
-    "TUPEK",
-    "TUPIK",
-    "TUPLE",
-    "TUQUE",
-    "TURDS",
-    "TURFS",
-    "TURFY",
-    "TURKS",
-    "TURME",
-    "TURMS",
-    "TURNS",
-    "TURNT",
-    "TURPS",
-    "TURRS",
-    "TUSHY",
-    "TUSKS",
-    "TUSKY",
-    "TUTEE",
-    "TUTTI",
-    "TUTTY",
-    "TUTUS",
-    "TUXES",
-    "TUYER",
-    "TWAES",
-    "TWAIN",
-    "TWALS",
-    "TWANK",
-    "TWATS",
-    "TWAYS",
-    "TWEEL",
-    "TWEEN",
-    "TWEEP",
-    "TWEER",
-    "TWERK",
-    "TWERP",
-    "TWIER",
-    "TWIGS",
-    "TWILL",
-    "TWILT",
-    "TWINK",
-    "TWINS",
-    "TWINY",
-    "TWIRE",
-    "TWIRP",
-    "TWITE",
-    "TWITS",
-    "TWOER",
-    "TWYER",
-    "TYEES",
-    "TYERS",
-    "TYIYN",
-    "TYKES",
-    "TYLER",
-    "TYMPS",
-    "TYNDE",
-    "TYNED",
-    "TYNES",
-    "TYPAL",
-    "TYPED",
-    "TYPES",
-    "TYPEY",
-    "TYPIC",
-    "TYPOS",
-    "TYPPS",
-    "TYPTO",
-    "TYRAN",
-    "TYRED",
-    "TYRES",
-    "TYROS",
-    "TYTHE",
-    "TZARS",
-    "UDALS",
-    "UDONS",
-    "UGALI",
-    "UGGED",
-    "UHLAN",
-    "UHURU",
-    "UKASE",
-    "ULAMA",
-    "ULANS",
-    "ULEMA",
-    "ULMIN",
-    "ULNAD",
-    "ULNAE",
-    "ULNAR",
-    "ULNAS",
-    "ULPAN",
-    "ULVAS",
-    "ULYIE",
-    "ULZIE",
-    "UMAMI",
-    "UMBEL",
-    "UMBER",
-    "UMBLE",
-    "UMBOS",
-    "UMBRE",
-    "UMIAC",
-    "UMIAK",
-    "UMIAQ",
-    "UMMAH",
-    "UMMAS",
-    "UMMED",
-    "UMPED",
-    "UMPHS",
-    "UMPIE",
-    "UMPTY",
-    "UMRAH",
-    "UMRAS",
-    "UNAIS",
-    "UNAPT",
-    "UNARM",
-    "UNARY",
-    "UNAUS",
-    "UNBAG",
-    "UNBAN",
-    "UNBAR",
-    "UNBED",
-    "UNBID",
-    "UNBOX",
-    "UNCAP",
-    "UNCES",
-    "UNCIA",
-    "UNCOS",
-    "UNCOY",
-    "UNCUS",
-    "UNDAM",
-    "UNDEE",
-    "UNDOS",
-    "UNDUG",
-    "UNETH",
-    "UNFIX",
-    "UNGAG",
-    "UNGET",
-    "UNGOD",
-    "UNGOT",
-    "UNGUM",
-    "UNHAT",
-    "UNHIP",
-    "UNICA",
-    "UNITS",
-    "UNJAM",
-    "UNKED",
-    "UNKET",
-    "UNKID",
-    "UNLAW",
-    "UNLAY",
-    "UNLED",
-    "UNLET",
-    "UNLID",
-    "UNMAN",
-    "UNMEW",
-    "UNMIX",
-    "UNPAY",
-    "UNPEG",
-    "UNPEN",
-    "UNPIN",
-    "UNRED",
-    "UNRID",
-    "UNRIG",
-    "UNRIP",
-    "UNSAW",
-    "UNSAY",
-    "UNSEE",
-    "UNSEW",
-    "UNSEX",
-    "UNSOD",
-    "UNTAX",
-    "UNTIN",
-    "UNWET",
-    "UNWIT",
-    "UNWON",
-    "UPBOW",
-    "UPBYE",
-    "UPDOS",
-    "UPDRY",
-    "UPEND",
-    "UPJET",
-    "UPLAY",
-    "UPLED",
-    "UPLIT",
-    "UPPED",
-    "UPRAN",
-    "UPRUN",
-    "UPSEE",
-    "UPSEY",
-    "UPTAK",
-    "UPTER",
-    "UPTIE",
-    "URAEI",
-    "URALI",
-    "URAOS",
-    "URARE",
-    "URARI",
-    "URASE",
-    "URATE",
-    "URBEX",
-    "URBIA",
-    "URDEE",
-    "UREAL",
-    "UREAS",
-    "UREDO",
-    "UREIC",
-    "URENA",
-    "URENT",
-    "URGED",
-    "URGER",
-    "URGES",
-    "URIAL",
-    "URITE",
-    "URMAN",
-    "URNAL",
-    "URNED",
-    "URPED",
-    "URSAE",
-    "URSID",
-    "URSON",
-    "URUBU",
-    "URVAS",
-    "USERS",
-    "USNEA",
-    "USQUE",
-    "USURE",
-    "USURY",
-    "UTERI",
-    "UVEAL",
-    "UVEAS",
-    "UVULA",
-    "VACUA",
-    "VADED",
-    "VADES",
-    "VAGAL",
-    "VAGUS",
-    "VAILS",
-    "VAIRE",
-    "VAIRS",
-    "VAIRY",
-    "VAKAS",
-    "VAKIL",
-    "VALES",
-    "VALIS",
-    "VALSE",
-    "VAMPS",
-    "VAMPY",
-    "VANDA",
-    "VANED",
-    "VANES",
-    "VANGS",
-    "VANTS",
-    "VAPED",
-    "VAPER",
-    "VAPES",
-    "VARAN",
-    "VARAS",
-    "VARDY",
-    "VAREC",
-    "VARES",
-    "VARIA",
-    "VARIX",
-    "VARNA",
-    "VARUS",
-    "VARVE",
-    "VASAL",
-    "VASES",
-    "VASTS",
-    "VASTY",
-    "VATIC",
-    "VATUS",
-    "VAUCH",
-    "VAUTE",
-    "VAUTS",
-    "VAWTE",
-    "VAXES",
-    "VEALE",
-    "VEALS",
-    "VEALY",
-    "VEENA",
-    "VEEPS",
-    "VEERS",
-    "VEERY",
-    "VEGAS",
-    "VEGES",
-    "VEGIE",
-    "VEGOS",
-    "VEHME",
-    "VEILS",
-    "VEILY",
-    "VEINS",
-    "VEINY",
-    "VELAR",
-    "VELDS",
-    "VELDT",
-    "VELES",
-    "VELLS",
-    "VELUM",
-    "VENAE",
-    "VENAL",
-    "VENDS",
-    "VENDU",
-    "VENEY",
-    "VENGE",
-    "VENIN",
-    "VENTS",
-    "VENUS",
-    "VERBS",
-    "VERRA",
-    "VERRY",
-    "VERST",
-    "VERTS",
-    "VERTU",
-    "VESPA",
-    "VESTA",
-    "VESTS",
-    "VETCH",
-    "VEXED",
-    "VEXER",
-    "VEXES",
-    "VEXIL",
-    "VEZIR",
-    "VIALS",
-    "VIAND",
-    "VIBES",
-    "VIBEX",
-    "VIBEY",
-    "VICED",
-    "VICES",
-    "VICHY",
-    "VIERS",
-    "VIEWS",
-    "VIEWY",
-    "VIFDA",
-    "VIFFS",
-    "VIGAS",
-    "VIGIA",
-    "VILDE",
-    "VILER",
-    "VILLI",
-    "VILLS",
-    "VIMEN",
-    "VINAL",
-    "VINAS",
-    "VINCA",
-    "VINED",
-    "VINER",
-    "VINES",
-    "VINEW",
-    "VINIC",
-    "VINOS",
-    "VINTS",
-    "VIOLD",
-    "VIOLS",
-    "VIRED",
-    "VIREO",
-    "VIRES",
-    "VIRGA",
-    "VIRGE",
-    "VIRID",
-    "VIRLS",
-    "VIRTU",
-    "VISAS",
-    "VISED",
-    "VISES",
-    "VISIE",
-    "VISNE",
-    "VISON",
-    "VISTO",
-    "VITAE",
-    "VITAS",
-    "VITEX",
-    "VITRO",
-    "VITTA",
-    "VIVAS",
-    "VIVAT",
-    "VIVDA",
-    "VIVER",
-    "VIVES",
-    "VIZIR",
-    "VIZOR",
-    "VLEIS",
-    "VLIES",
-    "VLOGS",
-    "VOARS",
-    "VOCAB",
-    "VOCES",
-    "VODDY",
-    "VODOU",
-    "VODUN",
-    "VOEMA",
-    "VOGIE",
-    "VOIDS",
-    "VOILE",
-    "VOIPS",
-    "VOLAE",
-    "VOLAR",
-    "VOLED",
-    "VOLES",
-    "VOLET",
-    "VOLKS",
-    "VOLTA",
-    "VOLTE",
-    "VOLTI",
-    "VOLTS",
-    "VOLVA",
-    "VOLVE",
-    "VOMER",
-    "VOTED",
-    "VOTES",
-    "VOUGE",
-    "VOULU",
-    "VOWED",
-    "VOWER",
-    "VOXEL",
-    "VOZHD",
-    "VRAIC",
-    "VRILS",
-    "VROOM",
-    "VROUS",
-    "VROUW",
-    "VROWS",
-    "VUGGS",
-    "VUGGY",
-    "VUGHS",
-    "VUGHY",
-    "VULGO",
-    "VULNS",
-    "VULVA",
-    "VUTTY",
-    "WAACS",
-    "WACKE",
-    "WACKO",
-    "WACKS",
-    "WADDS",
-    "WADDY",
-    "WADED",
-    "WADER",
-    "WADES",
-    "WADGE",
-    "WADIS",
-    "WADTS",
-    "WAFFS",
-    "WAFTS",
-    "WAGED",
-    "WAGES",
-    "WAGGA",
-    "WAGYU",
-    "WAHOO",
-    "WAIDE",
-    "WAIFS",
-    "WAIFT",
-    "WAILS",
-    "WAINS",
-    "WAIRS",
-    "WAITE",
-    "WAITS",
-    "WAKAS",
-    "WAKED",
-    "WAKEN",
-    "WAKER",
-    "WAKES",
-    "WAKFS",
-    "WALDO",
-    "WALDS",
-    "WALED",
-    "WALER",
-    "WALES",
-    "WALIE",
-    "WALIS",
-    "WALKS",
-    "WALLA",
-    "WALLS",
-    "WALLY",
-    "WALTY",
-    "WAMED",
-    "WAMES",
-    "WAMUS",
-    "WANDS",
-    "WANED",
-    "WANES",
-    "WANEY",
-    "WANGS",
-    "WANKS",
-    "WANKY",
-    "WANLE",
-    "WANLY",
-    "WANNA",
-    "WANTS",
-    "WANTY",
-    "WANZE",
-    "WAQFS",
-    "WARBS",
-    "WARBY",
-    "WARDS",
-    "WARED",
-    "WARES",
-    "WAREZ",
-    "WARKS",
-    "WARMS",
-    "WARNS",
-    "WARPS",
-    "WARRE",
-    "WARST",
-    "WARTS",
-    "WASES",
-    "WASHY",
-    "WASMS",
-    "WASPS",
-    "WASPY",
-    "WASTS",
-    "WATAP",
-    "WATTS",
-    "WAUFF",
-    "WAUGH",
-    "WAUKS",
-    "WAULK",
-    "WAULS",
-    "WAURS",
-    "WAVED",
-    "WAVES",
-    "WAVEY",
-    "WAWAS",
-    "WAWES",
-    "WAWLS",
-    "WAXED",
-    "WAXER",
-    "WAXES",
-    "WAYED",
-    "WAZIR",
-    "WAZOO",
-    "WEALD",
-    "WEALS",
-    "WEAMB",
-    "WEANS",
-    "WEARS",
-    "WEBBY",
-    "WEBER",
-    "WECHT",
-    "WEDEL",
-    "WEDGY",
-    "WEEDS",
-    "WEEKE",
-    "WEEKS",
-    "WEELS",
-    "WEEMS",
-    "WEENS",
-    "WEENY",
-    "WEEPS",
-    "WEEPY",
-    "WEEST",
-    "WEETE",
-    "WEETS",
-    "WEFTE",
-    "WEFTS",
-    "WEIDS",
-    "WEILS",
-    "WEIRS",
-    "WEISE",
-    "WEIZE",
-    "WEKAS",
-    "WELDS",
-    "WELKE",
-    "WELKS",
-    "WELKT",
-    "WELLS",
-    "WELLY",
-    "WELTS",
-    "WEMBS",
-    "WENDS",
-    "WENGE",
-    "WENNY",
-    "WENTS",
-    "WEROS",
-    "WERSH",
-    "WESTS",
-    "WETAS",
-    "WETLY",
-    "WEXED",
-    "WEXES",
-    "WHAMO",
-    "WHAMS",
-    "WHANG",
-    "WHAPS",
-    "WHARE",
-    "WHATA",
-    "WHATS",
-    "WHAUP",
-    "WHAUR",
-    "WHEAL",
-    "WHEAR",
-    "WHEEN",
-    "WHEEP",
-    "WHEFT",
-    "WHELK",
-    "WHELM",
-    "WHENS",
-    "WHETS",
-    "WHEWS",
-    "WHEYS",
-    "WHIDS",
-    "WHIFT",
-    "WHIGS",
-    "WHILK",
-    "WHIMS",
-    "WHINS",
-    "WHIOS",
-    "WHIPS",
-    "WHIPT",
-    "WHIRR",
-    "WHIRS",
-    "WHISH",
-    "WHISS",
-    "WHIST",
-    "WHITS",
-    "WHITY",
-    "WHIZZ",
-    "WHOMP",
-    "WHOOF",
-    "WHOOT",
-    "WHOPS",
-    "WHORL",
-    "WHORT",
-    "WHOSO",
-    "WHOWS",
-    "WHUMP",
-    "WHUPS",
-    "WHYDA",
-    "WICCA",
-    "WICKS",
-    "WICKY",
-    "WIDDY",
-    "WIDES",
-    "WIELS",
-    "WIFED",
-    "WIFES",
-    "WIFEY",
-    "WIFIE",
-    "WIFTY",
-    "WIGAN",
-    "WIGGA",
-    "WIGGY",
-    "WIKIS",
-    "WILCO",
-    "WILDS",
-    "WILED",
-    "WILES",
-    "WILGA",
-    "WILIS",
-    "WILJA",
-    "WILLS",
-    "WILTS",
-    "WIMPS",
-    "WINDS",
-    "WINED",
-    "WINES",
-    "WINEY",
-    "WINGE",
-    "WINGS",
-    "WINGY",
-    "WINKS",
-    "WINNA",
-    "WINNS",
-    "WINOS",
-    "WINZE",
-    "WIPED",
-    "WIPER",
-    "WIPES",
-    "WIRED",
-    "WIRER",
-    "WIRES",
-    "WIRRA",
-    "WISED",
-    "WISES",
-    "WISHA",
-    "WISHT",
-    "WISPS",
-    "WISTS",
-    "WITAN",
-    "WITED",
-    "WITES",
-    "WITHE",
-    "WITHS",
-    "WITHY",
-    "WIVED",
-    "WIVER",
-    "WIVES",
-    "WIZEN",
-    "WIZES",
-    "WOADS",
-    "WOALD",
-    "WOCKS",
-    "WODGE",
-    "WOFUL",
-    "WOJUS",
-    "WOKER",
-    "WOKKA",
-    "WOLDS",
-    "WOLFS",
-    "WOLLY",
-    "WOLVE",
-    "WOMBS",
-    "WOMBY",
-    "WOMYN",
-    "WONGA",
-    "WONGI",
-    "WONKS",
-    "WONKY",
-    "WONTS",
-    "WOODS",
-    "WOOED",
-    "WOOFS",
-    "WOOFY",
-    "WOOLD",
-    "WOOLS",
-    "WOONS",
-    "WOOPS",
-    "WOOPY",
-    "WOOSE",
-    "WOOSH",
-    "WOOTZ",
-    "WORDS",
-    "WORKS",
-    "WORMS",
-    "WORMY",
-    "WORTS",
-    "WOWED",
-    "WOWEE",
-    "WOXEN",
-    "WRANG",
-    "WRAPS",
-    "WRAPT",
-    "WRAST",
-    "WRATE",
-    "WRAWL",
-    "WRENS",
-    "WRICK",
-    "WRIED",
-    "WRIER",
-    "WRIES",
-    "WRITS",
-    "WROKE",
-    "WROOT",
-    "WROTH",
-    "WRYER",
-    "WUDDY",
-    "WUDUS",
-    "WULLS",
-    "WURST",
-    "WUSES",
-    "WUSHU",
-    "WUSSY",
-    "WUXIA",
-    "WYLED",
-    "WYLES",
-    "WYNDS",
-    "WYNNS",
-    "WYTED",
-    "WYTES",
-    "XEBEC",
-    "XENIA",
-    "XENIC",
-    "XENON",
-    "XERIC",
-    "XEROX",
-    "XERUS",
-    "XOANA",
-    "XRAYS",
-    "XYLAN",
-    "XYLEM",
-    "XYLIC",
-    "XYLOL",
-    "XYLYL",
-    "XYSTI",
-    "XYSTS",
-    "YAARS",
-    "YABAS",
-    "YABBA",
-    "YABBY",
-    "YACCA",
-    "YACKA",
-    "YACKS",
-    "YAFFS",
-    "YAGER",
-    "YAGES",
-    "YAGIS",
-    "YAHOO",
-    "YAIRD",
-    "YAKKA",
-    "YAKOW",
-    "YALES",
-    "YAMEN",
-    "YAMPY",
-    "YAMUN",
-    "YANGS",
-    "YANKS",
-    "YAPOK",
-    "YAPON",
-    "YAPPS",
-    "YAPPY",
-    "YARAK",
-    "YARCO",
-    "YARDS",
-    "YARER",
-    "YARFA",
-    "YARKS",
-    "YARNS",
-    "YARRS",
-    "YARTA",
-    "YARTO",
-    "YATES",
-    "YAUDS",
-    "YAULD",
-    "YAUPS",
-    "YAWED",
-    "YAWEY",
-    "YAWLS",
-    "YAWNS",
-    "YAWNY",
-    "YAWPS",
-    "YBORE",
-    "YCLAD",
-    "YCLED",
-    "YCOND",
-    "YDRAD",
-    "YDRED",
-    "YEADS",
-    "YEAHS",
-    "YEALM",
-    "YEANS",
-    "YEARD",
-    "YEARS",
-    "YECCH",
-    "YECHS",
-    "YECHY",
-    "YEDES",
-    "YEEDS",
-    "YEESH",
-    "YEGGS",
-    "YELKS",
-    "YELLS",
-    "YELMS",
-    "YELPS",
-    "YELTS",
-    "YENTA",
-    "YENTE",
-    "YERBA",
-    "YERDS",
-    "YERKS",
-    "YESES",
-    "YESKS",
-    "YESTS",
-    "YESTY",
-    "YETIS",
-    "YETTS",
-    "YEUKS",
-    "YEUKY",
-    "YEVEN",
-    "YEVES",
-    "YEWEN",
-    "YEXED",
-    "YEXES",
-    "YFERE",
-    "YIKED",
-    "YIKES",
-    "YILLS",
-    "YINCE",
-    "YIPES",
-    "YIPPY",
-    "YIRDS",
-    "YIRKS",
-    "YIRRS",
-    "YIRTH",
-    "YITES",
-    "YITIE",
-    "YLEMS",
-    "YLIKE",
-    "YLKES",
-    "YMOLT",
-    "YMPES",
-    "YOBBO",
-    "YOBBY",
-    "YOCKS",
-    "YODEL",
-    "YODHS",
-    "YODLE",
-    "YOGAS",
-    "YOGEE",
-    "YOGHS",
-    "YOGIC",
-    "YOGIN",
-    "YOGIS",
-    "YOICK",
-    "YOJAN",
-    "YOKED",
-    "YOKEL",
-    "YOKER",
-    "YOKES",
-    "YOKUL",
-    "YOLKS",
-    "YOLKY",
-    "YOMIM",
-    "YOMPS",
-    "YONIC",
-    "YONIS",
-    "YONKS",
-    "YOOFS",
-    "YOOPS",
-    "YORES",
-    "YORKS",
-    "YORPS",
-    "YOUKS",
-    "YOURN",
-    "YOURS",
-    "YOURT",
-    "YOUSE",
-    "YOWED",
-    "YOWES",
-    "YOWIE",
-    "YOWLS",
-    "YOWZA",
-    "YRAPT",
-    "YRENT",
-    "YRIVD",
-    "YRNEH",
-    "YSAME",
-    "YTOST",
-    "YUANS",
-    "YUCAS",
-    "YUCCA",
-    "YUCCH",
-    "YUCKO",
-    "YUCKS",
-    "YUCKY",
-    "YUFTS",
-    "YUGAS",
-    "YUKED",
-    "YUKES",
-    "YUKKY",
-    "YUKOS",
-    "YULAN",
-    "YULES",
-    "YUMMO",
-    "YUMMY",
-    "YUMPS",
-    "YUPON",
-    "YUPPY",
-    "YURTA",
-    "YURTS",
-    "YUZUS",
-    "ZABRA",
-    "ZACKS",
-    "ZAIDA",
-    "ZAIDY",
-    "ZAIRE",
-    "ZAKAT",
-    "ZAMAN",
-    "ZAMBO",
-    "ZAMIA",
-    "ZANJA",
-    "ZANTE",
-    "ZANZA",
-    "ZANZE",
-    "ZAPPY",
-    "ZARFS",
-    "ZARIS",
-    "ZATIS",
-    "ZAXES",
-    "ZAYIN",
-    "ZAZEN",
-    "ZEALS",
-    "ZEBEC",
-    "ZEBUB",
-    "ZEBUS",
-    "ZEDAS",
-    "ZEINS",
-    "ZENDO",
-    "ZERDA",
-    "ZERKS",
-    "ZEROS",
-    "ZESTS",
-    "ZETAS",
-    "ZEXES",
-    "ZEZES",
-    "ZHOMO",
-    "ZIBET",
-    "ZIFFS",
-    "ZIGAN",
-    "ZILAS",
-    "ZILCH",
-    "ZILLA",
-    "ZILLS",
-    "ZIMBI",
-    "ZIMBS",
-    "ZINCO",
-    "ZINCS",
-    "ZINCY",
-    "ZINEB",
-    "ZINES",
-    "ZINGS",
-    "ZINGY",
-    "ZINKE",
-    "ZINKY",
-    "ZIPPO",
-    "ZIPPY",
-    "ZIRAM",
-    "ZITIS",
-    "ZIZEL",
-    "ZIZIT",
-    "ZLOTE",
-    "ZLOTY",
-    "ZOAEA",
-    "ZOBOS",
-    "ZOBUS",
-    "ZOCCO",
-    "ZOEAE",
-    "ZOEAL",
-    "ZOEAS",
-    "ZOISM",
-    "ZOIST",
-    "ZOMBI",
-    "ZONAE",
-    "ZONDA",
-    "ZONED",
-    "ZONER",
-    "ZONES",
-    "ZONKS",
-    "ZOOEA",
-    "ZOOEY",
-    "ZOOID",
-    "ZOOKS",
-    "ZOOMS",
-    "ZOONS",
-    "ZOOTY",
-    "ZOPPA",
-    "ZOPPO",
-    "ZORIL",
-    "ZORIS",
-    "ZORRO",
-    "ZOUKS",
-    "ZOWEE",
-    "ZOWIE",
-    "ZULUS",
-    "ZUPAN",
-    "ZUPAS",
-    "ZUPPA",
-    "ZURFS",
-    "ZUZIM",
-    "ZYGAL",
-    "ZYGON",
-    "ZYMES",
-    "ZYMIC"
+#include <SDL.h>
+
+SDL_bool is_guess_allowed(const char* guess);
+
+const Uint32 allowed_guesses[0x298e] = {
+    0x0cbc18f8, // AAHED
+    0x0cbc2a85, // AALII
+    0x0cbc43c8, // AARGH
+    0x0cbc4576, // AARTI
+    0x0cbc874d, // ABACA
+    0x0cbc8755, // ABACI
+    0x0cbc875f, // ABACS
+    0x0cbc87c3, // ABAFT
+    0x0cbc8855, // ABAKA
+    0x0cbc88a6, // ABAMP
+    0x0cbc88bb, // ABAND
+    0x0cbc8964, // ABASH
+    0x0cbc8967, // ABASK
+    0x0cbc8a23, // ABAYA
+    0x0cbc8b5e, // ABBAS
+    0x0cbc8bd3, // ABBED
+    0x0cbc8be2, // ABBES
+    0x0cbc9015, // ABCEE
+    0x0cbc981b, // ABEAM
+    0x0cbc9820, // ABEAR
+    0x0cbc997e, // ABELE
+    0x0cbc9a52, // ABERS
+    0x0cbc9a94, // ABETS
+    0x0cbca9a9, // ABIES
+    0x0cbcb66b, // ABLER
+    0x0cbcb66c, // ABLES
+    0x0cbcb66d, // ABLET
+    0x0cbcb7ba, // ABLOW
+    0x0cbcbb0c, // ABMHO
+    0x0cbcc38c, // ABOHM
+    0x0cbcc3ac, // ABOIL
+    0x0cbcc425, // ABOMA
+    0x0cbcc474, // ABOON
+    0x0cbcc4cd, // ABORD
+    0x0cbcc4ce, // ABORE
+    0x0cbccf68, // ABRAM
+    0x0cbccf74, // ABRAY
+    0x0cbcd070, // ABRIM
+    0x0cbcd071, // ABRIN
+    0x0cbcd076, // ABRIS
+    0x0cbcd439, // ABSEY
+    0x0cbcd4b8, // ABSIT
+    0x0cbcddcc, // ABUNA
+    0x0cbcddd0, // ABUNE
+    0x0cbcdea4, // ABUTS
+    0x0cbcdf71, // ABUZZ
+    0x0cbcedb9, // ABYES
+    0x0cbcef81, // ABYSM
+    0x0cbd1486, // ACAIS
+    0x0cbd15a5, // ACARI
+    0x0cbd1c00, // ACCAS
+    0x0cbd1dd4, // ACCOY
+    0x0cbd26a2, // ACERB
+    0x0cbd26b3, // ACERS
+    0x0cbd26e3, // ACETA
+    0x0cbd3144, // ACHAR
+    0x0cbd31ba, // ACHED
+    0x0cbd31c9, // ACHES
+    0x0cbd330f, // ACHOO
+    0x0cbd35e9, // ACIDS
+    0x0cbd35ef, // ACIDY
+    0x0cbd3727, // ACING
+    0x0cbd3729, // ACINI
+    0x0cbd3e7e, // ACKEE
+    0x0cbd3e8b, // ACKER
+    0x0cbd470e, // ACMES
+    0x0cbd4782, // ACMIC
+    0x0cbd4b40, // ACNED
+    0x0cbd4b4f, // ACNES
+    0x0cbd4f46, // ACOCK
+    0x0cbd5068, // ACOLD
+    0x0cbd5c44, // ACRED
+    0x0cbd5c53, // ACRES
+    0x0cbd5d9d, // ACROS
+    0x0cbd64c6, // ACTED
+    0x0cbd6554, // ACTIN
+    0x0cbd661a, // ACTON
+    0x0cbd7b01, // ACYLS
+    0x0cbda2b5, // ADAWS
+    0x0cbda2f7, // ADAYS
+    0x0cbda5ef, // ADBOT
+    0x0cbdaca7, // ADDAX
+    0x0cbdad17, // ADDED
+    0x0cbdad25, // ADDER
+    0x0cbdada6, // ADDIO
+    0x0cbdadff, // ADDLE
+    0x0cbdb161, // ADEEM
+    0x0cbdbda1, // ADHAN
+    0x0cbdc26d, // ADIEU
+    0x0cbdc3b5, // ADIOS
+    0x0cbdc45a, // ADITS
+    0x0cbdd2e6, // ADMAN
+    0x0cbdd36a, // ADMEN
+    0x0cbdd3f8, // ADMIX
+    0x0cbddb8a, // ADOBO
+    0x0cbdde3e, // ADOWN
+    0x0cbdde98, // ADOZE
+    0x0cbde821, // ADRAD
+    0x0cbde8a5, // ADRED
+    0x0cbdeeff, // ADSUM
+    0x0cbdf633, // ADUKI
+    0x0cbdf690, // ADUNC
+    0x0cbdf746, // ADUST
+    0x0cbdf9bc, // ADVEW
+    0x0cbe0858, // ADYTA
+    0x0cbe0aad, // ADZED
+    0x0cbe0abc, // ADZES
+    0x0cbe35b8, // AECIA
+    0x0cbe3987, // AEDES
+    0x0cbe46ce, // AEGIS
+    0x0cbe697b, // AEONS
+    0x0cbe758b, // AERIE
+    0x0cbe765f, // AEROS
+    0x0cbe79d9, // AESIR
+    0x0cbeb9fd, // AFALD
+    0x0cbebac0, // AFARA
+    0x0cbebad2, // AFARS
+    0x0cbec9a4, // AFEAR
+    0x0cbee763, // AFLAJ
+    0x0cbef652, // AFORE
+    0x0cbf01fb, // AFRIT
+    0x0cbf02c0, // AFROS
+    0x0cbf467c, // AGAMA
+    0x0cbf4684, // AGAMI
+    0x0cbf4733, // AGARS
+    0x0cbf4755, // AGAST
+    0x0cbf47a9, // AGAVE
+    0x0cbf482d, // AGAZE
+    0x0cbf57a5, // AGENE
+    0x0cbf5837, // AGERS
+    0x0cbf5f0b, // AGGER
+    0x0cbf5f82, // AGGIE
+    0x0cbf60af, // AGGRI
+    0x0cbf60b5, // AGGRO
+    0x0cbf60bf, // AGGRY
+    0x0cbf62c9, // AGHAS
+    0x0cbf6863, // AGILA
+    0x0cbf68d8, // AGIOS
+    0x0cbf6956, // AGISM
+    0x0cbf695d, // AGIST
+    0x0cbf696b, // AGITA
+    0x0cbf7443, // AGLEE
+    0x0cbf7452, // AGLET
+    0x0cbf7457, // AGLEY
+    0x0cbf7597, // AGLOO
+    0x0cbf7661, // AGLUS
+    0x0cbf780e, // AGMAS
+    0x0cbf8148, // AGOGE
+    0x0cbf822f, // AGONE
+    0x0cbf823d, // AGONS
+    0x0cbf824f, // AGOOD
+    0x0cbf8e49, // AGRIA
+    0x0cbf8e56, // AGRIN
+    0x0cbf8f21, // AGROS
+    0x0cbf9a8b, // AGUED
+    0x0cbf9a9a, // AGUES
+    0x0cbf9bb1, // AGUNA
+    0x0cbf9c7f, // AGUTI
+    0x0cbfe264, // AHEAP
+    0x0cbfe415, // AHENT
+    0x0cbff426, // AHIGH
+    0x0cbff509, // AHIND
+    0x0cbff50c, // AHING
+    0x0cbff519, // AHINT
+    0x0cc00e4d, // AHOLD
+    0x0cc027db, // AHULL
+    0x0cc028aa, // AHURU
+    0x0cc06a87, // AIDAS
+    0x0cc06afc, // AIDED
+    0x0cc06b0b, // AIDES
+    0x0cc06c4b, // AIDOI
+    0x0cc06c55, // AIDOS
+    0x0cc070ff, // AIERY
+    0x0cc0774a, // AIGAS
+    0x0cc07832, // AIGHT
+    0x0cc08d04, // AILED
+    0x0cc09145, // AIMED
+    0x0cc09153, // AIMER
+    0x0cc09587, // AINEE
+    0x0cc095c5, // AINGA
+    0x0cc09ab3, // AIOLI
+    0x0cc0a68a, // AIRED
+    0x0cc0a698, // AIRER
+    0x0cc0a7c2, // AIRNS
+    0x0cc0a87d, // AIRTH
+    0x0cc0a888, // AIRTS
+    0x0cc0aece, // AITCH
+    0x0cc0b12b, // AITUS
+    0x0cc0b79c, // AIVER
+    0x0cc0c452, // AIYEE
+    0x0cc0c97a, // AIZLE
+    0x0cc10cb1, // AJIES
+    0x0cc10ed0, // AJIVA
+    0x0cc13fed, // AJUGA
+    0x0cc147b6, // AJWAN
+    0x0cc1880e, // AKEES
+    0x0cc188e3, // AKELA
+    0x0cc18929, // AKENE
+    0x0cc19a2f, // AKING
+    0x0cc19aef, // AKITA
+    0x0cc1a110, // AKKAS
+    0x0cc202e4, // ALAAP
+    0x0cc20321, // ALACK
+    0x0cc2046f, // ALAMO
+    0x0cc20485, // ALAND
+    0x0cc20486, // ALANE
+    0x0cc20488, // ALANG
+    0x0cc20494, // ALANS
+    0x0cc20495, // ALANT
+    0x0cc204c4, // ALAPA
+    0x0cc204d6, // ALAPS
+    0x0cc2051e, // ALARY
+    0x0cc2054c, // ALATE
+    0x0cc205ff, // ALAYS
+    0x0cc20728, // ALBAS
+    0x0cc2079e, // ALBEE
+    0x0cc20c62, // ALCID
+    0x0cc20d37, // ALCOS
+    0x0cc2101c, // ALDEA
+    0x0cc2102d, // ALDER
+    0x0cc21171, // ALDOL
+    0x0cc21425, // ALECK
+    0x0cc2142d, // ALECS
+    0x0cc21490, // ALEFS
+    0x0cc21491, // ALEFT
+    0x0cc215cf, // ALEPH
+    0x0cc216c1, // ALEWS
+    0x0cc216f5, // ALEYE
+    0x0cc2182c, // ALFAS
+    0x0cc21c66, // ALGAL
+    0x0cc21c6d, // ALGAS
+    0x0cc21d66, // ALGID
+    0x0cc21d70, // ALGIN
+    0x0cc21e3a, // ALGOR
+    0x0cc21efb, // ALGUM
+    0x0cc224ef, // ALIAS
+    0x0cc22594, // ALIFS
+    0x0cc2268e, // ALINE
+    0x0cc22742, // ALIST
+    0x0cc227f5, // ALIYA
+    0x0cc22e6b, // ALKIE
+    0x0cc22f3f, // ALKOS
+    0x0cc2307a, // ALKYD
+    0x0cc23082, // ALKYL
+    0x0cc23228, // ALLEE
+    0x0cc2322f, // ALLEL
+    0x0cc232ba, // ALLIS
+    0x0cc23371, // ALLOD
+    0x0cc234c3, // ALLYL
+    0x0cc235e8, // ALMAH
+    0x0cc235f3, // ALMAS
+    0x0cc2366c, // ALMEH
+    0x0cc23677, // ALMES
+    0x0cc23878, // ALMUD
+    0x0cc2387b, // ALMUG
+    0x0cc23ed8, // ALODS
+    0x0cc23eea, // ALOED
+    0x0cc23ef9, // ALOES
+    0x0cc23f4a, // ALOHA
+    0x0cc23f78, // ALOIN
+    0x0cc24043, // ALOOS
+    0x0cc2413d, // ALOWE
+    0x0cc2549d, // ALTHO
+    0x0cc25588, // ALTOS
+    0x0cc25954, // ALULA
+    0x0cc25987, // ALUMS
+    0x0cc25a1e, // ALURE
+    0x0cc25c3b, // ALVAR
+    0x0cc26083, // ALWAY
+    0x0cc2902f, // AMAHS
+    0x0cc2904b, // AMAIN
+    0x0cc291ad, // AMATE
+    0x0cc291dd, // AMAUT
+    0x0cc29384, // AMBAN
+    0x0cc29492, // AMBIT
+    0x0cc29557, // AMBOS
+    0x0cc295c0, // AMBRY
+    0x0cc2a05b, // AMEBA
+    0x0cc2a0cf, // AMEER
+    0x0cc2a1eb, // AMENE
+    0x0cc2a1f9, // AMENS
+    0x0cc2a1fa, // AMENT
+    0x0cc2b150, // AMIAS
+    0x0cc2b184, // AMICE
+    0x0cc2b188, // AMICI
+    0x0cc2b1a5, // AMIDE
+    0x0cc2b1af, // AMIDO
+    0x0cc2b1b3, // AMIDS
+    0x0cc2b1d4, // AMIES
+    0x0cc2b204, // AMIGA
+    0x0cc2b212, // AMIGO
+    0x0cc2b2ef, // AMINE
+    0x0cc2b2f9, // AMINO
+    0x0cc2b2fd, // AMINS
+    0x0cc2b381, // AMIRS
+    0x0cc2be13, // AMLAS
+    0x0cc2c24f, // AMMAN
+    0x0cc2c41d, // AMMON
+    0x0cc2c422, // AMMOS
+    0x0cc2c78b, // AMNIA
+    0x0cc2c78d, // AMNIC
+    0x0cc2c799, // AMNIO
+    0x0cc2cc20, // AMOKS
+    0x0cc2cc33, // AMOLE
+    0x0cc2cd08, // AMORT
+    0x0cc2cd69, // AMOUR
+    0x0cc2cd7d, // AMOVE
+    0x0cc2cdad, // AMOWT
+    0x0cc2cf8c, // AMPED
+    0x0cc2d1a4, // AMPUL
+    0x0cc2d8a2, // AMRIT
+    0x0cc2e496, // AMUCK
+    0x0cc2f6cb, // AMYLS
+    0x0cc31d44, // ANANA
+    0x0cc31e0a, // ANATA
+    0x0cc3250e, // ANCHO
+    0x0cc32588, // ANCLE
+    0x0cc325f4, // ANCON
+    0x0cc32a99, // ANDRO
+    0x0cc32cac, // ANEAR
+    0x0cc32e0a, // ANELE
+    0x0cc32e5b, // ANENT
+    0x0cc3352f, // ANGAS
+    0x0cc33696, // ANGLO
+    0x0cc33e6c, // ANIGH
+    0x0cc33f0e, // ANILE
+    0x0cc33f1c, // ANILS
+    0x0cc33f2b, // ANIMA
+    0x0cc33f33, // ANIMI
+    0x0cc33f7a, // ANION
+    0x0cc33ff5, // ANISE
+    0x0cc346b6, // ANKER
+    0x0cc3471a, // ANKHS
+    0x0cc348c7, // ANKUS
+    0x0cc34a74, // ANLAS
+    0x0cc352ef, // ANNAL
+    0x0cc352f6, // ANNAS
+    0x0cc352f7, // ANNAT
+    0x0cc35737, // ANOAS
+    0x0cc35894, // ANOLE
+    0x0cc358c9, // ANOMY
+    0x0cc3682d, // ANSAE
+    0x0cc36c6e, // ANTAE
+    0x0cc36c7b, // ANTAR
+    0x0cc36c7c, // ANTAS
+    0x0cc36cf1, // ANTED
+    0x0cc36d00, // ANTES
+    0x0cc36d84, // ANTIS
+    0x0cc36e9b, // ANTRA
+    0x0cc36e9f, // ANTRE
+    0x0cc36ed4, // ANTSY
+    0x0cc372dc, // ANURA
+    0x0cc3838a, // ANYON
+    0x0cc4349f, // APACE
+    0x0cc43523, // APAGE
+    0x0cc43564, // APAID
+    0x0cc43774, // APAYD
+    0x0cc43783, // APAYS
+    0x0cc44567, // APEAK
+    0x0cc445eb, // APEEK
+    0x0cc447a0, // APERS
+    0x0cc447a1, // APERT
+    0x0cc447a6, // APERY
+    0x0cc44df0, // APGAR
+    0x0cc4533a, // APHIS
+    0x0cc4566e, // APIAN
+    0x0cc4583a, // APIOL
+    0x0cc458ba, // APISH
+    0x0cc458bf, // APISM
+    0x0cc4704e, // APODE
+    0x0cc4705c, // APODS
+    0x0cc471c4, // APOOP
+    0x0cc4722b, // APORT
+    0x0cc47433, // APPAL
+    0x0cc47440, // APPAY
+    0x0cc474b7, // APPEL
+    0x0cc47667, // APPRO
+    0x0cc476c4, // APPUI
+    0x0cc476d4, // APPUY
+    0x0cc47d40, // APRES
+    0x0cc48181, // APSES
+    0x0cc48205, // APSIS
+    0x0cc482cb, // APSOS
+    0x0cc485b3, // APTED
+    0x0cc485c1, // APTER
+    0x0cc515d2, // AQUAE
+    0x0cc515e0, // AQUAS
+    0x0cc54d3c, // ARABA
+    0x0cc54e77, // ARAKS
+    0x0cc54eab, // ARAME
+    0x0cc54f5e, // ARARS
+    0x0cc5516e, // ARBAS
+    0x0cc55624, // ARCED
+    0x0cc5568c, // ARCHI
+    0x0cc5577d, // ARCOS
+    0x0cc55843, // ARCUS
+    0x0cc55a63, // ARDEB
+    0x0cc55c17, // ARDRI
+    0x0cc55e22, // AREAD
+    0x0cc55e23, // AREAE
+    0x0cc55e2a, // AREAL
+    0x0cc55e30, // AREAR
+    0x0cc55e31, // AREAS
+    0x0cc55e61, // ARECA
+    0x0cc55e85, // AREDD
+    0x0cc55e86, // AREDE
+    0x0cc55edc, // AREFY
+    0x0cc55f29, // AREIC
+    0x0cc55fd0, // ARENE
+    0x0cc5600e, // AREPA
+    0x0cc56054, // ARERE
+    0x0cc56096, // ARETE
+    0x0cc560a4, // ARETS
+    0x0cc560a5, // ARETT
+    0x0cc566ac, // ARGAL
+    0x0cc566ae, // ARGAN
+    0x0cc567b4, // ARGIL
+    0x0cc56810, // ARGLE
+    0x0cc5687a, // ARGOL
+    0x0cc5687c, // ARGON
+    0x0cc56882, // ARGOT
+    0x0cc56947, // ARGUS
+    0x0cc56af5, // ARHAT
+    0x0cc56f35, // ARIAS
+    0x0cc56fb2, // ARIEL
+    0x0cc57075, // ARIKI
+    0x0cc570a0, // ARILS
+    0x0cc57104, // ARIOT
+    0x0cc5717c, // ARISH
+    0x0cc5782c, // ARKED
+    0x0cc57c6d, // ARLED
+    0x0cc57c7c, // ARLES
+    0x0cc580ae, // ARMED
+    0x0cc580bc, // ARMER
+    0x0cc580be, // ARMET
+    0x0cc5813a, // ARMIL
+    0x0cc5847a, // ARNAS
+    0x0cc5870f, // ARNUT
+    0x0cc588ca, // AROBA
+    0x0cc58990, // AROHA
+    0x0cc589b4, // AROID
+    0x0cc58cfc, // ARPAS
+    0x0cc58d7b, // ARPEN
+    0x0cc59573, // ARRAH
+    0x0cc5957e, // ARRAS
+    0x0cc59603, // ARRET
+    0x0cc59686, // ARRIS
+    0x0cc59753, // ARROZ
+    0x0cc59a34, // ARSED
+    0x0cc59a43, // ARSES
+    0x0cc59a49, // ARSEY
+    0x0cc59ac7, // ARSIS
+    0x0cc59df9, // ARTAL
+    0x0cc59e7d, // ARTEL
+    0x0cc59ef8, // ARTIC
+    0x0cc59f08, // ARTIS
+    0x0cc5a31a, // ARUHE
+    0x0cc5a3cd, // ARUMS
+    0x0cc5a67b, // ARVAL
+    0x0cc5a6f8, // ARVEE
+    0x0cc5a850, // ARVOS
+    0x0cc5b4b0, // ARYLS
+    0x0cc5db29, // ASANA
+    0x0cc5e3d9, // ASCON
+    0x0cc5e4a4, // ASCUS
+    0x0cc5e749, // ASDIC
+    0x0cc5f7ca, // ASHED
+    0x0cc5f7d9, // ASHES
+    0x0cc5f7da, // ASHET
+    0x0cc6048d, // ASKED
+    0x0cc6049b, // ASKER
+    0x0cc605dc, // ASKOI
+    0x0cc605e6, // ASKOS
+    0x0cc619dc, // ASPEN
+    0x0cc619e0, // ASPER
+    0x0cc61a55, // ASPIC
+    0x0cc61a57, // ASPIE
+    0x0cc61a65, // ASPIS
+    0x0cc61b8a, // ASPRO
+    0x0cc62616, // ASSAI
+    0x0cc6261a, // ASSAM
+    0x0cc626a4, // ASSES
+    0x0cc626ab, // ASSEZ
+    0x0cc627ef, // ASSOT
+    0x0cc62ae4, // ASTER
+    0x0cc62b68, // ASTIR
+    0x0cc62cf0, // ASTUN
+    0x0cc630c1, // ASURA
+    0x0cc6372a, // ASWAY
+    0x0cc63826, // ASWIM
+    0x0cc640ff, // ASYLA
+    0x0cc667de, // ATAPS
+    0x0cc668ec, // ATAXY
+    0x0cc688b3, // ATIGI
+    0x0cc68963, // ATILT
+    0x0cc68989, // ATIMY
+    0x0cc694ba, // ATLAS
+    0x0cc698f6, // ATMAN
+    0x0cc698fb, // ATMAS
+    0x0cc69ac9, // ATMOS
+    0x0cc6a1bf, // ATOCS
+    0x0cc6a2b9, // ATOKE
+    0x0cc6a2c7, // ATOKS
+    0x0cc6a309, // ATOMS
+    0x0cc6a30f, // ATOMY
+    0x0cc6a330, // ATONY
+    0x0cc6a372, // ATOPY
+    0x0cc6af36, // ATRIA
+    0x0cc6af45, // ATRIP
+    0x0cc6b6bf, // ATTAP
+    0x0cc6b6c1, // ATTAR
+    0x0cc6bb03, // ATUAS
+    0x0cc6ff04, // AUDAD
+    0x0cc70c59, // AUGER
+    0x0cc70cbe, // AUGHT
+    0x0cc7211b, // AULAS
+    0x0cc72213, // AULIC
+    0x0cc722df, // AULOI
+    0x0cc722e9, // AULOS
+    0x0cc7265d, // AUMIL
+    0x0cc72a21, // AUNES
+    0x0cc72c10, // AUNTS
+    0x0cc73a93, // AURAE
+    0x0cc73a9a, // AURAL
+    0x0cc73aa0, // AURAR
+    0x0cc73aa1, // AURAS
+    0x0cc73b1b, // AUREI
+    0x0cc73b25, // AURES
+    0x0cc73b99, // AURIC
+    0x0cc73ba9, // AURIS
+    0x0cc73d2f, // AURUM
+    0x0cc744f1, // AUTOS
+    0x0cc7552a, // AUXIN
+    0x0cc7800e, // AVALE
+    0x0cc7805f, // AVANT
+    0x0cc78104, // AVAST
+    0x0cc79120, // AVELS
+    0x0cc79162, // AVENS
+    0x0cc791e6, // AVERS
+    0x0cc79837, // AVGAS
+    0x0cc7a258, // AVINE
+    0x0cc7a282, // AVION
+    0x0cc7a2fd, // AVISE
+    0x0cc7a307, // AVISO
+    0x0cc7a3e4, // AVIZE
+    0x0cc7bd15, // AVOWS
+    0x0cc7e7f4, // AVYZE
+    0x0cc80d3e, // AWARN
+    0x0cc80d81, // AWATO
+    0x0cc80db9, // AWAVE
+    0x0cc80e2a, // AWAYS
+    0x0cc81940, // AWDLS
+    0x0cc81c93, // AWEEL
+    0x0cc81e85, // AWETO
+    0x0cc82ebb, // AWING
+    0x0cc84055, // AWMRY
+    0x0cc842d4, // AWNED
+    0x0cc842e2, // AWNER
+    0x0cc8480b, // AWOLS
+    0x0cc848c9, // AWORK
+    0x0cc8a9e2, // AXELS
+    0x0cc8bad8, // AXILE
+    0x0cc8bae6, // AXILS
+    0x0cc8bb1c, // AXING
+    0x0cc8bbe0, // AXITE
+    0x0cc8c6b3, // AXLED
+    0x0cc8c6c2, // AXLES
+    0x0cc8ca7a, // AXMAN
+    0x0cc8cafe, // AXMEN
+    0x0cc8d3fa, // AXOID
+    0x0cc8d4a0, // AXONE
+    0x0cc8d4ae, // AXONS
+    0x0cc924bb, // AYAHS
+    0x0cc926da, // AYAYA
+    0x0cc93640, // AYELP
+    0x0cc93f7d, // AYGRE
+    0x0cc94789, // AYINS
+    0x0cc96110, // AYONT
+    0x0cc96ca9, // AYRES
+    0x0cc96d1f, // AYRIE
+    0x0cc9b1e2, // AZANS
+    0x0cc9d292, // AZIDE
+    0x0cc9d29c, // AZIDO
+    0x0cc9d3dc, // AZINE
+    0x0cc9e0c9, // AZLON
+    0x0cc9ecbb, // AZOIC
+    0x0cc9ed20, // AZOLE
+    0x0cc9ed70, // AZONS
+    0x0cc9ee28, // AZOTE
+    0x0cc9ee2b, // AZOTH
+    0x0cca0689, // AZUKI
+    0x0cca0775, // AZURN
+    0x0cca0780, // AZURY
+    0x0cca1719, // AZYGY
+    0x0cca17cb, // AZYME
+    0x0cca17d9, // AZYMS
+    0x0cce13b2, // BAAED
+    0x0cce14a8, // BAALS
+    0x0cce177e, // BABAS
+    0x0cce17fb, // BABEL
+    0x0cce1802, // BABES
+    0x0cce18b6, // BABKA
+    0x0cce1948, // BABOO
+    0x0cce1a0b, // BABUL
+    0x0cce1a12, // BABUS
+    0x0cce1bef, // BACCA
+    0x0cce1bfd, // BACCO
+    0x0cce1c07, // BACCY
+    0x0cce1c94, // BACHA
+    0x0cce1ca6, // BACHS
+    0x0cce1d09, // BACKS
+    0x0cce2069, // BADDY
+    0x0cce25ac, // BAELS
+    0x0cce2927, // BAFFS
+    0x0cce292d, // BAFFY
+    0x0cce2af5, // BAFTS
+    0x0cce2daa, // BAGHS
+    0x0cce2dbd, // BAGIE
+    0x0cce3377, // BAHTS
+    0x0cce3398, // BAHUS
+    0x0cce3399, // BAHUT
+    0x0cce36b0, // BAILS
+    0x0cce3771, // BAIRN
+    0x0cce3785, // BAISA
+    0x0cce37ad, // BAITH
+    0x0cce37b8, // BAITS
+    0x0cce386c, // BAIZA
+    0x0cce3870, // BAIZE
+    0x0cce3981, // BAJAN
+    0x0cce3ba5, // BAJRA
+    0x0cce3bad, // BAJRI
+    0x0cce3c1a, // BAJUS
+    0x0cce3e3c, // BAKED
+    0x0cce3e46, // BAKEN
+    0x0cce3e4b, // BAKES
+    0x0cce3fe6, // BAKRA
+    0x0cce4208, // BALAS
+    0x0cce426b, // BALDS
+    0x0cce4271, // BALDY
+    0x0cce427d, // BALED
+    0x0cce428c, // BALES
+    0x0cce4352, // BALKS
+    0x0cce4358, // BALKY
+    0x0cce4373, // BALLS
+    0x0cce4379, // BALLY
+    0x0cce4394, // BALMS
+    0x0cce43d2, // BALOO
+    0x0cce4448, // BALSA
+    0x0cce4471, // BALTI
+    0x0cce4497, // BALUN
+    0x0cce449c, // BALUS
+    0x0cce4660, // BAMBI
+    0x0cce4a82, // BANAK
+    0x0cce4ac8, // BANCO
+    0x0cce4acc, // BANCS
+    0x0cce4adb, // BANDA
+    0x0cce4ae2, // BANDH
+    0x0cce4aed, // BANDS
+    0x0cce4af3, // BANDY
+    0x0cce4aff, // BANED
+    0x0cce4b0e, // BANES
+    0x0cce4b50, // BANGS
+    0x0cce4b80, // BANIA
+    0x0cce4bd4, // BANKS
+    0x0cce4c37, // BANNS
+    0x0cce4cfd, // BANTS
+    0x0cce4cff, // BANTU
+    0x0cce4d03, // BANTY
+    0x0cce4d90, // BANYA
+    0x0cce55a0, // BAPUS
+    0x0cce5ba1, // BARBE
+    0x0cce5baf, // BARBS
+    0x0cce5bb5, // BARBY
+    0x0cce5bbe, // BARCA
+    0x0cce5be3, // BARDE
+    0x0cce5bed, // BARDO
+    0x0cce5bf1, // BARDS
+    0x0cce5bf7, // BARDY
+    0x0cce5c03, // BARED
+    0x0cce5c11, // BARER
+    0x0cce5c12, // BARES
+    0x0cce5c29, // BARFI
+    0x0cce5c33, // BARFS
+    0x0cce5c86, // BARIC
+    0x0cce5cd8, // BARKS
+    0x0cce5cde, // BARKY
+    0x0cce5d1a, // BARMS
+    0x0cce5d20, // BARMY
+    0x0cce5d3b, // BARNS
+    0x0cce5d41, // BARNY
+    0x0cce5d7d, // BARPS
+    0x0cce5dad, // BARRA
+    0x0cce5db1, // BARRE
+    0x0cce5dbb, // BARRO
+    0x0cce5dc5, // BARRY
+    0x0cce5e98, // BARYE
+    0x0cce5fca, // BASAN
+    0x0cce6044, // BASED
+    0x0cce604e, // BASEN
+    0x0cce6052, // BASER
+    0x0cce6053, // BASES
+    0x0cce60b2, // BASHO
+    0x0cce60ce, // BASIJ
+    0x0cce6119, // BASKS
+    0x0cce6198, // BASON
+    0x0cce6213, // BASSE
+    0x0cce6217, // BASSI
+    0x0cce621d, // BASSO
+    0x0cce6227, // BASSY
+    0x0cce6230, // BASTA
+    0x0cce6238, // BASTI
+    0x0cce623e, // BASTO
+    0x0cce6242, // BASTS
+    0x0cce6485, // BATED
+    0x0cce6494, // BATES
+    0x0cce64f7, // BATHS
+    0x0cce6510, // BATIK
+    0x0cce6671, // BATTA
+    0x0cce6683, // BATTS
+    0x0cce6685, // BATTU
+    0x0cce68b4, // BAUDS
+    0x0cce699b, // BAUKS
+    0x0cce69b4, // BAULK
+    0x0cce6a82, // BAURS
+    0x0cce6d95, // BAVIN
+    0x0cce7136, // BAWDS
+    0x0cce721d, // BAWKS
+    0x0cce723e, // BAWLS
+    0x0cce7280, // BAWNS
+    0x0cce7304, // BAWRS
+    0x0cce734c, // BAWTY
+    0x0cce79ca, // BAYED
+    0x0cce79d8, // BAYER
+    0x0cce79d9, // BAYES
+    0x0cce7ab2, // BAYLE
+    0x0cce7bc8, // BAYTS
+    0x0cce7d95, // BAZAR
+    0x0cce7f60, // BAZOO
+    0x0cd04524, // BEADS
+    0x0cd0460b, // BEAKS
+    0x0cd04611, // BEAKY
+    0x0cd0462c, // BEALS
+    0x0cd0464d, // BEAMS
+    0x0cd04653, // BEAMY
+    0x0cd0466a, // BEANO
+    0x0cd0466e, // BEANS
+    0x0cd04674, // BEANY
+    0x0cd046e4, // BEARE
+    0x0cd046f2, // BEARS
+    0x0cd04729, // BEATH
+    0x0cd04734, // BEATS
+    0x0cd0473a, // BEATY
+    0x0cd04755, // BEAUS
+    0x0cd04756, // BEAUT
+    0x0cd0475a, // BEAUX
+    0x0cd04acd, // BEBOP
+    0x0cd04d40, // BECAP
+    0x0cd04e7f, // BECKE
+    0x0cd04e8d, // BECKS
+    0x0cd05175, // BEDAD
+    0x0cd05201, // BEDEL
+    0x0cd05208, // BEDES
+    0x0cd0520c, // BEDEW
+    0x0cd05286, // BEDIM
+    0x0cd0548e, // BEDYE
+    0x0cd0561e, // BEEDI
+    0x0cd0566a, // BEEFS
+    0x0cd057b4, // BEEPS
+    0x0cd057f6, // BEERS
+    0x0cd057fc, // BEERY
+    0x0cd05838, // BEETS
+    0x0cd05bc8, // BEFOG
+    0x0cd05e38, // BEGAD
+    0x0cd05e46, // BEGAR
+    0x0cd05ec5, // BEGEM
+    0x0cd06016, // BEGOT
+    0x0cd060d5, // BEGUM
+    0x0cd06781, // BEIGE
+    0x0cd06795, // BEIGY
+    0x0cd06876, // BEINS
+    0x0cd06f40, // BEKAH
+    0x0cd07381, // BELAH
+    0x0cd0738b, // BELAR
+    0x0cd07392, // BELAY
+    0x0cd07402, // BELEE
+    0x0cd07440, // BELGA
+    0x0cd074f7, // BELLS
+    0x0cd07555, // BELON
+    0x0cd075ff, // BELTS
+    0x0cd077be, // BEMAD
+    0x0cd077cd, // BEMAS
+    0x0cd078da, // BEMIX
+    0x0cd07a52, // BEMUD
+    0x0cd07c71, // BENDS
+    0x0cd07c77, // BENDY
+    0x0cd07c92, // BENES
+    0x0cd07c93, // BENET
+    0x0cd07cc2, // BENGA
+    0x0cd07d16, // BENIS
+    0x0cd07dad, // BENNE
+    0x0cd07db1, // BENNI
+    0x0cd07dc1, // BENNY
+    0x0cd07e7d, // BENTO
+    0x0cd07e81, // BENTS
+    0x0cd07e87, // BENTY
+    0x0cd08491, // BEPAT
+    0x0cd08d18, // BERAY
+    0x0cd08d96, // BERES
+    0x0cd08dd8, // BERGS
+    0x0cd08e58, // BERKO
+    0x0cd08e5c, // BERKS
+    0x0cd08e90, // BERME
+    0x0cd08e9e, // BERMS
+    0x0cd08ecf, // BEROB
+    0x0cd09023, // BERYL
+    0x0cd09154, // BESAT
+    0x0cd09157, // BESAW
+    0x0cd091c9, // BESEE
+    0x0cd091d7, // BESES
+    0x0cd0925c, // BESIT
+    0x0cd0931b, // BESOM
+    0x0cd09322, // BESOT
+    0x0cd093bc, // BESTI
+    0x0cd093c6, // BESTS
+    0x0cd09594, // BETAS
+    0x0cd09609, // BETED
+    0x0cd09618, // BETES
+    0x0cd0967b, // BETHS
+    0x0cd0968d, // BETID
+    0x0cd0975d, // BETON
+    0x0cd097f5, // BETTA
+    0x0cd0980d, // BETTY
+    0x0cd09e99, // BEVER
+    0x0cd09fe3, // BEVOR
+    0x0cd0a09c, // BEVUE
+    0x0cd0a0d1, // BEVVY
+    0x0cd0a2dc, // BEWET
+    0x0cd0a353, // BEWIG
+    0x0cd0af9e, // BEZES
+    0x0cd0b01b, // BEZIL
+    0x0cd0b259, // BEZZY
+    0x0cd1eaec, // BHAIS
+    0x0cd1eb03, // BHAJI
+    0x0cd1eb85, // BHANG
+    0x0cd1ec57, // BHATS
+    0x0cd1fc53, // BHELS
+    0x0cd22741, // BHOOT
+    0x0cd24093, // BHUNA
+    0x0cd2416b, // BHUTS
+    0x0cd2767c, // BIACH
+    0x0cd277a6, // BIALI
+    0x0cd277b6, // BIALY
+    0x0cd27aa7, // BIBBS
+    0x0cd27b0a, // BIBES
+    0x0cd27f0f, // BICCY
+    0x0cd27f4b, // BICES
+    0x0cd2837d, // BIDED
+    0x0cd2838b, // BIDER
+    0x0cd2838c, // BIDES
+    0x0cd2838d, // BIDET
+    0x0cd28410, // BIDIS
+    0x0cd284d1, // BIDON
+    0x0cd288a5, // BIELD
+    0x0cd2897a, // BIERS
+    0x0cd28c2b, // BIFFO
+    0x0cd28c2f, // BIFFS
+    0x0cd28c35, // BIFFY
+    0x0cd28c83, // BIFID
+    0x0cd28fbd, // BIGAE
+    0x0cd29091, // BIGGS
+    0x0cd29097, // BIGGY
+    0x0cd290a0, // BIGHA
+    0x0cd290b3, // BIGHT
+    0x0cd2913c, // BIGLY
+    0x0cd29199, // BIGOS
+    0x0cd29e5e, // BIJOU
+    0x0cd2a144, // BIKED
+    0x0cd2a152, // BIKER
+    0x0cd2a153, // BIKES
+    0x0cd2a1c9, // BIKIE
+    0x0cd2a52d, // BILBO
+    0x0cd2a537, // BILBY
+    0x0cd2a585, // BILED
+    0x0cd2a594, // BILES
+    0x0cd2a5dc, // BILGY
+    0x0cd2a65a, // BILKS
+    0x0cd2a67b, // BILLS
+    0x0cd2a946, // BIMAH
+    0x0cd2a951, // BIMAS
+    0x0cd2a96e, // BIMBO
+    0x0cd2ad8b, // BINAL
+    0x0cd2adeb, // BINDI
+    0x0cd2adf5, // BINDS
+    0x0cd2ae15, // BINER
+    0x0cd2ae16, // BINES
+    0x0cd2ae58, // BINGS
+    0x0cd2ae5e, // BINGY
+    0x0cd2ae9b, // BINIT
+    0x0cd2aedc, // BINKS
+    0x0cd2b005, // BINTS
+    0x0cd2b299, // BIOGS
+    0x0cd2b381, // BIONT
+    0x0cd2b434, // BIOTA
+    0x0cd2b689, // BIPED
+    0x0cd2b7d3, // BIPOD
+    0x0cd2bef9, // BIRDS
+    0x0cd2bfe0, // BIRKS
+    0x0cd2bff3, // BIRLE
+    0x0cd2c001, // BIRLS
+    0x0cd2c064, // BIROS
+    0x0cd2c0c7, // BIRRS
+    0x0cd2c0da, // BIRSE
+    0x0cd2c0ee, // BIRSY
+    0x0cd2c35b, // BISES
+    0x0cd2c421, // BISKS
+    0x0cd2c49f, // BISOM
+    0x0cd2c79b, // BITER
+    0x0cd2c79c, // BITES
+    0x0cd2c8e6, // BITOS
+    0x0cd2c8e8, // BITOU
+    0x0cd2c970, // BITSY
+    0x0cd2c97d, // BITTE
+    0x0cd2c98b, // BITTS
+    0x0cd2d090, // BIVIA
+    0x0cd2d255, // BIVVY
+    0x0cd2e122, // BIZES
+    0x0cd2e3d3, // BIZZO
+    0x0cd2e3dd, // BIZZY
+    0x0cd41b89, // BLABS
+    0x0cd41bcb, // BLADS
+    0x0cd41bd1, // BLADY
+    0x0cd41beb, // BLAER
+    0x0cd41bec, // BLAES
+    0x0cd41c00, // BLAFF
+    0x0cd41c2e, // BLAGS
+    0x0cd41c4f, // BLAHS
+    0x0cd41c6b, // BLAIN
+    0x0cd41cf4, // BLAMS
+    0x0cd41d9a, // BLART
+    0x0cd41dac, // BLASE
+    0x0cd41daf, // BLASH
+    0x0cd41dcd, // BLATE
+    0x0cd41ddb, // BLATS
+    0x0cd41ddc, // BLATT
+    0x0cd41ded, // BLAUD
+    0x0cd41e39, // BLAWN
+    0x0cd41e3e, // BLAWS
+    0x0cd41e80, // BLAYS
+    0x0cd42c6b, // BLEAR
+    0x0cd42c8d, // BLEBS
+    0x0cd42ca3, // BLECH
+    0x0cd42cf0, // BLEES
+    0x0cd42e1a, // BLENT
+    0x0cd42e9e, // BLERT
+    0x0cd42ebf, // BLEST
+    0x0cd42edf, // BLETS
+    0x0cd42f84, // BLEYS
+    0x0cd43f02, // BLIMY
+    0x0cd43f11, // BLING
+    0x0cd43f13, // BLINI
+    0x0cd43f1d, // BLINS
+    0x0cd43f23, // BLINY
+    0x0cd43f5f, // BLIPS
+    0x0cd43fc3, // BLIST
+    0x0cd43fd5, // BLITE
+    0x0cd43fe3, // BLITS
+    0x0cd44017, // BLIVE
+    0x0cd45717, // BLOBS
+    0x0cd45738, // BLOCS
+    0x0cd457bc, // BLOGS
+    0x0cd458bc, // BLOOK
+    0x0cd458c1, // BLOOP
+    0x0cd45919, // BLORE
+    0x0cd45969, // BLOTS
+    0x0cd459cc, // BLOWS
+    0x0cd459d2, // BLOWY
+    0x0cd4709d, // BLUBS
+    0x0cd470d1, // BLUDE
+    0x0cd470df, // BLUDS
+    0x0cd470e5, // BLUDY
+    0x0cd470f1, // BLUED
+    0x0cd47100, // BLUES
+    0x0cd47101, // BLUET
+    0x0cd47106, // BLUEY
+    0x0cd47175, // BLUID
+    0x0cd471fa, // BLUME
+    0x0cd47221, // BLUNK
+    0x0cd472ad, // BLURS
+    0x0cd48361, // BLYPE
+    0x0cd5c0ac, // BOABS
+    0x0cd5c1d5, // BOAKS
+    0x0cd5c2bc, // BOARS
+    0x0cd5c2bd, // BOART
+    0x0cd5c2fe, // BOATS
+    0x0cd5c4bc, // BOBAC
+    0x0cd5c4c4, // BOBAK
+    0x0cd5c4cc, // BOBAS
+    0x0cd5c693, // BOBOL
+    0x0cd5c69a, // BOBOS
+    0x0cd5c93d, // BOCCA
+    0x0cd5c941, // BOCCE
+    0x0cd5c945, // BOCCI
+    0x0cd5c9e6, // BOCHE
+    0x0cd5ca57, // BOCKS
+    0x0cd5cdc3, // BODED
+    0x0cd5cdd2, // BODES
+    0x0cd5ce06, // BODGE
+    0x0cd5ce2b, // BODHI
+    0x0cd5ceab, // BODLE
+    0x0cd5d37e, // BOEPS
+    0x0cd5d402, // BOETS
+    0x0cd5d416, // BOEUF
+    0x0cd5d671, // BOFFO
+    0x0cd5d675, // BOFFS
+    0x0cd5da0c, // BOGAN
+    0x0cd5da9b, // BOGEY
+    0x0cd5dadd, // BOGGY
+    0x0cd5db0b, // BOGIE
+    0x0cd5db6e, // BOGLE
+    0x0cd5dc97, // BOGUE
+    0x0cd5dca5, // BOGUS
+    0x0cd5dec4, // BOHEA
+    0x0cd5e020, // BOHOS
+    0x0cd5e3fe, // BOILS
+    0x0cd5e434, // BOING
+    0x0cd5e438, // BOINK
+    0x0cd5e4f8, // BOITE
+    0x0cd5eb8a, // BOKED
+    0x0cd5eb8e, // BOKEH
+    0x0cd5eb99, // BOKES
+    0x0cd5ece3, // BOKOS
+    0x0cd5ef55, // BOLAR
+    0x0cd5ef56, // BOLAS
+    0x0cd5efb9, // BOLDS
+    0x0cd5efda, // BOLES
+    0x0cd5f063, // BOLIX
+    0x0cd5f0c1, // BOLLS
+    0x0cd5f124, // BOLOS
+    0x0cd5f1c9, // BOLTS
+    0x0cd5f1ea, // BOLUS
+    0x0cd5f397, // BOMAS
+    0x0cd5f3aa, // BOMBE
+    0x0cd5f3b4, // BOMBO
+    0x0cd5f3b8, // BOMBS
+    0x0cd5f80c, // BONCE
+    0x0cd5f83b, // BONDS
+    0x0cd5f84d, // BONED
+    0x0cd5f85b, // BONER
+    0x0cd5f85c, // BONES
+    0x0cd5f89e, // BONGS
+    0x0cd5f8d2, // BONIE
+    0x0cd5f922, // BONKS
+    0x0cd5f977, // BONNE
+    0x0cd5f98b, // BONNY
+    0x0cd5faff, // BONZA
+    0x0cd5fb03, // BONZE
+    0x0cd5fc0f, // BOOAI
+    0x0cd5fc1f, // BOOAY
+    0x0cd5fc3a, // BOOBS
+    0x0cd5fc82, // BOODY
+    0x0cd5fc8e, // BOOED
+    0x0cd5fcc4, // BOOFY
+    0x0cd5fce5, // BOOGY
+    0x0cd5fd00, // BOOHS
+    0x0cd5fd63, // BOOKS
+    0x0cd5fd69, // BOOKY
+    0x0cd5fd84, // BOOLS
+    0x0cd5fda5, // BOOMS
+    0x0cd5fdab, // BOOMY
+    0x0cd5fdba, // BOONG
+    0x0cd5fdc6, // BOONS
+    0x0cd5fe3b, // BOORD
+    0x0cd5fe4a, // BOORS
+    0x0cd5fe5d, // BOOSE
+    0x0cd5fe8c, // BOOTS
+    0x0cd6024f, // BOPPY
+    0x0cd608d4, // BORAK
+    0x0cd608d5, // BORAL
+    0x0cd608dc, // BORAS
+    0x0cd60931, // BORDE
+    0x0cd6093f, // BORDS
+    0x0cd60951, // BORED
+    0x0cd60952, // BOREE
+    0x0cd60959, // BOREL
+    0x0cd6095f, // BORER
+    0x0cd60960, // BORES
+    0x0cd6099e, // BORGO
+    0x0cd609d4, // BORIC
+    0x0cd60a26, // BORKS
+    0x0cd60a68, // BORMS
+    0x0cd60a77, // BORNA
+    0x0cd60aa5, // BORON
+    0x0cd60b4f, // BORTS
+    0x0cd60b55, // BORTY
+    0x0cd60b56, // BORTZ
+    0x0cd60e17, // BOSIE
+    0x0cd60e67, // BOSKS
+    0x0cd60e6d, // BOSKY
+    0x0cd60ee6, // BOSON
+    0x0cd60fac, // BOSUN
+    0x0cd6115e, // BOTAS
+    0x0cd611db, // BOTEL
+    0x0cd611e2, // BOTES
+    0x0cd6124b, // BOTHY
+    0x0cd613c3, // BOTTE
+    0x0cd613d1, // BOTTS
+    0x0cd613d7, // BOTTY
+    0x0cd61657, // BOUGE
+    0x0cd616e9, // BOUKS
+    0x0cd6170b, // BOULT
+    0x0cd6174c, // BOUNS
+    0x0cd617c1, // BOURD
+    0x0cd617c4, // BOURG
+    0x0cd617cb, // BOURN
+    0x0cd617e3, // BOUSE
+    0x0cd617f7, // BOUSY
+    0x0cd61812, // BOUTS
+    0x0cd61ad9, // BOVID
+    0x0cd61e22, // BOWAT
+    0x0cd61e96, // BOWED
+    0x0cd61ea4, // BOWER
+    0x0cd61ea5, // BOWES
+    0x0cd61ea6, // BOWET
+    0x0cd61f1b, // BOWIE
+    0x0cd61f8c, // BOWLS
+    0x0cd61fc0, // BOWNE
+    0x0cd62052, // BOWRS
+    0x0cd62065, // BOWSE
+    0x0cd622d7, // BOXED
+    0x0cd622e1, // BOXEN
+    0x0cd622e6, // BOXES
+    0x0cd623bb, // BOXLA
+    0x0cd624db, // BOXTY
+    0x0cd626a2, // BOYAR
+    0x0cd626a5, // BOYAU
+    0x0cd62718, // BOYED
+    0x0cd62748, // BOYFS
+    0x0cd62769, // BOYGS
+    0x0cd627fc, // BOYLA
+    0x0cd62871, // BOYOS
+    0x0cd628fb, // BOYSY
+    0x0cd62cb2, // BOZOS
+    0x0cd765a4, // BRAAI
+    0x0cd765e5, // BRACH
+    0x0cd765e8, // BRACK
+    0x0cd765f1, // BRACT
+    0x0cd76611, // BRADS
+    0x0cd76632, // BRAES
+    0x0cd76674, // BRAGS
+    0x0cd766af, // BRAIL
+    0x0cd766f8, // BRAKS
+    0x0cd766fe, // BRAKY
+    0x0cd7672c, // BRAME
+    0x0cd7674d, // BRANE
+    0x0cd76753, // BRANK
+    0x0cd7675b, // BRANS
+    0x0cd7675c, // BRANT
+    0x0cd76801, // BRAST
+    0x0cd76821, // BRATS
+    0x0cd76851, // BRAVA
+    0x0cd76859, // BRAVI
+    0x0cd76884, // BRAWS
+    0x0cd768ab, // BRAXY
+    0x0cd768c6, // BRAYS
+    0x0cd768d5, // BRAZA
+    0x0cd768d9, // BRAZE
+    0x0cd776ac, // BREAM
+    0x0cd77707, // BREDE
+    0x0cd77715, // BREDS
+    0x0cd77730, // BREEM
+    0x0cd77735, // BREER
+    0x0cd77736, // BREES
+    0x0cd777ab, // BREID
+    0x0cd777ba, // BREIS
+    0x0cd77830, // BREME
+    0x0cd7785f, // BRENS
+    0x0cd77860, // BRENT
+    0x0cd778d5, // BRERE
+    0x0cd778e3, // BRERS
+    0x0cd77959, // BREVE
+    0x0cd77988, // BREWS
+    0x0cd779ca, // BREYS
+    0x0cd78839, // BRIER
+    0x0cd7883a, // BRIES
+    0x0cd7887c, // BRIGS
+    0x0cd788f6, // BRIKI
+    0x0cd78900, // BRIKS
+    0x0cd7891a, // BRILL
+    0x0cd78942, // BRIMS
+    0x0cd78963, // BRINS
+    0x0cd78984, // BRIOS
+    0x0cd789fa, // BRISE
+    0x0cd78a08, // BRISS
+    0x0cd78a1e, // BRITH
+    0x0cd78a29, // BRITS
+    0x0cd78a2a, // BRITT
+    0x0cd78ae1, // BRIZE
+    0x0cd7a173, // BROCH
+    0x0cd7a176, // BROCK
+    0x0cd7a19f, // BRODS
+    0x0cd7a1f7, // BROGH
+    0x0cd7a202, // BROGS
+    0x0cd7a2ba, // BROME
+    0x0cd7a2c4, // BROMO
+    0x0cd7a2d9, // BRONC
+    0x0cd7a2da, // BROND
+    0x0cd7a303, // BROOL
+    0x0cd7a30a, // BROOS
+    0x0cd7a380, // BROSE
+    0x0cd7a394, // BROSY
+    0x0cd7a412, // BROWS
+    0x0cd7bb7d, // BRUGH
+    0x0cd7bbc5, // BRUIN
+    0x0cd7bbcb, // BRUIT
+    0x0cd7bc1f, // BRULE
+    0x0cd7bc40, // BRUME
+    0x0cd7bc63, // BRUNG
+    0x0cd7bd0c, // BRUSK
+    0x0cd7bd15, // BRUST
+    0x0cd7bd35, // BRUTS
+    0x0cd90d44, // BUATS
+    0x0cd90dfc, // BUAZE
+    0x0cd90f0b, // BUBAL
+    0x0cd90f12, // BUBAS
+    0x0cd90f21, // BUBBA
+    0x0cd90f25, // BUBBE
+    0x0cd90f39, // BUBBY
+    0x0cd911a6, // BUBUS
+    0x0cd9143c, // BUCHU
+    0x0cd91499, // BUCKO
+    0x0cd9149d, // BUCKS
+    0x0cd9149f, // BUCKU
+    0x0cd91794, // BUDAS
+    0x0cd9189c, // BUDIS
+    0x0cd91962, // BUDOS
+    0x0cd920a9, // BUFFA
+    0x0cd920ad, // BUFFE
+    0x0cd920b1, // BUFFI
+    0x0cd920b7, // BUFFO
+    0x0cd920bb, // BUFFS
+    0x0cd920c1, // BUFFY
+    0x0cd921e4, // BUFOS
+    0x0cd9228f, // BUFTY
+    0x0cd92a03, // BUHLS
+    0x0cd92ac9, // BUHRS
+    0x0cd92e23, // BUIKS
+    0x0cd92f2c, // BUIST
+    0x0cd935df, // BUKES
+    0x0cd939bd, // BULBS
+    0x0cd93a68, // BULGY
+    0x0cd93ae6, // BULKS
+    0x0cd93af5, // BULLA
+    0x0cd93b07, // BULLS
+    0x0cd93be0, // BULSE
+    0x0cd93dfa, // BUMBO
+    0x0cd93e82, // BUMFS
+    0x0cd93fc1, // BUMPH
+    0x0cd93fcc, // BUMPS
+    0x0cd93fd2, // BUMPY
+    0x0cd9421e, // BUNAS
+    0x0cd94252, // BUNCE
+    0x0cd9425c, // BUNCO
+    0x0cd94273, // BUNDE
+    0x0cd94276, // BUNDH
+    0x0cd94281, // BUNDS
+    0x0cd94282, // BUNDT
+    0x0cd94283, // BUNDU
+    0x0cd94287, // BUNDY
+    0x0cd942e4, // BUNGS
+    0x0cd942ea, // BUNGY
+    0x0cd94314, // BUNIA
+    0x0cd94339, // BUNJE
+    0x0cd9434d, // BUNJY
+    0x0cd94364, // BUNKO
+    0x0cd94368, // BUNKS
+    0x0cd943cb, // BUNNS
+    0x0cd94491, // BUNTS
+    0x0cd94497, // BUNTY
+    0x0cd94524, // BUNYA
+    0x0cd94977, // BUOYS
+    0x0cd94c95, // BUPPY
+    0x0cd9531d, // BURAN
+    0x0cd95322, // BURAS
+    0x0cd95343, // BURBS
+    0x0cd95385, // BURDS
+    0x0cd953a7, // BURET
+    0x0cd953bd, // BURFI
+    0x0cd953dd, // BURGH
+    0x0cd953e8, // BURGS
+    0x0cd95425, // BURIN
+    0x0cd9545a, // BURKA
+    0x0cd9545e, // BURKE
+    0x0cd9546c, // BURKS
+    0x0cd9548d, // BURLS
+    0x0cd954cf, // BURNS
+    0x0cd954ec, // BUROO
+    0x0cd95511, // BURPS
+    0x0cd95520, // BURQA
+    0x0cd9554f, // BURRO
+    0x0cd95553, // BURRS
+    0x0cd95559, // BURRY
+    0x0cd95562, // BURSA
+    0x0cd95566, // BURSE
+    0x0cd9578a, // BUSBY
+    0x0cd957e7, // BUSES
+    0x0cd958ad, // BUSKS
+    0x0cd958b3, // BUSKY
+    0x0cd959b7, // BUSSU
+    0x0cd959cc, // BUSTI
+    0x0cd959d6, // BUSTS
+    0x0cd959dc, // BUSTY
+    0x0cd95c24, // BUTEO
+    0x0cd95c28, // BUTES
+    0x0cd95d01, // BUTLE
+    0x0cd95d67, // BUTOH
+    0x0cd95e17, // BUTTS
+    0x0cd95e1d, // BUTTY
+    0x0cd95e39, // BUTUT
+    0x0cd95eb5, // BUTYL
+    0x0cd97869, // BUZZY
+    0x0cda252e, // BWANA
+    0x0cda26c2, // BWAZI
+    0x0cdb498d, // BYDED
+    0x0cdb499c, // BYDES
+    0x0cdb6754, // BYKED
+    0x0cdb6763, // BYKES
+    0x0cdb852a, // BYRES
+    0x0cdb8611, // BYRLS
+    0x0cdb8b2f, // BYSSI
+    0x0cdb8dac, // BYTES
+    0x0cdb99f1, // BYWAY
+    0x0ce02c33, // CAAED
+    0x0ce02fff, // CABAS
+    0x0ce03082, // CABER
+    0x0ce031bc, // CABOB
+    0x0ce031bd, // CABOC
+    0x0ce03222, // CABRE
+    0x0ce03440, // CACAS
+    0x0ce0358a, // CACKS
+    0x0ce03590, // CACKY
+    0x0ce038f7, // CADEE
+    0x0ce03905, // CADES
+    0x0ce03939, // CADGE
+    0x0ce0394d, // CADGY
+    0x0ce0397b, // CADIE
+    0x0ce03989, // CADIS
+    0x0ce03aa4, // CADRE
+    0x0ce03cf2, // CAECA
+    0x0ce03f06, // CAESE
+    0x0ce04187, // CAFES
+    0x0ce041a8, // CAFFS
+    0x0ce045b9, // CAGED
+    0x0ce045c7, // CAGER
+    0x0ce045c8, // CAGES
+    0x0ce04713, // CAGOT
+    0x0ce04b57, // CAHOW
+    0x0ce04e29, // CAIDS
+    0x0ce04f73, // CAINS
+    0x0ce04fe8, // CAIRD
+    0x0ce053d0, // CAJON
+    0x0ce05496, // CAJUN
+    0x0ce056bd, // CAKED
+    0x0ce056cc, // CAKES
+    0x0ce056d2, // CAKEY
+    0x0ce05b2e, // CALFS
+    0x0ce05b82, // CALID
+    0x0ce05b84, // CALIF
+    0x0ce05b96, // CALIX
+    0x0ce05bd3, // CALKS
+    0x0ce05be2, // CALLA
+    0x0ce05bf4, // CALLS
+    0x0ce05c15, // CALMS
+    0x0ce05c1b, // CALMY
+    0x0ce05c57, // CALOS
+    0x0ce05c66, // CALPA
+    0x0ce05c78, // CALPS
+    0x0ce05d30, // CALVE
+    0x0ce05da6, // CALYX
+    0x0ce05ec5, // CAMAN
+    0x0ce05eca, // CAMAS
+    0x0ce05f4e, // CAMES
+    0x0ce05fd2, // CAMIS
+    0x0ce06098, // CAMOS
+    0x0ce060af, // CAMPI
+    0x0ce060b5, // CAMPO
+    0x0ce060b9, // CAMPS
+    0x0ce060bf, // CAMPY
+    0x0ce0615e, // CAMUS
+    0x0ce06380, // CANED
+    0x0ce06384, // CANEH
+    0x0ce0638e, // CANER
+    0x0ce0638f, // CANES
+    0x0ce063d1, // CANGS
+    0x0ce06404, // CANID
+    0x0ce064a6, // CANNA
+    0x0ce064b8, // CANNS
+    0x0ce06559, // CANSO
+    0x0ce0655e, // CANST
+    0x0ce0657a, // CANTO
+    0x0ce0657e, // CANTS
+    0x0ce06584, // CANTY
+    0x0ce06b8d, // CAPAS
+    0x0ce06c02, // CAPED
+    0x0ce06c11, // CAPES
+    0x0ce06c16, // CAPEX
+    0x0ce06c74, // CAPHS
+    0x0ce06c9c, // CAPIZ
+    0x0ce06cea, // CAPLE
+    0x0ce06d56, // CAPON
+    0x0ce06d5b, // CAPOS
+    0x0ce06d5c, // CAPOT
+    0x0ce06db4, // CAPRI
+    0x0ce06e1a, // CAPUL
+    0x0ce0740c, // CARAP
+    0x0ce0742c, // CARBO
+    0x0ce07430, // CARBS
+    0x0ce07436, // CARBY
+    0x0ce07468, // CARDI
+    0x0ce07472, // CARDS
+    0x0ce07478, // CARDY
+    0x0ce07484, // CARED
+    0x0ce07492, // CARER
+    0x0ce07493, // CARES
+    0x0ce07494, // CARET
+    0x0ce07498, // CAREX
+    0x0ce07559, // CARKS
+    0x0ce0756c, // CARLE
+    0x0ce0757a, // CARLS
+    0x0ce075bc, // CARNS
+    0x0ce075c2, // CARNY
+    0x0ce075cc, // CAROB
+    0x0ce075d7, // CAROM
+    0x0ce075d8, // CARON
+    0x0ce075f4, // CARPI
+    0x0ce075fe, // CARPS
+    0x0ce07640, // CARRS
+    0x0ce07653, // CARSE
+    0x0ce07670, // CARTA
+    0x0ce07674, // CARTE
+    0x0ce07682, // CARTS
+    0x0ce076ca, // CARVY
+    0x0ce07850, // CASAS
+    0x0ce0788e, // CASCO
+    0x0ce078c5, // CASED
+    0x0ce078d4, // CASES
+    0x0ce0799a, // CASKS
+    0x0ce079a0, // CASKY
+    0x0ce07ac3, // CASTS
+    0x0ce07ae4, // CASUS
+    0x0ce07d15, // CATES
+    0x0ce08123, // CAUDA
+    0x0ce0821c, // CAUKS
+    0x0ce0822e, // CAULD
+    0x0ce0823d, // CAULS
+    0x0ce0825e, // CAUMS
+    0x0ce082c1, // CAUPS
+    0x0ce082f9, // CAURI
+    0x0ce08312, // CAUSA
+    0x0ce08513, // CAVAS
+    0x0ce08588, // CAVED
+    0x0ce08590, // CAVEL
+    0x0ce08596, // CAVER
+    0x0ce08597, // CAVES
+    0x0ce0860d, // CAVIE
+    0x0ce089c9, // CAWED
+    0x0ce08a9e, // CAWKS
+    0x0ce08f5e, // CAXON
+    0x0ce2606d, // CEAZE
+    0x0ce2627c, // CEBID
+    0x0ce265bd, // CECAL
+    0x0ce26852, // CECUM
+    0x0ce26a7a, // CEDED
+    0x0ce26a88, // CEDER
+    0x0ce26a89, // CEDES
+    0x0ce26b0d, // CEDIS
+    0x0ce27f59, // CEIBA
+    0x0ce280ab, // CEILI
+    0x0ce280b5, // CEILS
+    0x0ce28c80, // CELEB
+    0x0ce28d66, // CELLA
+    0x0ce28d6e, // CELLI
+    0x0ce28d78, // CELLS
+    0x0ce28dd5, // CELOM
+    0x0ce28e80, // CELTS
+    0x0ce296d3, // CENSE
+    0x0ce296fe, // CENTO
+    0x0ce29702, // CENTS
+    0x0ce29704, // CENTU
+    0x0ce29afa, // CEORL
+    0x0ce29d95, // CEPES
+    0x0ce2a5cb, // CERCI
+    0x0ce2a608, // CERED
+    0x0ce2a617, // CERES
+    0x0ce2a64b, // CERGE
+    0x0ce2a689, // CERIA
+    0x0ce2a68b, // CERIC
+    0x0ce2a732, // CERNE
+    0x0ce2a751, // CEROC
+    0x0ce2a761, // CEROS
+    0x0ce2a806, // CERTS
+    0x0ce2a80c, // CERTY
+    0x0ce2ac18, // CESSE
+    0x0ce2ac35, // CESTA
+    0x0ce2ac3d, // CESTI
+    0x0ce2ae99, // CETES
+    0x0ce2b126, // CETYL
+    0x0ce2ca42, // CEZVE
+    0x0ce40299, // CHACE
+    0x0ce4029f, // CHACK
+    0x0ce402a3, // CHACO
+    0x0ce402c4, // CHADO
+    0x0ce402c8, // CHADS
+    0x0ce4030b, // CHAFT
+    0x0ce4036d, // CHAIS
+    0x0ce403d0, // CHALS
+    0x0ce403f1, // CHAMS
+    0x0ce40400, // CHANA
+    0x0ce40406, // CHANG
+    0x0ce4040a, // CHANK
+    0x0ce40446, // CHAPE
+    0x0ce40454, // CHAPS
+    0x0ce40455, // CHAPT
+    0x0ce40484, // CHARA
+    0x0ce40488, // CHARE
+    0x0ce4048e, // CHARK
+    0x0ce40495, // CHARR
+    0x0ce40496, // CHARS
+    0x0ce4049c, // CHARY
+    0x0ce404d8, // CHATS
+    0x0ce4050c, // CHAVE
+    0x0ce4051a, // CHAVS
+    0x0ce40533, // CHAWK
+    0x0ce4053b, // CHAWS
+    0x0ce4056b, // CHAYA
+    0x0ce4057d, // CHAYS
+    0x0ce413ea, // CHEEP
+    0x0ce4140e, // CHEFS
+    0x0ce414a1, // CHEKA
+    0x0ce414c2, // CHELA
+    0x0ce414d1, // CHELP
+    0x0ce414f1, // CHEMO
+    0x0ce414f5, // CHEMS
+    0x0ce4158c, // CHERE
+    0x0ce4159b, // CHERT
+    0x0ce415d1, // CHETH
+    0x0ce41624, // CHEVY
+    0x0ce4163f, // CHEWS
+    0x0ce41645, // CHEWY
+    0x0ce42469, // CHIAO
+    0x0ce4246d, // CHIAS
+    0x0ce4248e, // CHIBS
+    0x0ce4249d, // CHICA
+    0x0ce424a4, // CHICH
+    0x0ce424ab, // CHICO
+    0x0ce424af, // CHICS
+    0x0ce424ea, // CHIEL
+    0x0ce425b7, // CHIKS
+    0x0ce425ca, // CHILE
+    0x0ce425e8, // CHIMB
+    0x0ce425f5, // CHIMO
+    0x0ce425f6, // CHIMP
+    0x0ce4260c, // CHINE
+    0x0ce4260e, // CHING
+    0x0ce42616, // CHINO
+    0x0ce4261a, // CHINS
+    0x0ce4265c, // CHIPS
+    0x0ce42696, // CHIRK
+    0x0ce42697, // CHIRL
+    0x0ce42698, // CHIRM
+    0x0ce4269a, // CHIRO
+    0x0ce4269d, // CHIRR
+    0x0ce4269f, // CHIRT
+    0x0ce426a0, // CHIRU
+    0x0ce426e0, // CHITS
+    0x0ce42714, // CHIVE
+    0x0ce42722, // CHIVS
+    0x0ce42728, // CHIVY
+    0x0ce427ad, // CHIZZ
+    0x0ce43e31, // CHOCO
+    0x0ce43e35, // CHOCS
+    0x0ce43e48, // CHODE
+    0x0ce43eb9, // CHOGS
+    0x0ce43ef4, // CHOIL
+    0x0ce43f39, // CHOKO
+    0x0ce43f43, // CHOKY
+    0x0ce43f4c, // CHOLA
+    0x0ce43f54, // CHOLI
+    0x0ce43f5a, // CHOLO
+    0x0ce43f7c, // CHOMP
+    0x0ce43fa0, // CHONS
+    0x0ce43fb4, // CHOOF
+    0x0ce43fb9, // CHOOK
+    0x0ce43fbb, // CHOOM
+    0x0ce43fbc, // CHOON
+    0x0ce43fe2, // CHOPS
+    0x0ce44054, // CHOTA
+    0x0ce44067, // CHOTT
+    0x0ce44088, // CHOUT
+    0x0ce4408c, // CHOUX
+    0x0ce440c1, // CHOWK
+    0x0ce440c9, // CHOWS
+    0x0ce4579a, // CHUBS
+    0x0ce4580c, // CHUFA
+    0x0ce45811, // CHUFF
+    0x0ce4583f, // CHUGS
+    0x0ce45905, // CHUMS
+    0x0ce459a3, // CHURL
+    0x0ce459a9, // CHURR
+    0x0ce459bd, // CHUSE
+    0x0ce459ec, // CHUTS
+    0x0ce469da, // CHYLE
+    0x0ce469fb, // CHYME
+    0x0ce46a1b, // CHYND
+    0x0ce494ce, // CIBOL
+    0x0ce49bfe, // CIDED
+    0x0ce49c0d, // CIDES
+    0x0ce4a135, // CIELS
+    0x0ce4a918, // CIGGY
+    0x0ce4be87, // CILIA
+    0x0ce4befc, // CILLS
+    0x0ce4c1d1, // CIMAR
+    0x0ce4c25b, // CIMEX
+    0x0ce4c656, // CINCT
+    0x0ce4c697, // CINES
+    0x0ce4c823, // CINQS
+    0x0ce4cc01, // CIONS
+    0x0ce4d07a, // CIPPI
+    0x0ce4d759, // CIRCS
+    0x0ce4d79b, // CIRES
+    0x0ce4d882, // CIRLS
+    0x0ce4d93e, // CIRRI
+    0x0ce4db96, // CISCO
+    0x0ce4ddb0, // CISSY
+    0x0ce4ddcb, // CISTS
+    0x0ce4df92, // CITAL
+    0x0ce4e00e, // CITED
+    0x0ce4e01c, // CITER
+    0x0ce4e01d, // CITES
+    0x0ce4e89f, // CIVES
+    0x0ce4e8a0, // CIVET
+    0x0ce4e915, // CIVIE
+    0x0ce4ead6, // CIVVY
+    0x0ce63420, // CLACH
+    0x0ce6343e, // CLADE
+    0x0ce6344c, // CLADS
+    0x0ce6346d, // CLAES
+    0x0ce634af, // CLAGS
+    0x0ce63567, // CLAME
+    0x0ce63575, // CLAMS
+    0x0ce63596, // CLANS
+    0x0ce635d8, // CLAPS
+    0x0ce635d9, // CLAPT
+    0x0ce63616, // CLARO
+    0x0ce6361b, // CLART
+    0x0ce63620, // CLARY
+    0x0ce6363c, // CLAST
+    0x0ce6365c, // CLATS
+    0x0ce6367e, // CLAUT
+    0x0ce63690, // CLAVE
+    0x0ce63694, // CLAVI
+    0x0ce636bf, // CLAWS
+    0x0ce63701, // CLAYS
+    0x0ce64527, // CLECK
+    0x0ce64569, // CLEEK
+    0x0ce6456e, // CLEEP
+    0x0ce64592, // CLEFS
+    0x0ce645b3, // CLEGS
+    0x0ce645ed, // CLEIK
+    0x0ce64679, // CLEMS
+    0x0ce646ce, // CLEPE
+    0x0ce646dd, // CLEPT
+    0x0ce64794, // CLEVE
+    0x0ce647c3, // CLEWS
+    0x0ce65666, // CLIED
+    0x0ce65675, // CLIES
+    0x0ce65697, // CLIFT
+    0x0ce6576f, // CLIME
+    0x0ce65790, // CLINE
+    0x0ce6579f, // CLINT
+    0x0ce657d2, // CLIPE
+    0x0ce657e0, // CLIPS
+    0x0ce657e1, // CLIPT
+    0x0ce65864, // CLITS
+    0x0ce66f71, // CLOAM
+    0x0ce66fda, // CLODS
+    0x0ce6700f, // CLOFF
+    0x0ce6703d, // CLOGS
+    0x0ce670b3, // CLOKE
+    0x0ce670f2, // CLOMB
+    0x0ce67100, // CLOMP
+    0x0ce6711c, // CLONK
+    0x0ce67124, // CLONS
+    0x0ce67142, // CLOOP
+    0x0ce67146, // CLOOT
+    0x0ce67166, // CLOPS
+    0x0ce671dc, // CLOTE
+    0x0ce671ea, // CLOTS
+    0x0ce6720a, // CLOUR
+    0x0ce6720b, // CLOUS
+    0x0ce6724d, // CLOWS
+    0x0ce67281, // CLOYE
+    0x0ce6728f, // CLOYS
+    0x0ce672a2, // CLOZE
+    0x0ce6891e, // CLUBS
+    0x0ce68981, // CLUES
+    0x0ce68987, // CLUEY
+    0x0ce68aa2, // CLUNK
+    0x0ce69be2, // CLYPE
+    0x0ce76f04, // CNIDA
+    0x0ce7d94f, // COACT
+    0x0ce7d975, // COADY
+    0x0ce7da65, // COALA
+    0x0ce7da77, // COALS
+    0x0ce7da7d, // COALY
+    0x0ce7dafc, // COAPT
+    0x0ce7db2c, // COARB
+    0x0ce7db71, // COATE
+    0x0ce7db75, // COATI
+    0x0ce7db7f, // COATS
+    0x0ce7dd6e, // COBBS
+    0x0ce7dd74, // COBBY
+    0x0ce7de43, // COBIA
+    0x0ce7deaa, // COBLE
+    0x0ce7e074, // COBZA
+    0x0ce7e18e, // COCAS
+    0x0ce7e1c6, // COCCI
+    0x0ce7e1cc, // COCCO
+    0x0ce7e2d8, // COCKS
+    0x0ce7e2de, // COCKY
+    0x0ce7e35c, // COCOS
+    0x0ce7e5cf, // CODAS
+    0x0ce7e643, // CODEC
+    0x0ce7e644, // CODED
+    0x0ce7e64e, // CODEN
+    0x0ce7e652, // CODER
+    0x0ce7e653, // CODES
+    0x0ce7e658, // CODEX
+    0x0ce7e798, // CODON
+    0x0ce7ea73, // COEDS
+    0x0ce7eef6, // COFFS
+    0x0ce7f38c, // COGIE
+    0x0ce7f45b, // COGON
+    0x0ce7f518, // COGUE
+    0x0ce7f6c2, // COHAB
+    0x0ce7f752, // COHEN
+    0x0ce7f893, // COHOE
+    0x0ce7f895, // COHOG
+    0x0ce7f8a1, // COHOS
+    0x0ce7fbb9, // COIFS
+    0x0ce7fbd5, // COIGN
+    0x0ce7fc7f, // COILS
+    0x0ce7fcc1, // COINS
+    0x0ce7fd45, // COIRS
+    0x0ce7fd87, // COITS
+    0x0ce8040b, // COKED
+    0x0ce8041a, // COKES
+    0x0ce807d7, // COLAS
+    0x0ce807fe, // COLBY
+    0x0ce8083a, // COLDS
+    0x0ce8084c, // COLED
+    0x0ce8085b, // COLES
+    0x0ce80861, // COLEY
+    0x0ce808cf, // COLIC
+    0x0ce808da, // COLIN
+    0x0ce80942, // COLLS
+    0x0ce80948, // COLLY
+    0x0ce80999, // COLOG
+    0x0ce80a4a, // COLTS
+    0x0ce80afe, // COLZA
+    0x0ce80c0a, // COMAE
+    0x0ce80c11, // COMAL
+    0x0ce80c18, // COMAS
+    0x0ce80c2b, // COMBE
+    0x0ce80c2f, // COMBI
+    0x0ce80c35, // COMBO
+    0x0ce80c39, // COMBS
+    0x0ce80c3f, // COMBY
+    0x0ce80c9b, // COMER
+    0x0ce80c9c, // COMES
+    0x0ce80d25, // COMIX
+    0x0ce80da0, // COMMO
+    0x0ce80da4, // COMMS
+    0x0ce80daa, // COMMY
+    0x0ce80e03, // COMPO
+    0x0ce80e07, // COMPS
+    0x0ce80e08, // COMPT
+    0x0ce80e7d, // COMTE
+    0x0ce80eac, // COMUS
+    0x0ce810ce, // CONED
+    0x0ce810dd, // CONES
+    0x0ce810e3, // CONEY
+    0x0ce810fe, // CONFS
+    0x0ce8110d, // CONGA
+    0x0ce81111, // CONGE
+    0x0ce8111b, // CONGO
+    0x0ce8114f, // CONIA
+    0x0ce8115c, // CONIN
+    0x0ce811a3, // CONKS
+    0x0ce811a9, // CONKY
+    0x0ce811f8, // CONNE
+    0x0ce81206, // CONNS
+    0x0ce812be, // CONTE
+    0x0ce812c8, // CONTO
+    0x0ce812ed, // CONUS
+    0x0ce8130a, // CONVO
+    0x0ce814d1, // COOCH
+    0x0ce8150f, // COOED
+    0x0ce81510, // COOEE
+    0x0ce8151d, // COOER
+    0x0ce81524, // COOEY
+    0x0ce8153f, // COOFS
+    0x0ce815e4, // COOKS
+    0x0ce815ea, // COOKY
+    0x0ce81605, // COOLS
+    0x0ce8160b, // COOLY
+    0x0ce81615, // COOMB
+    0x0ce81626, // COOMS
+    0x0ce8162c, // COOMY
+    0x0ce81689, // COOPS
+    0x0ce8168a, // COOPT
+    0x0ce816ed, // COOST
+    0x0ce8170d, // COOTS
+    0x0ce817c5, // COOZE
+    0x0ce818d4, // COPAL
+    0x0ce818e1, // COPAY
+    0x0ce81950, // COPED
+    0x0ce8195a, // COPEN
+    0x0ce8195e, // COPER
+    0x0ce8195f, // COPES
+    0x0ce81ad0, // COPPY
+    0x0ce81afa, // COPRA
+    0x0ce81b33, // COPSY
+    0x0ce81fa6, // COQUI
+    0x0ce82157, // CORAM
+    0x0ce82170, // CORBE
+    0x0ce82184, // CORBY
+    0x0ce821c0, // CORDS
+    0x0ce821d2, // CORED
+    0x0ce821e1, // CORES
+    0x0ce821e7, // COREY
+    0x0ce82219, // CORGI
+    0x0ce82253, // CORIA
+    0x0ce822a7, // CORKS
+    0x0ce822ad, // CORKY
+    0x0ce822e9, // CORMS
+    0x0ce82300, // CORNI
+    0x0ce82306, // CORNO
+    0x0ce8230a, // CORNS
+    0x0ce8230c, // CORNU
+    0x0ce8234c, // CORPS
+    0x0ce823a1, // CORSE
+    0x0ce823ab, // CORSO
+    0x0ce82612, // COSEC
+    0x0ce82613, // COSED
+    0x0ce82622, // COSES
+    0x0ce82623, // COSET
+    0x0ce82628, // COSEY
+    0x0ce82698, // COSIE
+    0x0ce827ff, // COSTA
+    0x0ce82803, // COSTE
+    0x0ce82811, // COSTS
+    0x0ce829da, // COTAN
+    0x0ce82a54, // COTED
+    0x0ce82a63, // COTES
+    0x0ce82ac6, // COTHS
+    0x0ce82c40, // COTTA
+    0x0ce82c52, // COTTS
+    0x0ce82e75, // COUDE
+    0x0ce8300f, // COUPS
+    0x0ce83040, // COURB
+    0x0ce83042, // COURD
+    0x0ce83043, // COURE
+    0x0ce83051, // COURS
+    0x0ce83081, // COUTA
+    0x0ce83088, // COUTH
+    0x0ce832d6, // COVED
+    0x0ce832e5, // COVES
+    0x0ce83364, // COVIN
+    0x0ce8369b, // COWAL
+    0x0ce8369d, // COWAN
+    0x0ce83717, // COWED
+    0x0ce837ec, // COWKS
+    0x0ce8380d, // COWLS
+    0x0ce83891, // COWPS
+    0x0ce838d9, // COWRY
+    0x0ce83ad5, // COXAE
+    0x0ce83adc, // COXAL
+    0x0ce83b58, // COXED
+    0x0ce83b67, // COXES
+    0x0ce83bda, // COXIB
+    0x0ce83f26, // COYAU
+    0x0ce83f99, // COYED
+    0x0ce83fa7, // COYER
+    0x0ce84115, // COYPU
+    0x0ce843da, // COZED
+    0x0ce843e4, // COZEN
+    0x0ce843e9, // COZES
+    0x0ce843ef, // COZEY
+    0x0ce8445f, // COZIE
+    0x0ce97e28, // CRAAL
+    0x0ce97e50, // CRABS
+    0x0ce97ef5, // CRAGS
+    0x0ce97f27, // CRAIC
+    0x0ce97f2b, // CRAIG
+    0x0ce97f6b, // CRAKE
+    0x0ce97fad, // CRAME
+    0x0ce97fbb, // CRAMS
+    0x0ce97fdc, // CRANS
+    0x0ce98010, // CRAPE
+    0x0ce9801e, // CRAPS
+    0x0ce98024, // CRAPY
+    0x0ce98052, // CRARE
+    0x0ce98105, // CRAWS
+    0x0ce98147, // CRAYS
+    0x0ce98f96, // CREDS
+    0x0ce98fb0, // CREEL
+    0x0ce98fb7, // CREES
+    0x0ce990bf, // CREMS
+    0x0ce990ce, // CRENA
+    0x0ce99122, // CREPS
+    0x0ce99128, // CREPY
+    0x0ce991fb, // CREWE
+    0x0ce99209, // CREWS
+    0x0ce9a037, // CRIAS
+    0x0ce9a058, // CRIBS
+    0x0ce9a0bb, // CRIES
+    0x0ce9a1c3, // CRIMS
+    0x0ce9a1d6, // CRINE
+    0x0ce9a205, // CRIOS
+    0x0ce9a218, // CRIPE
+    0x0ce9a226, // CRIPS
+    0x0ce9a27b, // CRISE
+    0x0ce9a29f, // CRITH
+    0x0ce9a2aa, // CRITS
+    0x0ce9b9f5, // CROCI
+    0x0ce9b9ff, // CROCS
+    0x0ce9ba63, // CROFT
+    0x0ce9ba83, // CROGS
+    0x0ce9bb38, // CROMB
+    0x0ce9bb3b, // CROME
+    0x0ce9bb62, // CRONK
+    0x0ce9bb6a, // CRONS
+    0x0ce9bb84, // CROOL
+    0x0ce9bb86, // CROON
+    0x0ce9bbac, // CROPS
+    0x0ce9bbe0, // CRORE
+    0x0ce9bc10, // CROST
+    0x0ce9bc52, // CROUT
+    0x0ce9bc93, // CROWS
+    0x0ce9bce8, // CROZE
+    0x0ce9d37d, // CRUCK
+    0x0ce9d3a2, // CRUDO
+    0x0ce9d3a6, // CRUDS
+    0x0ce9d3ac, // CRUDY
+    0x0ce9d3c7, // CRUES
+    0x0ce9d3c8, // CRUET
+    0x0ce9d3e9, // CRUFT
+    0x0ce9d4e8, // CRUNK
+    0x0ce9d510, // CRUOR
+    0x0ce9d562, // CRURA
+    0x0ce9d587, // CRUSE
+    0x0ce9d59b, // CRUSY
+    0x0ce9d5ea, // CRUVE
+    0x0ce9de2d, // CRWTH
+    0x0ce9e4ca, // CRYER
+    0x0ceaa994, // CTENE
+    0x0ceb27ba, // CUBBY
+    0x0ceb2806, // CUBEB
+    0x0ceb2808, // CUBED
+    0x0ceb2816, // CUBER
+    0x0ceb2817, // CUBES
+    0x0ceb289c, // CUBIT
+    0x0ceb307e, // CUDDY
+    0x0ceb3938, // CUFFO
+    0x0ceb393c, // CUFFS
+    0x0ceb45ff, // CUIFS
+    0x0ceb46fb, // CUING
+    0x0ceb47a1, // CUISH
+    0x0ceb47cd, // CUITS
+    0x0ceb4e60, // CUKES
+    0x0ceb5254, // CULCH
+    0x0ceb52a2, // CULET
+    0x0ceb52a6, // CULEX
+    0x0ceb5388, // CULLS
+    0x0ceb538e, // CULLY
+    0x0ceb53a9, // CULMS
+    0x0ceb53fa, // CULPA
+    0x0ceb5486, // CULTI
+    0x0ceb5490, // CULTS
+    0x0ceb5496, // CULTY
+    0x0ceb56d2, // CUMEC
+    0x0ceb5b08, // CUNDY
+    0x0ceb5b19, // CUNEI
+    0x0ceb5ba8, // CUNIT
+    0x0ceb5d12, // CUNTS
+    0x0ceb639e, // CUPEL
+    0x0ceb641a, // CUPID
+    0x0ceb64fe, // CUPPA
+    0x0ceb6516, // CUPPY
+    0x0ceb6ba4, // CURAT
+    0x0ceb6bc4, // CURBS
+    0x0ceb6bda, // CURCH
+    0x0ceb6c06, // CURDS
+    0x0ceb6c0c, // CURDY
+    0x0ceb6c18, // CURED
+    0x0ceb6c26, // CURER
+    0x0ceb6c27, // CURES
+    0x0ceb6c28, // CURET
+    0x0ceb6c48, // CURFS
+    0x0ceb6c99, // CURIA
+    0x0ceb6c9d, // CURIE
+    0x0ceb6d04, // CURLI
+    0x0ceb6d0e, // CURLS
+    0x0ceb6d50, // CURNS
+    0x0ceb6d56, // CURNY
+    0x0ceb6dd4, // CURRS
+    0x0ceb6deb, // CURSI
+    0x0ceb6df6, // CURST
+    0x0ceb7058, // CUSEC
+    0x0ceb70d1, // CUSHY
+    0x0ceb712e, // CUSKS
+    0x0ceb71d3, // CUSPS
+    0x0ceb71d9, // CUSPY
+    0x0ceb7232, // CUSSO
+    0x0ceb7272, // CUSUM
+    0x0ceb745c, // CUTCH
+    0x0ceb74a8, // CUTER
+    0x0ceb74a9, // CUTES
+    0x0ceb74af, // CUTEY
+    0x0ceb7528, // CUTIN
+    0x0ceb752d, // CUTIS
+    0x0ceb7694, // CUTTO
+    0x0ceb769e, // CUTTY
+    0x0ceb76b6, // CUTUP
+    0x0ceb7d1d, // CUVEE
+    0x0ceb8e2f, // CUZES
+    0x0cec8d1e, // CWTCH
+    0x0ced567f, // CYANO
+    0x0ced5683, // CYANS
+    0x0ced5d49, // CYCAD
+    0x0ced5d58, // CYCAS
+    0x0ced5ebf, // CYCLO
+    0x0ced621c, // CYDER
+    0x0ced84ae, // CYLIX
+    0x0ced87d4, // CYMAE
+    0x0ced87e1, // CYMAR
+    0x0ced87e2, // CYMAS
+    0x0ced8866, // CYMES
+    0x0ced89a9, // CYMOL
+    0x0ceda3db, // CYSTS
+    0x0ceda62d, // CYTES
+    0x0ceda772, // CYTON
+    0x0cede368, // CZARS
+    0x0cf245aa, // DAALS
+    0x0cf2488f, // DABBA
+    0x0cf24d45, // DACES
+    0x0cf24d96, // DACHA
+    0x0cf24e0b, // DACKS
+    0x0cf250f7, // DADAH
+    0x0cf25102, // DADAS
+    0x0cf252d0, // DADOS
+    0x0cf25a29, // DAFFS
+    0x0cf25a2f, // DAFFY
+    0x0cf25e79, // DAGGA
+    0x0cf25e91, // DAGGY
+    0x0cf25f93, // DAGOS
+    0x0cf26371, // DAHLS
+    0x0cf2678d, // DAIKO
+    0x0cf267e6, // DAINE
+    0x0cf267f5, // DAINT
+    0x0cf26f4c, // DAKER
+    0x0cf2737f, // DALED
+    0x0cf2738e, // DALES
+    0x0cf27412, // DALIS
+    0x0cf27467, // DALLE
+    0x0cf2757d, // DALTS
+    0x0cf27746, // DAMAN
+    0x0cf2774a, // DAMAR
+    0x0cf277cf, // DAMES
+    0x0cf278c9, // DAMME
+    0x0cf278f8, // DAMNS
+    0x0cf2793a, // DAMPS
+    0x0cf27940, // DAMPY
+    0x0cf27bd4, // DANCY
+    0x0cf27c52, // DANGS
+    0x0cf27c90, // DANIO
+    0x0cf27cd6, // DANKS
+    0x0cf27d3f, // DANNY
+    0x0cf27dff, // DANTS
+    0x0cf28c83, // DARAF
+    0x0cf28cb1, // DARBS
+    0x0cf28cd8, // DARCY
+    0x0cf28d05, // DARED
+    0x0cf28d13, // DARER
+    0x0cf28d14, // DARES
+    0x0cf28d44, // DARGA
+    0x0cf28d56, // DARGS
+    0x0cf28d88, // DARIC
+    0x0cf28d98, // DARIS
+    0x0cf28dda, // DARKS
+    0x0cf28e3d, // DARNS
+    0x0cf28eb3, // DARRE
+    0x0cf28f03, // DARTS
+    0x0cf28fbf, // DARZI
+    0x0cf291ae, // DASHI
+    0x0cf291be, // DASHY
+    0x0cf2950b, // DATAL
+    0x0cf29587, // DATED
+    0x0cf29595, // DATER
+    0x0cf29596, // DATES
+    0x0cf296e0, // DATOS
+    0x0cf29781, // DATTO
+    0x0cf29966, // DAUBE
+    0x0cf29974, // DAUBS
+    0x0cf2997a, // DAUBY
+    0x0cf299b6, // DAUDS
+    0x0cf29abf, // DAULT
+    0x0cf29b84, // DAURS
+    0x0cf29bc6, // DAUTS
+    0x0cf29e13, // DAVEN
+    0x0cf29e9d, // DAVIT
+    0x0cf2a1ca, // DAWAH
+    0x0cf2a238, // DAWDS
+    0x0cf2a24a, // DAWED
+    0x0cf2a254, // DAWEN
+    0x0cf2a31f, // DAWKS
+    0x0cf2a382, // DAWNS
+    0x0cf2a448, // DAWTS
+    0x0cf2aa52, // DAYAN
+    0x0cf2aa8e, // DAYCH
+    0x0cf2ac05, // DAYNT
+    0x0cf2af0d, // DAZED
+    0x0cf2af1b, // DAZER
+    0x0cf2af1c, // DAZES
+    0x0cf47626, // DEADS
+    0x0cf476ca, // DEAIR
+    0x0cf4772e, // DEALS
+    0x0cf47770, // DEANS
+    0x0cf477e6, // DEARE
+    0x0cf477ef, // DEARN
+    0x0cf477f4, // DEARS
+    0x0cf477fa, // DEARY
+    0x0cf4780a, // DEASH
+    0x0cf4786a, // DEAVE
+    0x0cf47899, // DEAWS
+    0x0cf4789f, // DEAWY
+    0x0cf479f8, // DEBAG
+    0x0cf47a2b, // DEBBY
+    0x0cf47a81, // DEBEL
+    0x0cf47a88, // DEBES
+    0x0cf47c77, // DEBTS
+    0x0cf47c89, // DEBUD
+    0x0cf47c97, // DEBUR
+    0x0cf47c98, // DEBUS
+    0x0cf47d0e, // DEBYE
+    0x0cf47e36, // DECAD
+    0x0cf47e38, // DECAF
+    0x0cf47e40, // DECAN
+    0x0cf47f8b, // DECKO
+    0x0cf47f8f, // DECKS
+    0x0cf48013, // DECOS
+    0x0cf4827f, // DEDAL
+    0x0cf4872a, // DEEDS
+    0x0cf48730, // DEEDY
+    0x0cf48838, // DEELY
+    0x0cf48853, // DEEMS
+    0x0cf48874, // DEENS
+    0x0cf488b6, // DEEPS
+    0x0cf488ea, // DEERE
+    0x0cf488f8, // DEERS
+    0x0cf4893a, // DEETS
+    0x0cf4896e, // DEEVE
+    0x0cf4897c, // DEEVS
+    0x0cf48b09, // DEFAT
+    0x0cf48ba9, // DEFFO
+    0x0cf48c10, // DEFIS
+    0x0cf48cca, // DEFOG
+    0x0cf48f49, // DEGAS
+    0x0cf491d7, // DEGUM
+    0x0cf491dd, // DEGUS
+    0x0cf497ff, // DEICE
+    0x0cf4982e, // DEIDS
+    0x0cf49876, // DEIFY
+    0x0cf49936, // DEILS
+    0x0cf49a17, // DEISM
+    0x0cf49a1e, // DEIST
+    0x0cf4a0c2, // DEKED
+    0x0cf4a0d1, // DEKES
+    0x0cf4a193, // DEKKO
+    0x0cf4a503, // DELED
+    0x0cf4a512, // DELES
+    0x0cf4a533, // DELFS
+    0x0cf4a534, // DELFT
+    0x0cf4a596, // DELIS
+    0x0cf4a5f9, // DELLS
+    0x0cf4a5ff, // DELLY
+    0x0cf4a65c, // DELOS
+    0x0cf4a672, // DELPH
+    0x0cf4a701, // DELTS
+    0x0cf4a8ca, // DEMAN
+    0x0cf4a953, // DEMES
+    0x0cf4a9c7, // DEMIC
+    0x0cf4a9d8, // DEMIT
+    0x0cf4aa8c, // DEMOB
+    0x0cf4aa93, // DEMOI
+    0x0cf4aa9d, // DEMOS
+    0x0cf4aabf, // DEMPT
+    0x0cf4ad0f, // DENAR
+    0x0cf4ad16, // DENAY
+    0x0cf4ad47, // DENCH
+    0x0cf4ad94, // DENES
+    0x0cf4ad95, // DENET
+    0x0cf4ae18, // DENIS
+    0x0cf4af83, // DENTS
+    0x0cf4b44e, // DEOXY
+    0x0cf4be15, // DERAT
+    0x0cf4be1a, // DERAY
+    0x0cf4be89, // DERED
+    0x0cf4be98, // DERES
+    0x0cf4bf10, // DERIG
+    0x0cf4bf8e, // DERMA
+    0x0cf4bfa0, // DERMS
+    0x0cf4bfc1, // DERNS
+    0x0cf4bfc7, // DERNY
+    0x0cf4bfe2, // DEROS
+    0x0cf4c041, // DERRO
+    0x0cf4c04b, // DERRY
+    0x0cf4c07c, // DERTH
+    0x0cf4c0c9, // DERVS
+    0x0cf4c2de, // DESEX
+    0x0cf4c332, // DESHI
+    0x0cf4c35d, // DESIS
+    0x0cf4c39f, // DESKS
+    0x0cf4c499, // DESSE
+    0x0cf4cf18, // DEVAS
+    0x0cf4cf95, // DEVEL
+    0x0cf4d020, // DEVIS
+    0x0cf4d0e1, // DEVON
+    0x0cf4d0e6, // DEVOS
+    0x0cf4d0e7, // DEVOT
+    0x0cf4d354, // DEWAN
+    0x0cf4d358, // DEWAR
+    0x0cf4d35e, // DEWAX
+    0x0cf4d3ce, // DEWED
+    0x0cf4d81e, // DEXES
+    0x0cf4d894, // DEXIE
+    0x0cf61af5, // DHABA
+    0x0cf61c30, // DHAKS
+    0x0cf61c51, // DHALS
+    0x0cf63e37, // DHIKR
+    0x0cf6568b, // DHOBI
+    0x0cf657d1, // DHOLE
+    0x0cf657d8, // DHOLL
+    0x0cf657df, // DHOLS
+    0x0cf658dd, // DHOTI
+    0x0cf6594a, // DHOWS
+    0x0cf67263, // DHUTI
+    0x0cf6a78a, // DIACT
+    0x0cf6a8b2, // DIALS
+    0x0cf6a8e6, // DIANE
+    0x0cf6aa7c, // DIAZO
+    0x0cf6aba9, // DIBBS
+    0x0cf6b03e, // DICED
+    0x0cf6b04c, // DICER
+    0x0cf6b04d, // DICES
+    0x0cf6b0b1, // DICHT
+    0x0cf6b113, // DICKS
+    0x0cf6b119, // DICKY
+    0x0cf6b198, // DICOT
+    0x0cf6b22a, // DICTA
+    0x0cf6b23c, // DICTS
+    0x0cf6b242, // DICTY
+    0x0cf6b473, // DIDDY
+    0x0cf6b504, // DIDIE
+    0x0cf6b5d8, // DIDOS
+    0x0cf6b65d, // DIDST
+    0x0cf6b86c, // DIEBS
+    0x0cf6b9b6, // DIELS
+    0x0cf6b9ea, // DIENE
+    0x0cf6babe, // DIETS
+    0x0cf6bd31, // DIFFS
+    0x0cf6c1b5, // DIGHT
+    0x0cf6d1d1, // DIKAS
+    0x0cf6d246, // DIKED
+    0x0cf6d254, // DIKER
+    0x0cf6d255, // DIKES
+    0x0cf6d25b, // DIKEY
+    0x0cf6d671, // DILDO
+    0x0cf6d773, // DILLI
+    0x0cf6d77d, // DILLS
+    0x0cf6da70, // DIMBO
+    0x0cf6dad6, // DIMER
+    0x0cf6dad7, // DIMES
+    0x0cf6dc42, // DIMPS
+    0x0cf6de93, // DINAR
+    0x0cf6df09, // DINED
+    0x0cf6df18, // DINES
+    0x0cf6df4c, // DINGE
+    0x0cf6df5a, // DINGS
+    0x0cf6df8c, // DINIC
+    0x0cf6dfde, // DINKS
+    0x0cf6dfe4, // DINKY
+    0x0cf6e02f, // DINNA
+    0x0cf6e062, // DINOS
+    0x0cf6e107, // DINTS
+    0x0cf6e440, // DIOLS
+    0x0cf6e536, // DIOTA
+    0x0cf6e90b, // DIPPY
+    0x0cf6e964, // DIPSO
+    0x0cf6ef92, // DIRAM
+    0x0cf6f01b, // DIRER
+    0x0cf6f0d4, // DIRKE
+    0x0cf6f0e2, // DIRKS
+    0x0cf6f103, // DIRLS
+    0x0cf6f20b, // DIRTS
+    0x0cf6f3d9, // DISAS
+    0x0cf6f411, // DISCI
+    0x0cf6f41b, // DISCS
+    0x0cf6f4c6, // DISHY
+    0x0cf6f523, // DISKS
+    0x0cf6f557, // DISME
+    0x0cf6f813, // DITAL
+    0x0cf6f81a, // DITAS
+    0x0cf6f88f, // DITED
+    0x0cf6f89e, // DITES
+    0x0cf6fa72, // DITSY
+    0x0cf6fa8d, // DITTS
+    0x0cf6fb59, // DITZY
+    0x0cf70097, // DIVAN
+    0x0cf7009c, // DIVAS
+    0x0cf70111, // DIVED
+    0x0cf70120, // DIVES
+    0x0cf701a4, // DIVIS
+    0x0cf70237, // DIVNA
+    0x0cf7026a, // DIVOS
+    0x0cf7026b, // DIVOT
+    0x0cf70357, // DIVVY
+    0x0cf704d8, // DIWAN
+    0x0cf70a18, // DIXIE
+    0x0cf70a27, // DIXIT
+    0x0cf70d5f, // DIYAS
+    0x0cf7121f, // DIZEN
+    0x0cf75758, // DJINN
+    0x0cf7575d, // DJINS
+    0x0cf9f1ae, // DOABS
+    0x0cf9f400, // DOATS
+    0x0cf9f5f5, // DOBBY
+    0x0cf9f652, // DOBES
+    0x0cf9f6c8, // DOBIE
+    0x0cf9f727, // DOBLA
+    0x0cf9f7ed, // DOBRA
+    0x0cf9f7fb, // DOBRO
+    0x0cf9faf7, // DOCHT
+    0x0cf9fb59, // DOCKS
+    0x0cf9fbdd, // DOCOS
+    0x0cf9fca3, // DOCUS
+    0x0cf9feb9, // DODDY
+    0x0cfa001e, // DODOS
+    0x0cfa03db, // DOEKS
+    0x0cfa04c2, // DOERS
+    0x0cfa04e4, // DOEST
+    0x0cfa04f9, // DOETH
+    0x0cfa0777, // DOFFS
+    0x0cfa0b0e, // DOGAN
+    0x0cfa0b97, // DOGES
+    0x0cfa0b9d, // DOGEY
+    0x0cfa0bd5, // DOGGO
+    0x0cfa0bdf, // DOGGY
+    0x0cfa0c0d, // DOGIE
+    0x0cfa1268, // DOHYO
+    0x0cfa1501, // DOILT
+    0x0cfa1506, // DOILY
+    0x0cfa1608, // DOITS
+    0x0cfa19a4, // DOJOS
+    0x0cfa208c, // DOLCE
+    0x0cfa2090, // DOLCI
+    0x0cfa20cd, // DOLED
+    0x0cfa20dc, // DOLES
+    0x0cfa214e, // DOLIA
+    0x0cfa21c3, // DOLLS
+    0x0cfa21d2, // DOLMA
+    0x0cfa2225, // DOLOR
+    0x0cfa2226, // DOLOS
+    0x0cfa22cb, // DOLTS
+    0x0cfa2492, // DOMAL
+    0x0cfa250e, // DOMED
+    0x0cfa251d, // DOMES
+    0x0cfa2591, // DOMIC
+    0x0cfa28cf, // DONAH
+    0x0cfa28da, // DONAS
+    0x0cfa2950, // DONEE
+    0x0cfa295d, // DONER
+    0x0cfa298e, // DONGA
+    0x0cfa29a0, // DONGS
+    0x0cfa2a20, // DONKO
+    0x0cfa2a75, // DONNA
+    0x0cfa2a79, // DONNE
+    0x0cfa2a8d, // DONNY
+    0x0cfa2b32, // DONSY
+    0x0cfa2d3c, // DOOBS
+    0x0cfa2d4f, // DOOCE
+    0x0cfa2d84, // DOODY
+    0x0cfa2e65, // DOOKS
+    0x0cfa2e78, // DOOLE
+    0x0cfa2e86, // DOOLS
+    0x0cfa2e8c, // DOOLY
+    0x0cfa2ea7, // DOOMS
+    0x0cfa2ead, // DOOMY
+    0x0cfa2eb6, // DOONA
+    0x0cfa2f47, // DOORN
+    0x0cfa2f4c, // DOORS
+    0x0cfa305a, // DOOZY
+    0x0cfa315c, // DOPAS
+    0x0cfa31d1, // DOPED
+    0x0cfa31df, // DOPER
+    0x0cfa31e0, // DOPES
+    0x0cfa39cf, // DORAD
+    0x0cfa39ed, // DORBA
+    0x0cfa39ff, // DORBS
+    0x0cfa3a54, // DOREE
+    0x0cfa3a62, // DORES
+    0x0cfa3ad6, // DORIC
+    0x0cfa3ae6, // DORIS
+    0x0cfa3b28, // DORKS
+    0x0cfa3b2e, // DORKY
+    0x0cfa3b6a, // DORMS
+    0x0cfa3b70, // DORMY
+    0x0cfa3bcd, // DORPS
+    0x0cfa3c0f, // DORRS
+    0x0cfa3c1e, // DORSA
+    0x0cfa3c22, // DORSE
+    0x0cfa3c51, // DORTS
+    0x0cfa3c57, // DORTY
+    0x0cfa3e15, // DOSAI
+    0x0cfa3e1f, // DOSAS
+    0x0cfa3e94, // DOSED
+    0x0cfa3e98, // DOSEH
+    0x0cfa3ea2, // DOSER
+    0x0cfa3ea3, // DOSES
+    0x0cfa3ef4, // DOSHA
+    0x0cfa4259, // DOTAL
+    0x0cfa42d5, // DOTED
+    0x0cfa42e3, // DOTER
+    0x0cfa42e4, // DOTES
+    0x0cfa44d9, // DOTTY
+    0x0cfa46a0, // DOUAR
+    0x0cfa46d5, // DOUCE
+    0x0cfa46e3, // DOUCS
+    0x0cfa47eb, // DOUKS
+    0x0cfa47fa, // DOULA
+    0x0cfa481b, // DOUMA
+    0x0cfa482d, // DOUMS
+    0x0cfa4890, // DOUPS
+    0x0cfa48c0, // DOURA
+    0x0cfa48e5, // DOUSE
+    0x0cfa4914, // DOUTS
+    0x0cfa4b57, // DOVED
+    0x0cfa4b61, // DOVEN
+    0x0cfa4b65, // DOVER
+    0x0cfa4b66, // DOVES
+    0x0cfa4bdc, // DOVIE
+    0x0cfa4f22, // DOWAR
+    0x0cfa4f86, // DOWDS
+    0x0cfa4f98, // DOWED
+    0x0cfa4fa6, // DOWER
+    0x0cfa501d, // DOWIE
+    0x0cfa5080, // DOWLE
+    0x0cfa508e, // DOWLS
+    0x0cfa5094, // DOWLY
+    0x0cfa50be, // DOWNA
+    0x0cfa50d0, // DOWNS
+    0x0cfa5112, // DOWPS
+    0x0cfa5167, // DOWSE
+    0x0cfa5196, // DOWTS
+    0x0cfa53d9, // DOXED
+    0x0cfa53e8, // DOXES
+    0x0cfa545e, // DOXIE
+    0x0cfa5824, // DOYEN
+    0x0cfa5916, // DOYLY
+    0x0cfa5c5b, // DOZED
+    0x0cfa5c69, // DOZER
+    0x0cfa5c6a, // DOZES
+    0x0cfb96d1, // DRABS
+    0x0cfb96ea, // DRACK
+    0x0cfb96ee, // DRACO
+    0x0cfb9748, // DRAFF
+    0x0cfb9776, // DRAGS
+    0x0cfb97b1, // DRAIL
+    0x0cfb983c, // DRAMS
+    0x0cfb985e, // DRANT
+    0x0cfb989f, // DRAPS
+    0x0cfb9923, // DRATS
+    0x0cfb9957, // DRAVE
+    0x0cfb9986, // DRAWS
+    0x0cfb99c8, // DRAYS
+    0x0cfba7b3, // DREAR
+    0x0cfba7ee, // DRECK
+    0x0cfba829, // DREED
+    0x0cfba837, // DREER
+    0x0cfba838, // DREES
+    0x0cfba87a, // DREGS
+    0x0cfba8fe, // DREKS
+    0x0cfba962, // DRENT
+    0x0cfba9d7, // DRERE
+    0x0cfbaa07, // DREST
+    0x0cfbaacc, // DREYS
+    0x0cfbb8d9, // DRIBS
+    0x0cfbb8ec, // DRICE
+    0x0cfbb93c, // DRIES
+    0x0cfbba29, // DRILY
+    0x0cfbbaa7, // DRIPS
+    0x0cfbbaa8, // DRIPT
+    0x0cfbd337, // DROID
+    0x0cfbd33f, // DROIL
+    0x0cfbd37a, // DROKE
+    0x0cfbd39b, // DROLE
+    0x0cfbd3bc, // DROME
+    0x0cfbd3f1, // DRONY
+    0x0cfbd3fb, // DROOB
+    0x0cfbd400, // DROOG
+    0x0cfbd404, // DROOK
+    0x0cfbd42d, // DROPS
+    0x0cfbd42e, // DROPT
+    0x0cfbd4ca, // DROUK
+    0x0cfbd514, // DROWS
+    0x0cfbebe5, // DRUBS
+    0x0cfbec8a, // DRUGS
+    0x0cfbed50, // DRUMS
+    0x0cfbeda5, // DRUPE
+    0x0cfbee08, // DRUSE
+    0x0cfbee1c, // DRUSY
+    0x0cfbeec1, // DRUXY
+    0x0cfbfcb9, // DRYAD
+    0x0cfbfcc8, // DRYAS
+    0x0cfc5ebc, // DSOBO
+    0x0cfc6027, // DSOMO
+    0x0cfd3c36, // DUADS
+    0x0cfd3d3e, // DUALS
+    0x0cfd3d80, // DUANS
+    0x0cfd3e04, // DUARS
+    0x0cfd4031, // DUBBO
+    0x0cfd444e, // DUCAL
+    0x0cfd4456, // DUCAT
+    0x0cfd44d9, // DUCES
+    0x0cfd459f, // DUCKS
+    0x0cfd45a5, // DUCKY
+    0x0cfd46c8, // DUCTS
+    0x0cfd48ff, // DUDDY
+    0x0cfd490b, // DUDED
+    0x0cfd491a, // DUDES
+    0x0cfd4e42, // DUELS
+    0x0cfd4f4a, // DUETS
+    0x0cfd4f4b, // DUETT
+    0x0cfd51bd, // DUFFS
+    0x0cfd53ac, // DUFUS
+    0x0cfd5f7c, // DUING
+    0x0cfd604e, // DUITS
+    0x0cfd665d, // DUKAS
+    0x0cfd66d2, // DUKED
+    0x0cfd66e1, // DUKES
+    0x0cfd6795, // DUKKA
+    0x0cfd6ad2, // DULCE
+    0x0cfd6b22, // DULES
+    0x0cfd6b94, // DULIA
+    0x0cfd6c09, // DULLS
+    0x0cfd6ce2, // DULSE
+    0x0cfd6edf, // DUMAS
+    0x0cfd6efc, // DUMBO
+    0x0cfd6f00, // DUMBS
+    0x0cfd7017, // DUMKA
+    0x0cfd702f, // DUMKY
+    0x0cfd70ce, // DUMPS
+    0x0cfd731a, // DUNAM
+    0x0cfd7357, // DUNCH
+    0x0cfd73a4, // DUNES
+    0x0cfd73e6, // DUNGS
+    0x0cfd73ec, // DUNGY
+    0x0cfd746a, // DUNKS
+    0x0cfd74c9, // DUNNO
+    0x0cfd74d3, // DUNNY
+    0x0cfd7567, // DUNSH
+    0x0cfd7593, // DUNTS
+    0x0cfd78e3, // DUOMI
+    0x0cfd78e9, // DUOMO
+    0x0cfd7c17, // DUPED
+    0x0cfd7c25, // DUPER
+    0x0cfd7c26, // DUPES
+    0x0cfd7cff, // DUPLE
+    0x0cfd7d13, // DUPLY
+    0x0cfd7d97, // DUPPY
+    0x0cfd841d, // DURAL
+    0x0cfd8424, // DURAS
+    0x0cfd8499, // DURED
+    0x0cfd84a8, // DURES
+    0x0cfd84f0, // DURGY
+    0x0cfd85d1, // DURNS
+    0x0cfd85e2, // DUROC
+    0x0cfd85f2, // DUROS
+    0x0cfd85f8, // DUROY
+    0x0cfd8643, // DURRA
+    0x0cfd8655, // DURRS
+    0x0cfd865b, // DURRY
+    0x0cfd8677, // DURST
+    0x0cfd86b2, // DURUM
+    0x0cfd8753, // DURZI
+    0x0cfd89af, // DUSKS
+    0x0cfd8ad8, // DUSTS
+    0x0cfd9e2e, // DUXES
+    0x0cfe548e, // DWAAL
+    0x0cfe55f2, // DWALE
+    0x0cfe55fa, // DWALM
+    0x0cfe5621, // DWAMS
+    0x0cfe5636, // DWANG
+    0x0cfe5723, // DWAUM
+    0x0cfe660c, // DWEEB
+    0x0cfe77fa, // DWILE
+    0x0cfe783c, // DWINE
+    0x0cff6dba, // DYADS
+    0x0cff808c, // DYERS
+    0x0cff99aa, // DYKON
+    0x0cffa521, // DYNEL
+    0x0cffa528, // DYNES
+    0x0d00194d, // DZHOS
+    0x0d047869, // EAGRE
+    0x0d048c00, // EALED
+    0x0d048c0f, // EALES
+    0x0d049482, // EANED
+    0x0d04a574, // EARDS
+    0x0d04a586, // EARED
+    0x0d04a67c, // EARLS
+    0x0d04a6be, // EARNS
+    0x0d04a6bf, // EARNT
+    0x0d04a764, // EARST
+    0x0d04a9c7, // EASED
+    0x0d04a9d5, // EASER
+    0x0d04a9d6, // EASES
+    0x0d04aaaf, // EASLE
+    0x0d04abc5, // EASTS
+    0x0d04ae6c, // EATHE
+    0x0d04b68a, // EAVED
+    0x0d04b699, // EAVES
+    0x0d04edd7, // EBBED
+    0x0d04ede7, // EBBET
+    0x0d05265c, // EBONS
+    0x0d052675, // EBOOK
+    0x0d0575e5, // ECADS
+    0x0d0593be, // ECHED
+    0x0d0593cd, // ECHES
+    0x0d059517, // ECHOS
+    0x0d05c067, // ECRUS
+    0x0d061461, // EDEMA
+    0x0d061bde, // EDGED
+    0x0d061bec, // EDGER
+    0x0d061bed, // EDGES
+    0x0d062548, // EDILE
+    0x0d06265e, // EDITS
+    0x0d06572b, // EDUCE
+    0x0d06573a, // EDUCT
+    0x0d06b596, // EEJIT
+    0x0d06c7e9, // EENSY
+    0x0d06e818, // EEVEN
+    0x0d06e946, // EEVNS
+    0x0d07305f, // EFFED
+    0x0d07a769, // EGADS
+    0x0d07ba3b, // EGERS
+    0x0d07ba5d, // EGEST
+    0x0d07c08b, // EGGAR
+    0x0d07c101, // EGGED
+    0x0d07c10f, // EGGER
+    0x0d07da12, // EGMAS
+    0x0d085710, // EHING
+    0x0d08cd0e, // EIDER
+    0x0d08ce59, // EIDOS
+    0x0d08daed, // EIGNE
+    0x0d08eac7, // EIKED
+    0x0d08ec1b, // EIKON
+    0x0d08eef6, // EILDS
+    0x0d090cd7, // EISEL
+    0x0d096e90, // EJIDO
+    0x0d0a0314, // EKKAS
+    0x0d0a65ee, // ELAIN
+    0x0d0a6689, // ELAND
+    0x0d0a6698, // ELANS
+    0x0d0a6e4a, // ELCHI
+    0x0d0a72b1, // ELDIN
+    0x0d0a7771, // ELEMI
+    0x0d0a7aa5, // ELFED
+    0x0d0a86e4, // ELIAD
+    0x0d0a88a1, // ELINT
+    0x0d0a9876, // ELMEN
+    0x0d0aa131, // ELOGE
+    0x0d0aa145, // ELOGY
+    0x0d0aa17c, // ELOIN
+    0x0d0aa268, // ELOPS
+    0x0d0aa530, // ELPEE
+    0x0d0ab280, // ELSIN
+    0x0d0abc64, // ELUTE
+    0x0d0abe3b, // ELVAN
+    0x0d0abebf, // ELVEN
+    0x0d0abec3, // ELVER
+    0x0d0abec4, // ELVES
+    0x0d0af18e, // EMACS
+    0x0d0af58c, // EMBAR
+    0x0d0af593, // EMBAY
+    0x0d0af74f, // EMBOG
+    0x0d0af75f, // EMBOW
+    0x0d0af760, // EMBOX
+    0x0d0af821, // EMBUS
+    0x0d0b02d3, // EMEER
+    0x0d0b03ee, // EMEND
+    0x0d0b0475, // EMERG
+    0x0d0b0487, // EMERY
+    0x0d0b04e4, // EMEUS
+    0x0d0b1396, // EMICS
+    0x0d0b1585, // EMIRS
+    0x0d0b15c7, // EMITS
+    0x0d0b2458, // EMMAS
+    0x0d0b24db, // EMMER
+    0x0d0b24dd, // EMMET
+    0x0d0b24e0, // EMMEW
+    0x0d0b2770, // EMMYS
+    0x0d0b2df9, // EMOJI
+    0x0d0b2e7b, // EMONG
+    0x0d0b2f3f, // EMOTE
+    0x0d0b2f81, // EMOVE
+    0x0d0b338e, // EMPTS
+    0x0d0b47bd, // EMULE
+    0x0d0b4883, // EMURE
+    0x0d0b57b9, // EMYDE
+    0x0d0b57c7, // EMYDS
+    0x0d0b7fd8, // ENARM
+    0x0d0b8012, // ENATE
+    0x0d0b8ae5, // ENDED
+    0x0d0b8af3, // ENDER
+    0x0d0b8af8, // ENDEW
+    0x0d0b8cf6, // ENDUE
+    0x0d0b9187, // ENEWS
+    0x0d0b93ff, // ENFIX
+    0x0d0b9fa5, // ENIAC
+    0x0d0bad81, // ENLIT
+    0x0d0bb141, // ENMEW
+    0x0d0bb6bc, // ENNOG
+    0x0d0bba7b, // ENOKI
+    0x0d0bbaa6, // ENOLS
+    0x0d0bbb66, // ENORM
+    0x0d0bbc11, // ENOWS
+    0x0d0bc7c5, // ENROL
+    0x0d0bcac7, // ENSEW
+    0x0d0bcb8f, // ENSKY
+    0x0d0bcf76, // ENTIA
+    0x0d0bd4e4, // ENURE
+    0x0d0bd4ed, // ENURN
+    0x0d0bd8c6, // ENVOI
+    0x0d0beb18, // ENZYM
+    0x0d0c53ca, // EORLS
+    0x0d0c57a3, // EOSIN
+    0x0d0c96b2, // EPACT
+    0x0d0ca7f7, // EPEES
+    0x0d0cb42b, // EPHAH
+    0x0d0cb436, // EPHAS
+    0x0d0cb5f5, // EPHOD
+    0x0d0cb603, // EPHOR
+    0x0d0cb8b9, // EPICS
+    0x0d0cd252, // EPODE
+    0x0d0cd3ed, // EPOPT
+    0x0d0cdfc8, // EPRIS
+    0x0d0d7868, // EQUES
+    0x0d0d78dd, // EQUID
+    0x0d0db468, // ERBIA
+    0x0d0dc2ea, // EREVS
+    0x0d0dca80, // ERGON
+    0x0d0dca85, // ERGOS
+    0x0d0dca86, // ERGOT
+    0x0d0dcf8c, // ERHUS
+    0x0d0dd169, // ERICA
+    0x0d0dd173, // ERICK
+    0x0d0dd17b, // ERICS
+    0x0d0dd2da, // ERING
+    0x0d0de6f3, // ERNED
+    0x0d0de702, // ERNES
+    0x0d0ded03, // EROSE
+    0x0d0df7f7, // ERRED
+    0x0d0dfc47, // ERSES
+    0x0d0e0488, // ERUCT
+    0x0d0e0507, // ERUGO
+    0x0d0e06fa, // ERUVS
+    0x0d0e0905, // ERVEN
+    0x0d0e0987, // ERVIL
+    0x0d0e4413, // ESCAR
+    0x0d0e45e3, // ESCOT
+    0x0d0e5ef7, // ESILE
+    0x0d0e661b, // ESKAR
+    0x0d0e669f, // ESKER
+    0x0d0e7363, // ESNES
+    0x0d0e88a8, // ESSES
+    0x0d0e8e23, // ESTOC
+    0x0d0e8e30, // ESTOP
+    0x0d0e8e92, // ESTRO
+    0x0d0ec8ab, // ETAGE
+    0x0d0ec9d4, // ETAPE
+    0x0d0eca66, // ETATS
+    0x0d0edaa4, // ETENS
+    0x0d0ee5b3, // ETHAL
+    0x0d0ee759, // ETHNE
+    0x0d0ee8cb, // ETHYL
+    0x0d0eea3d, // ETICS
+    0x0d0eff40, // ETNAS
+    0x0d0f19c9, // ETTIN
+    0x0d0f1a23, // ETTLE
+    0x0d0f1e0f, // ETUIS
+    0x0d0f25ff, // ETWEE
+    0x0d0f2f85, // ETYMA
+    0x0d0f6ec1, // EUGHS
+    0x0d0f7f53, // EUKED
+    0x0d0f9414, // EUPAD
+    0x0d0f9e73, // EUROS
+    0x0d0fa2ad, // EUSOL
+    0x0d0ff366, // EVENS
+    0x0d0ff3eb, // EVERT
+    0x0d0ff42c, // EVETS
+    0x0d10003c, // EVHOE
+    0x0d100428, // EVILS
+    0x0d100522, // EVITE
+    0x0d101d1c, // EVOHE
+    0x0d10804b, // EWERS
+    0x0d10806d, // EWEST
+    0x0d108caf, // EWHOW
+    0x0d109815, // EWKED
+    0x0d10fb03, // EXAMS
+    0x0d110a7c, // EXEAT
+    0x0d110abd, // EXECS
+    0x0d110af9, // EXEEM
+    0x0d110bf9, // EXEME
+    0x0d110fbd, // EXFIL
+    0x0d111c03, // EXIES
+    0x0d111d1e, // EXINE
+    0x0d111d20, // EXING
+    0x0d111df2, // EXITS
+    0x0d11355a, // EXODE
+    0x0d113683, // EXOME
+    0x0d1136b2, // EXONS
+    0x0d113947, // EXPAT
+    0x0d113b14, // EXPOS
+    0x0d114ee0, // EXUDE
+    0x0d114ff6, // EXULS
+    0x0d1150ab, // EXURB
+    0x0d11882a, // EYASS
+    0x0d11990d, // EYERS
+    0x0d11c3d9, // EYOTS
+    0x0d11ce29, // EYRAS
+    0x0d11cead, // EYRES
+    0x0d11cf23, // EYRIE
+    0x0d11cf30, // EYRIR
+    0x0d1235e0, // EZINE
+    0x0d1679a9, // FABBY
+    0x0d167e38, // FACED
+    0x0d167e46, // FACER
+    0x0d167e47, // FACES
+    0x0d167eb9, // FACIA
+    0x0d168024, // FACTA
+    0x0d168036, // FACTS
+    0x0d16826d, // FADDY
+    0x0d168279, // FADED
+    0x0d168287, // FADER
+    0x0d168288, // FADES
+    0x0d1682bc, // FADGE
+    0x0d1683d2, // FADOS
+    0x0d1687e0, // FAENA
+    0x0d16887c, // FAERY
+    0x0d168b2b, // FAFFS
+    0x0d168b31, // FAFFY
+    0x0d168fca, // FAGIN
+    0x0d169893, // FAIKS
+    0x0d1698b4, // FAILS
+    0x0d1698e8, // FAINE
+    0x0d1698f6, // FAINS
+    0x0d16997a, // FAIRS
+    0x0d16a040, // FAKED
+    0x0d16a04e, // FAKER
+    0x0d16a04f, // FAKES
+    0x0d16a055, // FAKEY
+    0x0d16a0c5, // FAKIE
+    0x0d16a0d2, // FAKIR
+    0x0d16a403, // FALAJ
+    0x0d16a577, // FALLS
+    0x0d16a8c2, // FAMED
+    0x0d16a8d1, // FAMES
+    0x0d16ac87, // FANAL
+    0x0d16acf1, // FANDS
+    0x0d16ad12, // FANES
+    0x0d16ad42, // FANGA
+    0x0d16ad50, // FANGO
+    0x0d16ad54, // FANGS
+    0x0d16add8, // FANKS
+    0x0d16ae57, // FANON
+    0x0d16ae5c, // FANOS
+    0x0d16af1c, // FANUM
+    0x0d16ba58, // FAQIR
+    0x0d16bd83, // FARAD
+    0x0d16bdca, // FARCI
+    0x0d16bdda, // FARCY
+    0x0d16bdf5, // FARDS
+    0x0d16be07, // FARED
+    0x0d16be15, // FARER
+    0x0d16be16, // FARES
+    0x0d16beef, // FARLE
+    0x0d16befd, // FARLS
+    0x0d16bf1e, // FARMS
+    0x0d16bf60, // FAROS
+    0x0d16bfbf, // FARRO
+    0x0d16bfd6, // FARSE
+    0x0d16c005, // FARTS
+    0x0d16c20b, // FASCI
+    0x0d16c43c, // FASTI
+    0x0d16c446, // FASTS
+    0x0d16c689, // FATED
+    0x0d16c698, // FATES
+    0x0d16c785, // FATLY
+    0x0d16c862, // FATSO
+    0x0d16c8d8, // FATWA
+    0x0d16cb10, // FAUGH
+    0x0d16cbb1, // FAULD
+    0x0d16cc02, // FAUNS
+    0x0d16cc77, // FAURD
+    0x0d16ccc8, // FAUTS
+    0x0d16ccfc, // FAUVE
+    0x0d16ce96, // FAVAS
+    0x0d16cf13, // FAVEL
+    0x0d16cf19, // FAVER
+    0x0d16cf1a, // FAVES
+    0x0d16d12a, // FAVUS
+    0x0d16d484, // FAWNS
+    0x0d16d48a, // FAWNY
+    0x0d16d78d, // FAXED
+    0x0d16d79c, // FAXES
+    0x0d16dbce, // FAYED
+    0x0d16dbdc, // FAYER
+    0x0d16dcf8, // FAYNE
+    0x0d16dd7c, // FAYRE
+    0x0d16e00f, // FAZED
+    0x0d16e01e, // FAZES
+    0x0d18a830, // FEALS
+    0x0d18a8e8, // FEARE
+    0x0d18a8f6, // FEARS
+    0x0d18a8f7, // FEART
+    0x0d18a909, // FEASE
+    0x0d18a938, // FEATS
+    0x0d18a9f0, // FEAZE
+    0x0d18afcb, // FECES
+    0x0d18b02f, // FECHT
+    0x0d18b050, // FECIT
+    0x0d18b091, // FECKS
+    0x0d18b411, // FEDEX
+    0x0d18b7ea, // FEEBS
+    0x0d18b82c, // FEEDS
+    0x0d18b934, // FEELS
+    0x0d18b976, // FEENS
+    0x0d18b9fa, // FEERS
+    0x0d18ba0d, // FEESE
+    0x0d18baf4, // FEEZE
+    0x0d18c60a, // FEHME
+    0x0d18ca7b, // FEINT
+    0x0d18cb20, // FEIST
+    0x0d18d5c7, // FELCH
+    0x0d18d689, // FELID
+    0x0d18d6fb, // FELLS
+    0x0d18d701, // FELLY
+    0x0d18d803, // FELTS
+    0x0d18d809, // FELTY
+    0x0d18d9ca, // FEMAL
+    0x0d18da55, // FEMES
+    0x0d18db63, // FEMMY
+    0x0d18de75, // FENDS
+    0x0d18de7b, // FENDY
+    0x0d18df1a, // FENIS
+    0x0d18df5c, // FENKS
+    0x0d18dfc5, // FENNY
+    0x0d18e085, // FENTS
+    0x0d18e2b6, // FEODS
+    0x0d18e2eb, // FEOFF
+    0x0d18ef99, // FERER
+    0x0d18ef9a, // FERES
+    0x0d18f00c, // FERIA
+    0x0d18f087, // FERLY
+    0x0d18f098, // FERMI
+    0x0d18f0a2, // FERMS
+    0x0d18f0c3, // FERNS
+    0x0d18f0c9, // FERNY
+    0x0d18f59b, // FESSE
+    0x0d18f5b8, // FESTA
+    0x0d18f5ca, // FESTS
+    0x0d18f5d0, // FESTY
+    0x0d18f798, // FETAS
+    0x0d18f80d, // FETED
+    0x0d18f81c, // FETES
+    0x0d18f965, // FETOR
+    0x0d18f9f9, // FETTA
+    0x0d18fa0b, // FETTS
+    0x0d18fa5c, // FETWA
+    0x0d18fbd8, // FEUAR
+    0x0d18fc3c, // FEUDS
+    0x0d18fc4e, // FEUED
+    0x0d190d52, // FEYED
+    0x0d190d60, // FEYER
+    0x0d190e4e, // FEYLY
+    0x0d1911a2, // FEZES
+    0x0d19145d, // FEZZY
+    0x0d1ada7a, // FIARS
+    0x0d1adabc, // FIATS
+    0x0d1adeb7, // FIBRO
+    0x0d1ae14f, // FICES
+    0x0d1ae1a4, // FICHE
+    0x0d1ae1b4, // FICHU
+    0x0d1ae1ce, // FICIN
+    0x0d1ae299, // FICOS
+    0x0d1ae590, // FIDES
+    0x0d1ae5c4, // FIDGE
+    0x0d1ae6da, // FIDOS
+    0x0d1ae9f2, // FIEFS
+    0x0d1aeafb, // FIENT
+    0x0d1aeb70, // FIERE
+    0x0d1aeb7e, // FIERS
+    0x0d1aeba0, // FIEST
+    0x0d1aee03, // FIFED
+    0x0d1aee11, // FIFER
+    0x0d1aee12, // FIFES
+    0x0d1aee96, // FIFIS
+    0x0d1af29b, // FIGGY
+    0x0d1af39d, // FIGOS
+    0x0d1b0348, // FIKED
+    0x0d1b0357, // FIKES
+    0x0d1b0713, // FILAR
+    0x0d1b074b, // FILCH
+    0x0d1b0789, // FILED
+    0x0d1b0798, // FILES
+    0x0d1b0812, // FILII
+    0x0d1b085e, // FILKS
+    0x0d1b0871, // FILLE
+    0x0d1b087b, // FILLO
+    0x0d1b087f, // FILLS
+    0x0d1b0896, // FILMI
+    0x0d1b08a0, // FILMS
+    0x0d1b08e2, // FILOS
+    0x0d1b09a2, // FILUM
+    0x0d1b0fc6, // FINCA
+    0x0d1b0ff9, // FINDS
+    0x0d1b100b, // FINED
+    0x0d1b101a, // FINES
+    0x0d1b109e, // FINIS
+    0x0d1b10e0, // FINKS
+    0x0d1b1149, // FINNY
+    0x0d1b1164, // FINOS
+    0x0d1b15f9, // FIORD
+    0x0d1b1d40, // FIQHS
+    0x0d1b1edf, // FIQUE
+    0x0d1b210f, // FIRED
+    0x0d1b211d, // FIRER
+    0x0d1b211e, // FIRES
+    0x0d1b2194, // FIRIE
+    0x0d1b21e4, // FIRKS
+    0x0d1b2226, // FIRMS
+    0x0d1b2247, // FIRNS
+    0x0d1b22d1, // FIRRY
+    0x0d1b2302, // FIRTH
+    0x0d1b251d, // FISCS
+    0x0d1b2625, // FISKS
+    0x0d1b274e, // FISTS
+    0x0d1b2754, // FISTY
+    0x0d1b2953, // FITCH
+    0x0d1b2a8d, // FITLY
+    0x0d1b2ab7, // FITNA
+    0x0d1b2b81, // FITTE
+    0x0d1b2b8f, // FITTS
+    0x0d1b3221, // FIVER
+    0x0d1b3222, // FIVES
+    0x0d1b3a95, // FIXED
+    0x0d1b3aa4, // FIXES
+    0x0d1b3b29, // FIXIT
+    0x0d1b770a, // FJELD
+    0x0d1c7d8d, // FLABS
+    0x0d1c7e04, // FLAFF
+    0x0d1c7e32, // FLAGS
+    0x0d1c7eb6, // FLAKS
+    0x0d1c7ef2, // FLAMM
+    0x0d1c7ef8, // FLAMS
+    0x0d1c7efe, // FLAMY
+    0x0d1c7f0b, // FLANE
+    0x0d1c7f19, // FLANS
+    0x0d1c7f5b, // FLAPS
+    0x0d1c7fa3, // FLARY
+    0x0d1c7fdf, // FLATS
+    0x0d1c800f, // FLAVA
+    0x0d1c803d, // FLAWN
+    0x0d1c8042, // FLAWS
+    0x0d1c8048, // FLAWY
+    0x0d1c8069, // FLAXY
+    0x0d1c8084, // FLAYS
+    0x0d1c8e6a, // FLEAM
+    0x0d1c8e70, // FLEAS
+    0x0d1c8eec, // FLEEK
+    0x0d1c8ef3, // FLEER
+    0x0d1c8ef4, // FLEES
+    0x0d1c8f36, // FLEGS
+    0x0d1c8fee, // FLEME
+    0x0d1c9103, // FLEUR
+    0x0d1c9146, // FLEWS
+    0x0d1c915d, // FLEXI
+    0x0d1c9163, // FLEXO
+    0x0d1c9188, // FLEYS
+    0x0d1c9fb6, // FLICS
+    0x0d1c9fe9, // FLIED
+    0x0d1c9ff8, // FLIES
+    0x0d1ca0fd, // FLIMP
+    0x0d1ca100, // FLIMS
+    0x0d1ca163, // FLIPS
+    0x0d1ca1a5, // FLIRS
+    0x0d1ca1be, // FLISK
+    0x0d1ca1d9, // FLITE
+    0x0d1ca1e7, // FLITS
+    0x0d1ca1e8, // FLITT
+    0x0d1cb91b, // FLOBS
+    0x0d1cb93c, // FLOCS
+    0x0d1cb97e, // FLOES
+    0x0d1cb9c0, // FLOGS
+    0x0d1cba9b, // FLONG
+    0x0d1cbae9, // FLOPS
+    0x0d1cbb2b, // FLORS
+    0x0d1cbb31, // FLORY
+    0x0d1cbb41, // FLOSH
+    0x0d1cbb5b, // FLOTA
+    0x0d1cbb5f, // FLOTE
+    0x0d1cbbd0, // FLOWS
+    0x0d1cd2a1, // FLUBS
+    0x0d1cd2f5, // FLUED
+    0x0d1cd304, // FLUES
+    0x0d1cd30a, // FLUEY
+    0x0d1cd3d0, // FLUKY
+    0x0d1cd409, // FLUMP
+    0x0d1cd44d, // FLUOR
+    0x0d1cd4b0, // FLURR
+    0x0d1cd4f9, // FLUTY
+    0x0d1cd599, // FLUYT
+    0x0d1ce3ab, // FLYBY
+    0x0d1ce565, // FLYPE
+    0x0d1ce5e9, // FLYTE
+    0x0d1e23fa, // FOALS
+    0x0d1e241b, // FOAMS
+    0x0d1e3475, // FOEHN
+    0x0d1e3c9f, // FOGEY
+    0x0d1e3d0f, // FOGIE
+    0x0d1e3d72, // FOGLE
+    0x0d1e3de5, // FOGOU
+    0x0d1e4203, // FOHNS
+    0x0d1e44fa, // FOIDS
+    0x0d1e4602, // FOILS
+    0x0d1e4644, // FOINS
+    0x0d1e51bd, // FOLDS
+    0x0d1e51e4, // FOLEY
+    0x0d1e5250, // FOLIA
+    0x0d1e5252, // FOLIC
+    0x0d1e5254, // FOLIE
+    0x0d1e52a4, // FOLKS
+    0x0d1e52aa, // FOLKY
+    0x0d1e561f, // FOMES
+    0x0d1e5a2d, // FONDA
+    0x0d1e5a3f, // FONDS
+    0x0d1e5a41, // FONDU
+    0x0d1e5a60, // FONES
+    0x0d1e5b4d, // FONLY
+    0x0d1e5c4f, // FONTS
+    0x0d1e5e80, // FOODS
+    0x0d1e5e86, // FOODY
+    0x0d1e5f88, // FOOLS
+    0x0d1e6090, // FOOTS
+    0x0d1e6096, // FOOTY
+    0x0d1e6ada, // FORAM
+    0x0d1e6b01, // FORBS
+    0x0d1e6b07, // FORBY
+    0x0d1e6b3f, // FORDO
+    0x0d1e6b43, // FORDS
+    0x0d1e6b5d, // FOREL
+    0x0d1e6b64, // FORES
+    0x0d1e6b69, // FOREX
+    0x0d1e6c2a, // FORKS
+    0x0d1e6c30, // FORKY
+    0x0d1e6c5e, // FORME
+    0x0d1e6c6c, // FORMS
+    0x0d1e6d53, // FORTS
+    0x0d1e6e07, // FORZA
+    0x0d1e6e0b, // FORZE
+    0x0d1e7161, // FOSSA
+    0x0d1e7165, // FOSSE
+    0x0d1e77a4, // FOUAT
+    0x0d1e7806, // FOUDS
+    0x0d1e7826, // FOUER
+    0x0d1e7828, // FOUET
+    0x0d1e7900, // FOULE
+    0x0d1e790e, // FOULS
+    0x0d1e7951, // FOUNT
+    0x0d1e79d4, // FOURS
+    0x0d1e7a0b, // FOUTH
+    0x0d1e7c56, // FOVEA
+    0x0d1e8190, // FOWLS
+    0x0d1e828d, // FOWTH
+    0x0d1e84db, // FOXED
+    0x0d1e84ea, // FOXES
+    0x0d1e8560, // FOXIE
+    0x0d1e8a04, // FOYLE
+    0x0d1e8a46, // FOYNE
+    0x0d1fc7d3, // FRABS
+    0x0d1fc7ec, // FRACK
+    0x0d1fc7f5, // FRACT
+    0x0d1fc878, // FRAGS
+    0x0d1fc8b4, // FRAIM
+    0x0d1fc94f, // FRANC
+    0x0d1fc993, // FRAPE
+    0x0d1fc9a1, // FRAPS
+    0x0d1fca04, // FRASS
+    0x0d1fca17, // FRATE
+    0x0d1fca1b, // FRATI
+    0x0d1fca25, // FRATS
+    0x0d1fca46, // FRAUS
+    0x0d1fcaca, // FRAYS
+    0x0d1fd93a, // FREES
+    0x0d1fd93b, // FREET
+    0x0d1fd9bf, // FREIT
+    0x0d1fda33, // FREMD
+    0x0d1fda51, // FRENA
+    0x0d1fda7f, // FREON
+    0x0d1fdad9, // FRERE
+    0x0d1fdb29, // FRETS
+    0x0d1fe9db, // FRIBS
+    0x0d1fea3d, // FRIER
+    0x0d1fea3e, // FRIES
+    0x0d1fea80, // FRIGS
+    0x0d1febfe, // FRISE
+    0x0d1fec0d, // FRIST
+    0x0d1fec22, // FRITH
+    0x0d1fec2d, // FRITS
+    0x0d1fec2e, // FRITT
+    0x0d1fece5, // FRIZE
+    0x0d1fecfa, // FRIZZ
+    0x0d2003c4, // FROES
+    0x0d200406, // FROGS
+    0x0d2004ed, // FRONS
+    0x0d200563, // FRORE
+    0x0d20056c, // FRORN
+    0x0d200577, // FRORY
+    0x0d200587, // FROSH
+    0x0d200616, // FROWS
+    0x0d20061c, // FROWY
+    0x0d201d8c, // FRUGS
+    0x0d201e4f, // FRUMP
+    0x0d201f0d, // FRUSH
+    0x0d201f19, // FRUST
+    0x0d202e4d, // FRYER
+    0x0d217115, // FUBAR
+    0x0d21713d, // FUBBY
+    0x0d21736e, // FUBSY
+    0x0d2176a1, // FUCKS
+    0x0d2177eb, // FUCUS
+    0x0d217a01, // FUDDY
+    0x0d217a64, // FUDGY
+    0x0d217f44, // FUELS
+    0x0d218006, // FUERO
+    0x0d2182bf, // FUFFS
+    0x0d2182c5, // FUFFY
+    0x0d218654, // FUGAL
+    0x0d218727, // FUGGY
+    0x0d218755, // FUGIE
+    0x0d21875f, // FUGIO
+    0x0d2187b8, // FUGLE
+    0x0d2187cc, // FUGLY
+    0x0d2188ef, // FUGUS
+    0x0d219426, // FUJIS
+    0x0d219d0b, // FULLS
+    0x0d21a056, // FUMED
+    0x0d21a064, // FUMER
+    0x0d21a065, // FUMES
+    0x0d21a066, // FUMET
+    0x0d21a47b, // FUNDI
+    0x0d21a485, // FUNDS
+    0x0d21a48b, // FUNDY
+    0x0d21a4e4, // FUNGO
+    0x0d21a4e8, // FUNGS
+    0x0d21a56c, // FUNKS
+    0x0d21b51f, // FURAL
+    0x0d21b521, // FURAN
+    0x0d21b556, // FURCA
+    0x0d21b691, // FURLS
+    0x0d21b6ed, // FUROL
+    0x0d21b757, // FURRS
+    0x0d21b78e, // FURTH
+    0x0d21b851, // FURZE
+    0x0d21b865, // FURZY
+    0x0d21b9dc, // FUSED
+    0x0d21b9dd, // FUSEE
+    0x0d21b9e4, // FUSEL
+    0x0d21b9eb, // FUSES
+    0x0d21ba68, // FUSIL
+    0x0d21bab1, // FUSKS
+    0x0d21bbda, // FUSTS
+    0x0d21bbe0, // FUSTY
+    0x0d21bf71, // FUTON
+    0x0d21d7a3, // FUZED
+    0x0d21d7a4, // FUZEE
+    0x0d21d7b2, // FUZES
+    0x0d21d82f, // FUZIL
+    0x0d23a75f, // FYCES
+    0x0d23c958, // FYKED
+    0x0d23c967, // FYKES
+    0x0d23cda8, // FYLES
+    0x0d23e70d, // FYRDS
+    0x0d23f191, // FYTTE
+    0x0d289212, // GABBA
+    0x0d28922a, // GABBY
+    0x0d289360, // GABLE
+    0x0d289ade, // GADDI
+    0x0d289b09, // GADES
+    0x0d289b3d, // GADGE
+    0x0d289b7e, // GADID
+    0x0d289b8d, // GADIS
+    0x0d289ba0, // GADJE
+    0x0d289baa, // GADJO
+    0x0d289cd3, // GADSO
+    0x0d28a3ac, // GAFFS
+    0x0d28a7bd, // GAGED
+    0x0d28a7cb, // GAGER
+    0x0d28a7cc, // GAGES
+    0x0d28b02d, // GAIDS
+    0x0d28b177, // GAINS
+    0x0d28b1fb, // GAIRS
+    0x0d28b22b, // GAITA
+    0x0d28b23d, // GAITS
+    0x0d28b23e, // GAITT
+    0x0d28b5d9, // GAJOS
+    0x0d28bc82, // GALAH
+    0x0d28bc8d, // GALAS
+    0x0d28bc92, // GALAX
+    0x0d28bcff, // GALEA
+    0x0d28bd02, // GALED
+    0x0d28bd11, // GALES
+    0x0d28bdf8, // GALLS
+    0x0d28bdfe, // GALLY
+    0x0d28be58, // GALOP
+    0x0d28bf22, // GALUT
+    0x0d28bf3e, // GALVO
+    0x0d28c0ce, // GAMAS
+    0x0d28c0d4, // GAMAY
+    0x0d28c0dd, // GAMBA
+    0x0d28c0e1, // GAMBE
+    0x0d28c0eb, // GAMBO
+    0x0d28c0ef, // GAMBS
+    0x0d28c143, // GAMED
+    0x0d28c152, // GAMES
+    0x0d28c158, // GAMEY
+    0x0d28c1c6, // GAMIC
+    0x0d28c1d1, // GAMIN
+    0x0d28c24c, // GAMME
+    0x0d28c260, // GAMMY
+    0x0d28c2bd, // GAMPS
+    0x0d28c546, // GANCH
+    0x0d28c578, // GANDY
+    0x0d28c586, // GANEF
+    0x0d28c596, // GANEV
+    0x0d28c5d5, // GANGS
+    0x0d28c626, // GANJA
+    0x0d28c6d0, // GANOF
+    0x0d28c782, // GANTS
+    0x0d28cabb, // GAOLS
+    0x0d28ce06, // GAPED
+    0x0d28ce14, // GAPER
+    0x0d28ce15, // GAPES
+    0x0d28cf5f, // GAPOS
+    0x0d28cf86, // GAPPY
+    0x0d28d626, // GARBE
+    0x0d28d630, // GARBO
+    0x0d28d634, // GARBS
+    0x0d28d664, // GARDA
+    0x0d28d697, // GARES
+    0x0d28d71b, // GARIS
+    0x0d28d79f, // GARMS
+    0x0d28d7b6, // GARNI
+    0x0d28d836, // GARRE
+    0x0d28d87b, // GARTH
+    0x0d28d8a1, // GARUM
+    0x0d28dad8, // GASES
+    0x0d28dc43, // GASPS
+    0x0d28dc49, // GASPY
+    0x0d28dcc7, // GASTS
+    0x0d28decc, // GATCH
+    0x0d28df0a, // GATED
+    0x0d28df18, // GATER
+    0x0d28df19, // GATES
+    0x0d28df7c, // GATHS
+    0x0d28e062, // GATOR
+    0x0d28e30d, // GAUCH
+    0x0d28e31e, // GAUCY
+    0x0d28e339, // GAUDS
+    0x0d28e3f1, // GAUJE
+    0x0d28e442, // GAULT
+    0x0d28e462, // GAUMS
+    0x0d28e468, // GAUMY
+    0x0d28e4c5, // GAUPS
+    0x0d28e507, // GAURS
+    0x0d28e528, // GAUSS
+    0x0d28e615, // GAUZY
+    0x0d28e8e6, // GAVOT
+    0x0d28eba0, // GAWCY
+    0x0d28ebbb, // GAWDS
+    0x0d28eca2, // GAWKS
+    0x0d28ed47, // GAWPS
+    0x0d28edb0, // GAWSY
+    0x0d28f3d3, // GAYAL
+    0x0d28f814, // GAZAL
+    0x0d28f81a, // GAZAR
+    0x0d28f890, // GAZED
+    0x0d28f89f, // GAZES
+    0x0d28f9e4, // GAZON
+    0x0d28f9e5, // GAZOO
+    0x0d2ac0b1, // GEALS
+    0x0d2ac0f3, // GEANS
+    0x0d2ac169, // GEARE
+    0x0d2ac177, // GEARS
+    0x0d2ac1b9, // GEATS
+    0x0d2ac61a, // GEBUR
+    0x0d2ac912, // GECKS
+    0x0d2ad194, // GEEKS
+    0x0d2ad239, // GEEPS
+    0x0d2ad29d, // GEEST
+    0x0d2ae3a1, // GEIST
+    0x0d2ae3c1, // GEITS
+    0x0d2aee74, // GELDS
+    0x0d2aee87, // GELEE
+    0x0d2aef0a, // GELID
+    0x0d2aef82, // GELLY
+    0x0d2af084, // GELTS
+    0x0d2af2cf, // GEMEL
+    0x0d2af3cc, // GEMMA
+    0x0d2af3e4, // GEMMY
+    0x0d2af421, // GEMOT
+    0x0d2af68c, // GENAL
+    0x0d2af693, // GENAS
+    0x0d2af717, // GENES
+    0x0d2af718, // GENET
+    0x0d2af78b, // GENIC
+    0x0d2af791, // GENII
+    0x0d2af798, // GENIP
+    0x0d2af846, // GENNY
+    0x0d2af84f, // GENOA
+    0x0d2af85b, // GENOM
+    0x0d2af8c0, // GENRO
+    0x0d2af906, // GENTS
+    0x0d2af90c, // GENTY
+    0x0d2af915, // GENUA
+    0x0d2af927, // GENUS
+    0x0d2afb29, // GEODE
+    0x0d2afbcd, // GEOID
+    0x0d2b078c, // GERAH
+    0x0d2b07aa, // GERBE
+    0x0d2b081b, // GERES
+    0x0d2b08f4, // GERLE
+    0x0d2b0923, // GERMS
+    0x0d2b0929, // GERMY
+    0x0d2b0936, // GERNE
+    0x0d2b0e1c, // GESSE
+    0x0d2b0e26, // GESSO
+    0x0d2b0e3d, // GESTE
+    0x0d2b0e4b, // GESTS
+    0x0d2b1019, // GETAS
+    0x0d2b12aa, // GETUP
+    0x0d2b15e6, // GEUMS
+    0x0d2b2559, // GEYAN
+    0x0d2b25e1, // GEYER
+    0x0d2c66bc, // GHAST
+    0x0d2c66dc, // GHATS
+    0x0d2c66fe, // GHAUT
+    0x0d2c6798, // GHAZI
+    0x0d2c75f1, // GHEES
+    0x0d2c77c0, // GHEST
+    0x0d2ccbe5, // GHYLL
+    0x0d2cf580, // GIBED
+    0x0d2cf588, // GIBEL
+    0x0d2cf58e, // GIBER
+    0x0d2cf58f, // GIBES
+    0x0d2cf66c, // GIBLI
+    0x0d2cf79f, // GIBUS
+    0x0d2d0882, // GIFTS
+    0x0d2d0a50, // GIGAS
+    0x0d2d0b29, // GIGHE
+    0x0d2d0c1f, // GIGOT
+    0x0d2d0cd6, // GIGUE
+    0x0d2d1f95, // GILAS
+    0x0d2d1ff8, // GILDS
+    0x0d2d201a, // GILET
+    0x0d2d2100, // GILLS
+    0x0d2d2106, // GILLY
+    0x0d2d218a, // GILPY
+    0x0d2d2208, // GILTS
+    0x0d2d2453, // GIMEL
+    0x0d2d2554, // GIMME
+    0x0d2d25c5, // GIMPS
+    0x0d2d25cb, // GIMPY
+    0x0d2d284e, // GINCH
+    0x0d2d28cf, // GINGE
+    0x0d2d28dd, // GINGS
+    0x0d2d2961, // GINKS
+    0x0d2d29ca, // GINNY
+    0x0d2d2b4c, // GINZO
+    0x0d2d3262, // GIPON
+    0x0d2d3284, // GIPPO
+    0x0d2d328e, // GIPPY
+    0x0d2d397e, // GIRDS
+    0x0d2d3a86, // GIRLS
+    0x0d2d3ac8, // GIRNS
+    0x0d2d3ae4, // GIRON
+    0x0d2d3ae9, // GIROS
+    0x0d2d3b4c, // GIRRS
+    0x0d2d3b62, // GIRSH
+    0x0d2d3b8e, // GIRTS
+    0x0d2d3ee4, // GISMO
+    0x0d2d3ee8, // GISMS
+    0x0d2d3fcf, // GISTS
+    0x0d2d41d4, // GITCH
+    0x0d2d4221, // GITES
+    0x0d2d4831, // GIUST
+    0x0d2d4a94, // GIVED
+    0x0d2d4aa3, // GIVES
+    0x0d2d5cab, // GIZMO
+    0x0d2e9621, // GLACE
+    0x0d2e9650, // GLADS
+    0x0d2e9656, // GLADY
+    0x0d2e96ed, // GLAIK
+    0x0d2e96f4, // GLAIR
+    0x0d2e9779, // GLAMS
+    0x0d2e979a, // GLANS
+    0x0d2e9824, // GLARY
+    0x0d2e987b, // GLAUM
+    0x0d2e9880, // GLAUR
+    0x0d2e992c, // GLAZY
+    0x0d2ea700, // GLEBA
+    0x0d2ea704, // GLEBE
+    0x0d2ea718, // GLEBY
+    0x0d2ea746, // GLEDE
+    0x0d2ea754, // GLEDS
+    0x0d2ea766, // GLEED
+    0x0d2ea76d, // GLEEK
+    0x0d2ea775, // GLEES
+    0x0d2ea776, // GLEET
+    0x0d2ea7f9, // GLEIS
+    0x0d2ea89e, // GLENS
+    0x0d2ea89f, // GLENT
+    0x0d2eaa09, // GLEYS
+    0x0d2eb7ee, // GLIAL
+    0x0d2eb7f5, // GLIAS
+    0x0d2eb816, // GLIBS
+    0x0d2eb88d, // GLIFF
+    0x0d2eb89b, // GLIFT
+    0x0d2eb931, // GLIKE
+    0x0d2eb973, // GLIME
+    0x0d2eb981, // GLIMS
+    0x0d2eba3f, // GLISK
+    0x0d2eba68, // GLITS
+    0x0d2eba6f, // GLITZ
+    0x0d2ed175, // GLOAM
+    0x0d2ed192, // GLOBI
+    0x0d2ed19c, // GLOBS
+    0x0d2ed1a2, // GLOBY
+    0x0d2ed1d0, // GLODE
+    0x0d2ed235, // GLOGG
+    0x0d2ed307, // GLOMS
+    0x0d2ed346, // GLOOP
+    0x0d2ed36a, // GLOPS
+    0x0d2ed3ce, // GLOST
+    0x0d2ed410, // GLOUT
+    0x0d2ed451, // GLOWS
+    0x0d2ed4a6, // GLOZE
+    0x0d2eeb76, // GLUED
+    0x0d2eeb84, // GLUER
+    0x0d2eeb85, // GLUES
+    0x0d2eeb8b, // GLUEY
+    0x0d2eebc7, // GLUGS
+    0x0d2eec7f, // GLUME
+    0x0d2eec8d, // GLUMS
+    0x0d2eecca, // GLUON
+    0x0d2eed66, // GLUTE
+    0x0d2eed74, // GLUTS
+    0x0d2fb0d9, // GNARL
+    0x0d2fb0df, // GNARR
+    0x0d2fb0e0, // GNARS
+    0x0d2fb122, // GNATS
+    0x0d2fb180, // GNAWN
+    0x0d2fb185, // GNAWS
+    0x0d2fed13, // GNOWS
+    0x0d303b73, // GOADS
+    0x0d303bb5, // GOAFS
+    0x0d303c7b, // GOALS
+    0x0d303d47, // GOARY
+    0x0d303d83, // GOATS
+    0x0d303d89, // GOATY
+    0x0d303f4c, // GOBAN
+    0x0d303f50, // GOBAR
+    0x0d303f68, // GOBBI
+    0x0d303f6e, // GOBBO
+    0x0d303f78, // GOBBY
+    0x0d304059, // GOBIS
+    0x0d30411f, // GOBOS
+    0x0d304858, // GODET
+    0x0d304a21, // GODSO
+    0x0d304d7f, // GOELS
+    0x0d304e45, // GOERS
+    0x0d304e67, // GOEST
+    0x0d304e7c, // GOETH
+    0x0d304e8d, // GOETY
+    0x0d3050d8, // GOFER
+    0x0d3050fa, // GOFFS
+    0x0d30554a, // GOGGA
+    0x0d305664, // GOGOS
+    0x0d305d9b, // GOIER
+    0x0d306261, // GOJIS
+    0x0d306a3e, // GOLDS
+    0x0d306a44, // GOLDY
+    0x0d306a5f, // GOLES
+    0x0d306a80, // GOLFS
+    0x0d306bbc, // GOLPE
+    0x0d306bca, // GOLPS
+    0x0d306e39, // GOMBO
+    0x0d306e9f, // GOMER
+    0x0d306ff9, // GOMPA
+    0x0d307294, // GONCH
+    0x0d3072d4, // GONEF
+    0x0d307323, // GONGS
+    0x0d307353, // GONIA
+    0x0d307358, // GONIF
+    0x0d3073a7, // GONKS
+    0x0d3073f8, // GONNA
+    0x0d30741e, // GONOF
+    0x0d307575, // GONYS
+    0x0d307592, // GONZO
+    0x0d3076c5, // GOOBY
+    0x0d307701, // GOODS
+    0x0d307743, // GOOFS
+    0x0d307764, // GOOGS
+    0x0d3077ee, // GOOKY
+    0x0d3077fa, // GOOLD
+    0x0d307809, // GOOLS
+    0x0d30780f, // GOOLY
+    0x0d30784b, // GOONS
+    0x0d307851, // GOONY
+    0x0d30788d, // GOOPS
+    0x0d307893, // GOOPY
+    0x0d3078cf, // GOORS
+    0x0d3078d5, // GOORY
+    0x0d3078f6, // GOOSY
+    0x0d307ad7, // GOPAK
+    0x0d307bdf, // GOPIK
+    0x0d30835a, // GORAL
+    0x0d308361, // GORAS
+    0x0d3083d6, // GORED
+    0x0d3083e5, // GORES
+    0x0d308469, // GORIS
+    0x0d3084ed, // GORMS
+    0x0d3084f3, // GORMY
+    0x0d308550, // GORPS
+    0x0d3085a5, // GORSE
+    0x0d3085b9, // GORSY
+    0x0d30888a, // GOSHT
+    0x0d3089e6, // GOSSE
+    0x0d308c1a, // GOTCH
+    0x0d308cca, // GOTHS
+    0x0d308cd0, // GOTHY
+    0x0d308e44, // GOTTA
+    0x0d30905b, // GOUCH
+    0x0d30916e, // GOUKS
+    0x0d309243, // GOURA
+    0x0d309297, // GOUTS
+    0x0d30929d, // GOUTY
+    0x0d3098a1, // GOWAN
+    0x0d309909, // GOWDS
+    0x0d30994b, // GOWFS
+    0x0d3099f0, // GOWKS
+    0x0d309a11, // GOWLS
+    0x0d309a53, // GOWNS
+    0x0d309d6b, // GOXES
+    0x0d30a22a, // GOYIM
+    0x0d30a285, // GOYLE
+    0x0d31e02c, // GRAAL
+    0x0d31e054, // GRABS
+    0x0d31e096, // GRADS
+    0x0d31e0cb, // GRAFF
+    0x0d31e138, // GRAIP
+    0x0d31e1ad, // GRAMA
+    0x0d31e1b1, // GRAME
+    0x0d31e1bc, // GRAMP
+    0x0d31e1bf, // GRAMS
+    0x0d31e1ce, // GRANA
+    0x0d31e1e0, // GRANS
+    0x0d31e228, // GRAPY
+    0x0d31e2e8, // GRAVS
+    0x0d31e34b, // GRAYS
+    0x0d31f14a, // GREBE
+    0x0d31f154, // GREBO
+    0x0d31f16b, // GRECE
+    0x0d31f1b3, // GREEK
+    0x0d31f1bb, // GREES
+    0x0d31f1ef, // GREGE
+    0x0d31f1f9, // GREGO
+    0x0d31f23a, // GREIN
+    0x0d31f2e4, // GRENS
+    0x0d31f37b, // GRESE
+    0x0d31f3de, // GREVE
+    0x0d31f40d, // GREWS
+    0x0d31f44f, // GREYS
+    0x0d32026f, // GRICE
+    0x0d320290, // GRIDE
+    0x0d32029e, // GRIDS
+    0x0d3202d3, // GRIFF
+    0x0d3202e1, // GRIFT
+    0x0d320301, // GRIGS
+    0x0d320377, // GRIKE
+    0x0d3203e8, // GRINS
+    0x0d32040a, // GRIOT
+    0x0d32042a, // GRIPS
+    0x0d32042b, // GRIPT
+    0x0d320430, // GRIPY
+    0x0d32047f, // GRISE
+    0x0d32048e, // GRIST
+    0x0d320493, // GRISY
+    0x0d3204a3, // GRITH
+    0x0d3204ae, // GRITS
+    0x0d320566, // GRIZE
+    0x0d321bc2, // GROAT
+    0x0d321c2a, // GRODY
+    0x0d321c87, // GROGS
+    0x0d321d0b, // GROKS
+    0x0d321d3b, // GROMA
+    0x0d321d60, // GRONE
+    0x0d321d82, // GROOF
+    0x0d321e1a, // GROSZ
+    0x0d321e34, // GROTS
+    0x0d321e48, // GROUF
+    0x0d321e7c, // GROVY
+    0x0d321e97, // GROWS
+    0x0d3229ef, // GRRLS
+    0x0d322aae, // GRRRL
+    0x0d323568, // GRUBS
+    0x0d3235bc, // GRUED
+    0x0d3235cb, // GRUES
+    0x0d3235de, // GRUFE
+    0x0d3236c5, // GRUME
+    0x0d3236d0, // GRUMP
+    0x0d3236e5, // GRUND
+    0x0d32467f, // GRYCE
+    0x0d3246a0, // GRYDE
+    0x0d324787, // GRYKE
+    0x0d32482c, // GRYPE
+    0x0d32483b, // GRYPT
+    0x0d338594, // GUACO
+    0x0d3386f1, // GUANA
+    0x0d3386ff, // GUANO
+    0x0d338703, // GUANS
+    0x0d338787, // GUARS
+    0x0d338f22, // GUCKS
+    0x0d338f28, // GUCKY
+    0x0d33929d, // GUDES
+    0x0d339b40, // GUFFS
+    0x0d339edc, // GUGAS
+    0x0d33a7c1, // GUIDS
+    0x0d33a8e7, // GUIMP
+    0x0d33a98b, // GUIRO
+    0x0d33b415, // GULAG
+    0x0d33b420, // GULAR
+    0x0d33b421, // GULAS
+    0x0d33b4a5, // GULES
+    0x0d33b4a6, // GULET
+    0x0d33b4c6, // GULFS
+    0x0d33b4cc, // GULFY
+    0x0d33b58c, // GULLS
+    0x0d33b605, // GULPH
+    0x0d33b610, // GULPS
+    0x0d33b616, // GULPY
+    0x0d33b9dc, // GUMMA
+    0x0d33b9e4, // GUMMI
+    0x0d33ba51, // GUMPS
+    0x0d33bd0c, // GUNDY
+    0x0d33bd5b, // GUNGE
+    0x0d33bd6f, // GUNGY
+    0x0d33bded, // GUNKS
+    0x0d33bdf3, // GUNKY
+    0x0d33be56, // GUNNY
+    0x0d33ca69, // GUQIN
+    0x0d33ce10, // GURDY
+    0x0d33ce5f, // GURGE
+    0x0d33cf12, // GURLS
+    0x0d33cf18, // GURLY
+    0x0d33cf54, // GURNS
+    0x0d33cfde, // GURRY
+    0x0d33cfee, // GURSH
+    0x0d33d03b, // GURUS
+    0x0d33d2d5, // GUSHY
+    0x0d33d341, // GUSLA
+    0x0d33d345, // GUSLE
+    0x0d33d349, // GUSLI
+    0x0d33d440, // GUSSY
+    0x0d33d45b, // GUSTS
+    0x0d33d881, // GUTSY
+    0x0d33d88a, // GUTTA
+    0x0d33d8a2, // GUTTY
+    0x0d33ebe3, // GUYED
+    0x0d33eccb, // GUYLE
+    0x0d33ed3d, // GUYOT
+    0x0d33edb2, // GUYSE
+    0x0d34c1bf, // GWINE
+    0x0d35b845, // GYALS
+    0x0d35b887, // GYANS
+    0x0d35bb90, // GYBED
+    0x0d35bb9f, // GYBES
+    0x0d35c93a, // GYELD
+    0x0d35ebd5, // GYMPS
+    0x0d35ee19, // GYNAE
+    0x0d35ef21, // GYNIE
+    0x0d35efda, // GYNNY
+    0x0d35eff5, // GYNOS
+    0x0d35f58f, // GYOZA
+    0x0d35f877, // GYPOS
+    0x0d35f894, // GYPPO
+    0x0d35f89e, // GYPPY
+    0x0d35ff24, // GYRAL
+    0x0d35ffa0, // GYRED
+    0x0d35ffaf, // GYRES
+    0x0d3600f4, // GYRON
+    0x0d3600f9, // GYROS
+    0x0d3601bf, // GYRUS
+    0x0d360831, // GYTES
+    0x0d3610a4, // GYVED
+    0x0d3610b3, // GYVES
+    0x0d3aa6e8, // HAAFS
+    0x0d3aa874, // HAARS
+    0x0d3aabe1, // HABLE
+    0x0d3aad18, // HABUS
+    0x0d3aaf41, // HACEK
+    0x0d3ab00f, // HACKS
+    0x0d3ab2ff, // HADAL
+    0x0d3ab37b, // HADED
+    0x0d3ab38a, // HADES
+    0x0d3ab425, // HADJI
+    0x0d3ab559, // HADST
+    0x0d3ab8d3, // HAEMS
+    0x0d3ab9ba, // HAETS
+    0x0d3abc2d, // HAFFS
+    0x0d3abc97, // HAFIZ
+    0x0d3abdfb, // HAFTS
+    0x0d3ac08f, // HAGGS
+    0x0d3ac40a, // HAHAS
+    0x0d3ac885, // HAICK
+    0x0d3ac983, // HAIKA
+    0x0d3ac995, // HAIKS
+    0x0d3ac997, // HAIKU
+    0x0d3ac9b6, // HAILS
+    0x0d3ac9bc, // HAILY
+    0x0d3ac9f8, // HAINS
+    0x0d3ac9f9, // HAINT
+    0x0d3aca7c, // HAIRS
+    0x0d3acab3, // HAITH
+    0x0d3acd10, // HAJES
+    0x0d3acd94, // HAJIS
+    0x0d3acdab, // HAJJI
+    0x0d3ad0c7, // HAKAM
+    0x0d3ad0cd, // HAKAS
+    0x0d3ad13f, // HAKEA
+    0x0d3ad151, // HAKES
+    0x0d3ad1cf, // HAKIM
+    0x0d3ad361, // HAKUS
+    0x0d3ad507, // HALAL
+    0x0d3ad583, // HALED
+    0x0d3ad591, // HALER
+    0x0d3ad592, // HALES
+    0x0d3ad5a1, // HALFA
+    0x0d3ad5b3, // HALFS
+    0x0d3ad607, // HALID
+    0x0d3ad675, // HALLO
+    0x0d3ad679, // HALLS
+    0x0d3ad688, // HALMA
+    0x0d3ad69a, // HALMS
+    0x0d3ad6d7, // HALON
+    0x0d3ad6dc, // HALOS
+    0x0d3ad752, // HALSE
+    0x0d3ad781, // HALTS
+    0x0d3ad7b1, // HALVA
+    0x0d3ad7d2, // HALWA
+    0x0d3ad948, // HAMAL
+    0x0d3ad95e, // HAMBA
+    0x0d3ad9c4, // HAMED
+    0x0d3ad9d3, // HAMES
+    0x0d3adae1, // HAMMY
+    0x0d3adc76, // HAMZA
+    0x0d3add8d, // HANAP
+    0x0d3addc4, // HANCE
+    0x0d3addc7, // HANCH
+    0x0d3addf3, // HANDS
+    0x0d3ade4c, // HANGI
+    0x0d3ade56, // HANGS
+    0x0d3adeda, // HANKS
+    0x0d3adee0, // HANKY
+    0x0d3adfd0, // HANSA
+    0x0d3adfd4, // HANSE
+    0x0d3ae003, // HANTS
+    0x0d3ae32e, // HAOLE
+    0x0d3ae34b, // HAOMA
+    0x0d3ae617, // HAPAX
+    0x0d3ae783, // HAPLY
+    0x0d3ae7f7, // HAPPI
+    0x0d3ae8a6, // HAPUS
+    0x0d3aee8e, // HARAM
+    0x0d3aeef7, // HARDS
+    0x0d3aef09, // HARED
+    0x0d3aef18, // HARES
+    0x0d3aef96, // HARIM
+    0x0d3aefde, // HARKS
+    0x0d3aefff, // HARLS
+    0x0d3af020, // HARMS
+    0x0d3af041, // HARNS
+    0x0d3af062, // HAROS
+    0x0d3af083, // HARPS
+    0x0d3af107, // HARTS
+    0x0d3af3c2, // HASHY
+    0x0d3af41f, // HASKS
+    0x0d3af4c4, // HASPS
+    0x0d3af536, // HASTA
+    0x0d3af78b, // HATED
+    0x0d3af79a, // HATES
+    0x0d3af7eb, // HATHA
+    0x0d3afbba, // HAUDS
+    0x0d3afbfc, // HAUFS
+    0x0d3afc12, // HAUGH
+    0x0d3afcb3, // HAULD
+    0x0d3afcbc, // HAULM
+    0x0d3afcc2, // HAULS
+    0x0d3afcc3, // HAULT
+    0x0d3afd04, // HAUNS
+    0x0d3afd9b, // HAUSE
+    0x0d3b001b, // HAVER
+    0x0d3b001c, // HAVES
+    0x0d3b044e, // HAWED
+    0x0d3b0523, // HAWKS
+    0x0d3b0565, // HAWMS
+    0x0d3b061d, // HAWSE
+    0x0d3b0cd0, // HAYED
+    0x0d3b0cde, // HAYER
+    0x0d3b0ce5, // HAYEY
+    0x0d3b0db8, // HAYLE
+    0x0d3b1097, // HAZAN
+    0x0d3b1111, // HAZED
+    0x0d3b111f, // HAZER
+    0x0d3b1120, // HAZES
+    0x0d3cd82a, // HEADS
+    0x0d3cd923, // HEALD
+    0x0d3cd932, // HEALS
+    0x0d3cd945, // HEAME
+    0x0d3cd9b6, // HEAPS
+    0x0d3cd9bc, // HEAPY
+    0x0d3cd9ea, // HEARE
+    0x0d3cd9f8, // HEARS
+    0x0d3cda1a, // HEAST
+    0x0d3cda3a, // HEATS
+    0x0d3cdc87, // HEBEN
+    0x0d3cdc8c, // HEBES
+    0x0d3ce131, // HECHT
+    0x0d3ce193, // HECKS
+    0x0d3ce50d, // HEDER
+    0x0d3ce556, // HEDGY
+    0x0d3ce92e, // HEEDS
+    0x0d3ce934, // HEEDY
+    0x0d3cea36, // HEELS
+    0x0d3cebf6, // HEEZE
+    0x0d3cef71, // HEFTE
+    0x0d3cef7f, // HEFTS
+    0x0d3cfa32, // HEIDS
+    0x0d3cfa8a, // HEIGH
+    0x0d3cfb3a, // HEILS
+    0x0d3cfc00, // HEIRS
+    0x0d3cfdff, // HEJAB
+    0x0d3d002f, // HEJRA
+    0x0d3d0707, // HELED
+    0x0d3d0716, // HELES
+    0x0d3d0796, // HELIO
+    0x0d3d07fd, // HELLS
+    0x0d3d081e, // HELMS
+    0x0d3d0860, // HELOS
+    0x0d3d0861, // HELOT
+    0x0d3d0881, // HELPS
+    0x0d3d0939, // HELVE
+    0x0d3d0acc, // HEMAL
+    0x0d3d0b57, // HEMES
+    0x0d3d0bcb, // HEMIC
+    0x0d3d0bd6, // HEMIN
+    0x0d3d0cc2, // HEMPS
+    0x0d3d0cc8, // HEMPY
+    0x0d3d0f4b, // HENCH
+    0x0d3d0f77, // HENDS
+    0x0d3d0fcc, // HENGE
+    0x0d3d10af, // HENNA
+    0x0d3d10c7, // HENNY
+    0x0d3d114b, // HENRY
+    0x0d3d1187, // HENTS
+    0x0d3d1795, // HEPAR
+    0x0d3d2039, // HERBS
+    0x0d3d203f, // HERBY
+    0x0d3d207b, // HERDS
+    0x0d3d209c, // HERES
+    0x0d3d2183, // HERLS
+    0x0d3d2192, // HERMA
+    0x0d3d21a4, // HERMS
+    0x0d3d21c5, // HERNS
+    0x0d3d21e6, // HEROS
+    0x0d3d224f, // HERRY
+    0x0d3d225c, // HERSE
+    0x0d3d2292, // HERTZ
+    0x0d3d2322, // HERYE
+    0x0d3d2648, // HESPS
+    0x0d3d26cc, // HESTS
+    0x0d3d291e, // HETES
+    0x0d3d2981, // HETHS
+    0x0d3d2d12, // HEUCH
+    0x0d3d2d96, // HEUGH
+    0x0d3d318e, // HEVEA
+    0x0d3d35d2, // HEWED
+    0x0d3d35e0, // HEWER
+    0x0d3d3618, // HEWGH
+    0x0d3d398f, // HEXAD
+    0x0d3d3a13, // HEXED
+    0x0d3d3a21, // HEXER
+    0x0d3d3a22, // HEXES
+    0x0d3d3caf, // HEXYL
+    0x0d3d3e54, // HEYED
+    0x0d3f0af9, // HIANT
+    0x0d3f1317, // HICKS
+    0x0d3f1683, // HIDED
+    0x0d3f1691, // HIDER
+    0x0d3f1692, // HIDES
+    0x0d3f1bdb, // HIEMS
+    0x0d3f23b8, // HIGHS
+    0x0d3f23b9, // HIGHT
+    0x0d3f2f83, // HIJAB
+    0x0d3f31b3, // HIJRA
+    0x0d3f344a, // HIKED
+    0x0d3f3458, // HIKER
+    0x0d3f3459, // HIKES
+    0x0d3f3599, // HIKOI
+    0x0d3f3815, // HILAR
+    0x0d3f384d, // HILCH
+    0x0d3f397d, // HILLO
+    0x0d3f3981, // HILLS
+    0x0d3f3a89, // HILTS
+    0x0d3f3aa4, // HILUM
+    0x0d3f3aaa, // HILUS
+    0x0d3f3c74, // HIMBO
+    0x0d3f409a, // HINAU
+    0x0d3f40fb, // HINDS
+    0x0d3f415e, // HINGS
+    0x0d3f41e8, // HINKY
+    0x0d3f424b, // HINNY
+    0x0d3f430b, // HINTS
+    0x0d3f45e1, // HIOIS
+    0x0d3f4a8b, // HIPLY
+    0x0d3f5211, // HIRED
+    0x0d3f5212, // HIREE
+    0x0d3f521f, // HIRER
+    0x0d3f5220, // HIRES
+    0x0d3f5835, // HISSY
+    0x0d3f5850, // HISTS
+    0x0d3f5af7, // HITHE
+    0x0d3f6315, // HIVED
+    0x0d3f6323, // HIVER
+    0x0d3f6324, // HIVES
+    0x0d3f7423, // HIZEN
+    0x0d425406, // HOAED
+    0x0d42545d, // HOAGY
+    0x0d4255c2, // HOARS
+    0x0d4255c8, // HOARY
+    0x0d4255e4, // HOAST
+    0x0d4259a0, // HOBOS
+    0x0d425d5d, // HOCKS
+    0x0d425ea7, // HOCUS
+    0x0d426045, // HODAD
+    0x0d42616b, // HODJA
+    0x0d4266c6, // HOERS
+    0x0d426d12, // HOGAN
+    0x0d426d96, // HOGEN
+    0x0d426ddd, // HOGGS
+    0x0d426dfe, // HOGHS
+    0x0d4271cd, // HOHED
+    0x0d4275d3, // HOICK
+    0x0d42760e, // HOIED
+    0x0d4276e3, // HOIKS
+    0x0d42773a, // HOING
+    0x0d4277dd, // HOISE
+    0x0d427e1b, // HOKAS
+    0x0d427e90, // HOKED
+    0x0d427e9f, // HOKES
+    0x0d427ea5, // HOKEY
+    0x0d427f23, // HOKIS
+    0x0d427f67, // HOKKU
+    0x0d4280a9, // HOKUM
+    0x0d4282bf, // HOLDS
+    0x0d4282d1, // HOLED
+    0x0d4282e0, // HOLES
+    0x0d4282e6, // HOLEY
+    0x0d4283a6, // HOLKS
+    0x0d4283b5, // HOLLA
+    0x0d4283c3, // HOLLO
+    0x0d4283da, // HOLME
+    0x0d4283e8, // HOLMS
+    0x0d428425, // HOLON
+    0x0d42842a, // HOLOS
+    0x0d4284cf, // HOLTS
+    0x0d42869d, // HOMAS
+    0x0d428712, // HOMED
+    0x0d428721, // HOMES
+    0x0d428727, // HOMEY
+    0x0d428797, // HOMIE
+    0x0d42881b, // HOMME
+    0x0d428ad9, // HONAN
+    0x0d428b2f, // HONDA
+    0x0d428b41, // HONDS
+    0x0d428b53, // HONED
+    0x0d428b61, // HONER
+    0x0d428b62, // HONES
+    0x0d428b9a, // HONGI
+    0x0d428ba4, // HONGS
+    0x0d428c28, // HONKS
+    0x0d428c2e, // HONKY
+    0x0d428f56, // HOOCH
+    0x0d428f82, // HOODS
+    0x0d428f88, // HOODY
+    0x0d428fa9, // HOOEY
+    0x0d428fc4, // HOOFS
+    0x0d429057, // HOOKA
+    0x0d429069, // HOOKS
+    0x0d42906f, // HOOKY
+    0x0d429090, // HOOLY
+    0x0d4290cc, // HOONS
+    0x0d42910e, // HOOPS
+    0x0d429141, // HOORD
+    0x0d429150, // HOORS
+    0x0d429166, // HOOSH
+    0x0d429192, // HOOTS
+    0x0d429198, // HOOTY
+    0x0d4291c6, // HOOVE
+    0x0d429358, // HOPAK
+    0x0d4293d5, // HOPED
+    0x0d4293e3, // HOPER
+    0x0d4293e4, // HOPES
+    0x0d429555, // HOPPY
+    0x0d429bd7, // HORAH
+    0x0d429bdb, // HORAL
+    0x0d429be2, // HORAS
+    0x0d429cea, // HORIS
+    0x0d429d2c, // HORKS
+    0x0d429d60, // HORME
+    0x0d429d8f, // HORNS
+    0x0d429e35, // HORST
+    0x0d429e3a, // HORSY
+    0x0d42a098, // HOSED
+    0x0d42a0a0, // HOSEL
+    0x0d42a0a2, // HOSEN
+    0x0d42a0a6, // HOSER
+    0x0d42a0a7, // HOSES
+    0x0d42a0ad, // HOSEY
+    0x0d42a284, // HOSTA
+    0x0d42a296, // HOSTS
+    0x0d42a49b, // HOTCH
+    0x0d42a4e3, // HOTEN
+    0x0d42a6dd, // HOTTY
+    0x0d42a93d, // HOUFF
+    0x0d42a94a, // HOUFS
+    0x0d42a960, // HOUGH
+    0x0d42aacc, // HOURI
+    0x0d42aad6, // HOURS
+    0x0d42ab18, // HOUTS
+    0x0d42ad58, // HOVEA
+    0x0d42ad5b, // HOVED
+    0x0d42ad65, // HOVEN
+    0x0d42ad6a, // HOVES
+    0x0d42b13a, // HOWBE
+    0x0d42b1ab, // HOWES
+    0x0d42b1bf, // HOWFF
+    0x0d42b1cc, // HOWFS
+    0x0d42b271, // HOWKS
+    0x0d42b292, // HOWLS
+    0x0d42b34a, // HOWRE
+    0x0d42b375, // HOWSO
+    0x0d42b5dd, // HOXED
+    0x0d42b5ec, // HOXES
+    0x0d42b9a9, // HOYAS
+    0x0d42ba1e, // HOYED
+    0x0d42bb06, // HOYLE
+    0x0d45a23f, // HUBBY
+    0x0d45a7a3, // HUCKS
+    0x0d45ac35, // HUDNA
+    0x0d45ad1f, // HUDUD
+    0x0d45b10c, // HUERS
+    0x0d45b3c1, // HUFFS
+    0x0d45b3c7, // HUFFY
+    0x0d45b7e0, // HUGER
+    0x0d45b829, // HUGGY
+    0x0d45be32, // HUHUS
+    0x0d45bfdf, // HUIAS
+    0x0d45cca2, // HULAS
+    0x0d45cd26, // HULES
+    0x0d45cdec, // HULKS
+    0x0d45cdf2, // HULKY
+    0x0d45ce09, // HULLO
+    0x0d45ce0d, // HULLS
+    0x0d45ce13, // HULLY
+    0x0d45d0e3, // HUMAS
+    0x0d45d188, // HUMFS
+    0x0d45d1db, // HUMIC
+    0x0d45d2d2, // HUMPS
+    0x0d45d2d8, // HUMPY
+    0x0d45d66e, // HUNKS
+    0x0d45d797, // HUNTS
+    0x0d45e68b, // HURDS
+    0x0d45e793, // HURLS
+    0x0d45e799, // HURLY
+    0x0d45e847, // HURRA
+    0x0d45e87b, // HURST
+    0x0d45e89b, // HURTS
+    0x0d45eb56, // HUSHY
+    0x0d45ebb3, // HUSKS
+    0x0d45ec37, // HUSOS
+    0x0d45efa0, // HUTIA
+    0x0d460b57, // HUZZA
+    0x0d460b6f, // HUZZY
+    0x0d471e1c, // HWYLS
+    0x0d47de3d, // HYDRA
+    0x0d47e20c, // HYENS
+    0x0d47e999, // HYGGE
+    0x0d47f304, // HYING
+    0x0d47fa69, // HYKES
+    0x0d47fe26, // HYLAS
+    0x0d47fe9e, // HYLEG
+    0x0d47feaa, // HYLES
+    0x0d47ff1e, // HYLIC
+    0x0d480414, // HYMNS
+    0x0d4806fd, // HYNDE
+    0x0d480be2, // HYOID
+    0x0d480f9f, // HYPED
+    0x0d480fae, // HYPES
+    0x0d480fff, // HYPHA
+    0x0d481017, // HYPHY
+    0x0d4810f8, // HYPOS
+    0x0d4817b1, // HYRAX
+    0x0d481db6, // HYSON
+    0x0d482107, // HYTHE
+    0x0d4cf1e7, // IAMBI
+    0x0d4cf1f1, // IAMBS
+    0x0d4d9476, // IBRIK
+    0x0d4deabb, // ICERS
+    0x0d4df5c2, // ICHED
+    0x0d4df5d1, // ICHES
+    0x0d4df71a, // ICHOR
+    0x0d4dfa11, // ICIER
+    0x0d4e0293, // ICKER
+    0x0d4e036d, // ICKLE
+    0x0d4e14c1, // ICONS
+    0x0d4e2852, // ICTAL
+    0x0d4e2951, // ICTIC
+    0x0d4e2aed, // ICTUS
+    0x0d4e6595, // IDANT
+    0x0d4e74eb, // IDEAS
+    0x0d4e756f, // IDEES
+    0x0d4e7699, // IDENT
+    0x0d4e9327, // IDLED
+    0x0d4e9336, // IDLES
+    0x0d4ea0ce, // IDOLA
+    0x0d4ea0e0, // IDOLS
+    0x0d4ecb6a, // IDYLS
+    0x0d4fcd7b, // IFTAR
+    0x0d500af5, // IGAPO
+    0x0d502305, // IGGED
+    0x0d503a69, // IGLUS
+    0x0d50ddb6, // IHRAM
+    0x0d523c3b, // IKANS
+    0x0d523d01, // IKATS
+    0x0d5277c9, // IKONS
+    0x0d52d7e3, // ILEAC
+    0x0d52d7ec, // ILEAL
+    0x0d52da81, // ILEUM
+    0x0d52da87, // ILEUS
+    0x0d52e8e8, // ILIAD
+    0x0d52e8f0, // ILIAL
+    0x0d52eb85, // ILIUM
+    0x0d52f63d, // ILLER
+    0x0d52f822, // ILLTH
+    0x0d535412, // IMAGO
+    0x0d5354dc, // IMAMS
+    0x0d535577, // IMARI
+    0x0d5355de, // IMAUM
+    0x0d535790, // IMBAR
+    0x0d535806, // IMBED
+    0x0d5375ad, // IMIDE
+    0x0d5375b7, // IMIDO
+    0x0d5375bb, // IMIDS
+    0x0d5376f7, // IMINE
+    0x0d537701, // IMINO
+    0x0d5386e4, // IMMEW
+    0x0d538765, // IMMIT
+    0x0d538769, // IMMIX
+    0x0d539394, // IMPED
+    0x0d539427, // IMPIS
+    0x0d5394ee, // IMPOT
+    0x0d53954c, // IMPRO
+    0x0d53a0bf, // IMSHI
+    0x0d53a0cf, // IMSHY
+    0x0d53e1a1, // INAPT
+    0x0d53e1dc, // INARM
+    0x0d53e6fc, // INBYE
+    0x0d53e8b0, // INCEL
+    0x0d53e990, // INCLE
+    0x0d53e9f5, // INCOG
+    0x0d53eac7, // INCUS
+    0x0d53eac8, // INCUT
+    0x0d53ecfc, // INDEW
+    0x0d53ed6a, // INDIA
+    0x0d53ed6e, // INDIE
+    0x0d53ee3b, // INDOL
+    0x0d53ee46, // INDOW
+    0x0d53ee9b, // INDRI
+    0x0d53eefa, // INDUE
+    0x0d53f2e0, // INERM
+    0x0d53f603, // INFIX
+    0x0d53f6c4, // INFOS
+    0x0d53f715, // INFRA
+    0x0d53f932, // INGAN
+    0x0d53fa94, // INGLE
+    0x0d540382, // INION
+    0x0d540ab0, // INKED
+    0x0d540abe, // INKER
+    0x0d540b98, // INKLE
+    0x0d541773, // INNED
+    0x0d541807, // INNIT
+    0x0d541d5f, // INORB
+    0x0d542a91, // INRUN
+    0x0d542cc8, // INSET
+    0x0d542e2e, // INSPO
+    0x0d543101, // INTEL
+    0x0d543185, // INTIL
+    0x0d54318c, // INTIS
+    0x0d5432a3, // INTRA
+    0x0d54361e, // INULA
+    0x0d5436e8, // INURE
+    0x0d5436f1, // INURN
+    0x0d543718, // INUST
+    0x0d543905, // INVAR
+    0x0d543e50, // INWIT
+    0x0d5479cd, // IODIC
+    0x0d5479ce, // IODID
+    0x0d5479d8, // IODIN
+    0x0d54bce5, // IOTAS
+    0x0d553a0b, // IPPON
+    0x0d56118a, // IRADE
+    0x0d5633a0, // IRIDS
+    0x0d5634de, // IRING
+    0x0d563c34, // IRKED
+    0x0d564e09, // IROKO
+    0x0d564e62, // IRONE
+    0x0d564e70, // IRONS
+    0x0d56a1d7, // ISBAS
+    0x0d56bbe1, // ISHES
+    0x0d56ccd6, // ISLED
+    0x0d56cce5, // ISLES
+    0x0d56d4d5, // ISNAE
+    0x0d56eaa2, // ISSEI
+    0x0d56efc6, // ISTLE
+    0x0d573c87, // ITEMS
+    0x0d574841, // ITHER
+    0x0d586536, // IVIED
+    0x0d586545, // IVIES
+    0x0d597d83, // IXIAS
+    0x0d5992ce, // IXNAY
+    0x0d599928, // IXORA
+    0x0d59adab, // IXTLE
+    0x0d5a765f, // IZARD
+    0x0d5a766e, // IZARS
+    0x0d5ade97, // IZZAT
+    0x0d5ed934, // JAAPS
+    0x0d5edd55, // JABOT
+    0x0d5edfc0, // JACAL
+    0x0d5ee111, // JACKS
+    0x0d5ee117, // JACKY
+    0x0d5ee47d, // JADED
+    0x0d5ee48c, // JADES
+    0x0d5eec8a, // JAFAS
+    0x0d5eed1d, // JAFFA
+    0x0d5ef0cb, // JAGAS
+    0x0d5ef14e, // JAGER
+    0x0d5ef191, // JAGGS
+    0x0d5ef197, // JAGGY
+    0x0d5ef1d2, // JAGIR
+    0x0d5ef2ea, // JAGRA
+    0x0d5efab8, // JAILS
+    0x0d5f0252, // JAKER
+    0x0d5f0253, // JAKES
+    0x0d5f0259, // JAKEY
+    0x0d5f060d, // JALAP
+    0x0d5f07db, // JALOP
+    0x0d5f0a64, // JAMBE
+    0x0d5f0a6e, // JAMBO
+    0x0d5f0a72, // JAMBS
+    0x0d5f0a74, // JAMBU
+    0x0d5f0ad5, // JAMES
+    0x0d5f0be3, // JAMMY
+    0x0d5f0c1a, // JAMON
+    0x0d5f0f16, // JANES
+    0x0d5f103f, // JANNS
+    0x0d5f1045, // JANNY
+    0x0d5f110b, // JANTY
+    0x0d5f170f, // JAPAN
+    0x0d5f1789, // JAPED
+    0x0d5f1797, // JAPER
+    0x0d5f1798, // JAPES
+    0x0d5f20e0, // JARKS
+    0x0d5f2101, // JARLS
+    0x0d5f2185, // JARPS
+    0x0d5f21f7, // JARTA
+    0x0d5f2223, // JARUL
+    0x0d5f2461, // JASEY
+    0x0d5f25b8, // JASPE
+    0x0d5f25c6, // JASPS
+    0x0d5f29e6, // JATOS
+    0x0d5f2da3, // JAUKS
+    0x0d5f2e48, // JAUPS
+    0x0d5f309a, // JAVAS
+    0x0d5f3117, // JAVEL
+    0x0d5f34d6, // JAWAN
+    0x0d5f3550, // JAWED
+    0x0d5f3a16, // JAXIE
+    0x0d610a76, // JEANS
+    0x0d610b3c, // JEATS
+    0x0d610d87, // JEBEL
+    0x0d611694, // JEDIS
+    0x0d611b38, // JEELS
+    0x0d611b3e, // JEELY
+    0x0d611bbc, // JEEPS
+    0x0d611bfe, // JEERS
+    0x0d611cf8, // JEEZE
+    0x0d611e92, // JEFES
+    0x0d611eb3, // JEFFS
+    0x0d612681, // JEHAD
+    0x0d612924, // JEHUS
+    0x0d613783, // JELAB
+    0x0d6138fb, // JELLO
+    0x0d6138ff, // JELLS
+    0x0d613be8, // JEMBE
+    0x0d613d67, // JEMMY
+    0x0d6141c9, // JENNY
+    0x0d614604, // JEONS
+    0x0d615213, // JERID
+    0x0d615264, // JERKS
+    0x0d615351, // JERRY
+    0x0d61579f, // JESSE
+    0x0d6157ce, // JESTS
+    0x0d6157ef, // JESUS
+    0x0d615a20, // JETES
+    0x0d615b65, // JETON
+    0x0d615f7c, // JEUNE
+    0x0d6166d4, // JEWED
+    0x0d616759, // JEWIE
+    0x0d62af45, // JHALA
+    0x0d633c1b, // JIAOS
+    0x0d633e9d, // JIBBA
+    0x0d633eaf, // JIBBS
+    0x0d633f03, // JIBED
+    0x0d633f11, // JIBER
+    0x0d633f12, // JIBES
+    0x0d635037, // JIFFS
+    0x0d63549f, // JIGGY
+    0x0d6355a2, // JIGOT
+    0x0d635805, // JIHAD
+    0x0d636a83, // JILLS
+    0x0d636b8b, // JILTS
+    0x0d636eeb, // JIMMY
+    0x0d636f4e, // JIMPY
+    0x0d63725c, // JINGO
+    0x0d6372e4, // JINKS
+    0x0d637339, // JINNE
+    0x0d63733d, // JINNI
+    0x0d637347, // JINNS
+    0x0d638301, // JIRDS
+    0x0d638352, // JIRGA
+    0x0d6384c1, // JIRRE
+    0x0d63886b, // JISMS
+    0x0d639417, // JIVED
+    0x0d639425, // JIVER
+    0x0d639426, // JIVES
+    0x0d63942c, // JIVEY
+    0x0d65f9cd, // JNANA
+    0x0d668949, // JOBED
+    0x0d668958, // JOBES
+    0x0d668e5b, // JOCKO
+    0x0d668e5f, // JOCKS
+    0x0d668e65, // JOCKY
+    0x0d668ee3, // JOCOS
+    0x0d6691d3, // JODEL
+    0x0d6698af, // JOEYS
+    0x0d66a407, // JOHNS
+    0x0d66a848, // JOINS
+    0x0d66af92, // JOKED
+    0x0d66afa1, // JOKES
+    0x0d66afa7, // JOKEY
+    0x0d66b0e4, // JOKOL
+    0x0d66b3d3, // JOLED
+    0x0d66b3e2, // JOLES
+    0x0d66b4c9, // JOLLS
+    0x0d66b5d1, // JOLTS
+    0x0d66b5d7, // JOLTY
+    0x0d66b968, // JOMON
+    0x0d66b96d, // JOMOS
+    0x0d66bc64, // JONES
+    0x0d66bca6, // JONGS
+    0x0d66be59, // JONTY
+    0x0d66c16b, // JOOKS
+    0x0d66ccde, // JORAM
+    0x0d66cf72, // JORUM
+    0x0d66d566, // JOTAS
+    0x0d66d7df, // JOTTY
+    0x0d66d7f5, // JOTUN
+    0x0d66d9a0, // JOUAL
+    0x0d66da6d, // JOUGS
+    0x0d66daf1, // JOUKS
+    0x0d66db04, // JOULE
+    0x0d66dbd8, // JOURS
+    0x0d66e228, // JOWAR
+    0x0d66e29e, // JOWED
+    0x0d66e394, // JOWLS
+    0x0d66e39a, // JOWLY
+    0x0d66eb20, // JOYED
+    0x0d69d31a, // JUBAS
+    0x0d69d39e, // JUBES
+    0x0d69d929, // JUCOS
+    0x0d69db9c, // JUDAS
+    0x0d69dc68, // JUDGY
+    0x0d69dd6a, // JUDOS
+    0x0d69e858, // JUGAL
+    0x0d69eaed, // JUGUM
+    0x0d69f7b6, // JUJUS
+    0x0d69f9d8, // JUKED
+    0x0d69f9e7, // JUKES
+    0x0d69fbf7, // JUKUS
+    0x0d69fe25, // JULEP
+    0x0d6a01e4, // JUMAR
+    0x0d6a020c, // JUMBY
+    0x0d6a03d4, // JUMPS
+    0x0d6a0664, // JUNCO
+    0x0d6a0770, // JUNKS
+    0x0d6a0776, // JUNKY
+    0x0d6a0f2c, // JUPES
+    0x0d6a1071, // JUPON
+    0x0d6a1723, // JURAL
+    0x0d6a172b, // JURAT
+    0x0d6a17a7, // JUREL
+    0x0d6a17ae, // JURES
+    0x0d6a1dde, // JUSTS
+    0x0d6a2030, // JUTES
+    0x0d6a2225, // JUTTY
+    0x0d6a28b2, // JUVES
+    0x0d6a2928, // JUVIE
+    0x0d70f140, // KAAMA
+    0x0d70f3f6, // KABAB
+    0x0d70f406, // KABAR
+    0x0d70f5c4, // KABOB
+    0x0d70f91d, // KACHA
+    0x0d70f992, // KACKS
+    0x0d70fc7f, // KADAI
+    0x0d70fd0d, // KADES
+    0x0d70fd91, // KADIS
+    0x0d710612, // KAFIR
+    0x0d710b1a, // KAGOS
+    0x0d710be0, // KAGUS
+    0x0d710d86, // KAHAL
+    0x0d7111c6, // KAIAK
+    0x0d711231, // KAIDS
+    0x0d711252, // KAIES
+    0x0d711273, // KAIFS
+    0x0d711306, // KAIKA
+    0x0d711318, // KAIKS
+    0x0d711339, // KAILS
+    0x0d71135a, // KAIMS
+    0x0d71136f, // KAING
+    0x0d71137b, // KAINS
+    0x0d711a50, // KAKAS
+    0x0d711b58, // KAKIS
+    0x0d711e8b, // KALAM
+    0x0d711f15, // KALES
+    0x0d711f8c, // KALIF
+    0x0d711f99, // KALIS
+    0x0d71206e, // KALPA
+    0x0d7122d2, // KAMAS
+    0x0d712356, // KAMES
+    0x0d7123d2, // KAMIK
+    0x0d7123da, // KAMIS
+    0x0d712450, // KAMME
+    0x0d712705, // KANAE
+    0x0d712713, // KANAS
+    0x0d71277c, // KANDY
+    0x0d71278c, // KANEH
+    0x0d712797, // KANES
+    0x0d7127c7, // KANGA
+    0x0d7127d9, // KANGS
+    0x0d712832, // KANJI
+    0x0d712986, // KANTS
+    0x0d712a4e, // KANZU
+    0x0d712d01, // KAONS
+    0x0d712f95, // KAPAS
+    0x0d71307c, // KAPHS
+    0x0d71315b, // KAPOK
+    0x0d713167, // KAPOW
+    0x0d713229, // KAPUS
+    0x0d71322a, // KAPUT
+    0x0d713817, // KARAS
+    0x0d713818, // KARAT
+    0x0d713961, // KARKS
+    0x0d7139c4, // KARNS
+    0x0d7139e1, // KAROO
+    0x0d7139e5, // KAROS
+    0x0d713a3e, // KARRI
+    0x0d713a6a, // KARST
+    0x0d713a6f, // KARSY
+    0x0d713a8a, // KARTS
+    0x0d713b56, // KARZY
+    0x0d713d2d, // KASHA
+    0x0d713dd6, // KASME
+    0x0d714092, // KATAL
+    0x0d714099, // KATAS
+    0x0d7141a1, // KATIS
+    0x0d714302, // KATTI
+    0x0d714595, // KAUGH
+    0x0d714701, // KAURI
+    0x0d71470d, // KAURU
+    0x0d714711, // KAURY
+    0x0d714914, // KAVAL
+    0x0d71491b, // KAVAS
+    0x0d714d5c, // KAWAS
+    0x0d714d5e, // KAWAU
+    0x0d714dd1, // KAWED
+    0x0d71573b, // KAYLE
+    0x0d7157ac, // KAYOS
+    0x0d715b27, // KAZIS
+    0x0d715be9, // KAZOO
+    0x0d717e58, // KBARS
+    0x0d73258a, // KEBAR
+    0x0d732748, // KEBOB
+    0x0d732b16, // KECKS
+    0x0d732ec5, // KEDGE
+    0x0d732ed9, // KEDGY
+    0x0d733285, // KEECH
+    0x0d7332f3, // KEEFS
+    0x0d733398, // KEEKS
+    0x0d7333b9, // KEELS
+    0x0d7333c8, // KEEMA
+    0x0d7333f7, // KEENO
+    0x0d7333fb, // KEENS
+    0x0d73343d, // KEEPS
+    0x0d7334c1, // KEETS
+    0x0d7334f5, // KEEVE
+    0x0d733796, // KEFIR
+    0x0d734193, // KEHUA
+    0x0d734583, // KEIRS
+    0x0d735096, // KELEP
+    0x0d735117, // KELIM
+    0x0d735180, // KELLS
+    0x0d735186, // KELLY
+    0x0d735204, // KELPS
+    0x0d73520a, // KELPY
+    0x0d735288, // KELTS
+    0x0d73528e, // KELTY
+    0x0d735473, // KEMBO
+    0x0d735477, // KEMBS
+    0x0d735645, // KEMPS
+    0x0d735646, // KEMPT
+    0x0d73564b, // KEMPY
+    0x0d73588a, // KENAF
+    0x0d7358ce, // KENCH
+    0x0d7358f6, // KENDO
+    0x0d735a65, // KENOS
+    0x0d735afc, // KENTE
+    0x0d735b0a, // KENTS
+    0x0d736221, // KEPIS
+    0x0d7369bc, // KERBS
+    0x0d736a18, // KEREL
+    0x0d736a40, // KERFS
+    0x0d736aeb, // KERKY
+    0x0d736b15, // KERMA
+    0x0d736b3a, // KERNE
+    0x0d736b48, // KERNS
+    0x0d736b69, // KEROS
+    0x0d736bd2, // KERRY
+    0x0d736c42, // KERVE
+    0x0d736ddb, // KESAR
+    0x0d73704f, // KESTS
+    0x0d73721d, // KETAS
+    0x0d737254, // KETCH
+    0x0d7372a1, // KETES
+    0x0d7373e4, // KETOL
+    0x0d737b1c, // KEVEL
+    0x0d737ba0, // KEVIL
+    0x0d7383a5, // KEXES
+    0x0d7387d7, // KEYED
+    0x0d7387e5, // KEYER
+    0x0d74c6c6, // KHADI
+    0x0d74c712, // KHAFS
+    0x0d74c81a, // KHANS
+    0x0d74c851, // KHAPH
+    0x0d74c8e0, // KHATS
+    0x0d74c973, // KHAYA
+    0x0d74c99c, // KHAZI
+    0x0d74d7c2, // KHEDA
+    0x0d74d9d9, // KHETH
+    0x0d74d9e4, // KHETS
+    0x0d750312, // KHOJA
+    0x0d75042c, // KHORS
+    0x0d750489, // KHOUM
+    0x0d751be4, // KHUDS
+    0x0d7552cf, // KIAAT
+    0x0d755308, // KIACK
+    0x0d75546f, // KIANG
+    0x0d755722, // KIBBE
+    0x0d755726, // KIBBI
+    0x0d755789, // KIBEI
+    0x0d755793, // KIBES
+    0x0d755868, // KIBLA
+    0x0d755c9a, // KICKS
+    0x0d755ca0, // KICKY
+    0x0d755ff0, // KIDDO
+    0x0d755ffa, // KIDDY
+    0x0d75600e, // KIDEL
+    0x0d756049, // KIDGE
+    0x0d756477, // KIEFS
+    0x0d756603, // KIERS
+    0x0d756679, // KIEVE
+    0x0d756687, // KIEVS
+    0x0d756d3c, // KIGHT
+    0x0d757f1c, // KIKOI
+    0x0d758223, // KILEY
+    0x0d75829b, // KILIM
+    0x0d758304, // KILLS
+    0x0d758346, // KILNS
+    0x0d758367, // KILOS
+    0x0d758388, // KILPS
+    0x0d75840c, // KILTS
+    0x0d758412, // KILTY
+    0x0d7585f7, // KIMBO
+    0x0d758a1b, // KINAS
+    0x0d758a6c, // KINDA
+    0x0d758a7e, // KINDS
+    0x0d758a84, // KINDY
+    0x0d758a9f, // KINES
+    0x0d758ae1, // KINGS
+    0x0d758b1e, // KININ
+    0x0d758b65, // KINKS
+    0x0d758be9, // KINOS
+    0x0d75907f, // KIORE
+    0x0d759321, // KIPES
+    0x0d75947a, // KIPPA
+    0x0d75948c, // KIPPS
+    0x0d759b46, // KIRBY
+    0x0d759c69, // KIRKS
+    0x0d759ccc, // KIRNS
+    0x0d759d46, // KIRRI
+    0x0d759f5b, // KISAN
+    0x0d75a1b8, // KISSY
+    0x0d75a1d3, // KISTS
+    0x0d75a416, // KITED
+    0x0d75a424, // KITER
+    0x0d75a425, // KITES
+    0x0d75a47a, // KITHE
+    0x0d75a488, // KITHS
+    0x0d75a62e, // KITUL
+    0x0d75ac23, // KIVAS
+    0x0d75b16c, // KIWIS
+    0x0d76f992, // KLANG
+    0x0d76f9e0, // KLAPS
+    0x0d770b69, // KLETT
+    0x0d771a33, // KLICK
+    0x0d771a71, // KLIEG
+    0x0d771b43, // KLIKS
+    0x0d773520, // KLONG
+    0x0d773540, // KLOOF
+    0x0d774dbd, // KLUGE
+    0x0d774f7f, // KLUTZ
+    0x0d781179, // KNAGS
+    0x0d7812a2, // KNAPS
+    0x0d7812dd, // KNARL
+    0x0d7812e4, // KNARS
+    0x0d781346, // KNAUR
+    0x0d78137b, // KNAWE
+    0x0d78223b, // KNEES
+    0x0d78231b, // KNELL
+    0x0d783502, // KNISH
+    0x0d78352e, // KNITS
+    0x0d783562, // KNIVE
+    0x0d784c62, // KNOBS
+    0x0d784e30, // KNOPS
+    0x0d784e90, // KNOSP
+    0x0d784eb4, // KNOTS
+    0x0d784ed6, // KNOUT
+    0x0d784f09, // KNOWE
+    0x0d784f17, // KNOWS
+    0x0d7865e8, // KNUBS
+    0x0d7867f1, // KNURL
+    0x0d7867f7, // KNURR
+    0x0d7867f8, // KNURS
+    0x0d78683a, // KNUTS
+    0x0d789ec1, // KOANS
+    0x0d789f03, // KOAPS
+    0x0d78a150, // KOBAN
+    0x0d78a323, // KOBOS
+    0x0d78af83, // KOELS
+    0x0d78b2fe, // KOFFS
+    0x0d78b4ba, // KOFTA
+    0x0d78b693, // KOGAL
+    0x0d78badb, // KOHAS
+    0x0d78bb5a, // KOHEN
+    0x0d78bc46, // KOHLS
+    0x0d78c0bb, // KOINE
+    0x0d78c465, // KOJIS
+    0x0d78c798, // KOKAM
+    0x0d78c79e, // KOKAS
+    0x0d78c821, // KOKER
+    0x0d78c9bd, // KOKRA
+    0x0d78ca2c, // KOKUM
+    0x0d78cbdf, // KOLAS
+    0x0d78cdad, // KOLOS
+    0x0d78d043, // KOMBU
+    0x0d78d484, // KONBU
+    0x0d78d4c0, // KONDO
+    0x0d78d5ab, // KONKS
+    0x0d78d9ec, // KOOKS
+    0x0d78d9f2, // KOOKY
+    0x0d78dac9, // KOORI
+    0x0d78dd5f, // KOPEK
+    0x0d78ddca, // KOPHS
+    0x0d78ddfe, // KOPJE
+    0x0d78dec0, // KOPPA
+    0x0d78e55b, // KORAI
+    0x0d78e565, // KORAS
+    0x0d78e566, // KORAT
+    0x0d78e5e9, // KORES
+    0x0d78e6df, // KORMA
+    0x0d78e733, // KOROS
+    0x0d78e7f4, // KORUN
+    0x0d78e7f9, // KORUS
+    0x0d78ea2a, // KOSES
+    0x0d78ee1e, // KOTCH
+    0x0d78efb5, // KOTOS
+    0x0d78efb9, // KOTOW
+    0x0d78f447, // KOURA
+    0x0d7a4230, // KRAAL
+    0x0d7a4258, // KRABS
+    0x0d7a42dd, // KRAFT
+    0x0d7a433f, // KRAIS
+    0x0d7a4340, // KRAIT
+    0x0d7a43d8, // KRANG
+    0x0d7a43e4, // KRANS
+    0x0d7a43eb, // KRANZ
+    0x0d7a44cc, // KRAUT
+    0x0d7a454f, // KRAYS
+    0x0d7a53bc, // KREEP
+    0x0d7a54dc, // KRENG
+    0x0d7a5603, // KREWE
+    0x0d7a7f60, // KRONA
+    0x0d7a7f64, // KRONE
+    0x0d7a7f8e, // KROON
+    0x0d7a9762, // KRUBI
+    0x0d7a98f0, // KRUNK
+    0x0d7ad0c9, // KSARS
+    0x0d7bec95, // KUBIE
+    0x0d7bf5eb, // KUDOS
+    0x0d7bf6b1, // KUDUS
+    0x0d7bf758, // KUDZU
+    0x0d7bfda7, // KUFIS
+    0x0d7c015d, // KUGEL
+    0x0d7c0962, // KUIAS
+    0x0d7c140b, // KUKRI
+    0x0d7c1478, // KUKUS
+    0x0d7c161d, // KULAK
+    0x0d7c1620, // KULAN
+    0x0d7c1625, // KULAS
+    0x0d7c16c0, // KULFI
+    0x0d7c1b6e, // KUMIS
+    0x0d7c1d7e, // KUMYS
+    0x0d7c30b3, // KURIS
+    0x0d7c31ce, // KURRE
+    0x0d7c320c, // KURTA
+    0x0d7c323f, // KURUS
+    0x0d7c363a, // KUSSO
+    0x0d7c382d, // KUTAS
+    0x0d7c3864, // KUTCH
+    0x0d7c3935, // KUTIS
+    0x0d7c3ac1, // KUTUS
+    0x0d7c5447, // KUZUS
+    0x0d7c760d, // KVASS
+    0x0d7c8623, // KVELL
+    0x0d7d1279, // KWELA
+    0x0d7e1918, // KYACK
+    0x0d7e1a28, // KYAKS
+    0x0d7e1a7f, // KYANG
+    0x0d7e1b0f, // KYARS
+    0x0d7e1b51, // KYATS
+    0x0d7e1eed, // KYBOS
+    0x0d7e27f4, // KYDST
+    0x0d7e482d, // KYLES
+    0x0d7e48a3, // KYLIE
+    0x0d7e48ac, // KYLIN
+    0x0d7e48b6, // KYLIX
+    0x0d7e4969, // KYLOE
+    0x0d7e5080, // KYNDE
+    0x0d7e508e, // KYNDS
+    0x0d7e5931, // KYPES
+    0x0d7e6229, // KYRIE
+    0x0d7e6a35, // KYTES
+    0x0d7e6a8a, // KYTHE
+    0x0d830a6e, // LAARI
+    0x0d830cd9, // LABDA
+    0x0d830d7e, // LABIA
+    0x0d830d90, // LABIS
+    0x0d830ea7, // LABRA
+    0x0d83113e, // LACED
+    0x0d83114c, // LACER
+    0x0d83114d, // LACES
+    0x0d83114e, // LACET
+    0x0d831153, // LACEY
+    0x0d831213, // LACKS
+    0x0d831573, // LADDY
+    0x0d83157f, // LADED
+    0x0d83158d, // LADER
+    0x0d83158e, // LADES
+    0x0d831b7c, // LAERS
+    0x0d831bfc, // LAEVO
+    0x0d8321c8, // LAGAN
+    0x0d832607, // LAHAL
+    0x0d83260d, // LAHAR
+    0x0d832a86, // LAICH
+    0x0d832a91, // LAICS
+    0x0d832ab2, // LAIDS
+    0x0d832b0a, // LAIGH
+    0x0d832b87, // LAIKA
+    0x0d832b99, // LAIKS
+    0x0d832c71, // LAIRD
+    0x0d832c80, // LAIRS
+    0x0d832c86, // LAIRY
+    0x0d832cb7, // LAITH
+    0x0d832cc8, // LAITY
+    0x0d833346, // LAKED
+    0x0d833354, // LAKER
+    0x0d833355, // LAKES
+    0x0d8333b8, // LAKHS
+    0x0d8333d4, // LAKIN
+    0x0d833511, // LAKSA
+    0x0d83377b, // LALDY
+    0x0d83387d, // LALLS
+    0x0d833b53, // LAMAS
+    0x0d833b74, // LAMBS
+    0x0d833b7a, // LAMBY
+    0x0d833bc8, // LAMED
+    0x0d833bd6, // LAMER
+    0x0d833bd7, // LAMES
+    0x0d833c49, // LAMIA
+    0x0d833ce5, // LAMMY
+    0x0d833d42, // LAMPS
+    0x0d833f8a, // LANAI
+    0x0d833f94, // LANAS
+    0x0d833fcb, // LANCH
+    0x0d833fe9, // LANDE
+    0x0d833ff7, // LANDS
+    0x0d834018, // LANES
+    0x0d8340de, // LANKS
+    0x0d834207, // LANTS
+    0x0d834919, // LAPIN
+    0x0d83491e, // LAPIS
+    0x0d834931, // LAPJE
+    0x0d8350cf, // LARCH
+    0x0d8350fb, // LARDS
+    0x0d835101, // LARDY
+    0x0d83510e, // LAREE
+    0x0d83511c, // LARES
+    0x0d83515a, // LARGO
+    0x0d8351a0, // LARIS
+    0x0d8351e2, // LARKS
+    0x0d8351e8, // LARKY
+    0x0d835245, // LARNS
+    0x0d835246, // LARNT
+    0x0d835326, // LARUM
+    0x0d83554e, // LASED
+    0x0d83555c, // LASER
+    0x0d83555d, // LASES
+    0x0d835721, // LASSI
+    0x0d83572d, // LASSU
+    0x0d835731, // LASSY
+    0x0d83574c, // LASTS
+    0x0d83590f, // LATAH
+    0x0d83598f, // LATED
+    0x0d835999, // LATEN
+    0x0d8359a3, // LATEX
+    0x0d8359f7, // LATHI
+    0x0d835a01, // LATHS
+    0x0d835a07, // LATHY
+    0x0d835a56, // LATKE
+    0x0d835bae, // LATUS
+    0x0d835d56, // LAUAN
+    0x0d835d92, // LAUCH
+    0x0d835dbe, // LAUDS
+    0x0d835e00, // LAUFS
+    0x0d835ef9, // LAUND
+    0x0d835f7a, // LAURA
+    0x0d836195, // LAVAL
+    0x0d83619c, // LAVAS
+    0x0d836211, // LAVED
+    0x0d83621f, // LAVER
+    0x0d836220, // LAVES
+    0x0d8363bb, // LAVRA
+    0x0d836457, // LAVVY
+    0x0d836652, // LAWED
+    0x0d836660, // LAWER
+    0x0d8366e0, // LAWIN
+    0x0d836727, // LAWKS
+    0x0d83678a, // LAWNS
+    0x0d836790, // LAWNY
+    0x0d836a93, // LAXED
+    0x0d836aa1, // LAXER
+    0x0d836aa2, // LAXES
+    0x0d836b8f, // LAXLY
+    0x0d836ed4, // LAYED
+    0x0d836f62, // LAYIN
+    0x0d8370f0, // LAYUP
+    0x0d83729f, // LAZAR
+    0x0d837315, // LAZED
+    0x0d837324, // LAZES
+    0x0d83746e, // LAZOS
+    0x0d8375cf, // LAZZI
+    0x0d8375d5, // LAZZO
+    0x0d853a2e, // LEADS
+    0x0d853a34, // LEADY
+    0x0d853a70, // LEAFS
+    0x0d853b15, // LEAKS
+    0x0d853b57, // LEAMS
+    0x0d853b78, // LEANS
+    0x0d853b7e, // LEANY
+    0x0d853bba, // LEAPS
+    0x0d853bee, // LEARE
+    0x0d853bfc, // LEARS
+    0x0d853c02, // LEARY
+    0x0d853c3e, // LEATS
+    0x0d853c86, // LEAVY
+    0x0d853cf6, // LEAZE
+    0x0d853e8b, // LEBEN
+    0x0d854295, // LECCY
+    0x0d854712, // LEDES
+    0x0d85475a, // LEDGY
+    0x0d85491c, // LEDUM
+    0x0d854ace, // LEEAR
+    0x0d854c19, // LEEKS
+    0x0d854cbe, // LEEPS
+    0x0d854d00, // LEERS
+    0x0d854d13, // LEESE
+    0x0d854d42, // LEETS
+    0x0d854dfa, // LEEZE
+    0x0d855175, // LEFTE
+    0x0d855183, // LEFTS
+    0x0d8553d4, // LEGER
+    0x0d8553d5, // LEGES
+    0x0d855409, // LEGGE
+    0x0d855413, // LEGGO
+    0x0d85545a, // LEGIT
+    0x0d8559c3, // LEHRS
+    0x0d855a14, // LEHUA
+    0x0d855e04, // LEIRS
+    0x0d855e1a, // LEISH
+    0x0d856cd2, // LEMAN
+    0x0d856d4c, // LEMED
+    0x0d856d54, // LEMEL
+    0x0d856d5b, // LEMES
+    0x0d856e51, // LEMMA
+    0x0d856e55, // LEMME
+    0x0d85717b, // LENDS
+    0x0d85719c, // LENES
+    0x0d8571de, // LENGS
+    0x0d857220, // LENIS
+    0x0d8572e6, // LENOS
+    0x0d85735c, // LENSE
+    0x0d857381, // LENTI
+    0x0d857387, // LENTO
+    0x0d8576f8, // LEONE
+    0x0d857a93, // LEPID
+    0x0d857bb9, // LEPRA
+    0x0d857bfb, // LEPTA
+    0x0d858291, // LERED
+    0x0d8582a0, // LERES
+    0x0d85840b, // LERPS
+    0x0d8586e1, // LESES
+    0x0d8588d0, // LESTS
+    0x0d858ad5, // LETCH
+    0x0d858b77, // LETHE
+    0x0d858d2f, // LETUP
+    0x0d858f16, // LEUCH
+    0x0d858f1d, // LEUCO
+    0x0d858f42, // LEUDS
+    0x0d858f9a, // LEUGH
+    0x0d859320, // LEVAS
+    0x0d859396, // LEVEE
+    0x0d8593a4, // LEVES
+    0x0d859423, // LEVIN
+    0x0d859428, // LEVIS
+    0x0d859869, // LEWIS
+    0x0d859c26, // LEXES
+    0x0d859caa, // LEXIS
+    0x0d85a4a8, // LEZES
+    0x0d85a74b, // LEZZA
+    0x0d85a763, // LEZZY
+    0x0d876cea, // LIANA
+    0x0d876cee, // LIANE
+    0x0d876cf0, // LIANG
+    0x0d876d71, // LIARD
+    0x0d876d80, // LIARS
+    0x0d876d81, // LIART
+    0x0d877013, // LIBER
+    0x0d8771af, // LIBRA
+    0x0d8771b7, // LIBRI
+    0x0d8774ae, // LICHI
+    0x0d8774b9, // LICHT
+    0x0d8774da, // LICIT
+    0x0d87751b, // LICKS
+    0x0d877811, // LIDAR
+    0x0d8779e0, // LIDOS
+    0x0d877cf8, // LIEFS
+    0x0d877e00, // LIENS
+    0x0d877e84, // LIERS
+    0x0d877ee7, // LIEUS
+    0x0d877efa, // LIEVE
+    0x0d878117, // LIFER
+    0x0d878118, // LIFES
+    0x0d878307, // LIFTS
+    0x0d8784d0, // LIGAN
+    0x0d878558, // LIGER
+    0x0d87858d, // LIGGE
+    0x0d878674, // LIGNE
+    0x0d87964e, // LIKED
+    0x0d87965c, // LIKER
+    0x0d87965d, // LIKES
+    0x0d8796dc, // LIKIN
+    0x0d879b85, // LILLS
+    0x0d879be8, // LILOS
+    0x0d879c8d, // LILTS
+    0x0d879e56, // LIMAN
+    0x0d879e5b, // LIMAS
+    0x0d879e60, // LIMAX
+    0x0d879e6a, // LIMBA
+    0x0d879e72, // LIMBI
+    0x0d879e7c, // LIMBS
+    0x0d879e82, // LIMBY
+    0x0d879ed0, // LIMED
+    0x0d879eda, // LIMEN
+    0x0d879edf, // LIMES
+    0x0d879ee5, // LIMEY
+    0x0d879fd5, // LIMMA
+    0x0d87a008, // LIMNS
+    0x0d87a029, // LIMOS
+    0x0d87a038, // LIMPA
+    0x0d87a04a, // LIMPS
+    0x0d87a28c, // LINAC
+    0x0d87a2d3, // LINCH
+    0x0d87a2ff, // LINDS
+    0x0d87a305, // LINDY
+    0x0d87a311, // LINED
+    0x0d87a320, // LINES
+    0x0d87a326, // LINEY
+    0x0d87a350, // LINGA
+    0x0d87a362, // LINGS
+    0x0d87a368, // LINGY
+    0x0d87a39f, // LININ
+    0x0d87a3e6, // LINKS
+    0x0d87a3ec, // LINKY
+    0x0d87a449, // LINNS
+    0x0d87a44f, // LINNY
+    0x0d87a46a, // LINOS
+    0x0d87a50f, // LINTS
+    0x0d87a515, // LINTY
+    0x0d87a52a, // LINUM
+    0x0d87a535, // LINUX
+    0x0d87a88a, // LIONS
+    0x0d87ab1e, // LIPAS
+    0x0d87aba2, // LIPES
+    0x0d87ac21, // LIPIN
+    0x0d87acec, // LIPOS
+    0x0d87ad13, // LIPPY
+    0x0d87b3a0, // LIRAS
+    0x0d87b4ea, // LIRKS
+    0x0d87b56f, // LIROT
+    0x0d87b92b, // LISKS
+    0x0d87b93e, // LISLE
+    0x0d87b9d0, // LISPS
+    0x0d87ba54, // LISTS
+    0x0d87bc18, // LITAI
+    0x0d87bc22, // LITAS
+    0x0d87bc97, // LITED
+    0x0d87bca5, // LITER
+    0x0d87bca6, // LITES
+    0x0d87bd05, // LITHO
+    0x0d87bd09, // LITHS
+    0x0d87be45, // LITRE
+    0x0d87c519, // LIVED
+    0x0d87c523, // LIVEN
+    0x0d87c528, // LIVES
+    0x0d87c671, // LIVOR
+    0x0d87c6c7, // LIVRE
+    0x0d89121b, // LLANO
+    0x0d8ab5cc, // LOACH
+    0x0d8ab5f8, // LOADS
+    0x0d8ab63a, // LOAFS
+    0x0d8ab721, // LOAMS
+    0x0d8ab742, // LOANS
+    0x0d8ab7e8, // LOAST
+    0x0d8ab83c, // LOAVE
+    0x0d8ab9d5, // LOBAR
+    0x0d8aba4b, // LOBED
+    0x0d8aba5a, // LOBES
+    0x0d8abba4, // LOBOS
+    0x0d8abc6a, // LOBUS
+    0x0d8abef0, // LOCHE
+    0x0d8abefe, // LOCHS
+    0x0d8abf11, // LOCIE
+    0x0d8abf1f, // LOCIS
+    0x0d8abf61, // LOCKS
+    0x0d8abfe5, // LOCOS
+    0x0d8ac0a5, // LOCUM
+    0x0d8ac2d7, // LODEN
+    0x0d8ac2dc, // LODES
+    0x0d8ac8eb, // LOESS
+    0x0d8acd4d, // LOFTS
+    0x0d8acf16, // LOGAN
+    0x0d8acf9f, // LOGES
+    0x0d8acfe7, // LOGGY
+    0x0d8ad011, // LOGIA
+    0x0d8ad015, // LOGIE
+    0x0d8ad0df, // LOGOI
+    0x0d8ad0e4, // LOGON
+    0x0d8ad0e9, // LOGOS
+    0x0d8ad357, // LOHAN
+    0x0d8ad800, // LOIDS
+    0x0d8ad94a, // LOINS
+    0x0d8ad97e, // LOIPE
+    0x0d8ad9ce, // LOIRS
+    0x0d8ae0a3, // LOKES
+    0x0d8ae5cb, // LOLLS
+    0x0d8ae5d1, // LOLLY
+    0x0d8ae622, // LOLOG
+    0x0d8ae8a1, // LOMAS
+    0x0d8ae916, // LOMED
+    0x0d8ae925, // LOMES
+    0x0d8aed65, // LONER
+    0x0d8aed96, // LONGA
+    0x0d8aed9a, // LONGE
+    0x0d8aeda8, // LONGS
+    0x0d8af14a, // LOOBY
+    0x0d8af198, // LOOED
+    0x0d8af1ad, // LOOEY
+    0x0d8af1b6, // LOOFA
+    0x0d8af1c8, // LOOFS
+    0x0d8af21d, // LOOIE
+    0x0d8af26d, // LOOKS
+    0x0d8af273, // LOOKY
+    0x0d8af2af, // LOOMS
+    0x0d8af2d0, // LOONS
+    0x0d8af2d6, // LOONY
+    0x0d8af312, // LOOPS
+    0x0d8af345, // LOORD
+    0x0d8af396, // LOOTS
+    0x0d8af5d9, // LOPED
+    0x0d8af5e7, // LOPER
+    0x0d8af5e8, // LOPES
+    0x0d8af759, // LOPPY
+    0x0d8afddf, // LORAL
+    0x0d8afde1, // LORAN
+    0x0d8afe49, // LORDS
+    0x0d8afe4f, // LORDY
+    0x0d8afe63, // LOREL
+    0x0d8afe6a, // LORES
+    0x0d8afede, // LORIC
+    0x0d8afeee, // LORIS
+    0x0d8b029c, // LOSED
+    0x0d8b02a4, // LOSEL
+    0x0d8b02a6, // LOSEN
+    0x0d8b02ab, // LOSES
+    0x0d8b047f, // LOSSY
+    0x0d8b065d, // LOTAH
+    0x0d8b0668, // LOTAS
+    0x0d8b06ec, // LOTES
+    0x0d8b0760, // LOTIC
+    0x0d8b0836, // LOTOS
+    0x0d8b08a8, // LOTSA
+    0x0d8b08c9, // LOTTA
+    0x0d8b08cd, // LOTTE
+    0x0d8b08d7, // LOTTO
+    0x0d8b08fc, // LOTUS
+    0x0d8b0b1e, // LOUED
+    0x0d8b0b64, // LOUGH
+    0x0d8b0ba3, // LOUIE
+    0x0d8b0bb1, // LOUIS
+    0x0d8b0c23, // LOUMA
+    0x0d8b0c47, // LOUND
+    0x0d8b0c56, // LOUNS
+    0x0d8b0c8a, // LOUPE
+    0x0d8b0c98, // LOUPS
+    0x0d8b0ccc, // LOURE
+    0x0d8b0cda, // LOURS
+    0x0d8b0ce0, // LOURY
+    0x0d8b0d1c, // LOUTS
+    0x0d8b0eeb, // LOVAT
+    0x0d8b0f5f, // LOVED
+    0x0d8b0f6e, // LOVES
+    0x0d8b0f74, // LOVEY
+    0x0d8b0fe4, // LOVIE
+    0x0d8b1326, // LOWAN
+    0x0d8b13a0, // LOWED
+    0x0d8b13af, // LOWES
+    0x0d8b14c9, // LOWND
+    0x0d8b14ca, // LOWNE
+    0x0d8b14d8, // LOWNS
+    0x0d8b151a, // LOWPS
+    0x0d8b1562, // LOWRY
+    0x0d8b156f, // LOWSE
+    0x0d8b159e, // LOWTS
+    0x0d8b17e1, // LOXED
+    0x0d8b17f0, // LOXES
+    0x0d8b206d, // LOZEN
+    0x0d8e0012, // LUACH
+    0x0d8e026f, // LUAUS
+    0x0d8e0491, // LUBED
+    0x0d8e04a0, // LUBES
+    0x0d8e063b, // LUBRA
+    0x0d8e08e1, // LUCES
+    0x0d8e09a7, // LUCKS
+    0x0d8e0a80, // LUCRE
+    0x0d8e0d22, // LUDES
+    0x0d8e0d96, // LUDIC
+    0x0d8e0e6c, // LUDOS
+    0x0d8e15b3, // LUFFA
+    0x0d8e15c5, // LUFFS
+    0x0d8e19d6, // LUGED
+    0x0d8e19e4, // LUGER
+    0x0d8e19e5, // LUGES
+    0x0d8e3011, // LULLS
+    0x0d8e313a, // LULUS
+    0x0d8e32e7, // LUMAS
+    0x0d8e32fe, // LUMBI
+    0x0d8e3465, // LUMME
+    0x0d8e3479, // LUMMY
+    0x0d8e34d6, // LUMPS
+    0x0d8e3728, // LUNAS
+    0x0d8e37ac, // LUNES
+    0x0d8e37ad, // LUNET
+    0x0d8e37e4, // LUNGI
+    0x0d8e37ee, // LUNGS
+    0x0d8e3872, // LUNKS
+    0x0d8e399b, // LUNTS
+    0x0d8e40ad, // LUPIN
+    0x0d8e48a1, // LURED
+    0x0d8e48af, // LURER
+    0x0d8e48b0, // LURES
+    0x0d8e48b5, // LUREX
+    0x0d8e48e8, // LURGI
+    0x0d8e48f8, // LURGY
+    0x0d8e4976, // LURKS
+    0x0d8e4a63, // LURRY
+    0x0d8e4ad3, // LURVE
+    0x0d8e4cf0, // LUSER
+    0x0d8e4d5a, // LUSHY
+    0x0d8e4db7, // LUSKS
+    0x0d8e4ee0, // LUSTS
+    0x0d8e4f01, // LUSUS
+    0x0d8e5120, // LUTEA
+    0x0d8e5123, // LUTED
+    0x0d8e5131, // LUTER
+    0x0d8e5132, // LUTES
+    0x0d8e5beb, // LUVVY
+    0x0d8e6227, // LUXED
+    0x0d8e6235, // LUXER
+    0x0d8e6236, // LUXES
+    0x0d8f2aa9, // LWEIS
+    0x0d9032eb, // LYAMS
+    0x0d903381, // LYARD
+    0x0d903391, // LYART
+    0x0d9033a3, // LYASE
+    0x0d903a53, // LYCEA
+    0x0d903a57, // LYCEE
+    0x0d903c00, // LYCRA
+    0x0d9064ef, // LYMES
+    0x0d906930, // LYNES
+    0x0d907a34, // LYRES
+    0x0d907e66, // LYSED
+    0x0d907e75, // LYSES
+    0x0d907ef4, // LYSIN
+    0x0d907ef9, // LYSIS
+    0x0d907fb8, // LYSOL
+    0x0d908031, // LYSSA
+    0x0d9082a7, // LYTED
+    0x0d9082b6, // LYTES
+    0x0d90830b, // LYTHE
+    0x0d90832a, // LYTIC
+    0x0d908493, // LYTTA
+    0x0d95213d, // MAAED
+    0x0d9522eb, // MAARE
+    0x0d9522f9, // MAARS
+    0x0d95258d, // MABES
+    0x0d95294a, // MACAS
+    0x0d9529bf, // MACED
+    0x0d9529cd, // MACER
+    0x0d9529ce, // MACES
+    0x0d952a23, // MACHE
+    0x0d952a27, // MACHI
+    0x0d952a31, // MACHS
+    0x0d952a94, // MACKS
+    0x0d952aa7, // MACLE
+    0x0d952b13, // MACON
+    0x0d952e43, // MADGE
+    0x0d952e84, // MADID
+    0x0d952fae, // MADRE
+    0x0d9533f6, // MAERL
+    0x0d953705, // MAFIC
+    0x0d953ad2, // MAGES
+    0x0d953b14, // MAGGS
+    0x0d953c1d, // MAGOT
+    0x0d953ce2, // MAGUS
+    0x0d95404f, // MAHOE
+    0x0d954111, // MAHUA
+    0x0d954153, // MAHWA
+    0x0d954333, // MAIDS
+    0x0d954416, // MAIKO
+    0x0d95441a, // MAIKS
+    0x0d95442d, // MAILE
+    0x0d954434, // MAILL
+    0x0d95443b, // MAILS
+    0x0d95445c, // MAIMS
+    0x0d95447d, // MAINS
+    0x0d9544f3, // MAIRE
+    0x0d954501, // MAIRS
+    0x0d954514, // MAISE
+    0x0d954523, // MAIST
+    0x0d954b51, // MAKAR
+    0x0d954bd6, // MAKES
+    0x0d954c5a, // MAKIS
+    0x0d954d20, // MAKOS
+    0x0d954f8d, // MALAM
+    0x0d954f92, // MALAR
+    0x0d954f93, // MALAS
+    0x0d954f98, // MALAX
+    0x0d955017, // MALES
+    0x0d95508b, // MALIC
+    0x0d955093, // MALIK
+    0x0d95509b, // MALIS
+    0x0d9550fe, // MALLS
+    0x0d95511f, // MALMS
+    0x0d955125, // MALMY
+    0x0d955206, // MALTS
+    0x0d95520c, // MALTY
+    0x0d955227, // MALUS
+    0x0d955236, // MALVA
+    0x0d955257, // MALWA
+    0x0d9553d4, // MAMAS
+    0x0d9553e3, // MAMBA
+    0x0d95544a, // MAMEE
+    0x0d95545e, // MAMEY
+    0x0d9554ce, // MAMIE
+    0x0d955815, // MANAS
+    0x0d955816, // MANAT
+    0x0d95586e, // MANDI
+    0x0d955888, // MANEB
+    0x0d95588a, // MANED
+    0x0d95588e, // MANEH
+    0x0d955899, // MANES
+    0x0d95589a, // MANET
+    0x0d9558db, // MANGS
+    0x0d95591d, // MANIS
+    0x0d955965, // MANKY
+    0x0d9559b0, // MANNA
+    0x0d9559e3, // MANOS
+    0x0d955a59, // MANSE
+    0x0d955a76, // MANTA
+    0x0d955a84, // MANTO
+    0x0d955a8e, // MANTY
+    0x0d955aa2, // MANUL
+    0x0d955aa9, // MANUS
+    0x0d956099, // MAPAU
+    0x0d956762, // MAQUI
+    0x0d95690b, // MARAE
+    0x0d95690e, // MARAH
+    0x0d956919, // MARAS
+    0x0d95695b, // MARCS
+    0x0d956982, // MARDY
+    0x0d95699d, // MARES
+    0x0d9569d1, // MARGE
+    0x0d9569df, // MARGS
+    0x0d956a0f, // MARIA
+    0x0d956a12, // MARID
+    0x0d956a51, // MARKA
+    0x0d956a63, // MARKS
+    0x0d956a76, // MARLE
+    0x0d956a84, // MARLS
+    0x0d956a8a, // MARLY
+    0x0d956aa5, // MARMS
+    0x0d956ae2, // MARON
+    0x0d956ae6, // MAROR
+    0x0d956b38, // MARRA
+    0x0d956b40, // MARRI
+    0x0d956b5d, // MARSE
+    0x0d956b8c, // MARTS
+    0x0d956bd4, // MARVY
+    0x0d956d5a, // MASAS
+    0x0d956dcf, // MASED
+    0x0d956ddd, // MASER
+    0x0d956dde, // MASES
+    0x0d956e47, // MASHY
+    0x0d956ea4, // MASKS
+    0x0d956f9a, // MASSA
+    0x0d956fb2, // MASSY
+    0x0d956fcd, // MASTS
+    0x0d956fd3, // MASTY
+    0x0d956fee, // MASUS
+    0x0d957191, // MATAI
+    0x0d957210, // MATED
+    0x0d95721e, // MATER
+    0x0d95721f, // MATES
+    0x0d957282, // MATHS
+    0x0d95729e, // MATIN
+    0x0d957302, // MATLO
+    0x0d957400, // MATTE
+    0x0d95740e, // MATTS
+    0x0d9574c2, // MATZA
+    0x0d9574d0, // MATZO
+    0x0d957603, // MAUBY
+    0x0d95763f, // MAUDS
+    0x0d957747, // MAULS
+    0x0d95777a, // MAUND
+    0x0d957803, // MAURI
+    0x0d957834, // MAUSY
+    0x0d95784f, // MAUTS
+    0x0d95791b, // MAUZY
+    0x0d957a9c, // MAVEN
+    0x0d957b17, // MAVIE
+    0x0d957b20, // MAVIN
+    0x0d957b25, // MAVIS
+    0x0d957ed3, // MAWED
+    0x0d957fa8, // MAWKS
+    0x0d957fae, // MAWKY
+    0x0d95800b, // MAWNS
+    0x0d95808f, // MAWRS
+    0x0d958314, // MAXED
+    0x0d958323, // MAXES
+    0x0d9583a7, // MAXIS
+    0x0d9586db, // MAYAN
+    0x0d9586e0, // MAYAS
+    0x0d958755, // MAYED
+    0x0d9588ae, // MAYOS
+    0x0d958933, // MAYST
+    0x0d958b96, // MAZED
+    0x0d958ba4, // MAZER
+    0x0d958ba5, // MAZES
+    0x0d958bab, // MAZEY
+    0x0d958db6, // MAZUT
+    0x0d95d150, // MBIRA
+    0x0d9752af, // MEADS
+    0x0d9753b7, // MEALS
+    0x0d9753eb, // MEANE
+    0x0d9753f9, // MEANS
+    0x0d9753ff, // MEANY
+    0x0d97546f, // MEARE
+    0x0d975490, // MEASE
+    0x0d9754b4, // MEATH
+    0x0d9754bf, // MEATS
+    0x0d97585b, // MEBOS
+    0x0d975bb5, // MECHS
+    0x0d975c18, // MECKS
+    0x0d97600d, // MEDII
+    0x0d97606c, // MEDLE
+    0x0d9763b3, // MEEDS
+    0x0d976581, // MEERS
+    0x0d9765c3, // MEETS
+    0x0d976836, // MEFFS
+    0x0d977601, // MEINS
+    0x0d977602, // MEINT
+    0x0d977607, // MEINY
+    0x0d9776bc, // MEITH
+    0x0d977e0e, // MEKKA
+    0x0d978117, // MELAS
+    0x0d978126, // MELBA
+    0x0d97817a, // MELDS
+    0x0d97820f, // MELIC
+    0x0d978217, // MELIK
+    0x0d978282, // MELLS
+    0x0d97838a, // MELTS
+    0x0d978390, // MELTY
+    0x0d9785dc, // MEMES
+    0x0d978726, // MEMOS
+    0x0d97898a, // MENAD
+    0x0d9789fc, // MENDS
+    0x0d978a0e, // MENED
+    0x0d978a1d, // MENES
+    0x0d978a51, // MENGE
+    0x0d978a5f, // MENGS
+    0x0d978bd9, // MENSA
+    0x0d978bdd, // MENSE
+    0x0d978be0, // MENSH
+    0x0d978bfa, // MENTA
+    0x0d978c08, // MENTO
+    0x0d978c2d, // MENUS
+    0x0d97906e, // MEOUS
+    0x0d9790b0, // MEOWS
+    0x0d979ad4, // MERCH
+    0x0d979adf, // MERCS
+    0x0d979af2, // MERDE
+    0x0d979b12, // MERED
+    0x0d979b1a, // MEREL
+    0x0d979b20, // MERER
+    0x0d979b21, // MERES
+    0x0d979b9e, // MERIL
+    0x0d979ba5, // MERIS
+    0x0d979be7, // MERKS
+    0x0d979bfa, // MERLE
+    0x0d979c08, // MERLS
+    0x0d979ce1, // MERSE
+    0x0d979ed7, // MESAL
+    0x0d979ede, // MESAS
+    0x0d979f5b, // MESEL
+    0x0d979f62, // MESES
+    0x0d979fcb, // MESHY
+    0x0d979fd6, // MESIC
+    0x0d97a07d, // MESNE
+    0x0d97a0a7, // MESON
+    0x0d97a136, // MESSY
+    0x0d97a14d, // MESTO
+    0x0d97a394, // METED
+    0x0d97a3a3, // METES
+    0x0d97a402, // METHO
+    0x0d97a406, // METHS
+    0x0d97a417, // METIC
+    0x0d97a41a, // METIF
+    0x0d97a427, // METIS
+    0x0d97a4e6, // METOL
+    0x0d97a542, // METRE
+    0x0d97a9a4, // MEUSE
+    0x0d97ac16, // MEVED
+    0x0d97ac25, // MEVES
+    0x0d97b057, // MEWED
+    0x0d97b14d, // MEWLS
+    0x0d97ba12, // MEYNT
+    0x0d97bd29, // MEZES
+    0x0d97bfd0, // MEZZE
+    0x0d97bfda, // MEZZO
+    0x0d99352d, // MHORR
+    0x0d9985a0, // MIAOU
+    0x0d9985a2, // MIAOW
+    0x0d99861c, // MIASM
+    0x0d99865d, // MIAUL
+    0x0d998c52, // MICAS
+    0x0d998d2b, // MICHE
+    0x0d998d3a, // MICHT
+    0x0d998d9c, // MICKS
+    0x0d998da2, // MICKY
+    0x0d998e20, // MICOS
+    0x0d998e71, // MICRA
+    0x0d9990fc, // MIDDY
+    0x0d99915f, // MIDGY
+    0x0d99919b, // MIDIS
+    0x0d999681, // MIENS
+    0x0d99977b, // MIEVE
+    0x0d9999ba, // MIFFS
+    0x0d9999c0, // MIFFY
+    0x0d999b8e, // MIFTY
+    0x0d999e1c, // MIGGS
+    0x0d99a197, // MIHAS
+    0x0d99a29f, // MIHIS
+    0x0d99aecf, // MIKED
+    0x0d99aede, // MIKES
+    0x0d99b079, // MIKRA
+    0x0d99b0fd, // MIKVA
+    0x0d99b2d2, // MILCH
+    0x0d99b2fe, // MILDS
+    0x0d99b31e, // MILER
+    0x0d99b31f, // MILES
+    0x0d99b340, // MILFS
+    0x0d99b391, // MILIA
+    0x0d99b3e1, // MILKO
+    0x0d99b3e5, // MILKS
+    0x0d99b3f8, // MILLE
+    0x0d99b406, // MILLS
+    0x0d99b468, // MILOR
+    0x0d99b469, // MILOS
+    0x0d99b478, // MILPA
+    0x0d99b50e, // MILTS
+    0x0d99b514, // MILTY
+    0x0d99b515, // MILTZ
+    0x0d99b751, // MIMED
+    0x0d99b75c, // MIMEO
+    0x0d99b75f, // MIMER
+    0x0d99b760, // MIMES
+    0x0d99b934, // MIMSY
+    0x0d99bb0f, // MINAE
+    0x0d99bb1c, // MINAR
+    0x0d99bb1d, // MINAS
+    0x0d99bb65, // MINCY
+    0x0d99bb80, // MINDS
+    0x0d99bb92, // MINED
+    0x0d99bba1, // MINES
+    0x0d99bbd5, // MINGE
+    0x0d99bbe3, // MINGS
+    0x0d99bbe9, // MINGY
+    0x0d99bc25, // MINIS
+    0x0d99bc59, // MINKE
+    0x0d99bc67, // MINKS
+    0x0d99bcd0, // MINNY
+    0x0d99bceb, // MINOS
+    0x0d99bd90, // MINTS
+    0x0d99cc96, // MIRED
+    0x0d99cca5, // MIRES
+    0x0d99ccaa, // MIREX
+    0x0d99cd1a, // MIRID
+    0x0d99cd24, // MIRIN
+    0x0d99cd6b, // MIRKS
+    0x0d99cd71, // MIRKY
+    0x0d99cd92, // MIRLY
+    0x0d99cdef, // MIROS
+    0x0d99ced6, // MIRVS
+    0x0d99cf48, // MIRZA
+    0x0d99d099, // MISCH
+    0x0d99d0c1, // MISDO
+    0x0d99d0e6, // MISES
+    0x0d99d124, // MISGO
+    0x0d99d230, // MISOS
+    0x0d99d2a2, // MISSA
+    0x0d99d2d5, // MISTS
+    0x0d99d2db, // MISTY
+    0x0d99d4da, // MITCH
+    0x0d99d526, // MITER
+    0x0d99d527, // MITES
+    0x0d99d5ab, // MITIS
+    0x0d99d6c6, // MITRE
+    0x0d99d716, // MITTS
+    0x0d99e61c, // MIXED
+    0x0d99e626, // MIXEN
+    0x0d99e62a, // MIXER
+    0x0d99e62b, // MIXES
+    0x0d99e80c, // MIXTE
+    0x0d99e838, // MIXUP
+    0x0d99eea8, // MIZEN
+    0x0d99f168, // MIZZY
+    0x0d9c5437, // MNEME
+    0x0d9ccfc3, // MOANS
+    0x0d9cd089, // MOATS
+    0x0d9cd27e, // MOBBY
+    0x0d9cd2db, // MOBES
+    0x0d9cd2e1, // MOBEY
+    0x0d9cd351, // MOBIE
+    0x0d9cd3b4, // MOBLE
+    0x0d9cd775, // MOCHI
+    0x0d9cd77f, // MOCHS
+    0x0d9cd785, // MOCHY
+    0x0d9cd7e2, // MOCKS
+    0x0d9cdb5c, // MODER
+    0x0d9cdb5d, // MODES
+    0x0d9cdb91, // MODGE
+    0x0d9cdbd7, // MODII
+    0x0d9cdd6d, // MODUS
+    0x0d9ce14b, // MOERS
+    0x0d9ce529, // MOFOS
+    0x0d9ce868, // MOGGY
+    0x0d9cec5a, // MOHEL
+    0x0d9cedab, // MOHOS
+    0x0d9cee0e, // MOHRS
+    0x0d9cee5f, // MOHUA
+    0x0d9cee70, // MOHUR
+    0x0d9cf17b, // MOILE
+    0x0d9cf189, // MOILS
+    0x0d9cf23d, // MOIRA
+    0x0d9cf241, // MOIRE
+    0x0d9cf291, // MOITS
+    0x0d9cf62d, // MOJOS
+    0x0d9cf924, // MOKES
+    0x0d9cf9a8, // MOKIS
+    0x0d9cfa6e, // MOKOS
+    0x0d9cfcda, // MOLAL
+    0x0d9cfce1, // MOLAS
+    0x0d9cfd44, // MOLDS
+    0x0d9cfd56, // MOLED
+    0x0d9cfd65, // MOLES
+    0x0d9cfe3a, // MOLLA
+    0x0d9cfe4c, // MOLLS
+    0x0d9cfe52, // MOLLY
+    0x0d9cff50, // MOLTO
+    0x0d9cff54, // MOLTS
+    0x0d9cfff9, // MOLYS
+    0x0d9d01a6, // MOMES
+    0x0d9d029c, // MOMMA
+    0x0d9d02b4, // MOMMY
+    0x0d9d03b6, // MOMUS
+    0x0d9d0554, // MONAD
+    0x0d9d055c, // MONAL
+    0x0d9d0563, // MONAS
+    0x0d9d05b8, // MONDE
+    0x0d9d05c2, // MONDO
+    0x0d9d05e6, // MONER
+    0x0d9d0625, // MONGO
+    0x0d9d0629, // MONGS
+    0x0d9d065b, // MONIC
+    0x0d9d065d, // MONIE
+    0x0d9d06ad, // MONKS
+    0x0d9d0731, // MONOS
+    0x0d9d07c8, // MONTE
+    0x0d9d07dc, // MONTY
+    0x0d9d09c5, // MOOBS
+    0x0d9d09db, // MOOCH
+    0x0d9d0a07, // MOODS
+    0x0d9d0a19, // MOOED
+    0x0d9d0aee, // MOOKS
+    0x0d9d0afd, // MOOLA
+    0x0d9d0b05, // MOOLI
+    0x0d9d0b0f, // MOOLS
+    0x0d9d0b15, // MOOLY
+    0x0d9d0b45, // MOONG
+    0x0d9d0b51, // MOONS
+    0x0d9d0b57, // MOONY
+    0x0d9d0b93, // MOOPS
+    0x0d9d0bd5, // MOORS
+    0x0d9d0bdb, // MOORY
+    0x0d9d0c17, // MOOTS
+    0x0d9d0c4b, // MOOVE
+    0x0d9d0e5a, // MOPED
+    0x0d9d0e68, // MOPER
+    0x0d9d0e69, // MOPES
+    0x0d9d0e6f, // MOPEY
+    0x0d9d0fda, // MOPPY
+    0x0d9d103d, // MOPSY
+    0x0d9d1079, // MOPUS
+    0x0d9d1659, // MORAE
+    0x0d9d1667, // MORAS
+    0x0d9d1668, // MORAT
+    0x0d9d166d, // MORAY
+    0x0d9d16e4, // MOREL
+    0x0d9d16eb, // MORES
+    0x0d9d175d, // MORIA
+    0x0d9d1806, // MORNE
+    0x0d9d1814, // MORNS
+    0x0d9d1886, // MORRA
+    0x0d9d1894, // MORRO
+    0x0d9d18ab, // MORSE
+    0x0d9d18da, // MORTS
+    0x0d9d1b1d, // MOSED
+    0x0d9d1b2c, // MOSES
+    0x0d9d1b32, // MOSEY
+    0x0d9d1bf2, // MOSKS
+    0x0d9d1cf6, // MOSSO
+    0x0d9d1d0d, // MOSTE
+    0x0d9d1d1b, // MOSTS
+    0x0d9d1f5e, // MOTED
+    0x0d9d1f68, // MOTEN
+    0x0d9d1f6d, // MOTES
+    0x0d9d1f6e, // MOTET
+    0x0d9d1f73, // MOTEY
+    0x0d9d1fd0, // MOTHS
+    0x0d9d1fd6, // MOTHY
+    0x0d9d1ff1, // MOTIS
+    0x0d9d214e, // MOTTE
+    0x0d9d215c, // MOTTS
+    0x0d9d2162, // MOTTY
+    0x0d9d217d, // MOTUS
+    0x0d9d2210, // MOTZA
+    0x0d9d2361, // MOUCH
+    0x0d9d23ae, // MOUES
+    0x0d9d2486, // MOULD
+    0x0d9d2495, // MOULS
+    0x0d9d2519, // MOUPS
+    0x0d9d257d, // MOUST
+    0x0d9d2582, // MOUSY
+    0x0d9d27e0, // MOVED
+    0x0d9d27ef, // MOVES
+    0x0d9d2bac, // MOWAS
+    0x0d9d2c21, // MOWED
+    0x0d9d2dcb, // MOWRA
+    0x0d9d2fed, // MOXAS
+    0x0d9d30e7, // MOXIE
+    0x0d9d342e, // MOYAS
+    0x0d9d358b, // MOYLE
+    0x0d9d3599, // MOYLS
+    0x0d9d38e4, // MOZED
+    0x0d9d38f3, // MOZES
+    0x0d9d3a3d, // MOZOS
+    0x0d9da34d, // MPRET
+    0x0da021c1, // MUCHO
+    0x0da021d6, // MUCIC
+    0x0da021d7, // MUCID
+    0x0da021e1, // MUCIN
+    0x0da02228, // MUCKS
+    0x0da022ab, // MUCOR
+    0x0da0230b, // MUCRO
+    0x0da025d7, // MUDGE
+    0x0da02626, // MUDIR
+    0x0da0273e, // MUDRA
+    0x0da02e46, // MUFFS
+    0x0da0300a, // MUFTI
+    0x0da03296, // MUGGA
+    0x0da032a8, // MUGGS
+    0x0da032ae, // MUGGY
+    0x0da03794, // MUHLY
+    0x0da03ac7, // MUIDS
+    0x0da03bcf, // MUILS
+    0x0da03c95, // MUIRS
+    0x0da03cb7, // MUIST
+    0x0da03fa5, // MUJIK
+    0x0da0476a, // MULCT
+    0x0da0479c, // MULED
+    0x0da047ab, // MULES
+    0x0da047b1, // MULEY
+    0x0da047db, // MULGA
+    0x0da04821, // MULIE
+    0x0da04880, // MULLA
+    0x0da04892, // MULLS
+    0x0da0496b, // MULSE
+    0x0da0496e, // MULSH
+    0x0da04cf4, // MUMMS
+    0x0da04d57, // MUMPS
+    0x0da04dc0, // MUMSY
+    0x0da04dfc, // MUMUS
+    0x0da0505d, // MUNGA
+    0x0da05061, // MUNGE
+    0x0da0506b, // MUNGO
+    0x0da0506f, // MUNGS
+    0x0da050b1, // MUNIS
+    0x0da0521c, // MUNTS
+    0x0da0521e, // MUNTU
+    0x0da05597, // MUONS
+    0x0da060ad, // MURAS
+    0x0da06122, // MURED
+    0x0da06131, // MURES
+    0x0da06136, // MUREX
+    0x0da061a6, // MURID
+    0x0da061f7, // MURKS
+    0x0da06218, // MURLS
+    0x0da0621e, // MURLY
+    0x0da062cc, // MURRA
+    0x0da062d0, // MURRE
+    0x0da062d4, // MURRI
+    0x0da062de, // MURRS
+    0x0da062e4, // MURRY
+    0x0da06316, // MURTI
+    0x0da06350, // MURVA
+    0x0da064ed, // MUSAR
+    0x0da0651e, // MUSCA
+    0x0da06563, // MUSED
+    0x0da06571, // MUSER
+    0x0da06572, // MUSES
+    0x0da06573, // MUSET
+    0x0da065c3, // MUSHA
+    0x0da065f7, // MUSIT
+    0x0da06638, // MUSKS
+    0x0da066bc, // MUSOS
+    0x0da06732, // MUSSE
+    0x0da06746, // MUSSY
+    0x0da06756, // MUSTH
+    0x0da06761, // MUSTS
+    0x0da06966, // MUTCH
+    0x0da069a4, // MUTED
+    0x0da069b2, // MUTER
+    0x0da069b3, // MUTES
+    0x0da06a04, // MUTHA
+    0x0da06a37, // MUTIS
+    0x0da06af8, // MUTON
+    0x0da06ba2, // MUTTS
+    0x0da07aa8, // MUXED
+    0x0da07ab7, // MUXES
+    0x0da082ad, // MUZAK
+    0x0da085f4, // MUZZY
+    0x0da0fb2e, // MVULE
+    0x0da24b44, // MYALL
+    0x0da278aa, // MYLAR
+    0x0da28122, // MYNAH
+    0x0da2812d, // MYNAS
+    0x0da28667, // MYOID
+    0x0da286e8, // MYOMA
+    0x0da2874f, // MYOPE
+    0x0da2875d, // MYOPS
+    0x0da28763, // MYOPY
+    0x0da2976b, // MYSID
+    0x0da29b90, // MYTHI
+    0x0da29b9a, // MYTHS
+    0x0da29ba0, // MYTHY
+    0x0da2ad85, // MYXOS
+    0x0da2e7c9, // MZEES
+    0x0da73ad5, // NAAMS
+    0x0da73af6, // NAANS
+    0x0da73e0e, // NABES
+    0x0da73e92, // NABIS
+    0x0da73ed4, // NABKS
+    0x0da73ee3, // NABLA
+    0x0da73f47, // NABOB
+    0x0da742a4, // NACHE
+    0x0da742ae, // NACHO
+    0x0da743ee, // NACRE
+    0x0da7460c, // NADAS
+    0x0da74cf4, // NAEVE
+    0x0da74cf8, // NAEVI
+    0x0da74f33, // NAFFS
+    0x0da752cf, // NAGAS
+    0x0da7539b, // NAGGY
+    0x0da7549c, // NAGOR
+    0x0da75709, // NAHAL
+    0x0da75b42, // NAIAD
+    0x0da75bf6, // NAIFS
+    0x0da75c9b, // NAIKS
+    0x0da75cbc, // NAILS
+    0x0da75d70, // NAIRA
+    0x0da75d84, // NAIRU
+    0x0da76448, // NAKED
+    0x0da76456, // NAKER
+    0x0da76466, // NAKFA
+    0x0da76814, // NALAS
+    0x0da76889, // NALED
+    0x0da7696d, // NALLA
+    0x0da76cca, // NAMED
+    0x0da76cd8, // NAMER
+    0x0da76cd9, // NAMES
+    0x0da76dcf, // NAMMA
+    0x0da76ee9, // NAMUS
+    0x0da77096, // NANAS
+    0x0da770ca, // NANCE
+    0x0da770de, // NANCY
+    0x0da770fb, // NANDU
+    0x0da77231, // NANNA
+    0x0da77264, // NANOS
+    0x0da77318, // NANUA
+    0x0da77918, // NAPAS
+    0x0da7798d, // NAPED
+    0x0da7799c, // NAPES
+    0x0da77ae2, // NAPOO
+    0x0da77af5, // NAPPA
+    0x0da77af9, // NAPPE
+    0x0da77b0d, // NAPPY
+    0x0da7819a, // NARAS
+    0x0da781d8, // NARCO
+    0x0da781dc, // NARCS
+    0x0da781fd, // NARDS
+    0x0da7821e, // NARES
+    0x0da78292, // NARIC
+    0x0da782a2, // NARIS
+    0x0da782e4, // NARKS
+    0x0da782ea, // NARKY
+    0x0da783bd, // NARRE
+    0x0da786b8, // NASHI
+    0x0da78a53, // NATCH
+    0x0da78aa0, // NATES
+    0x0da78b24, // NATIS
+    0x0da78c95, // NATTY
+    0x0da78e94, // NAUCH
+    0x0da7900b, // NAUNT
+    0x0da7929d, // NAVAR
+    0x0da79322, // NAVES
+    0x0da79326, // NAVEW
+    0x0da79559, // NAVVY
+    0x0da796ce, // NAWAB
+    0x0da7a426, // NAZES
+    0x0da7a4a9, // NAZIR
+    0x0da7a4aa, // NAZIS
+    0x0da93497, // NDUJA
+    0x0da96b64, // NEAFE
+    0x0da96c38, // NEALS
+    0x0da96cbc, // NEAPS
+    0x0da96cfe, // NEARS
+    0x0da96d35, // NEATH
+    0x0da96d40, // NEATS
+    0x0da96f8a, // NEBEK
+    0x0da96f8b, // NEBEL
+    0x0da97499, // NECKS
+    0x0da977f9, // NEDDY
+    0x0da97c34, // NEEDS
+    0x0da97d2d, // NEELD
+    0x0da97d2e, // NEELE
+    0x0da97d4c, // NEEMB
+    0x0da97d5d, // NEEMS
+    0x0da97dc0, // NEEPS
+    0x0da97e15, // NEESE
+    0x0da97efc, // NEEZE
+    0x0da98680, // NEGRO
+    0x0da986e7, // NEGUS
+    0x0da98d7a, // NEIFS
+    0x0da98f28, // NEIST
+    0x0da98f7c, // NEIVE
+    0x0da99aa0, // NELIS
+    0x0da99b09, // NELLY
+    0x0da99dd9, // NEMAS
+    0x0da99f86, // NEMNS
+    0x0da99fc9, // NEMPT
+    0x0da9a29e, // NENES
+    0x0da9a808, // NEONS
+    0x0da9ab1f, // NEPER
+    0x0da9aba5, // NEPIT
+    0x0da9b317, // NERAL
+    0x0da9b381, // NERDS
+    0x0da9b456, // NERKA
+    0x0da9b468, // NERKS
+    0x0da9b4e5, // NEROL
+    0x0da9b591, // NERTS
+    0x0da9b598, // NERTZ
+    0x0da9b5d9, // NERVY
+    0x0da9b9d2, // NESTS
+    0x0da9bc24, // NETES
+    0x0da9bd6b, // NETOP
+    0x0da9be13, // NETTS
+    0x0da9be19, // NETTY
+    0x0da9c12b, // NEUKS
+    0x0da9c15f, // NEUME
+    0x0da9c16d, // NEUMS
+    0x0da9c49f, // NEVEL
+    0x0da9c4a6, // NEVES
+    0x0da9c6b6, // NEVUS
+    0x0da9c884, // NEWBS
+    0x0da9c8d8, // NEWED
+    0x0da9c8e0, // NEWEL
+    0x0da9c95d, // NEWIE
+    0x0da9cabb, // NEWSY
+    0x0da9cad6, // NEWTS
+    0x0da9cf17, // NEXTS
+    0x0da9cf38, // NEXUS
+    0x0daa8493, // NGAIO
+    0x0daa852a, // NGANA
+    0x0daa85f8, // NGATI
+    0x0daac097, // NGOMA
+    0x0daae19b, // NGWEE
+    0x0daba4c4, // NICAD
+    0x0daba5bb, // NICHT
+    0x0daba61d, // NICKS
+    0x0daba69a, // NICOL
+    0x0daba90d, // NIDAL
+    0x0daba989, // NIDED
+    0x0daba998, // NIDES
+    0x0dabaae1, // NIDOR
+    0x0dababa8, // NIDUS
+    0x0dabadfa, // NIEFS
+    0x0dabaffc, // NIEVE
+    0x0dabb21a, // NIFES
+    0x0dabb23b, // NIFFS
+    0x0dabb241, // NIFFY
+    0x0dabb40f, // NIFTY
+    0x0dabb65a, // NIGER
+    0x0dabb6be, // NIGHS
+    0x0dabbb19, // NIHIL
+    0x0dabc6ca, // NIKAB
+    0x0dabc6d0, // NIKAH
+    0x0dabc6dd, // NIKAU
+    0x0dabcc87, // NILLS
+    0x0dabcf74, // NIMBI
+    0x0dabcf7e, // NIMBS
+    0x0dabd14c, // NIMPS
+    0x0dabd421, // NINER
+    0x0dabd422, // NINES
+    0x0dabd567, // NINON
+    0x0dabdc20, // NIPAS
+    0x0dabde15, // NIPPY
+    0x0dabe050, // NIQAB
+    0x0dabe60d, // NIRLS
+    0x0dabe613, // NIRLY
+    0x0dabe95d, // NISEI
+    0x0dabeb27, // NISSE
+    0x0dabeb77, // NISUS
+    0x0dabeda7, // NITER
+    0x0dabeda8, // NITES
+    0x0dabee1d, // NITID
+    0x0dabeeed, // NITON
+    0x0dabef47, // NITRE
+    0x0dabef51, // NITRO
+    0x0dabef5b, // NITRY
+    0x0dabef9d, // NITTY
+    0x0dabf59f, // NIVAL
+    0x0dabfe9d, // NIXED
+    0x0dabfeab, // NIXER
+    0x0dabfeac, // NIXES
+    0x0dabff22, // NIXIE
+    0x0dac06a4, // NIZAM
+    0x0dacf2e9, // NKOSI
+    0x0daee77e, // NOAHS
+    0x0daeeaff, // NOBBY
+    0x0daef063, // NOCKS
+    0x0daef353, // NODAL
+    0x0daef3c3, // NODDY
+    0x0daef3de, // NODES
+    0x0daef5ee, // NODUS
+    0x0daef906, // NOELS
+    0x0daf00e3, // NOGGS
+    0x0daf0630, // NOHOW
+    0x0daf0a0a, // NOILS
+    0x0daf0a10, // NOILY
+    0x0daf0a4d, // NOINT
+    0x0daf0ad0, // NOIRS
+    0x0daf15e6, // NOLES
+    0x0daf16cd, // NOLLS
+    0x0daf1730, // NOLOS
+    0x0daf19a3, // NOMAS
+    0x0daf1a22, // NOMEN
+    0x0daf1a27, // NOMES
+    0x0daf1a9b, // NOMIC
+    0x0daf1b67, // NOMOI
+    0x0daf1b71, // NOMOS
+    0x0daf1de4, // NONAS
+    0x0daf1e18, // NONCE
+    0x0daf1e68, // NONES
+    0x0daf1e69, // NONET
+    0x0daf1eaa, // NONGS
+    0x0daf1eec, // NONIS
+    0x0daf1f97, // NONNY
+    0x0daf20f5, // NONYL
+    0x0daf2246, // NOOBS
+    0x0daf232e, // NOOIT
+    0x0daf236f, // NOOKS
+    0x0daf2375, // NOOKY
+    0x0daf23d2, // NOONS
+    0x0daf2414, // NOOPS
+    0x0daf265f, // NOPAL
+    0x0daf2fde, // NORIA
+    0x0daf2ff0, // NORIS
+    0x0daf3032, // NORKS
+    0x0daf3062, // NORMA
+    0x0daf3074, // NORMS
+    0x0daf339e, // NOSED
+    0x0daf33ac, // NOSER
+    0x0daf33ad, // NOSES
+    0x0daf3763, // NOTAL
+    0x0daf37df, // NOTED
+    0x0daf37ed, // NOTER
+    0x0daf37ee, // NOTES
+    0x0daf39f8, // NOTUM
+    0x0daf3d07, // NOULD
+    0x0daf3d08, // NOULE
+    0x0daf3d16, // NOULS
+    0x0daf3d58, // NOUNS
+    0x0daf3d5e, // NOUNY
+    0x0daf3d9a, // NOUPS
+    0x0daf3fde, // NOVAE
+    0x0daf3fec, // NOVAS
+    0x0daf427a, // NOVUM
+    0x0daf4433, // NOWAY
+    0x0daf44a2, // NOWED
+    0x0daf4598, // NOWLS
+    0x0daf46a0, // NOWTS
+    0x0daf46a6, // NOWTY
+    0x0daf4867, // NOXAL
+    0x0daf48f2, // NOXES
+    0x0daf4cb1, // NOYAU
+    0x0daf4d24, // NOYED
+    0x0daf4d33, // NOYES
+    0x0db23545, // NUBBY
+    0x0db23614, // NUBIA
+    0x0db23a34, // NUCHA
+    0x0db23e09, // NUDDY
+    0x0db23e23, // NUDER
+    0x0db23e24, // NUDES
+    0x0db23e9a, // NUDIE
+    0x0db240ce, // NUDZH
+    0x0db246c7, // NUFFS
+    0x0db24a55, // NUGAE
+    0x0db25bdc, // NUKED
+    0x0db25beb, // NUKES
+    0x0db26101, // NULLA
+    0x0db26113, // NULLS
+    0x0db2640a, // NUMBS
+    0x0db26468, // NUMEN
+    0x0db2657b, // NUMMY
+    0x0db269dd, // NUNNY
+    0x0db27991, // NURDS
+    0x0db27997, // NURDY
+    0x0db27a99, // NURLS
+    0x0db27b5f, // NURRS
+    0x0db283fe, // NUTSO
+    0x0db28408, // NUTSY
+    0x0db462f9, // NYAFF
+    0x0db463ba, // NYALA
+    0x0db4860a, // NYING
+    0x0db4b133, // NYSSA
+    0x0db97cc9, // OAKED
+    0x0db97cd7, // OAKER
+    0x0db97ee2, // OAKUM
+    0x0db99a90, // OARED
+    0x0db99ee0, // OASES
+    0x0db99f64, // OASIS
+    0x0db9a0cf, // OASTS
+    0x0db9a31c, // OATEN
+    0x0db9a320, // OATER
+    0x0db9a384, // OATHS
+    0x0db9aba3, // OAVES
+    0x0db9dfcc, // OBANG
+    0x0db9ef24, // OBEAH
+    0x0db9f090, // OBELI
+    0x0db9f247, // OBEYS
+    0x0dba0033, // OBIAS
+    0x0dba00a8, // OBIED
+    0x0dba013c, // OBIIT
+    0x0dba02a6, // OBITS
+    0x0dba04f9, // OBJET
+    0x0dba1a3d, // OBOES
+    0x0dba1b16, // OBOLE
+    0x0dba1b1a, // OBOLI
+    0x0dba1b24, // OBOLS
+    0x0dba7308, // OCCAM
+    0x0dba88d6, // OCHER
+    0x0dba88d7, // OCHES
+    0x0dba8a76, // OCHRE
+    0x0dba8a8a, // OCHRY
+    0x0dba9599, // OCKER
+    0x0dbab34f, // OCREA
+    0x0dbabb50, // OCTAD
+    0x0dbabb5a, // OCTAN
+    0x0dbabb5f, // OCTAS
+    0x0dbabe70, // OCTYL
+    0x0dbac101, // OCULI
+    0x0dbaf7d4, // ODAHS
+    0x0dbaf858, // ODALS
+    0x0dbb09ba, // ODEON
+    0x0dbb0a7f, // ODEUM
+    0x0dbb1b41, // ODISM
+    0x0dbb1b48, // ODIST
+    0x0dbb1b83, // ODIUM
+    0x0dbb34ac, // ODORS
+    0x0dbb350e, // ODOUR
+    0x0dbb5e62, // ODYLE
+    0x0dbb5e70, // ODYLS
+    0x0dbc12c7, // OFAYS
+    0x0dbc2569, // OFFED
+    0x0dbc25ee, // OFFIE
+    0x0dbc3e6e, // OFLAG
+    0x0dbc6105, // OFTER
+    0x0dbc9d9c, // OGAMS
+    0x0dbcad89, // OGEED
+    0x0dbcad98, // OGEES
+    0x0dbcb699, // OGGIN
+    0x0dbcb9d1, // OGHAM
+    0x0dbcc0bf, // OGIVE
+    0x0dbccb50, // OGLED
+    0x0dbccb5e, // OGLER
+    0x0dbccb5f, // OGLES
+    0x0dbcd014, // OGMIC
+    0x0dbce4e5, // OGRES
+    0x0dbd4a79, // OHIAS
+    0x0dbd4c1a, // OHING
+    0x0dbd5c75, // OHMIC
+    0x0dbd659e, // OHONE
+    0x0dbdc28b, // OIDIA
+    0x0dbde412, // OILED
+    0x0dbde420, // OILER
+    0x0dbded69, // OINKS
+    0x0dbdee92, // OINTS
+    0x0dbe64b9, // OJIME
+    0x0dbecf79, // OKAPI
+    0x0dbed0ac, // OKAYS
+    0x0dbedf7f, // OKEHS
+    0x0dbf15e5, // OKRAS
+    0x0dbf1e67, // OKTAS
+    0x0dbf67b2, // OLDIE
+    0x0dbf6bf1, // OLEIC
+    0x0dbf6bfc, // OLEIN
+    0x0dbf6ca7, // OLENT
+    0x0dbf6cc7, // OLEOS
+    0x0dbf6d87, // OLEUM
+    0x0dbf7dcb, // OLIOS
+    0x0dbf88c0, // OLLAS
+    0x0dbf88c3, // OLLAV
+    0x0dbf8943, // OLLER
+    0x0dbf89ba, // OLLIE
+    0x0dbf964f, // OLOGY
+    0x0dbf99b6, // OLPAE
+    0x0dbf9a48, // OLPES
+    0x0dbfe896, // OMASA
+    0x0dbfeb1a, // OMBER
+    0x0dbfed2b, // OMBUS
+    0x0dbff907, // OMENS
+    0x0dbff98b, // OMERS
+    0x0dc00ad1, // OMITS
+    0x0dc01516, // OMLAH
+    0x0dc02499, // OMOVS
+    0x0dc02e9c, // OMRAH
+    0x0dc07bbc, // ONCER
+    0x0dc07bbd, // ONCES
+    0x0dc07bbe, // ONCET
+    0x0dc07dcd, // ONCUS
+    0x0dc0852c, // ONELY
+    0x0dc085ec, // ONERS
+    0x0dc085f2, // ONERY
+    0x0dc0974d, // ONIUM
+    0x0dc09fd5, // ONKUS
+    0x0dc0a188, // ONLAY
+    0x0dc0aa79, // ONNED
+    0x0dc0c482, // ONTIC
+    0x0dc10462, // OOBIT
+    0x0dc11d54, // OOHED
+    0x0dc13408, // OOMPH
+    0x0dc138d8, // OONTS
+    0x0dc13f5c, // OOPED
+    0x0dc14863, // OORIE
+    0x0dc14c2e, // OOSES
+    0x0dc150e4, // OOTID
+    0x0dc169e6, // OOZED
+    0x0dc169f5, // OOZES
+    0x0dc18c60, // OPAHS
+    0x0dc18ce4, // OPALS
+    0x0dc19e2a, // OPENS
+    0x0dc19e5e, // OPEPE
+    0x0dc1af22, // OPING
+    0x0dc1cd16, // OPPOS
+    0x0dc1d90e, // OPSIN
+    0x0dc1dcc1, // OPTED
+    0x0dc1dccf, // OPTER
+    0x0dc2a472, // ORACH
+    0x0dc2a483, // ORACY
+    0x0dc2a5a6, // ORALS
+    0x0dc2a5dc, // ORANG
+    0x0dc2a5e9, // ORANT
+    0x0dc2a6a0, // ORATE
+    0x0dc2a8f1, // ORBED
+    0x0dc2acbd, // ORCAS
+    0x0dc2adc0, // ORCIN
+    0x0dc2b2cc, // ORDOS
+    0x0dc2b530, // OREAD
+    0x0dc2ba04, // ORFES
+    0x0dc2beb7, // ORGIA
+    0x0dc2beb9, // ORGIC
+    0x0dc2c047, // ORGUE
+    0x0dc2c65a, // ORIBI
+    0x0dc2c6c0, // ORIEL
+    0x0dc2c928, // ORIXA
+    0x0dc2d38a, // ORLES
+    0x0dc2d4cf, // ORLON
+    0x0dc2d4d1, // ORLOP
+    0x0dc2d7ca, // ORMER
+    0x0dc2dc90, // ORNIS
+    0x0dc2e50d, // ORPIN
+    0x0dc2ed94, // ORRIS
+    0x0dc2f5f1, // ORTHO
+    0x0dc2fd89, // ORVAL
+    0x0dc31062, // ORZOS
+    0x0dc3391d, // OSCAR
+    0x0dc34e53, // OSHAC
+    0x0dc35327, // OSIER
+    0x0dc364a0, // OSMIC
+    0x0dc3656f, // OSMOL
+    0x0dc37e24, // OSSIA
+    0x0dc38265, // OSTIA
+    0x0dc3be49, // OTAKU
+    0x0dc3bf34, // OTARY
+    0x0dc40dcf, // OTTAR
+    0x0dc40f9e, // OTTOS
+    0x0dc44ea8, // OUBIT
+    0x0dc452c8, // OUCHT
+    0x0dc45c0f, // OUENS
+    0x0dc46c7d, // OUIJA
+    0x0dc47973, // OULKS
+    0x0dc47c6a, // OUMAS
+    0x0dc48114, // OUNDY
+    0x0dc4892d, // OUPAS
+    0x0dc489a2, // OUPED
+    0x0dc48a06, // OUPHE
+    0x0dc48a14, // OUPHS
+    0x0dc492a9, // OURIE
+    0x0dc4966d, // OUSEL
+    0x0dc49863, // OUSTS
+    0x0dc49a58, // OUTBY
+    0x0dc49aa6, // OUTED
+    0x0dc49c54, // OUTRE
+    0x0dc49c5e, // OUTRO
+    0x0dc49c92, // OUTTA
+    0x0dc4b434, // OUZEL
+    0x0dc4b585, // OUZOS
+    0x0dc4d72a, // OVALS
+    0x0dc4e82e, // OVELS
+    0x0dc4e870, // OVENS
+    0x0dc4e8f4, // OVERS
+    0x0dc4fa1a, // OVIST
+    0x0dc512ae, // OVOLI
+    0x0dc512b4, // OVOLO
+    0x0dc52c30, // OVULE
+    0x0dc56b7b, // OWCHE
+    0x0dc584ac, // OWIES
+    0x0dc59160, // OWLED
+    0x0dc5916e, // OWLER
+    0x0dc59170, // OWLET
+    0x0dc599e2, // OWNED
+    0x0dc5aaf5, // OWRES
+    0x0dc5ab6b, // OWRIE
+    0x0dc5af31, // OWSEN
+    0x0dc5f494, // OXBOW
+    0x0dc601b6, // OXERS
+    0x0dc6028f, // OXEYE
+    0x0dc610ec, // OXIDS
+    0x0dc6110d, // OXIES
+    0x0dc61207, // OXIME
+    0x0dc61215, // OXIMS
+    0x0dc61e51, // OXLIP
+    0x0dc63fd7, // OXTER
+    0x0dc68e17, // OYERS
+    0x0dc71987, // OZEKI
+    0x0dc77296, // OZZIE
+    0x0dcb6bb6, // PAALS
+    0x0dcb6bf8, // PAANS
+    0x0dcb72cd, // PACAS
+    0x0dcb7342, // PACED
+    0x0dcb7350, // PACER
+    0x0dcb7351, // PACES
+    0x0dcb7357, // PACEY
+    0x0dcb73a2, // PACHA
+    0x0dcb7417, // PACKS
+    0x0dcb749b, // PACOS
+    0x0dcb752e, // PACTA
+    0x0dcb7540, // PACTS
+    0x0dcb7816, // PADIS
+    0x0dcb786b, // PADLE
+    0x0dcb7888, // PADMA
+    0x0dcb7931, // PADRE
+    0x0dcb7935, // PADRI
+    0x0dcb7b4a, // PAEAN
+    0x0dcb7bae, // PAEDO
+    0x0dcb7d18, // PAEON
+    0x0dcb8446, // PAGED
+    0x0dcb8454, // PAGER
+    0x0dcb8455, // PAGES
+    0x0dcb852e, // PAGLE
+    0x0dcb8590, // PAGOD
+    0x0dcb85f8, // PAGRI
+    0x0dcb8d9d, // PAIKS
+    0x0dcb8dbe, // PAILS
+    0x0dcb8e00, // PAINS
+    0x0dcb8e76, // PAIRE
+    0x0dcb8e84, // PAIRS
+    0x0dcb8e93, // PAISA
+    0x0dcb8e97, // PAISE
+    0x0dcb960d, // PAKKA
+    0x0dcb9916, // PALAS
+    0x0dcb991c, // PALAY
+    0x0dcb9988, // PALEA
+    0x0dcb998b, // PALED
+    0x0dcb999a, // PALES
+    0x0dcb999b, // PALET
+    0x0dcb9a1e, // PALIS
+    0x0dcb9a56, // PALKI
+    0x0dcb9a6f, // PALLA
+    0x0dcb9a81, // PALLS
+    0x0dcb9a87, // PALLY
+    0x0dcb9aa2, // PALMS
+    0x0dcb9aa8, // PALMY
+    0x0dcb9afb, // PALPI
+    0x0dcb9b05, // PALPS
+    0x0dcb9b56, // PALSA
+    0x0dcb9f34, // PAMPA
+    0x0dcba19d, // PANAX
+    0x0dcba1cc, // PANCE
+    0x0dcba1e9, // PANDA
+    0x0dcba1fb, // PANDS
+    0x0dcba201, // PANDY
+    0x0dcba20d, // PANED
+    0x0dcba21c, // PANES
+    0x0dcba24c, // PANGA
+    0x0dcba25e, // PANGS
+    0x0dcba29a, // PANIM
+    0x0dcba2de, // PANKO
+    0x0dcba337, // PANNE
+    0x0dcba33b, // PANNI
+    0x0dcba407, // PANTO
+    0x0dcba40b, // PANTS
+    0x0dcba411, // PANTY
+    0x0dcba73a, // PAOLI
+    0x0dcba740, // PAOLO
+    0x0dcbaa1a, // PAPAS
+    0x0dcbaa1e, // PAPAW
+    0x0dcbaa9e, // PAPES
+    0x0dcbabff, // PAPPI
+    0x0dcbac0f, // PAPPY
+    0x0dcbb28e, // PARAE
+    0x0dcbb29c, // PARAS
+    0x0dcbb2d3, // PARCH
+    0x0dcbb2f5, // PARDI
+    0x0dcbb2ff, // PARDS
+    0x0dcbb305, // PARDY
+    0x0dcbb311, // PARED
+    0x0dcbb31b, // PAREN
+    0x0dcbb31c, // PAREO
+    0x0dcbb320, // PARES
+    0x0dcbb322, // PAREU
+    0x0dcbb323, // PAREV
+    0x0dcbb354, // PARGE
+    0x0dcbb35e, // PARGO
+    0x0dcbb3a4, // PARIS
+    0x0dcbb3dc, // PARKI
+    0x0dcbb3e6, // PARKS
+    0x0dcbb3ec, // PARKY
+    0x0dcbb3f9, // PARLE
+    0x0dcbb40d, // PARLY
+    0x0dcbb416, // PARMA
+    0x0dcbb463, // PAROL
+    0x0dcbb48b, // PARPS
+    0x0dcbb4bb, // PARRA
+    0x0dcbb4cd, // PARRS
+    0x0dcbb505, // PARTI
+    0x0dcbb50f, // PARTS
+    0x0dcbb543, // PARVE
+    0x0dcbb54d, // PARVO
+    0x0dcbb75d, // PASEO
+    0x0dcbb761, // PASES
+    0x0dcbb7b2, // PASHA
+    0x0dcbb7be, // PASHM
+    0x0dcbb815, // PASKA
+    0x0dcbb8d2, // PASPY
+    0x0dcbb921, // PASSE
+    0x0dcbb950, // PASTS
+    0x0dcbbb93, // PATED
+    0x0dcbbb9d, // PATEN
+    0x0dcbbba1, // PATER
+    0x0dcbbba2, // PATES
+    0x0dcbbc05, // PATHS
+    0x0dcbbc21, // PATIN
+    0x0dcbbc56, // PATKA
+    0x0dcbbc8f, // PATLY
+    0x0dcbbd83, // PATTE
+    0x0dcbbdb2, // PATUS
+    0x0dcbbf5f, // PAUAS
+    0x0dcbc0ca, // PAULS
+    0x0dcbc39b, // PAVAN
+    0x0dcbc415, // PAVED
+    0x0dcbc41f, // PAVEN
+    0x0dcbc423, // PAVER
+    0x0dcbc424, // PAVES
+    0x0dcbc499, // PAVID
+    0x0dcbc4a3, // PAVIN
+    0x0dcbc4a8, // PAVIS
+    0x0dcbc7e1, // PAWAS
+    0x0dcbc7e5, // PAWAW
+    0x0dcbc856, // PAWED
+    0x0dcbc864, // PAWER
+    0x0dcbc92b, // PAWKS
+    0x0dcbc931, // PAWKY
+    0x0dcbc94c, // PAWLS
+    0x0dcbc98e, // PAWNS
+    0x0dcbcca6, // PAXES
+    0x0dcbd0d8, // PAYED
+    0x0dcbd230, // PAYOR
+    0x0dcbd2a6, // PAYSD
+    0x0dcd9c87, // PEAGE
+    0x0dcd9c95, // PEAGS
+    0x0dcd9d19, // PEAKS
+    0x0dcd9d1f, // PEAKY
+    0x0dcd9d3a, // PEALS
+    0x0dcd9d7c, // PEANS
+    0x0dcd9df2, // PEARE
+    0x0dcd9e00, // PEARS
+    0x0dcd9e01, // PEART
+    0x0dcd9e13, // PEASE
+    0x0dcd9e42, // PEATS
+    0x0dcd9e48, // PEATY
+    0x0dcd9e8a, // PEAVY
+    0x0dcd9efa, // PEAZE
+    0x0dcda010, // PEBAS
+    0x0dcda538, // PECHS
+    0x0dcda58d, // PECKE
+    0x0dcda59b, // PECKS
+    0x0dcda5a1, // PECKY
+    0x0dcda916, // PEDES
+    0x0dcda99a, // PEDIS
+    0x0dcdaabf, // PEDRO
+    0x0dcdad07, // PEECE
+    0x0dcdae1d, // PEEKS
+    0x0dcdae3e, // PEELS
+    0x0dcdae80, // PEENS
+    0x0dcdaea7, // PEEOY
+    0x0dcdaeb4, // PEEPE
+    0x0dcdaec2, // PEEPS
+    0x0dcdaf04, // PEERS
+    0x0dcdaf0a, // PEERY
+    0x0dcdaf7a, // PEEVE
+    0x0dcdb621, // PEGGY
+    0x0dcdb63c, // PEGHS
+    0x0dcdbf84, // PEINS
+    0x0dcdc01b, // PEISE
+    0x0dcdc102, // PEIZE
+    0x0dcdc654, // PEKAN
+    0x0dcdc6dd, // PEKES
+    0x0dcdc75c, // PEKIN
+    0x0dcdc819, // PEKOE
+    0x0dcdca9a, // PELAS
+    0x0dcdca9c, // PELAU
+    0x0dcdcb1e, // PELES
+    0x0dcdcb3f, // PELFS
+    0x0dcdcc05, // PELLS
+    0x0dcdcc14, // PELMA
+    0x0dcdcc63, // PELON
+    0x0dcdccfb, // PELTA
+    0x0dcdcd0d, // PELTS
+    0x0dcdd37f, // PENDS
+    0x0dcdd381, // PENDU
+    0x0dcdd391, // PENED
+    0x0dcdd3a0, // PENES
+    0x0dcdd3de, // PENGO
+    0x0dcdd416, // PENIE
+    0x0dcdd424, // PENIS
+    0x0dcdd466, // PENKS
+    0x0dcdd4b7, // PENNA
+    0x0dcdd4bf, // PENNI
+    0x0dcdd58f, // PENTS
+    0x0dcdd90a, // PEONS
+    0x0dcdd910, // PEONY
+    0x0dcddcf7, // PEPLA
+    0x0dcddd6c, // PEPOS
+    0x0dcddd93, // PEPPY
+    0x0dcddde6, // PEPSI
+    0x0dcde416, // PERAI
+    0x0dcde454, // PERCE
+    0x0dcde462, // PERCS
+    0x0dcde485, // PERDU
+    0x0dcde489, // PERDY
+    0x0dcde492, // PEREA
+    0x0dcde4a4, // PERES
+    0x0dcde528, // PERIS
+    0x0dcde56a, // PERKS
+    0x0dcde5ac, // PERMS
+    0x0dcde5cd, // PERNS
+    0x0dcde5e2, // PEROG
+    0x0dcde60f, // PERPS
+    0x0dcde657, // PERRY
+    0x0dcde664, // PERSE
+    0x0dcde673, // PERST
+    0x0dcde693, // PERTS
+    0x0dcde6c7, // PERVE
+    0x0dcde6d1, // PERVO
+    0x0dcde6d5, // PERVS
+    0x0dcde6db, // PERVY
+    0x0dcdea2f, // PESOS
+    0x0dcdead4, // PESTS
+    0x0dcdeada, // PESTY
+    0x0dcdeca1, // PETAR
+    0x0dcded25, // PETER
+    0x0dcdedab, // PETIT
+    0x0dcdeec5, // PETRE
+    0x0dcdeec9, // PETRI
+    0x0dcdef0b, // PETTI
+    0x0dcdef11, // PETTO
+    0x0dcdf9db, // PEWEE
+    0x0dcdfa6e, // PEWIT
+    0x0dce042b, // PEYSE
+    0x0dcf41aa, // PHAGE
+    0x0dcf4293, // PHANG
+    0x0dcf4315, // PHARE
+    0x0dcf431d, // PHARM
+    0x0dcf5279, // PHEER
+    0x0dcf5395, // PHENE
+    0x0dcf53bf, // PHEON
+    0x0dcf543a, // PHESE
+    0x0dcf62f3, // PHIAL
+    0x0dcf6541, // PHISH
+    0x0dcf663a, // PHIZZ
+    0x0dcf7190, // PHLOX
+    0x0dcf7cb0, // PHOCA
+    0x0dcf7e29, // PHONO
+    0x0dcf7e2d, // PHONS
+    0x0dcf7ef3, // PHOTS
+    0x0dcf81a9, // PHPHT
+    0x0dcf9879, // PHUTS
+    0x0dcfa863, // PHYLA
+    0x0dcfa867, // PHYLE
+    0x0dcfcef6, // PIANI
+    0x0dcfcf00, // PIANS
+    0x0dcfd18d, // PIBAL
+    0x0dcfd5ce, // PICAL
+    0x0dcfd5d5, // PICAS
+    0x0dcfd61d, // PICCY
+    0x0dcfd71f, // PICKS
+    0x0dcfd7a4, // PICOT
+    0x0dcfd7f4, // PICRA
+    0x0dcfd862, // PICUL
+    0x0dcfdff5, // PIEND
+    0x0dcfe088, // PIERS
+    0x0dcfe089, // PIERT
+    0x0dcfe0b8, // PIETA
+    0x0dcfe0ca, // PIETS
+    0x0dcfe18c, // PIEZO
+    0x0dcfe7c1, // PIGHT
+    0x0dcfe86b, // PIGMY
+    0x0dcff0fc, // PIING
+    0x0dcff7dd, // PIKAS
+    0x0dcff7df, // PIKAU
+    0x0dcff852, // PIKED
+    0x0dcff860, // PIKER
+    0x0dcff861, // PIKES
+    0x0dcff867, // PIKEY
+    0x0dcff8e5, // PIKIS
+    0x0dcffa6a, // PIKUL
+    0x0dcffc10, // PILAE
+    0x0dcffc11, // PILAF
+    0x0dcffc1a, // PILAO
+    0x0dcffc1d, // PILAR
+    0x0dcffc20, // PILAU
+    0x0dcffc22, // PILAW
+    0x0dcffc55, // PILCH
+    0x0dcffc90, // PILEA
+    0x0dcffc93, // PILED
+    0x0dcffc98, // PILEI
+    0x0dcffca1, // PILER
+    0x0dcffca2, // PILES
+    0x0dcffd26, // PILIS
+    0x0dcffd89, // PILLS
+    0x0dcffdf0, // PILOW
+    0x0dcffeac, // PILUM
+    0x0dcffeb2, // PILUS
+    0x0dd0005f, // PIMAS
+    0x0dd0024e, // PIMPS
+    0x0dd004a0, // PINAS
+    0x0dd00515, // PINED
+    0x0dd00524, // PINES
+    0x0dd00562, // PINGO
+    0x0dd00566, // PINGS
+    0x0dd005e6, // PINKO
+    0x0dd005ea, // PINKS
+    0x0dd0063b, // PINNA
+    0x0dd00653, // PINNY
+    0x0dd00669, // PINON
+    0x0dd0066f, // PINOT
+    0x0dd00701, // PINTA
+    0x0dd00713, // PINTS
+    0x0dd00731, // PINUP
+    0x0dd00a8e, // PIONS
+    0x0dd00a94, // PIONY
+    0x0dd00b75, // PIOUS
+    0x0dd00beb, // PIOYE
+    0x0dd00bf9, // PIOYS
+    0x0dd00d1b, // PIPAL
+    0x0dd00d22, // PIPAS
+    0x0dd00d97, // PIPED
+    0x0dd00da6, // PIPES
+    0x0dd00da7, // PIPET
+    0x0dd00e2a, // PIPIS
+    0x0dd00e2b, // PIPIT
+    0x0dd00f17, // PIPPY
+    0x0dd00faf, // PIPUL
+    0x0dd0159a, // PIRAI
+    0x0dd0170f, // PIRLS
+    0x0dd01751, // PIRNS
+    0x0dd01766, // PIROG
+    0x0dd01a23, // PISCO
+    0x0dd01a69, // PISES
+    0x0dd01b35, // PISKY
+    0x0dd01bb3, // PISOS
+    0x0dd01c3d, // PISSY
+    0x0dd01c4a, // PISTE
+    0x0dd01e26, // PITAS
+    0x0dd01f0d, // PITHS
+    0x0dd01fef, // PITON
+    0x0dd01ff5, // PITOT
+    0x0dd02087, // PITTA
+    0x0dd023f3, // PIUMS
+    0x0dd02fae, // PIXES
+    0x0dd03821, // PIZED
+    0x0dd03830, // PIZES
+    0x0dd17276, // PLAAS
+    0x0dd172b0, // PLACK
+    0x0dd1732e, // PLAGE
+    0x0dd17423, // PLANS
+    0x0dd17465, // PLAPS
+    0x0dd174bd, // PLASH
+    0x0dd174c2, // PLASM
+    0x0dd174c9, // PLAST
+    0x0dd174e9, // PLATS
+    0x0dd174ea, // PLATT
+    0x0dd174ef, // PLATY
+    0x0dd1757c, // PLAYA
+    0x0dd1758e, // PLAYS
+    0x0dd1837a, // PLEAS
+    0x0dd1838d, // PLEBE
+    0x0dd1839b, // PLEBS
+    0x0dd18515, // PLENA
+    0x0dd18543, // PLEON
+    0x0dd185c1, // PLESH
+    0x0dd18650, // PLEWS
+    0x0dd194ae, // PLICA
+    0x0dd19502, // PLIES
+    0x0dd1960a, // PLIMS
+    0x0dd1961f, // PLING
+    0x0dd19623, // PLINK
+    0x0dd1ae05, // PLOAT
+    0x0dd1ae67, // PLODS
+    0x0dd1afa5, // PLONG
+    0x0dd1afa9, // PLONK
+    0x0dd1afca, // PLOOK
+    0x0dd1aff3, // PLOPS
+    0x0dd1b077, // PLOTS
+    0x0dd1b07e, // PLOTZ
+    0x0dd1b090, // PLOUK
+    0x0dd1b0da, // PLOWS
+    0x0dd1b10e, // PLOYE
+    0x0dd1b11c, // PLOYS
+    0x0dd1c80e, // PLUES
+    0x0dd1c822, // PLUFF
+    0x0dd1c850, // PLUGS
+    0x0dd1c916, // PLUMS
+    0x0dd1c91c, // PLUMY
+    0x0dd1c959, // PLUOT
+    0x0dd1c9f9, // PLUTO
+    0x0dd1d911, // PLYER
+    0x0dd317d0, // POACH
+    0x0dd318d1, // POAKA
+    0x0dd318d5, // POAKE
+    0x0dd31dae, // POBOY
+    0x0dd32165, // POCKS
+    0x0dd3216b, // POCKY
+    0x0dd32455, // PODAL
+    0x0dd324c5, // PODDY
+    0x0dd324e5, // PODEX
+    0x0dd32514, // PODGE
+    0x0dd32528, // PODGY
+    0x0dd32552, // PODIA
+    0x0dd32a29, // POEMS
+    0x0dd32a8c, // POEPS
+    0x0dd32b10, // POETS
+    0x0dd331a9, // POGEY
+    0x0dd331d7, // POGGE
+    0x0dd332ed, // POGOS
+    0x0dd335d5, // POHED
+    0x0dd33b0e, // POILU
+    0x0dd33b3f, // POIND
+    0x0dd3421c, // POKAL
+    0x0dd34298, // POKED
+    0x0dd342a7, // POKES
+    0x0dd342ad, // POKEY
+    0x0dd3431d, // POKIE
+    0x0dd346d9, // POLED
+    0x0dd346e7, // POLER
+    0x0dd346e8, // POLES
+    0x0dd346ee, // POLEY
+    0x0dd34768, // POLIO
+    0x0dd3476c, // POLIS
+    0x0dd3477f, // POLJE
+    0x0dd347ae, // POLKS
+    0x0dd347cf, // POLLS
+    0x0dd347d5, // POLLY
+    0x0dd34832, // POLOS
+    0x0dd348d7, // POLTS
+    0x0dd3497c, // POLYS
+    0x0dd34ab8, // POMBE
+    0x0dd34b29, // POMES
+    0x0dd34c37, // POMMY
+    0x0dd34c73, // POMOS
+    0x0dd34c94, // POMPS
+    0x0dd34f1a, // PONCE
+    0x0dd34f2e, // PONCY
+    0x0dd34f49, // PONDS
+    0x0dd34f6a, // PONES
+    0x0dd34f70, // PONEY
+    0x0dd34f9a, // PONGA
+    0x0dd34fa8, // PONGO
+    0x0dd34fac, // PONGS
+    0x0dd34fb2, // PONGY
+    0x0dd35030, // PONKS
+    0x0dd35159, // PONTS
+    0x0dd3515f, // PONTY
+    0x0dd35221, // PONZU
+    0x0dd3538a, // POODS
+    0x0dd3539c, // POOED
+    0x0dd353cc, // POOFS
+    0x0dd353d2, // POOFY
+    0x0dd3540e, // POOHS
+    0x0dd3543e, // POOJA
+    0x0dd3545f, // POOKA
+    0x0dd35471, // POOKS
+    0x0dd35492, // POOLS
+    0x0dd354d4, // POONS
+    0x0dd35516, // POOPS
+    0x0dd3551c, // POOPY
+    0x0dd3554e, // POORI
+    0x0dd35559, // POORT
+    0x0dd3559a, // POOTS
+    0x0dd355ce, // POOVE
+    0x0dd355e2, // POOVY
+    0x0dd357ec, // POPES
+    0x0dd35945, // POPPA
+    0x0dd359c0, // POPSY
+    0x0dd35fdc, // PORAE
+    0x0dd35fe3, // PORAL
+    0x0dd3605f, // PORED
+    0x0dd3606d, // PORER
+    0x0dd3606e, // PORES
+    0x0dd360a2, // PORGE
+    0x0dd360b6, // PORGY
+    0x0dd360ed, // PORIN
+    0x0dd36134, // PORKS
+    0x0dd3613a, // PORKY
+    0x0dd36193, // PORNO
+    0x0dd36197, // PORNS
+    0x0dd3619d, // PORNY
+    0x0dd3624b, // PORTA
+    0x0dd3625d, // PORTS
+    0x0dd36263, // PORTY
+    0x0dd364a0, // POSED
+    0x0dd364af, // POSES
+    0x0dd364b5, // POSEY
+    0x0dd3650e, // POSHO
+    0x0dd3669e, // POSTS
+    0x0dd3685e, // POTAE
+    0x0dd368a3, // POTCH
+    0x0dd368e1, // POTED
+    0x0dd368f0, // POTES
+    0x0dd3696f, // POTIN
+    0x0dd36a36, // POTOO
+    0x0dd36ac4, // POTSY
+    0x0dd36adb, // POTTO
+    0x0dd36adf, // POTTS
+    0x0dd36ae5, // POTTY
+    0x0dd36d45, // POUFF
+    0x0dd36d52, // POUFS
+    0x0dd36de9, // POUKE
+    0x0dd36df7, // POUKS
+    0x0dd36e0a, // POULE
+    0x0dd36e15, // POULP
+    0x0dd36e19, // POULT
+    0x0dd36e8e, // POUPE
+    0x0dd36e9d, // POUPT
+    0x0dd36ede, // POURS
+    0x0dd36f20, // POUTS
+    0x0dd3752a, // POWAN
+    0x0dd37632, // POWIN
+    0x0dd376cd, // POWND
+    0x0dd376dc, // POWNS
+    0x0dd376e2, // POWNY
+    0x0dd37752, // POWRE
+    0x0dd379e5, // POXED
+    0x0dd379f4, // POXES
+    0x0dd37f5f, // POYNT
+    0x0dd37f81, // POYOU
+    0x0dd37ff5, // POYSE
+    0x0dd38531, // POZZY
+    0x0dd4bcb6, // PRAAM
+    0x0dd4bd1f, // PRADS
+    0x0dd4bda5, // PRAHU
+    0x0dd4be48, // PRAMS
+    0x0dd4be57, // PRANA
+    0x0dd4be5d, // PRANG
+    0x0dd4be8a, // PRAOS
+    0x0dd4bf00, // PRASE
+    0x0dd4bf21, // PRATE
+    0x0dd4bf2f, // PRATS
+    0x0dd4bf30, // PRATT
+    0x0dd4bf35, // PRATY
+    0x0dd4bf50, // PRAUS
+    0x0dd4bfd4, // PRAYS
+    0x0dd4ce29, // PREDY
+    0x0dd4ce35, // PREED
+    0x0dd4ce44, // PREES
+    0x0dd4cebb, // PREIF
+    0x0dd4cf4c, // PREMS
+    0x0dd4cf52, // PREMY
+    0x0dd4cf6e, // PRENT
+    0x0dd4cf89, // PREON
+    0x0dd4cf8b, // PREOP
+    0x0dd4cfaf, // PREPS
+    0x0dd4d000, // PRESA
+    0x0dd4d004, // PRESE
+    0x0dd4d013, // PREST
+    0x0dd4d067, // PREVE
+    0x0dd4d0bd, // PREXY
+    0x0dd4d0d8, // PREYS
+    0x0dd4debd, // PRIAL
+    0x0dd4df0c, // PRICY
+    0x0dd4df3b, // PRIEF
+    0x0dd4df47, // PRIER
+    0x0dd4df48, // PRIES
+    0x0dd4df8a, // PRIGS
+    0x0dd4e028, // PRILL
+    0x0dd4e03e, // PRIMA
+    0x0dd4e046, // PRIMI
+    0x0dd4e04d, // PRIMP
+    0x0dd4e050, // PRIMS
+    0x0dd4e056, // PRIMY
+    0x0dd4e069, // PRINK
+    0x0dd4e08d, // PRION
+    0x0dd4e108, // PRISE
+    0x0dd4e116, // PRISS
+    0x0dd4f84a, // PROAS
+    0x0dd4f86b, // PROBS
+    0x0dd4f8ad, // PRODS
+    0x0dd4f8c8, // PROEM
+    0x0dd4f8ef, // PROFS
+    0x0dd4f910, // PROGS
+    0x0dd4f94d, // PROIN
+    0x0dd4f986, // PROKE
+    0x0dd4f9a7, // PROLE
+    0x0dd4f9ae, // PROLL
+    0x0dd4f9d2, // PROMO
+    0x0dd4f9d6, // PROMS
+    0x0dd4f9ef, // PRONK
+    0x0dd4fa39, // PROPS
+    0x0dd4fa6d, // PRORE
+    0x0dd4fa98, // PROSO
+    0x0dd4fa9c, // PROSS
+    0x0dd4fa9d, // PROST
+    0x0dd4faa2, // PROSY
+    0x0dd4fab9, // PROTO
+    0x0dd4fad7, // PROUL
+    0x0dd4fb20, // PROWS
+    0x0dd4fb5d, // PROYN
+    0x0dd5137e, // PRUNT
+    0x0dd51431, // PRUTA
+    0x0dd52357, // PRYER
+    0x0dd52518, // PRYSE
+    0x0dd55ca6, // PSEUD
+    0x0dd566e8, // PSHAW
+    0x0dd56cee, // PSION
+    0x0dd5849d, // PSOAE
+    0x0dd584a1, // PSOAI
+    0x0dd584ab, // PSOAS
+    0x0dd586ca, // PSORA
+    0x0dd5af6c, // PSYCH
+    0x0dd5b100, // PSYOP
+    0x0dd6665e, // PUBCO
+    0x0dd666a4, // PUBES
+    0x0dd66728, // PUBIS
+    0x0dd66a5c, // PUCAN
+    0x0dd66ae4, // PUCER
+    0x0dd66ae5, // PUCES
+    0x0dd66b99, // PUCKA
+    0x0dd66bab, // PUCKS
+    0x0dd66f0b, // PUDDY
+    0x0dd66f5a, // PUDGE
+    0x0dd66f9a, // PUDIC
+    0x0dd6706f, // PUDOR
+    0x0dd670fa, // PUDSY
+    0x0dd67136, // PUDUS
+    0x0dd67514, // PUERS
+    0x0dd677b7, // PUFFA
+    0x0dd677c9, // PUFFS
+    0x0dd67c31, // PUGGY
+    0x0dd67c66, // PUGIL
+    0x0dd67fa6, // PUHAS
+    0x0dd6881d, // PUJAH
+    0x0dd68828, // PUJAS
+    0x0dd68c69, // PUKAS
+    0x0dd68cde, // PUKED
+    0x0dd68cec, // PUKER
+    0x0dd68ced, // PUKES
+    0x0dd68cf3, // PUKEY
+    0x0dd68da1, // PUKKA
+    0x0dd68efd, // PUKUS
+    0x0dd690a6, // PULAO
+    0x0dd690aa, // PULAS
+    0x0dd6911f, // PULED
+    0x0dd6912d, // PULER
+    0x0dd6912e, // PULES
+    0x0dd691aa, // PULIK
+    0x0dd691b2, // PULIS
+    0x0dd691e2, // PULKA
+    0x0dd691f4, // PULKS
+    0x0dd6920b, // PULLI
+    0x0dd69215, // PULLS
+    0x0dd6921b, // PULLY
+    0x0dd69232, // PULMO
+    0x0dd69299, // PULPS
+    0x0dd6933e, // PULUS
+    0x0dd694eb, // PUMAS
+    0x0dd695e5, // PUMIE
+    0x0dd696da, // PUMPS
+    0x0dd6992c, // PUNAS
+    0x0dd69960, // PUNCE
+    0x0dd699e0, // PUNGA
+    0x0dd699f2, // PUNGS
+    0x0dd69a4b, // PUNJI
+    0x0dd69a64, // PUNKA
+    0x0dd69a76, // PUNKS
+    0x0dd69a7c, // PUNKY
+    0x0dd69adf, // PUNNY
+    0x0dd69b9b, // PUNTO
+    0x0dd69b9f, // PUNTS
+    0x0dd69ba5, // PUNTY
+    0x0dd6a1a0, // PUPAE
+    0x0dd6a1ae, // PUPAS
+    0x0dd6a442, // PUPUS
+    0x0dd6aa81, // PURDA
+    0x0dd6aaa5, // PURED
+    0x0dd6aab4, // PURES
+    0x0dd6ab33, // PURIN
+    0x0dd6ab38, // PURIS
+    0x0dd6ab9b, // PURLS
+    0x0dd6ac25, // PURPY
+    0x0dd6ac61, // PURRS
+    0x0dd6ac88, // PURSY
+    0x0dd6aca9, // PURTY
+    0x0dd6aef5, // PUSES
+    0x0dd6afce, // PUSLE
+    0x0dd6b3ab, // PUTID
+    0x0dd6b47b, // PUTON
+    0x0dd6b51b, // PUTTI
+    0x0dd6b521, // PUTTO
+    0x0dd6b525, // PUTTS
+    0x0dd6ccb5, // PUZEL
+    0x0dd7b263, // PWNED
+    0x0dd895d6, // PYATS
+    0x0dd8a6da, // PYETS
+    0x0dd8ace2, // PYGAL
+    0x0dd8b718, // PYINS
+    0x0dd8c3f7, // PYLON
+    0x0dd8cb25, // PYNED
+    0x0dd8cb34, // PYNES
+    0x0dd8cfea, // PYOID
+    0x0dd8d164, // PYOTS
+    0x0dd8dbad, // PYRAL
+    0x0dd8dbaf, // PYRAN
+    0x0dd8dc38, // PYRES
+    0x0dd8dc3d, // PYREX
+    0x0dd8dcac, // PYRIC
+    0x0dd8dd82, // PYROS
+    0x0dd8f5af, // PYXED
+    0x0dd8f5be, // PYXES
+    0x0dd8f634, // PYXIE
+    0x0dd8f642, // PYXIS
+    0x0dd92304, // PZAZZ
+    0x0ddd9097, // QADIS
+    0x0ddda537, // QAIDS
+    0x0ddda913, // QAJAQ
+    0x0dddba1a, // QANAT
+    0x0dddc39b, // QAPIK
+    0x0de1eb6e, // QIBLA
+    0x0de570d0, // QOPHS
+    0x0de579e5, // QORMA
+    0x0de87ac3, // QUADS
+    0x0de87af8, // QUAFF
+    0x0de87b26, // QUAGS
+    0x0de87b67, // QUAIR
+    0x0de87b68, // QUAIS
+    0x0de87bb0, // QUAKY
+    0x0de87bbd, // QUALE
+    0x0de87c0e, // QUANT
+    0x0de87c83, // QUARE
+    0x0de87cb2, // QUASS
+    0x0de87cc5, // QUATE
+    0x0de87cd3, // QUATS
+    0x0de87d69, // QUAYD
+    0x0de87d78, // QUAYS
+    0x0de87faa, // QUBIT
+    0x0de88b5f, // QUEAN
+    0x0de88ce2, // QUEME
+    0x0de88cff, // QUENA
+    0x0de88d90, // QUERN
+    0x0de88e77, // QUEYN
+    0x0de88e7c, // QUEYS
+    0x0de89c9f, // QUICH
+    0x0de89ccb, // QUIDS
+    0x0de89d00, // QUIFF
+    0x0de89df4, // QUIMS
+    0x0de89e03, // QUINA
+    0x0de89e07, // QUINE
+    0x0de89e11, // QUINO
+    0x0de89e15, // QUINS
+    0x0de89e16, // QUINT
+    0x0de89e53, // QUIPO
+    0x0de89e57, // QUIPS
+    0x0de89e59, // QUIPU
+    0x0de89e8b, // QUIRE
+    0x0de89e9a, // QUIRT
+    0x0de89ebb, // QUIST
+    0x0de89edb, // QUITS
+    0x0de8b5df, // QUOAD
+    0x0de8b651, // QUODS
+    0x0de8b6e9, // QUOIF
+    0x0de8b6f1, // QUOIN
+    0x0de8b6f7, // QUOIT
+    0x0de8b752, // QUOLL
+    0x0de8b793, // QUONK
+    0x0de8b7dd, // QUOPS
+    0x0de8c4f8, // QURSH
+    0x0de8e2dd, // QUYTE
+    0x0def9f8f, // RABAT
+    0x0defa086, // RABIC
+    0x0defa096, // RABIS
+    0x0defa444, // RACED
+    0x0defa453, // RACES
+    0x0defa4a8, // RACHE
+    0x0defa519, // RACKS
+    0x0defa598, // RACON
+    0x0defa8c8, // RADGE
+    0x0defa91d, // RADIX
+    0x0defa9d9, // RADON
+    0x0defb137, // RAFFS
+    0x0defb305, // RAFTS
+    0x0defb4d3, // RAGAS
+    0x0defb528, // RAGDE
+    0x0defb548, // RAGED
+    0x0defb549, // RAGEE
+    0x0defb556, // RAGER
+    0x0defb557, // RAGES
+    0x0defb587, // RAGGA
+    0x0defb599, // RAGGS
+    0x0defb59f, // RAGGY
+    0x0defb5db, // RAGIS
+    0x0defb767, // RAGUS
+    0x0defb989, // RAHED
+    0x0defbb9e, // RAHUI
+    0x0defbd55, // RAIAS
+    0x0defbdb8, // RAIDS
+    0x0defbe9f, // RAIKS
+    0x0defbeb2, // RAILE
+    0x0defbec0, // RAILS
+    0x0defbef4, // RAINE
+    0x0defbf02, // RAINS
+    0x0defbf77, // RAIRD
+    0x0defbfb6, // RAITA
+    0x0defbfc8, // RAITS
+    0x0defc196, // RAJAS
+    0x0defc21a, // RAJES
+    0x0defc64c, // RAKED
+    0x0defc64d, // RAKEE
+    0x0defc65a, // RAKER
+    0x0defc65b, // RAKES
+    0x0defc6cd, // RAKIA
+    0x0defc6df, // RAKIS
+    0x0defc86b, // RAKUS
+    0x0defca9c, // RALES
+    0x0defce52, // RAMAL
+    0x0defcecf, // RAMEE
+    0x0defcede, // RAMET
+    0x0defcf53, // RAMIE
+    0x0defcf5c, // RAMIN
+    0x0defcf61, // RAMIS
+    0x0defcfeb, // RAMMY
+    0x0defd048, // RAMPS
+    0x0defd0ed, // RAMUS
+    0x0defd29a, // RANAS
+    0x0defd2ce, // RANCE
+    0x0defd2fd, // RANDS
+    0x0defd310, // RANEE
+    0x0defd34e, // RANGA
+    0x0defd356, // RANGI
+    0x0defd360, // RANGS
+    0x0defd366, // RANGY
+    0x0defd393, // RANID
+    0x0defd3a2, // RANIS
+    0x0defd3d6, // RANKE
+    0x0defd3e4, // RANKS
+    0x0defd50d, // RANTS
+    0x0defdb91, // RAPED
+    0x0defdb9f, // RAPER
+    0x0defdba0, // RAPES
+    0x0defdbf5, // RAPHE
+    0x0defdcfd, // RAPPE
+    0x0defe413, // RARED
+    0x0defe414, // RAREE
+    0x0defe422, // RARES
+    0x0defe4e8, // RARKS
+    0x0defe854, // RASED
+    0x0defe862, // RASER
+    0x0defe863, // RASES
+    0x0defe9ce, // RASPS
+    0x0defea23, // RASSE
+    0x0defea40, // RASTA
+    0x0defec19, // RATAL
+    0x0defec1b, // RATAN
+    0x0defec20, // RATAS
+    0x0defec57, // RATCH
+    0x0defec95, // RATED
+    0x0defec9d, // RATEL
+    0x0defeca3, // RATER
+    0x0defeca4, // RATES
+    0x0defecf5, // RATHA
+    0x0defecf9, // RATHE
+    0x0defed07, // RATHS
+    0x0defedea, // RATOO
+    0x0defedee, // RATOS
+    0x0defeeb4, // RATUS
+    0x0deff20e, // RAUNS
+    0x0deff24c, // RAUPO
+    0x0deff517, // RAVED
+    0x0deff51f, // RAVEL
+    0x0deff525, // RAVER
+    0x0deff526, // RAVES
+    0x0deff52c, // RAVEY
+    0x0deff5a5, // RAVIN
+    0x0deff966, // RAWER
+    0x0deff9e6, // RAWIN
+    0x0deffa54, // RAWLY
+    0x0deffa90, // RAWNS
+    0x0deffd99, // RAXED
+    0x0deffda8, // RAXES
+    0x0df0015a, // RAYAH
+    0x0df00165, // RAYAS
+    0x0df001da, // RAYED
+    0x0df002c2, // RAYLE
+    0x0df00304, // RAYNE
+    0x0df0061b, // RAZED
+    0x0df0061c, // RAZEE
+    0x0df00629, // RAZER
+    0x0df0062a, // RAZES
+    0x0df00770, // RAZOO
+    0x0df1cd25, // READD
+    0x0df1cd34, // READS
+    0x0df1cdd9, // REAIS
+    0x0df1ce1b, // REAKS
+    0x0df1ce38, // REALO
+    0x0df1ce3c, // REALS
+    0x0df1ce4f, // REAME
+    0x0df1ce5d, // REAMS
+    0x0df1ce63, // REAMY
+    0x0df1ce7e, // REANS
+    0x0df1cec0, // REAPS
+    0x0df1cf02, // REARS
+    0x0df1cf24, // REAST
+    0x0df1cf32, // REATA
+    0x0df1cf36, // REATE
+    0x0df1cf78, // REAVE
+    0x0df1d125, // REBBE
+    0x0df1d186, // REBEC
+    0x0df1d20b, // REBID
+    0x0df1d21b, // REBIT
+    0x0df1d2dd, // REBOP
+    0x0df1d3ac, // REBUY
+    0x0df1d54c, // RECAL
+    0x0df1d587, // RECCE
+    0x0df1d591, // RECCO
+    0x0df1d59b, // RECCY
+    0x0df1d65c, // RECIT
+    0x0df1d69d, // RECKS
+    0x0df1d71c, // RECON
+    0x0df1d7b4, // RECTA
+    0x0df1d7bc, // RECTI
+    0x0df1d7c2, // RECTO
+    0x0df1d98f, // REDAN
+    0x0df1d9f7, // REDDS
+    0x0df1d9fd, // REDDY
+    0x0df1da09, // REDED
+    0x0df1da18, // REDES
+    0x0df1da8a, // REDIA
+    0x0df1da8d, // REDID
+    0x0df1da99, // REDIP
+    0x0df1db05, // REDLY
+    0x0df1db5d, // REDON
+    0x0df1db62, // REDOS
+    0x0df1db67, // REDOX
+    0x0df1dbcb, // REDRY
+    0x0df1dc17, // REDUB
+    0x0df1dc2d, // REDUX
+    0x0df1dc9e, // REDYE
+    0x0df1de0c, // REECH
+    0x0df1de2a, // REEDE
+    0x0df1de38, // REEDS
+    0x0df1de7a, // REEFS
+    0x0df1de80, // REEFY
+    0x0df1df1f, // REEKS
+    0x0df1df25, // REEKY
+    0x0df1df40, // REELS
+    0x0df1df82, // REENS
+    0x0df1e028, // REEST
+    0x0df1e07c, // REEVE
+    0x0df1e28b, // REFED
+    0x0df1e293, // REFEL
+    0x0df1e2b7, // REFFO
+    0x0df1e31e, // REFIS
+    0x0df1e323, // REFIX
+    0x0df1e387, // REFLY
+    0x0df1e44d, // REFRY
+    0x0df1e656, // REGAR
+    0x0df1e6db, // REGES
+    0x0df1e719, // REGGO
+    0x0df1e751, // REGIE
+    0x0df1e7d1, // REGMA
+    0x0df1e7f2, // REGNA
+    0x0df1e825, // REGOS
+    0x0df1e8ea, // REGUR
+    0x0df1eb16, // REHEM
+    0x0df1ef7e, // REIFS
+    0x0df1ef84, // REIFY
+    0x0df1f019, // REIKI
+    0x0df1f023, // REIKS
+    0x0df1f07e, // REINK
+    0x0df1f086, // REINS
+    0x0df1f0fb, // REIRD
+    0x0df1f12c, // REIST
+    0x0df1f180, // REIVE
+    0x0df1f416, // REJIG
+    0x0df1f4e3, // REJON
+    0x0df1f7d0, // REKED
+    0x0df1f7df, // REKES
+    0x0df1f7e5, // REKEY
+    0x0df1fc21, // RELET
+    0x0df1fc96, // RELIE
+    0x0df1fca5, // RELIT
+    0x0df1fd03, // RELLO
+    0x0df1ffd8, // REMAN
+    0x0df1ffda, // REMAP
+    0x0df2005c, // REMEN
+    0x0df20062, // REMET
+    0x0df20066, // REMEX
+    0x0df200ea, // REMIX
+    0x0df20424, // RENAY
+    0x0df20481, // RENDS
+    0x0df204a8, // RENEY
+    0x0df204d2, // RENGA
+    0x0df2051a, // RENIG
+    0x0df20521, // RENIN
+    0x0df205bd, // RENNE
+    0x0df205ec, // RENOS
+    0x0df20683, // RENTE
+    0x0df20691, // RENTS
+    0x0df20960, // REOIL
+    0x0df20a84, // REORG
+    0x0df20d18, // REPEG
+    0x0df20da3, // REPIN
+    0x0df20df9, // REPLA
+    0x0df20e6e, // REPOS
+    0x0df20e6f, // REPOT
+    0x0df20e8f, // REPPS
+    0x0df20ecd, // REPRO
+    0x0df2151d, // RERAN
+    0x0df2161e, // RERIG
+    0x0df21964, // RESAT
+    0x0df21967, // RESAW
+    0x0df21969, // RESAY
+    0x0df219d9, // RESEE
+    0x0df219e7, // RESES
+    0x0df219eb, // RESEW
+    0x0df21a5c, // RESID
+    0x0df21a6c, // RESIT
+    0x0df21b22, // RESOD
+    0x0df21b35, // RESOW
+    0x0df21bd2, // RESTO
+    0x0df21bd6, // RESTS
+    0x0df21bdc, // RESTY
+    0x0df21bf7, // RESUS
+    0x0df21d98, // RETAG
+    0x0df21da9, // RETAX
+    0x0df21e22, // RETEM
+    0x0df21e9a, // RETIA
+    0x0df21e9e, // RETIE
+    0x0df21f77, // RETOX
+    0x0df226ab, // REVET
+    0x0df22720, // REVIE
+    0x0df22a62, // REWAN
+    0x0df22a6c, // REWAX
+    0x0df22adc, // REWED
+    0x0df22aec, // REWET
+    0x0df22b6a, // REWIN
+    0x0df22c30, // REWON
+    0x0df22ccf, // REWTH
+    0x0df22f2c, // REXES
+    0x0df237ae, // REZES
+    0x0df382f8, // RHEAS
+    0x0df38476, // RHEME
+    0x0df38586, // RHEUM
+    0x0df39480, // RHIES
+    0x0df3957a, // RHIME
+    0x0df3959b, // RHINE
+    0x0df3adeb, // RHODY
+    0x0df3aefd, // RHOMB
+    0x0df3af21, // RHONE
+    0x0df3c883, // RHUMB
+    0x0df3d9ab, // RHYNE
+    0x0df3da6d, // RHYTA
+    0x0df3feb8, // RIADS
+    0x0df3ffc0, // RIALS
+    0x0df40003, // RIANT
+    0x0df400b6, // RIATA
+    0x0df40296, // RIBAS
+    0x0df402bd, // RIBBY
+    0x0df4031a, // RIBES
+    0x0df4074c, // RICED
+    0x0df4075a, // RICER
+    0x0df4075b, // RICES
+    0x0df40761, // RICEY
+    0x0df407bf, // RICHT
+    0x0df407da, // RICIN
+    0x0df40821, // RICKS
+    0x0df40b9c, // RIDES
+    0x0df40be4, // RIDGY
+    0x0df40c10, // RIDIC
+    0x0df410c4, // RIELS
+    0x0df410e5, // RIEMS
+    0x0df41200, // RIEVE
+    0x0df4141d, // RIFER
+    0x0df4143f, // RIFFS
+    0x0df415ff, // RIFTE
+    0x0df4160d, // RIFTS
+    0x0df41613, // RIFTY
+    0x0df418a1, // RIGGS
+    0x0df419a2, // RIGOL
+    0x0df42d95, // RILED
+    0x0df42da4, // RILES
+    0x0df42daa, // RILEY
+    0x0df42e7d, // RILLE
+    0x0df42e8b, // RILLS
+    0x0df43153, // RIMAE
+    0x0df431d6, // RIMED
+    0x0df431e4, // RIMER
+    0x0df431e5, // RIMES
+    0x0df433f5, // RIMUS
+    0x0df43605, // RINDS
+    0x0df4360b, // RINDY
+    0x0df43626, // RINES
+    0x0df43668, // RINGS
+    0x0df436ec, // RINKS
+    0x0df43afa, // RIOJA
+    0x0df43c56, // RIOTS
+    0x0df43e99, // RIPED
+    0x0df43ea8, // RIPES
+    0x0df44013, // RIPPS
+    0x0df44b6b, // RISES
+    0x0df44bc4, // RISHI
+    0x0df44c31, // RISKS
+    0x0df44cd6, // RISPS
+    0x0df44d7b, // RISUS
+    0x0df44fac, // RITES
+    0x0df4519b, // RITTS
+    0x0df45267, // RITZY
+    0x0df457aa, // RIVAS
+    0x0df4581f, // RIVED
+    0x0df45827, // RIVEL
+    0x0df45829, // RIVEN
+    0x0df4582e, // RIVES
+    0x0df46466, // RIYAL
+    0x0df468ae, // RIZAS
+    0x0df748fe, // ROADS
+    0x0df74a27, // ROAMS
+    0x0df74a48, // ROANS
+    0x0df74acc, // ROARS
+    0x0df74ad2, // ROARY
+    0x0df74b00, // ROATE
+    0x0df74d51, // ROBED
+    0x0df74d60, // ROBES
+    0x0df74e39, // ROBLE
+    0x0df75267, // ROCKS
+    0x0df755d3, // RODED
+    0x0df755e2, // RODES
+    0x0df764bb, // ROGUY
+    0x0df766e6, // ROHES
+    0x0df76b06, // ROIDS
+    0x0df76c0e, // ROILS
+    0x0df76c14, // ROILY
+    0x0df76c50, // ROINS
+    0x0df76cf6, // ROIST
+    0x0df76edc, // ROJAK
+    0x0df76fec, // ROJIS
+    0x0df7739a, // ROKED
+    0x0df773a8, // ROKER
+    0x0df773a9, // ROKES
+    0x0df7775a, // ROLAG
+    0x0df777ea, // ROLES
+    0x0df7780b, // ROLFS
+    0x0df778d1, // ROLLS
+    0x0df77ba0, // ROMAL
+    0x0df77ba2, // ROMAN
+    0x0df77c27, // ROMEO
+    0x0df77d96, // ROMPS
+    0x0df7803d, // RONDE
+    0x0df78047, // RONDO
+    0x0df78068, // RONEO
+    0x0df7806c, // RONES
+    0x0df780eb, // RONIN
+    0x0df78187, // RONNE
+    0x0df7824d, // RONTE
+    0x0df7825b, // RONTS
+    0x0df7848c, // ROODS
+    0x0df784ce, // ROOFS
+    0x0df784d4, // ROOFY
+    0x0df78573, // ROOKS
+    0x0df78579, // ROOKY
+    0x0df785b5, // ROOMS
+    0x0df785d6, // ROONS
+    0x0df78618, // ROOPS
+    0x0df7861e, // ROOPY
+    0x0df78669, // ROOSA
+    0x0df7866d, // ROOSE
+    0x0df7869c, // ROOTS
+    0x0df786a2, // ROOTY
+    0x0df788df, // ROPED
+    0x0df788ed, // ROPER
+    0x0df788ee, // ROPES
+    0x0df788f4, // ROPEY
+    0x0df78f31, // ROQUE
+    0x0df790e5, // RORAL
+    0x0df79170, // RORES
+    0x0df791e4, // RORIC
+    0x0df791e5, // RORID
+    0x0df791e6, // RORIE
+    0x0df7935f, // RORTS
+    0x0df79365, // RORTY
+    0x0df795a2, // ROSED
+    0x0df795b1, // ROSES
+    0x0df795b2, // ROSET
+    0x0df7960a, // ROSHI
+    0x0df79630, // ROSIN
+    0x0df79636, // ROSIT
+    0x0df79796, // ROSTI
+    0x0df797a0, // ROSTS
+    0x0df79967, // ROTAL
+    0x0df79969, // ROTAN
+    0x0df7996e, // ROTAS
+    0x0df799a5, // ROTCH
+    0x0df799e3, // ROTED
+    0x0df799f2, // ROTES
+    0x0df79a76, // ROTIS
+    0x0df79ad9, // ROTLS
+    0x0df79b37, // ROTON
+    0x0df79b3c, // ROTOS
+    0x0df79bd3, // ROTTE
+    0x0df79e2e, // ROUEN
+    0x0df79e33, // ROUES
+    0x0df79f0c, // ROULE
+    0x0df79f1a, // ROULS
+    0x0df79f3b, // ROUMS
+    0x0df79f9e, // ROUPS
+    0x0df79fa4, // ROUPY
+    0x0df7a002, // ROUST
+    0x0df7a017, // ROUTH
+    0x0df7a022, // ROUTS
+    0x0df7a265, // ROVED
+    0x0df7a26f, // ROVEN
+    0x0df7a274, // ROVES
+    0x0df7a62c, // ROWAN
+    0x0df7a6a6, // ROWED
+    0x0df7a6ae, // ROWEL
+    0x0df7a6b0, // ROWEN
+    0x0df7a72b, // ROWIE
+    0x0df7a7af, // ROWME
+    0x0df7a7cf, // ROWND
+    0x0df7a899, // ROWTH
+    0x0df7a8a4, // ROWTS
+    0x0df7b052, // ROYNE
+    0x0df7b106, // ROYST
+    0x0df7b379, // ROZET
+    0x0df7b3fd, // ROZIT
+    0x0dfa947c, // RUANA
+    0x0dfa9718, // RUBAI
+    0x0dfa9749, // RUBBY
+    0x0dfa979f, // RUBEL
+    0x0dfa97a6, // RUBES
+    0x0dfa9825, // RUBIN
+    0x0dfa987f, // RUBLE
+    0x0dfa9883, // RUBLI
+    0x0dfa99b6, // RUBUS
+    0x0dfa9c3c, // RUCHE
+    0x0dfa9cad, // RUCKS
+    0x0dfa9fa4, // RUDAS
+    0x0dfaa007, // RUDDS
+    0x0dfaa028, // RUDES
+    0x0dfaa09e, // RUDIE
+    0x0dfaa0ac, // RUDIS
+    0x0dfaa436, // RUEDA
+    0x0dfaa616, // RUERS
+    0x0dfaa8bd, // RUFFE
+    0x0dfaa8cb, // RUFFS
+    0x0dfaac59, // RUGAE
+    0x0dfaac60, // RUGAL
+    0x0dfaad33, // RUGGY
+    0x0dfab68a, // RUING
+    0x0dfab696, // RUINS
+    0x0dfabe52, // RUKHS
+    0x0dfac221, // RULED
+    0x0dfac230, // RULES
+    0x0dfac5e6, // RUMAL
+    0x0dfac60a, // RUMBO
+    0x0dfac66c, // RUMEN
+    0x0dfac671, // RUMES
+    0x0dfac75e, // RUMLY
+    0x0dfac77f, // RUMMY
+    0x0dfac7d8, // RUMPO
+    0x0dfac7dc, // RUMPS
+    0x0dfac7e2, // RUMPY
+    0x0dfaca65, // RUNCH
+    0x0dfaca91, // RUNDS
+    0x0dfacaa3, // RUNED
+    0x0dfacab2, // RUNES
+    0x0dfacaf4, // RUNGS
+    0x0dfacb26, // RUNIC
+    0x0dfacbe1, // RUNNY
+    0x0dfacca1, // RUNTS
+    0x0dfacca7, // RUNTY
+    0x0dfad3a6, // RUPIA
+    0x0dfadd21, // RURPS
+    0x0dfaddc6, // RURUS
+    0x0dfadf73, // RUSAS
+    0x0dfadff7, // RUSES
+    0x0dfae060, // RUSHY
+    0x0dfae0bd, // RUSKS
+    0x0dfae0ed, // RUSMA
+    0x0dfae1b7, // RUSSE
+    0x0dfae1e6, // RUSTS
+    0x0dfae49b, // RUTHS
+    0x0dfae4b7, // RUTIN
+    0x0dfae62d, // RUTTY
+    0x0dfcc5d0, // RYALS
+    0x0dfcc8a7, // RYBAT
+    0x0dfcef64, // RYKED
+    0x0dfcef73, // RYKES
+    0x0dfcf8ef, // RYMME
+    0x0dfcfc15, // RYNDS
+    0x0dfd0266, // RYOTS
+    0x0dfd04b7, // RYPER
+    0x0e01b494, // SAAGS
+    0x0e01b808, // SABAL
+    0x0e01b884, // SABED
+    0x0e01b892, // SABER
+    0x0e01b893, // SABES
+    0x0e01b8e4, // SABHA
+    0x0e01b912, // SABIN
+    0x0e01b916, // SABIR
+    0x0e01b96c, // SABLE
+    0x0e01b9de, // SABOT
+    0x0e01ba2e, // SABRA
+    0x0e01ba32, // SABRE
+    0x0e01bd9a, // SACKS
+    0x0e01be6f, // SACRA
+    0x0e01c0f0, // SADDO
+    0x0e01c115, // SADES
+    0x0e01c16a, // SADHE
+    0x0e01c17a, // SADHU
+    0x0e01c199, // SADIS
+    0x0e01c25f, // SADOS
+    0x0e01c3b8, // SADZA
+    0x0e01c988, // SAFED
+    0x0e01c997, // SAFES
+    0x0e01cd54, // SAGAS
+    0x0e01cdd7, // SAGER
+    0x0e01cdd8, // SAGES
+    0x0e01ce20, // SAGGY
+    0x0e01cf22, // SAGOS
+    0x0e01cfe2, // SAGUM
+    0x0e01d208, // SAHEB
+    0x0e01d28c, // SAHIB
+    0x0e01d60a, // SAICE
+    0x0e01d610, // SAICK
+    0x0e01d618, // SAICS
+    0x0e01d639, // SAIDS
+    0x0e01d68a, // SAIGA
+    0x0e01d741, // SAILS
+    0x0e01d762, // SAIMS
+    0x0e01d775, // SAINE
+    0x0e01d783, // SAINS
+    0x0e01d807, // SAIRS
+    0x0e01d829, // SAIST
+    0x0e01d83e, // SAITH
+    0x0e01dbe7, // SAJOU
+    0x0e01de4e, // SAKAI
+    0x0e01dedb, // SAKER
+    0x0e01dedc, // SAKES
+    0x0e01df4e, // SAKIA
+    0x0e01df60, // SAKIS
+    0x0e01e0c1, // SAKTI
+    0x0e01e292, // SALAL
+    0x0e01e29a, // SALAT
+    0x0e01e31a, // SALEP
+    0x0e01e31d, // SALES
+    0x0e01e31e, // SALET
+    0x0e01e391, // SALIC
+    0x0e01e3a6, // SALIX
+    0x0e01e3f6, // SALLE
+    0x0e01e41b, // SALMI
+    0x0e01e460, // SALOL
+    0x0e01e464, // SALOP
+    0x0e01e476, // SALPA
+    0x0e01e488, // SALPS
+    0x0e01e4dd, // SALSE
+    0x0e01e508, // SALTO
+    0x0e01e50c, // SALTS
+    0x0e01e51f, // SALUE
+    0x0e01e52e, // SALUT
+    0x0e01e6d5, // SAMAN
+    0x0e01e6da, // SAMAS
+    0x0e01e6e9, // SAMBA
+    0x0e01e6f7, // SAMBO
+    0x0e01e756, // SAMEK
+    0x0e01e757, // SAMEL
+    0x0e01e759, // SAMEN
+    0x0e01e75e, // SAMES
+    0x0e01e764, // SAMEY
+    0x0e01e781, // SAMFU
+    0x0e01e86c, // SAMMY
+    0x0e01e8bf, // SAMPI
+    0x0e01e8c9, // SAMPS
+    0x0e01eb7e, // SANDS
+    0x0e01eb90, // SANED
+    0x0e01eb9f, // SANES
+    0x0e01ebcf, // SANGA
+    0x0e01ebd6, // SANGH
+    0x0e01ebdd, // SANGO
+    0x0e01ebe1, // SANGS
+    0x0e01ec61, // SANKO
+    0x0e01ed5b, // SANSA
+    0x0e01ed8a, // SANTO
+    0x0e01ed8e, // SANTS
+    0x0e01f0b5, // SAOLA
+    0x0e01f398, // SAPAN
+    0x0e01f496, // SAPID
+    0x0e01f56a, // SAPOR
+    0x0e01fc1a, // SARAN
+    0x0e01fc82, // SARDS
+    0x0e01fc94, // SARED
+    0x0e01fc95, // SAREE
+    0x0e01fcd7, // SARGE
+    0x0e01fce1, // SARGO
+    0x0e01fd22, // SARIN
+    0x0e01fd27, // SARIS
+    0x0e01fd69, // SARKS
+    0x0e01fd6f, // SARKY
+    0x0e01fdde, // SAROD
+    0x0e01fded, // SAROS
+    0x0e01feb3, // SARUS
+    0x0e0200e3, // SASER
+    0x0e020163, // SASIN
+    0x0e0202a4, // SASSE
+    0x0e020497, // SATAI
+    0x0e0204a7, // SATAY
+    0x0e020516, // SATED
+    0x0e02051f, // SATEM
+    0x0e020525, // SATES
+    0x0e0205a9, // SATIS
+    0x0e0208f1, // SAUBA
+    0x0e020919, // SAUCH
+    0x0e02099d, // SAUGH
+    0x0e020a4d, // SAULS
+    0x0e020a4e, // SAULT
+    0x0e020a90, // SAUNT
+    0x0e020b19, // SAURY
+    0x0e020b55, // SAUTS
+    0x0e020d98, // SAVED
+    0x0e020da6, // SAVER
+    0x0e020da7, // SAVES
+    0x0e020dad, // SAVEY
+    0x0e020e26, // SAVIN
+    0x0e021159, // SAWAH
+    0x0e0211d9, // SAWED
+    0x0e0211e7, // SAWER
+    0x0e021629, // SAXES
+    0x0e021a5b, // SAYED
+    0x0e021a69, // SAYER
+    0x0e021adf, // SAYID
+    0x0e021b85, // SAYNE
+    0x0e021baf, // SAYON
+    0x0e021c39, // SAYST
+    0x0e021eab, // SAZES
+    0x0e02ccb1, // SCABS
+    0x0e02ccf3, // SCADS
+    0x0e02cd28, // SCAFF
+    0x0e02cd56, // SCAGS
+    0x0e02cd91, // SCAIL
+    0x0e02cde9, // SCALA
+    0x0e02cdf4, // SCALL
+    0x0e02ce1c, // SCAMS
+    0x0e02ce2e, // SCAND
+    0x0e02ce3d, // SCANS
+    0x0e02ce6d, // SCAPA
+    0x0e02ce71, // SCAPE
+    0x0e02ce75, // SCAPI
+    0x0e02cebe, // SCARP
+    0x0e02cec1, // SCARS
+    0x0e02cec2, // SCART
+    0x0e02cef8, // SCATH
+    0x0e02cf03, // SCATS
+    0x0e02cf04, // SCATT
+    0x0e02cf15, // SCAUD
+    0x0e02cf21, // SCAUP
+    0x0e02cf23, // SCAUR
+    0x0e02cf66, // SCAWS
+    0x0e02dd95, // SCEAT
+    0x0e02df2f, // SCENA
+    0x0e02df32, // SCEND
+    0x0e02ea5a, // SCHAV
+    0x0e02ebdf, // SCHMO
+    0x0e02ece4, // SCHUL
+    0x0e02ed1b, // SCHWA
+    0x0e02fc5d, // SCLIM
+    0x0e030887, // SCODY
+    0x0e0308e4, // SCOGS
+    0x0e0309e0, // SCOOG
+    0x0e0309ed, // SCOOT
+    0x0e0309fb, // SCOPA
+    0x0e030a0d, // SCOPS
+    0x0e030a91, // SCOTS
+    0x0e030aa6, // SCOUG
+    0x0e030aaf, // SCOUP
+    0x0e030af1, // SCOWP
+    0x0e030af4, // SCOWS
+    0x0e0314d0, // SCRAB
+    0x0e0314d3, // SCRAE
+    0x0e0314d5, // SCRAG
+    0x0e0314dc, // SCRAN
+    0x0e0314e2, // SCRAT
+    0x0e0314e5, // SCRAW
+    0x0e0314e7, // SCRAY
+    0x0e0315e3, // SCRIM
+    0x0e0315e6, // SCRIP
+    0x0e03169e, // SCROB
+    0x0e0316a0, // SCROD
+    0x0e0316a3, // SCROG
+    0x0e0316b3, // SCROW
+    0x0e0321fd, // SCUDI
+    0x0e032203, // SCUDO
+    0x0e032207, // SCUDS
+    0x0e03223c, // SCUFF
+    0x0e03224a, // SCUFT
+    0x0e03226a, // SCUGS
+    0x0e032307, // SCULK
+    0x0e032308, // SCULL
+    0x0e03230c, // SCULP
+    0x0e03230f, // SCULS
+    0x0e032330, // SCUMS
+    0x0e032393, // SCUPS
+    0x0e0323c8, // SCURF
+    0x0e0323d5, // SCURS
+    0x0e0323e8, // SCUSE
+    0x0e032405, // SCUTA
+    0x0e032409, // SCUTE
+    0x0e032417, // SCUTS
+    0x0e0324e4, // SCUZZ
+    0x0e03332c, // SCYES
+    0x0e035c04, // SDAYN
+    0x0e036af8, // SDEIN
+    0x0e03e6bd, // SEALS
+    0x0e03e6d0, // SEAME
+    0x0e03e6de, // SEAMS
+    0x0e03e6e4, // SEAMY
+    0x0e03e6ff, // SEANS
+    0x0e03e775, // SEARE
+    0x0e03e783, // SEARS
+    0x0e03e796, // SEASE
+    0x0e03e7c5, // SEATS
+    0x0e03e87d, // SEAZE
+    0x0e03ec21, // SEBUM
+    0x0e03ee12, // SECCO
+    0x0e03eebb, // SECHS
+    0x0e03f047, // SECTS
+    0x0e03f298, // SEDER
+    0x0e03f299, // SEDES
+    0x0e03f2cd, // SEDGE
+    0x0e03f2e1, // SEDGY
+    0x0e03f4a3, // SEDUM
+    0x0e03f6b9, // SEEDS
+    0x0e03f7a0, // SEEKS
+    0x0e03f7b2, // SEELD
+    0x0e03f7c1, // SEELS
+    0x0e03f7c7, // SEELY
+    0x0e03f7e2, // SEEMS
+    0x0e03f845, // SEEPS
+    0x0e03f84b, // SEEPY
+    0x0e03f887, // SEERS
+    0x0e03fb1a, // SEFER
+    0x0e03fed7, // SEGAR
+    0x0e04007b, // SEGNI
+    0x0e040081, // SEGNO
+    0x0e04009f, // SEGOL
+    0x0e0400a6, // SEGOS
+    0x0e040540, // SEHRI
+    0x0e0407ff, // SEIFS
+    0x0e0408c5, // SEILS
+    0x0e0408f9, // SEINE
+    0x0e04098b, // SEIRS
+    0x0e04099e, // SEISE
+    0x0e0409a6, // SEISM
+    0x0e0409d3, // SEITY
+    0x0e040a81, // SEIZA
+    0x0e0411aa, // SEKOS
+    0x0e04124f, // SEKTS
+    0x0e041412, // SELAH
+    0x0e0414a1, // SELES
+    0x0e0414c2, // SELFS
+    0x0e041576, // SELLA
+    0x0e04157a, // SELLE
+    0x0e041588, // SELLS
+    0x0e0416c0, // SELVA
+    0x0e0418d4, // SEMEE
+    0x0e0418e2, // SEMES
+    0x0e041958, // SEMIE
+    0x0e041966, // SEMIS
+    0x0e041c9f, // SENAS
+    0x0e041d02, // SENDS
+    0x0e041d23, // SENES
+    0x0e041d5b, // SENGI
+    0x0e041e3a, // SENNA
+    0x0e041e6c, // SENOR
+    0x0e041edf, // SENSA
+    0x0e041ee7, // SENSI
+    0x0e041f04, // SENTE
+    0x0e041f08, // SENTI
+    0x0e041f12, // SENTS
+    0x0e041f5a, // SENVY
+    0x0e041fc6, // SENZA
+    0x0e042512, // SEPAD
+    0x0e04251a, // SEPAL
+    0x0e042619, // SEPIC
+    0x0e0426f5, // SEPOY
+    0x0e042782, // SEPTA
+    0x0e042794, // SEPTS
+    0x0e042d93, // SERAC
+    0x0e042d99, // SERAI
+    0x0e042d9c, // SERAL
+    0x0e042e18, // SERED
+    0x0e042e26, // SERER
+    0x0e042e27, // SERES
+    0x0e042e48, // SERFS
+    0x0e042e5b, // SERGE
+    0x0e042e9b, // SERIC
+    0x0e042ea6, // SERIN
+    0x0e042eed, // SERKS
+    0x0e042f6c, // SERON
+    0x0e042f75, // SEROW
+    0x0e042fc2, // SERRA
+    0x0e042fc6, // SERRE
+    0x0e042fd4, // SERRS
+    0x0e042fda, // SERRY
+    0x0e043054, // SERVO
+    0x0e04326e, // SESEY
+    0x0e043424, // SESSA
+    0x0e043617, // SETAE
+    0x0e04361e, // SETAL
+    0x0e0437ee, // SETON
+    0x0e043898, // SETTS
+    0x0e0442e3, // SEWAN
+    0x0e0442e7, // SEWAR
+    0x0e04435d, // SEWED
+    0x0e044365, // SEWEL
+    0x0e044367, // SEWEN
+    0x0e0443eb, // SEWIN
+    0x0e04479e, // SEXED
+    0x0e0447ac, // SEXER
+    0x0e0447ad, // SEXES
+    0x0e044998, // SEXTO
+    0x0e04499c, // SEXTS
+    0x0e044be9, // SEYEN
+    0x0e058ad8, // SHADS
+    0x0e058b3b, // SHAGS
+    0x0e058b5c, // SHAHS
+    0x0e058bbb, // SHAKO
+    0x0e058bc0, // SHAKT
+    0x0e058bda, // SHALM
+    0x0e058be6, // SHALY
+    0x0e058bef, // SHAMA
+    0x0e058c01, // SHAMS
+    0x0e058c13, // SHAND
+    0x0e058c22, // SHANS
+    0x0e058c64, // SHAPS
+    0x0e058ca1, // SHARN
+    0x0e058cbc, // SHASH
+    0x0e058d02, // SHAUL
+    0x0e058d45, // SHAWM
+    0x0e058d46, // SHAWN
+    0x0e058d4b, // SHAWS
+    0x0e058d7b, // SHAYA
+    0x0e058d8d, // SHAYS
+    0x0e0593d4, // SHCHI
+    0x0e059b6c, // SHEAF
+    0x0e059b72, // SHEAL
+    0x0e059b79, // SHEAS
+    0x0e059bdc, // SHEDS
+    0x0e059bf6, // SHEEL
+    0x0e059d17, // SHEND
+    0x0e059d27, // SHENT
+    0x0e059d40, // SHEOL
+    0x0e059d9b, // SHERD
+    0x0e059d9c, // SHERE
+    0x0e059da6, // SHERO
+    0x0e059dec, // SHETS
+    0x0e059e1c, // SHEVA
+    0x0e059e4a, // SHEWN
+    0x0e059e4f, // SHEWS
+    0x0e05ac73, // SHIAI
+    0x0e05acfa, // SHIEL
+    0x0e05ad00, // SHIER
+    0x0e05ad01, // SHIES
+    0x0e05ade1, // SHILL
+    0x0e05adee, // SHILY
+    0x0e05ae09, // SHIMS
+    0x0e05ae2a, // SHINS
+    0x0e05ae6c, // SHIPS
+    0x0e05aead, // SHIRR
+    0x0e05aeae, // SHIRS
+    0x0e05aec4, // SHISH
+    0x0e05aecb, // SHISO
+    0x0e05aed0, // SHIST
+    0x0e05aee2, // SHITE
+    0x0e05aef0, // SHITS
+    0x0e05af10, // SHIUR
+    0x0e05af20, // SHIVA
+    0x0e05af24, // SHIVE
+    0x0e05af32, // SHIVS
+    0x0e05b9c1, // SHLEP
+    0x0e05bbc3, // SHLUB
+    0x0e05bdfd, // SHMEK
+    0x0e05bf41, // SHMOE
+    0x0e05c604, // SHOAT
+    0x0e05c678, // SHOED
+    0x0e05c686, // SHOER
+    0x0e05c687, // SHOES
+    0x0e05c6bf, // SHOGI
+    0x0e05c6c9, // SHOGS
+    0x0e05c722, // SHOJI
+    0x0e05c728, // SHOJO
+    0x0e05c75c, // SHOLA
+    0x0e05c7ca, // SHOOL
+    0x0e05c7cc, // SHOON
+    0x0e05c7d1, // SHOOS
+    0x0e05c7e4, // SHOPE
+    0x0e05c7f2, // SHOPS
+    0x0e05c82d, // SHORL
+    0x0e05c868, // SHOTE
+    0x0e05c876, // SHOTS
+    0x0e05c877, // SHOTT
+    0x0e05c8ca, // SHOWD
+    0x0e05c8d9, // SHOWS
+    0x0e05c91d, // SHOYU
+    0x0e05d33b, // SHRED
+    0x0e05d3ce, // SHRIS
+    0x0e05d498, // SHROW
+    0x0e05dc48, // SHTIK
+    0x0e05ddd6, // SHTUM
+    0x0e05ddd9, // SHTUP
+    0x0e05e0e6, // SHULE
+    0x0e05e0ef, // SHULN
+    0x0e05e0f4, // SHULS
+    0x0e05e136, // SHUNS
+    0x0e05e1a8, // SHURA
+    0x0e05e1ee, // SHUTE
+    0x0e05e1fc, // SHUTS
+    0x0e05e80b, // SHWAS
+    0x0e05f110, // SHYER
+    0x0e061841, // SIALS
+    0x0e061b38, // SIBBS
+    0x0e061e28, // SIBYL
+    0x0e061fdc, // SICES
+    0x0e062040, // SICHT
+    0x0e06209e, // SICKO
+    0x0e0620a2, // SICKS
+    0x0e0620a8, // SICKY
+    0x0e062399, // SIDAS
+    0x0e06240e, // SIDED
+    0x0e06241c, // SIDER
+    0x0e06241d, // SIDES
+    0x0e06246e, // SIDHA
+    0x0e062472, // SIDHE
+    0x0e0624f6, // SIDLE
+    0x0e062936, // SIELD
+    0x0e062987, // SIENS
+    0x0e062988, // SIENT
+    0x0e062a42, // SIETH
+    0x0e062a6d, // SIEUR
+    0x0e062e8e, // SIFTS
+    0x0e063143, // SIGHS
+    0x0e06315d, // SIGIL
+    0x0e0631b5, // SIGLA
+    0x0e0631f7, // SIGNA
+    0x0e063209, // SIGNS
+    0x0e063eed, // SIJOS
+    0x0e064160, // SIKAS
+    0x0e0641e3, // SIKER
+    0x0e0641e4, // SIKES
+    0x0e064604, // SILDS
+    0x0e064616, // SILED
+    0x0e064620, // SILEN
+    0x0e064624, // SILER
+    0x0e064625, // SILES
+    0x0e06462a, // SILEX
+    0x0e0646eb, // SILKS
+    0x0e06470c, // SILLS
+    0x0e06476f, // SILOS
+    0x0e064814, // SILTS
+    0x0e06481a, // SILTY
+    0x0e064844, // SILVA
+    0x0e0649e1, // SIMAR
+    0x0e0649e2, // SIMAS
+    0x0e0649f1, // SIMBA
+    0x0e064aea, // SIMIS
+    0x0e064bd1, // SIMPS
+    0x0e064c6f, // SIMUL
+    0x0e064e86, // SINDS
+    0x0e064e98, // SINED
+    0x0e064ea7, // SINES
+    0x0e064ee9, // SINGS
+    0x0e064f0a, // SINHS
+    0x0e064f6d, // SINKS
+    0x0e064f73, // SINKY
+    0x0e0650b7, // SINUS
+    0x0e06571a, // SIPED
+    0x0e065729, // SIPES
+    0x0e06589a, // SIPPY
+    0x0e065f9c, // SIRED
+    0x0e065f9d, // SIREE
+    0x0e065fab, // SIRES
+    0x0e066024, // SIRIH
+    0x0e06602f, // SIRIS
+    0x0e0660e5, // SIROC
+    0x0e066146, // SIRRA
+    0x0e0661b8, // SIRUP
+    0x0e066361, // SISAL
+    0x0e0663ec, // SISES
+    0x0e0665c9, // SISTA
+    0x0e0665db, // SISTS
+    0x0e0667a8, // SITAR
+    0x0e06681e, // SITED
+    0x0e06682d, // SITES
+    0x0e066882, // SITHE
+    0x0e0668e1, // SITKA
+    0x0e066a3a, // SITUP
+    0x0e066a3d, // SITUS
+    0x0e0670ae, // SIVER
+    0x0e067930, // SIXER
+    0x0e067931, // SIXES
+    0x0e067a35, // SIXMO
+    0x0e067b12, // SIXTE
+    0x0e06812e, // SIZAR
+    0x0e0681a4, // SIZED
+    0x0e0681ac, // SIZEL
+    0x0e0681b2, // SIZER
+    0x0e0681b3, // SIZES
+    0x0e07305e, // SKAGS
+    0x0e073099, // SKAIL
+    0x0e0730f4, // SKALD
+    0x0e07313d, // SKANK
+    0x0e0731ca, // SKART
+    0x0e07320b, // SKATS
+    0x0e07320c, // SKATT
+    0x0e07326e, // SKAWS
+    0x0e074097, // SKEAN
+    0x0e07409b, // SKEAR
+    0x0e0740ff, // SKEDS
+    0x0e074111, // SKEED
+    0x0e074113, // SKEEF
+    0x0e07411b, // SKEEN
+    0x0e07411f, // SKEER
+    0x0e074120, // SKEES
+    0x0e074121, // SKEET
+    0x0e074156, // SKEGG
+    0x0e074162, // SKEGS
+    0x0e07419f, // SKEIN
+    0x0e0741fa, // SKELF
+    0x0e074200, // SKELL
+    0x0e074201, // SKELM
+    0x0e074204, // SKELP
+    0x0e07423b, // SKENE
+    0x0e074249, // SKENS
+    0x0e07426a, // SKEOS
+    0x0e07428b, // SKEPS
+    0x0e0742cd, // SKERS
+    0x0e07430f, // SKETS
+    0x0e074372, // SKEWS
+    0x0e075203, // SKIDS
+    0x0e075215, // SKIED
+    0x0e075224, // SKIES
+    0x0e07522a, // SKIEY
+    0x0e075328, // SKIMO
+    0x0e07532c, // SKIMS
+    0x0e075345, // SKINK
+    0x0e07534d, // SKINS
+    0x0e07534e, // SKINT
+    0x0e07536e, // SKIOS
+    0x0e07538f, // SKIPS
+    0x0e0753ca, // SKIRL
+    0x0e0753d0, // SKIRR
+    0x0e075405, // SKITE
+    0x0e075413, // SKITS
+    0x0e075447, // SKIVE
+    0x0e07545b, // SKIVY
+    0x0e075f65, // SKLIM
+    0x0e076b1f, // SKOAL
+    0x0e076b8f, // SKODY
+    0x0e076bbe, // SKOFF
+    0x0e076bec, // SKOGS
+    0x0e076c91, // SKOLS
+    0x0e076ced, // SKOOL
+    0x0e076d58, // SKORT
+    0x0e076d6d, // SKOSH
+    0x0e0777e4, // SKRAN
+    0x0e0778e9, // SKRIK
+    0x0e0784ac, // SKUAS
+    0x0e078572, // SKUGS
+    0x0e079625, // SKYED
+    0x0e079633, // SKYER
+    0x0e07963a, // SKYEY
+    0x0e079655, // SKYFS
+    0x0e0797d3, // SKYRE
+    0x0e0797e1, // SKYRS
+    0x0e079815, // SKYTE
+    0x0e07bc1a, // SLABS
+    0x0e07bc4e, // SLADE
+    0x0e07bc7d, // SLAES
+    0x0e07bcbf, // SLAGS
+    0x0e07bcf2, // SLAID
+    0x0e07bd35, // SLAKE
+    0x0e07bd85, // SLAMS
+    0x0e07bd98, // SLANE
+    0x0e07bd9e, // SLANK
+    0x0e07bde8, // SLAPS
+    0x0e07be2b, // SLART
+    0x0e07be6c, // SLATS
+    0x0e07be72, // SLATY
+    0x0e07becf, // SLAWS
+    0x0e07bf11, // SLAYS
+    0x0e07cd1e, // SLEBS
+    0x0e07cd60, // SLEDS
+    0x0e07cd80, // SLEER
+    0x0e07cfd3, // SLEWS
+    0x0e07d015, // SLEYS
+    0x0e07de84, // SLIER
+    0x0e07df72, // SLILY
+    0x0e07df8d, // SLIMS
+    0x0e07dfe2, // SLIPE
+    0x0e07dff0, // SLIPS
+    0x0e07dff1, // SLIPT
+    0x0e07e048, // SLISH
+    0x0e07e074, // SLITS
+    0x0e07e0a8, // SLIVE
+    0x0e07f782, // SLOAN
+    0x0e07f7a8, // SLOBS
+    0x0e07f80b, // SLOES
+    0x0e07f84d, // SLOGS
+    0x0e07f880, // SLOID
+    0x0e07f8a1, // SLOJD
+    0x0e07f90f, // SLOMO
+    0x0e07f94f, // SLOOM
+    0x0e07f956, // SLOOT
+    0x0e07f976, // SLOPS
+    0x0e07f97c, // SLOPY
+    0x0e07f9b2, // SLORM
+    0x0e07f9fa, // SLOTS
+    0x0e07fa2e, // SLOVE
+    0x0e07fa5d, // SLOWS
+    0x0e07fa90, // SLOYD
+    0x0e08111d, // SLUBB
+    0x0e08112e, // SLUBS
+    0x0e081182, // SLUED
+    0x0e081191, // SLUES
+    0x0e0811a5, // SLUFF
+    0x0e0811d3, // SLUGS
+    0x0e081216, // SLUIT
+    0x0e081299, // SLUMS
+    0x0e08132d, // SLURB
+    0x0e08133e, // SLURS
+    0x0e081351, // SLUSE
+    0x0e082294, // SLYER
+    0x0e0823f2, // SLYPE
+    0x0e084852, // SMAAK
+    0x0e08495a, // SMAIK
+    0x0e0849bf, // SMALM
+    0x0e0849c6, // SMALT
+    0x0e084a85, // SMARM
+    0x0e084b85, // SMAZE
+    0x0e0859da, // SMEEK
+    0x0e0859e2, // SMEES
+    0x0e085a5e, // SMEIK
+    0x0e085a9a, // SMEKE
+    0x0e085b87, // SMERK
+    0x0e085c34, // SMEWS
+    0x0e086c92, // SMIRR
+    0x0e086c93, // SMIRS
+    0x0e086cd5, // SMITS
+    0x0e0884ae, // SMOGS
+    0x0e08852e, // SMOKO
+    0x0e088554, // SMOLT
+    0x0e0885b5, // SMOOR
+    0x0e0885b7, // SMOOT
+    0x0e08860b, // SMORE
+    0x0e08860d, // SMORG
+    0x0e08867d, // SMOUT
+    0x0e0886bf, // SMOWT
+    0x0e089e34, // SMUGS
+    0x0e089f9f, // SMURS
+    0x0e089fb5, // SMUSH
+    0x0e089fe1, // SMUTS
+    0x0e08d4dc, // SNABS
+    0x0e08d562, // SNAFU
+    0x0e08d581, // SNAGS
+    0x0e08d6aa, // SNAPS
+    0x0e08d6df, // SNARF
+    0x0e08d6e4, // SNARK
+    0x0e08d6ec, // SNARS
+    0x0e08d6f2, // SNARY
+    0x0e08d702, // SNASH
+    0x0e08d723, // SNATH
+    0x0e08d791, // SNAWS
+    0x0e08e5b0, // SNEAD
+    0x0e08e5bc, // SNEAP
+    0x0e08e5e0, // SNEBS
+    0x0e08e5f9, // SNECK
+    0x0e08e622, // SNEDS
+    0x0e08e634, // SNEED
+    0x0e08e643, // SNEES
+    0x0e08e723, // SNELL
+    0x0e08f6e4, // SNIBS
+    0x0e08f6fd, // SNICK
+    0x0e08f747, // SNIES
+    0x0e08f769, // SNIFT
+    0x0e08f789, // SNIGS
+    0x0e08f8b2, // SNIPS
+    0x0e08f8b8, // SNIPY
+    0x0e08f8f5, // SNIRT
+    0x0e08f936, // SNITS
+    0x0e09106a, // SNOBS
+    0x0e0910ac, // SNODS
+    0x0e0910c5, // SNOEK
+    0x0e0910ca, // SNOEP
+    0x0e09110f, // SNOGS
+    0x0e091185, // SNOKE
+    0x0e091208, // SNOOD
+    0x0e09120f, // SNOOK
+    0x0e091210, // SNOOL
+    0x0e091218, // SNOOT
+    0x0e0912bc, // SNOTS
+    0x0e091317, // SNOWK
+    0x0e09131f, // SNOWS
+    0x0e0929f0, // SNUBS
+    0x0e092a95, // SNUGS
+    0x0e092c16, // SNUSH
+    0x0e093b57, // SNYES
+    0x0e096266, // SOAKS
+    0x0e09630b, // SOAPS
+    0x0e09633f, // SOARE
+    0x0e09634d, // SOARS
+    0x0e0963c3, // SOAVE
+    0x0e09655d, // SOBAS
+    0x0e09699e, // SOCAS
+    0x0e096a22, // SOCES
+    0x0e096ae4, // SOCKO
+    0x0e096ae8, // SOCKS
+    0x0e096afb, // SOCLE
+    0x0e096ddf, // SODAS
+    0x0e096e48, // SODDY
+    0x0e096ed7, // SODIC
+    0x0e096fa7, // SODOM
+    0x0e097660, // SOFAR
+    0x0e097661, // SOFAS
+    0x0e0978c2, // SOFTA
+    0x0e0978d4, // SOFTS
+    0x0e0978da, // SOFTY
+    0x0e097b25, // SOGER
+    0x0e098176, // SOHUR
+    0x0e09848f, // SOILS
+    0x0e098495, // SOILY
+    0x0e098765, // SOJAS
+    0x0e0989f9, // SOJUS
+    0x0e098b9b, // SOKAH
+    0x0e098c25, // SOKEN
+    0x0e098c2a, // SOKES
+    0x0e098d6d, // SOKOL
+    0x0e098fdc, // SOLAH
+    0x0e098fe2, // SOLAN
+    0x0e098fe7, // SOLAS
+    0x0e09903c, // SOLDE
+    0x0e099040, // SOLDI
+    0x0e099046, // SOLDO
+    0x0e09904a, // SOLDS
+    0x0e09905c, // SOLED
+    0x0e099061, // SOLEI
+    0x0e09906a, // SOLER
+    0x0e09906b, // SOLES
+    0x0e0991b0, // SOLON
+    0x0e0991b5, // SOLOS
+    0x0e099275, // SOLUM
+    0x0e09927b, // SOLUS
+    0x0e099423, // SOMAN
+    0x0e099428, // SOMAS
+    0x0e09989d, // SONCE
+    0x0e0998be, // SONDE
+    0x0e0998ed, // SONES
+    0x0e09992f, // SONGS
+    0x0e0999da, // SONLY
+    0x0e099a08, // SONNE
+    0x0e099a1c, // SONNY
+    0x0e099aad, // SONSE
+    0x0e099ac1, // SONSY
+    0x0e099d34, // SOOEY
+    0x0e099df4, // SOOKS
+    0x0e099dfa, // SOOKY
+    0x0e099e07, // SOOLE
+    0x0e099e15, // SOOLS
+    0x0e099e36, // SOOMS
+    0x0e099e99, // SOOPS
+    0x0e099f0f, // SOOTE
+    0x0e099f1d, // SOOTS
+    0x0e09a1d2, // SOPHS
+    0x0e09a1d8, // SOPHY
+    0x0e09a2b8, // SOPOR
+    0x0e09a2e0, // SOPPY
+    0x0e09a30a, // SOPRA
+    0x0e09a966, // SORAL
+    0x0e09a96d, // SORAS
+    0x0e09a98a, // SORBO
+    0x0e09a98e, // SORBS
+    0x0e09a9be, // SORDA
+    0x0e09a9cc, // SORDO
+    0x0e09a9d0, // SORDS
+    0x0e09a9e2, // SORED
+    0x0e09a9e3, // SOREE
+    0x0e09a9ea, // SOREL
+    0x0e09a9f0, // SORER
+    0x0e09a9f1, // SORES
+    0x0e09a9f6, // SOREX
+    0x0e09aa2f, // SORGO
+    0x0e09ab1a, // SORNS
+    0x0e09ab8c, // SORRA
+    0x0e09abce, // SORTA
+    0x0e09abe0, // SORTS
+    0x0e09ac01, // SORUS
+    0x0e09b2d6, // SOTHS
+    0x0e09b3b6, // SOTOL
+    0x0e09b664, // SOUCE
+    0x0e09b673, // SOUCT
+    0x0e09b6eb, // SOUGH
+    0x0e09b77a, // SOUKS
+    0x0e09b79b, // SOULS
+    0x0e09b7bc, // SOUMS
+    0x0e09b81f, // SOUPS
+    0x0e09b825, // SOUPY
+    0x0e09b861, // SOURS
+    0x0e09b874, // SOUSE
+    0x0e09b8a3, // SOUTS
+    0x0e09beb1, // SOWAR
+    0x0e09bee6, // SOWCE
+    0x0e09bf27, // SOWED
+    0x0e09bf4a, // SOWFF
+    0x0e09bf57, // SOWFS
+    0x0e09c00f, // SOWLE
+    0x0e09c01d, // SOWLS
+    0x0e09c03e, // SOWMS
+    0x0e09c050, // SOWND
+    0x0e09c051, // SOWNE
+    0x0e09c0a1, // SOWPS
+    0x0e09c0f6, // SOWSE
+    0x0e09c11a, // SOWTH
+    0x0e09c734, // SOYAS
+    0x0e09c891, // SOYLE
+    0x0e09c9cf, // SOYUZ
+    0x0e09cc78, // SOZIN
+    0x0e09edc5, // SPACY
+    0x0e09eddc, // SPADO
+    0x0e09edf2, // SPAED
+    0x0e09ee00, // SPAER
+    0x0e09ee01, // SPAES
+    0x0e09ee43, // SPAGS
+    0x0e09ee5a, // SPAHI
+    0x0e09ee7e, // SPAIL
+    0x0e09ee80, // SPAIN
+    0x0e09ee86, // SPAIT
+    0x0e09eeb9, // SPAKE
+    0x0e09eed9, // SPALD
+    0x0e09eeda, // SPALE
+    0x0e09eee1, // SPALL
+    0x0e09eee9, // SPALT
+    0x0e09ef09, // SPAMS
+    0x0e09ef1c, // SPANE
+    0x0e09ef1e, // SPANG
+    0x0e09ef2a, // SPANS
+    0x0e09ef9f, // SPARD
+    0x0e09efae, // SPARS
+    0x0e09efaf, // SPART
+    0x0e09efe2, // SPATE
+    0x0e09eff0, // SPATS
+    0x0e09f00a, // SPAUL
+    0x0e09f04c, // SPAWL
+    0x0e09f053, // SPAWS
+    0x0e09f086, // SPAYD
+    0x0e09f095, // SPAYS
+    0x0e09f0a4, // SPAZA
+    0x0e09f0bd, // SPAZZ
+    0x0e09fe7a, // SPEAL
+    0x0e09fe7c, // SPEAN
+    0x0e09fe82, // SPEAT
+    0x0e09fec3, // SPECS
+    0x0e09fec4, // SPECT
+    0x0e09fefe, // SPEEL
+    0x0e09ff04, // SPEER
+    0x0e09ff82, // SPEIL
+    0x0e09ff88, // SPEIR
+    0x0e09ffcb, // SPEKS
+    0x0e09ffdd, // SPELD
+    0x0e09ffe4, // SPELK
+    0x0e0a004f, // SPEOS
+    0x0e0a00f4, // SPETS
+    0x0e0a0109, // SPEUG
+    0x0e0a0157, // SPEWS
+    0x0e0a015d, // SPEWY
+    0x0e0a0f7e, // SPIAL
+    0x0e0a0fb5, // SPICA
+    0x0e0a0fda, // SPIDE
+    0x0e0a1008, // SPIER
+    0x0e0a1009, // SPIES
+    0x0e0a101d, // SPIFF
+    0x0e0a102a, // SPIFS
+    0x0e0a10e2, // SPILE
+    0x0e0a1111, // SPIMS
+    0x0e0a1120, // SPINA
+    0x0e0a112a, // SPINK
+    0x0e0a1132, // SPINS
+    0x0e0a11b7, // SPIRT
+    0x0e0a11bc, // SPIRY
+    0x0e0a11f8, // SPITS
+    0x0e0a11ff, // SPITZ
+    0x0e0a123a, // SPIVS
+    0x0e0a1c4e, // SPLAY
+    0x0e0a1e0a, // SPLOG
+    0x0e0a2960, // SPODE
+    0x0e0a296e, // SPODS
+    0x0e0a2ad3, // SPOOM
+    0x0e0a2ad8, // SPOOR
+    0x0e0a2ada, // SPOOT
+    0x0e0a2b34, // SPORK
+    0x0e0a2b52, // SPOSH
+    0x0e0a2b7e, // SPOTS
+    0x0e0a35bf, // SPRAD
+    0x0e0a35c2, // SPRAG
+    0x0e0a35cf, // SPRAT
+    0x0e0a3643, // SPRED
+    0x0e0a3656, // SPREW
+    0x0e0a36d7, // SPRIT
+    0x0e0a378d, // SPROD
+    0x0e0a3790, // SPROG
+    0x0e0a3854, // SPRUE
+    0x0e0a3856, // SPRUG
+    0x0e0a42f4, // SPUDS
+    0x0e0a4306, // SPUED
+    0x0e0a4314, // SPUER
+    0x0e0a4315, // SPUES
+    0x0e0a4357, // SPUGS
+    0x0e0a43ee, // SPULE
+    0x0e0a440f, // SPUME
+    0x0e0a4423, // SPUMY
+    0x0e0a44c2, // SPURS
+    0x0e0a44f2, // SPUTA
+    0x0e0a538e, // SPYAL
+    0x0e0a55b8, // SPYRE
+    0x0e0acee1, // SQUAB
+    0x0e0acef6, // SQUAW
+    0x0e0acf6a, // SQUEG
+    0x0e0acfeb, // SQUID
+    0x0e0acffb, // SQUIT
+    0x0e0ad001, // SQUIZ
+    0x0e0c1f22, // STABS
+    0x0e0c1f56, // STADE
+    0x0e0c1fc7, // STAGS
+    0x0e0c1fcd, // STAGY
+    0x0e0c1ffd, // STAIG
+    0x0e0c20a0, // STANE
+    0x0e0c20a2, // STANG
+    0x0e0c20e5, // STAPH
+    0x0e0c20f0, // STAPS
+    0x0e0c212d, // STARN
+    0x0e0c2131, // STARR
+    0x0e0c2132, // STARS
+    0x0e0c2174, // STATS
+    0x0e0c2190, // STAUN
+    0x0e0c21d7, // STAWS
+    0x0e0c2219, // STAYS
+    0x0e0c3000, // STEAN
+    0x0e0c3004, // STEAR
+    0x0e0c3059, // STEDD
+    0x0e0c305a, // STEDE
+    0x0e0c3068, // STEDS
+    0x0e0c3081, // STEEK
+    0x0e0c3083, // STEEM
+    0x0e0c3084, // STEEN
+    0x0e0c3106, // STEIL
+    0x0e0c315e, // STELA
+    0x0e0c3162, // STELE
+    0x0e0c3169, // STELL
+    0x0e0c3183, // STEME
+    0x0e0c3191, // STEMS
+    0x0e0c31a3, // STEND
+    0x0e0c31ae, // STENO
+    0x0e0c31b2, // STENS
+    0x0e0c31b3, // STENT
+    0x0e0c31f4, // STEPS
+    0x0e0c31f5, // STEPT
+    0x0e0c3228, // STERE
+    0x0e0c3278, // STETS
+    0x0e0c32db, // STEWS
+    0x0e0c32e1, // STEWY
+    0x0e0c331d, // STEYS
+    0x0e0c4140, // STICH
+    0x0e0c417e, // STIED
+    0x0e0c418d, // STIES
+    0x0e0c4263, // STILB
+    0x0e0c4266, // STILE
+    0x0e0c4287, // STIME
+    0x0e0c4295, // STIMS
+    0x0e0c429b, // STIMY
+    0x0e0c42e6, // STIPA
+    0x0e0c42ea, // STIPE
+    0x0e0c432c, // STIRE
+    0x0e0c4332, // STIRK
+    0x0e0c4337, // STIRP
+    0x0e0c433a, // STIRS
+    0x0e0c43b0, // STIVE
+    0x0e0c43c4, // STIVY
+    0x0e0c5a81, // STOAE
+    0x0e0c5a85, // STOAI
+    0x0e0c5a8f, // STOAS
+    0x0e0c5a90, // STOAT
+    0x0e0c5ab0, // STOBS
+    0x0e0c5b10, // STOEP
+    0x0e0c5b5b, // STOGY
+    0x0e0c5b98, // STOIT
+    0x0e0c5bf5, // STOLN
+    0x0e0c5c09, // STOMA
+    0x0e0c5c2d, // STOND
+    0x0e0c5c30, // STONG
+    0x0e0c5c34, // STONK
+    0x0e0c5c37, // STONN
+    0x0e0c5c55, // STOOK
+    0x0e0c5c5c, // STOOR
+    0x0e0c5c70, // STOPE
+    0x0e0c5c7e, // STOPS
+    0x0e0c5c7f, // STOPT
+    0x0e0c5ce1, // STOSS
+    0x0e0c5d02, // STOTS
+    0x0e0c5d03, // STOTT
+    0x0e0c5d1e, // STOUN
+    0x0e0c5d20, // STOUP
+    0x0e0c5d22, // STOUR
+    0x0e0c5d60, // STOWN
+    0x0e0c5d62, // STOWP
+    0x0e0c5d65, // STOWS
+    0x0e0c6743, // STRAD
+    0x0e0c6744, // STRAE
+    0x0e0c6746, // STRAG
+    0x0e0c674a, // STRAK
+    0x0e0c67d3, // STREP
+    0x0e0c67da, // STREW
+    0x0e0c6848, // STRIA
+    0x0e0c684e, // STRIG
+    0x0e0c6854, // STRIM
+    0x0e0c691d, // STROP
+    0x0e0c6924, // STROW
+    0x0e0c6926, // STROY
+    0x0e0c69e0, // STRUM
+    0x0e0c7436, // STUBS
+    0x0e0c746a, // STUDE
+    0x0e0c7478, // STUDS
+    0x0e0c7579, // STULL
+    0x0e0c757a, // STULM
+    0x0e0c759b, // STUMM
+    0x0e0c75a1, // STUMS
+    0x0e0c75c2, // STUNS
+    0x0e0c75f2, // STUPA
+    0x0e0c75f6, // STUPE
+    0x0e0c7638, // STURE
+    0x0e0c7647, // STURT
+    0x0e0c858e, // STYED
+    0x0e0c859d, // STYES
+    0x0e0c867a, // STYLI
+    0x0e0c8680, // STYLO
+    0x0e0c8697, // STYME
+    0x0e0c86ab, // STYMY
+    0x0e0c873c, // STYRE
+    0x0e0c877e, // STYTE
+    0x0e0caf98, // SUBAH
+    0x0e0cafa3, // SUBAS
+    0x0e0cafca, // SUBBY
+    0x0e0cb026, // SUBER
+    0x0e0cb078, // SUBHA
+    0x0e0cb41c, // SUCCI
+    0x0e0cb52e, // SUCKS
+    0x0e0cb534, // SUCKY
+    0x0e0cb607, // SUCRE
+    0x0e0cb888, // SUDDS
+    0x0e0cb9f2, // SUDOR
+    0x0e0cba7d, // SUDSY
+    0x0e0cbcbb, // SUEDE
+    0x0e0cbe14, // SUENT
+    0x0e0cbe97, // SUERS
+    0x0e0cbecb, // SUETE
+    0x0e0cbed9, // SUETS
+    0x0e0cbedf, // SUETY
+    0x0e0cc4e3, // SUGAN
+    0x0e0cc5cf, // SUGHS
+    0x0e0cc6b6, // SUGOS
+    0x0e0ccbbc, // SUHUR
+    0x0e0ccdcd, // SUIDS
+    0x0e0ccf18, // SUINT
+    0x0e0ccfdd, // SUITS
+    0x0e0cd221, // SUJEE
+    0x0e0cd6d3, // SUKHS
+    0x0e0cd878, // SUKUK
+    0x0e0cda65, // SULCI
+    0x0e0cdac0, // SULFA
+    0x0e0cdace, // SULFO
+    0x0e0cdb77, // SULKS
+    0x0e0cdc11, // SULPH
+    0x0e0cdcc1, // SULUS
+    0x0e0cdf76, // SUMIS
+    0x0e0cdfe8, // SUMMA
+    0x0e0ce03c, // SUMOS
+    0x0e0ce052, // SUMPH
+    0x0e0ce05d, // SUMPS
+    0x0e0ce3b7, // SUNIS
+    0x0e0ce3f9, // SUNKS
+    0x0e0ce44a, // SUNNA
+    0x0e0ce45c, // SUNNS
+    0x0e0ce540, // SUNUP
+    0x0e0cebb5, // SUPES
+    0x0e0ced50, // SUPRA
+    0x0e0cf3a8, // SURAH
+    0x0e0cf3ac, // SURAL
+    0x0e0cf3b3, // SURAS
+    0x0e0cf3b4, // SURAT
+    0x0e0cf416, // SURDS
+    0x0e0cf428, // SURED
+    0x0e0cf437, // SURES
+    0x0e0cf458, // SURFS
+    0x0e0cf45e, // SURFY
+    0x0e0cf47f, // SURGY
+    0x0e0cf5d2, // SURRA
+    0x0e0cf869, // SUSED
+    0x0e0cf878, // SUSES
+    0x0e0cfa88, // SUSUS
+    0x0e0cfe02, // SUTOR
+    0x0e0cfe54, // SUTRA
+    0x0e0cfe96, // SUTTA
+    0x0e0dc445, // SWABS
+    0x0e0dc45e, // SWACK
+    0x0e0dc487, // SWADS
+    0x0e0dc4dc, // SWAGE
+    0x0e0dc4ea, // SWAGS
+    0x0e0dc525, // SWAIL
+    0x0e0dc527, // SWAIN
+    0x0e0dc581, // SWALE
+    0x0e0dc595, // SWALY
+    0x0e0dc5b6, // SWAMY
+    0x0e0dc5c5, // SWANG
+    0x0e0dc5c9, // SWANK
+    0x0e0dc5d1, // SWANS
+    0x0e0dc613, // SWAPS
+    0x0e0dc614, // SWAPT
+    0x0e0dc646, // SWARD
+    0x0e0dc647, // SWARE
+    0x0e0dc648, // SWARF
+    0x0e0dc656, // SWART
+    0x0e0dc697, // SWATS
+    0x0e0dc735, // SWAYL
+    0x0e0dc73c, // SWAYS
+    0x0e0dd521, // SWEAL
+    0x0e0dd57d, // SWEDE
+    0x0e0dd59d, // SWEED
+    0x0e0dd5a5, // SWEEL
+    0x0e0dd5ab, // SWEER
+    0x0e0dd5ac, // SWEES
+    0x0e0dd62f, // SWEIR
+    0x0e0dd694, // SWELT
+    0x0e0dd74c, // SWERF
+    0x0e0dd840, // SWEYS
+    0x0e0de6b0, // SWIES
+    0x0e0de6f2, // SWIGS
+    0x0e0de789, // SWILE
+    0x0e0de7b8, // SWIMS
+    0x0e0de7d1, // SWINK
+    0x0e0de80d, // SWIPE
+    0x0e0de84f, // SWIRE
+    0x0e0de87e, // SWISS
+    0x0e0de894, // SWITH
+    0x0e0de89f, // SWITS
+    0x0e0de8d3, // SWIVE
+    0x0e0de96c, // SWIZZ
+    0x0e0dffd3, // SWOBS
+    0x0e0e010f, // SWOLE
+    0x0e0e0118, // SWOLN
+    0x0e0e01a1, // SWOPS
+    0x0e0e01a2, // SWOPT
+    0x0e0e0225, // SWOTS
+    0x0e0e0241, // SWOUN
+    0x0e0ee13a, // SYBBE
+    0x0e0ee228, // SYBIL
+    0x0e0ee2e7, // SYBOE
+    0x0e0ee2f9, // SYBOW
+    0x0e0ee5de, // SYCEE
+    0x0e0ee5ec, // SYCES
+    0x0e0ee731, // SYCON
+    0x0e0eef97, // SYENS
+    0x0e0f07f3, // SYKER
+    0x0e0f07f4, // SYKES
+    0x0e0f0cb9, // SYLIS
+    0x0e0f0d95, // SYLPH
+    0x0e0f0e54, // SYLVA
+    0x0e0f0ff1, // SYMAR
+    0x0e0f146a, // SYNCH
+    0x0e0f1475, // SYNCS
+    0x0e0f1496, // SYNDS
+    0x0e0f14a8, // SYNED
+    0x0e0f14b7, // SYNES
+    0x0e0f169b, // SYNTH
+    0x0e0f1d2a, // SYPED
+    0x0e0f1d39, // SYPES
+    0x0e0f1d9c, // SYPHS
+    0x0e0f252c, // SYRAH
+    0x0e0f25b6, // SYREN
+    0x0e0f2b43, // SYSOP
+    0x0e0f2e92, // SYTHE
+    0x0e0f36be, // SYVER
+    0x0e13cdba, // TAALS
+    0x0e13ceb0, // TAATA
+    0x0e13d113, // TABER
+    0x0e13d114, // TABES
+    0x0e13d189, // TABID
+    0x0e13d198, // TABIS
+    0x0e13d1e9, // TABLA
+    0x0e13d25d, // TABOR
+    0x0e13d31f, // TABUN
+    0x0e13d324, // TABUS
+    0x0e13d4cc, // TACAN
+    0x0e13d555, // TACES
+    0x0e13d556, // TACET
+    0x0e13d5aa, // TACHE
+    0x0e13d5b4, // TACHO
+    0x0e13d5b8, // TACHS
+    0x0e13d61b, // TACKS
+    0x0e13d69f, // TACOS
+    0x0e13d744, // TACTS
+    0x0e13debe, // TAELS
+    0x0e13e28a, // TAFIA
+    0x0e13e6a1, // TAGGY
+    0x0e13e74f, // TAGMA
+    0x0e13ea16, // TAHAS
+    0x0e13ec47, // TAHRS
+    0x0e13ef0b, // TAIGA
+    0x0e13ef1d, // TAIGS
+    0x0e13ef9d, // TAIKO
+    0x0e13efc2, // TAILS
+    0x0e13f004, // TAINS
+    0x0e13f076, // TAIRA
+    0x0e13f09e, // TAISH
+    0x0e13f0ca, // TAITS
+    0x0e13f31c, // TAJES
+    0x0e13f6d9, // TAKAS
+    0x0e13f75d, // TAKES
+    0x0e13f7b6, // TAKHI
+    0x0e13f7dc, // TAKIN
+    0x0e13f7e1, // TAKIS
+    0x0e13f829, // TAKKY
+    0x0e13fb12, // TALAK
+    0x0e13fb18, // TALAQ
+    0x0e13fb19, // TALAR
+    0x0e13fb1a, // TALAS
+    0x0e13fb5c, // TALCS
+    0x0e13fb62, // TALCY
+    0x0e13fb8c, // TALEA
+    0x0e13fb9d, // TALER
+    0x0e13fb9e, // TALES
+    0x0e13fc64, // TALKS
+    0x0e13fc6a, // TALKY
+    0x0e13fc85, // TALLS
+    0x0e13fc94, // TALMA
+    0x0e13fcf7, // TALPA
+    0x0e13fda6, // TALUK
+    0x0e13fdae, // TALUS
+    0x0e13ff54, // TAMAL
+    0x0e13ffd0, // TAMED
+    0x0e13ffdf, // TAMES
+    0x0e14005e, // TAMIN
+    0x0e140063, // TAMIS
+    0x0e1400ed, // TAMMY
+    0x0e14014a, // TAMPS
+    0x0e14039c, // TANAS
+    0x0e140450, // TANGA
+    0x0e140458, // TANGI
+    0x0e140462, // TANGS
+    0x0e140483, // TANHS
+    0x0e1404d4, // TANKA
+    0x0e1404e6, // TANKS
+    0x0e1404ec, // TANKY
+    0x0e140537, // TANNA
+    0x0e1405f4, // TANSY
+    0x0e140605, // TANTI
+    0x0e14060b, // TANTO
+    0x0e140615, // TANTY
+    0x0e140c1e, // TAPAS
+    0x0e140c93, // TAPED
+    0x0e140c9d, // TAPEN
+    0x0e140ca2, // TAPES
+    0x0e140ca3, // TAPET
+    0x0e140d26, // TAPIS
+    0x0e140dfb, // TAPPA
+    0x0e140eb2, // TAPUS
+    0x0e1414a0, // TARAS
+    0x0e1414ff, // TARDO
+    0x0e141515, // TARED
+    0x0e141524, // TARES
+    0x0e141554, // TARGA
+    0x0e141558, // TARGE
+    0x0e14164d, // TARNS
+    0x0e14165e, // TAROC
+    0x0e141666, // TAROK
+    0x0e14166e, // TAROS
+    0x0e14168f, // TARPS
+    0x0e1416c3, // TARRE
+    0x0e1416d7, // TARRY
+    0x0e1416e8, // TARSI
+    0x0e141713, // TARTS
+    0x0e141719, // TARTY
+    0x0e1418e0, // TASAR
+    0x0e141956, // TASED
+    0x0e141964, // TASER
+    0x0e141965, // TASES
+    0x0e141a2b, // TASKS
+    0x0e141b21, // TASSA
+    0x0e141b25, // TASSE
+    0x0e141b2f, // TASSO
+    0x0e141d21, // TATAR
+    0x0e141da5, // TATER
+    0x0e141da6, // TATES
+    0x0e141e09, // TATHS
+    0x0e141e1c, // TATIE
+    0x0e141ef2, // TATOU
+    0x0e141f95, // TATTS
+    0x0e141fb6, // TATUS
+    0x0e142176, // TAUBE
+    0x0e1422bf, // TAULD
+    0x0e14232c, // TAUON
+    0x0e142344, // TAUPE
+    0x0e1423d6, // TAUTS
+    0x0e142599, // TAVAH
+    0x0e1425a4, // TAVAS
+    0x0e142627, // TAVER
+    0x0e1429db, // TAWAI
+    0x0e1429e5, // TAWAS
+    0x0e142a5a, // TAWED
+    0x0e142a68, // TAWER
+    0x0e142adf, // TAWIE
+    0x0e142c29, // TAWSE
+    0x0e142c58, // TAWTS
+    0x0e142e9b, // TAXED
+    0x0e142ea9, // TAXER
+    0x0e142eaa, // TAXES
+    0x0e142f2e, // TAXIS
+    0x0e142fed, // TAXOL
+    0x0e142fef, // TAXON
+    0x0e142ff3, // TAXOR
+    0x0e1430ba, // TAXUS
+    0x0e143486, // TAYRA
+    0x0e1439cf, // TAZZA
+    0x0e1439d3, // TAZZE
+    0x0e15fe28, // TEADE
+    0x0e15fe36, // TEADS
+    0x0e15fe48, // TEAED
+    0x0e15ff1d, // TEAKS
+    0x0e15ff3e, // TEALS
+    0x0e15ff5f, // TEAMS
+    0x0e160004, // TEARS
+    0x0e160046, // TEATS
+    0x0e1600fe, // TEAZE
+    0x0e16073c, // TECHS
+    0x0e160742, // TECHY
+    0x0e1608b6, // TECTA
+    0x0e161042, // TEELS
+    0x0e161063, // TEEMS
+    0x0e161075, // TEEND
+    0x0e161076, // TEENE
+    0x0e161084, // TEENS
+    0x0e16108a, // TEENY
+    0x0e161108, // TEERS
+    0x0e1613bd, // TEFFS
+    0x0e16181f, // TEGGS
+    0x0e1619db, // TEGUA
+    0x0e1619ed, // TEGUS
+    0x0e161dcb, // TEHRS
+    0x0e1620d4, // TEIID
+    0x0e162146, // TEILS
+    0x0e162179, // TEIND
+    0x0e162188, // TEINS
+    0x0e162c90, // TELAE
+    0x0e162cdc, // TELCO
+    0x0e162d22, // TELES
+    0x0e162d27, // TELEX
+    0x0e162d94, // TELIA
+    0x0e162d96, // TELIC
+    0x0e162e09, // TELLS
+    0x0e162e0f, // TELLY
+    0x0e162e62, // TELOI
+    0x0e162e6c, // TELOS
+    0x0e163154, // TEMED
+    0x0e163163, // TEMES
+    0x0e1632c4, // TEMPI
+    0x0e1632ce, // TEMPS
+    0x0e1632cf, // TEMPT
+    0x0e163323, // TEMSE
+    0x0e163557, // TENCH
+    0x0e163583, // TENDS
+    0x0e163585, // TENDU
+    0x0e1635a4, // TENES
+    0x0e1635d8, // TENGE
+    0x0e163616, // TENIA
+    0x0e1636bf, // TENNE
+    0x0e1636c9, // TENNO
+    0x0e1636d3, // TENNY
+    0x0e1636e9, // TENON
+    0x0e163793, // TENTS
+    0x0e163799, // TENTY
+    0x0e1637a6, // TENUE
+    0x0e163d9b, // TEPAL
+    0x0e163da2, // TEPAS
+    0x0e163f76, // TEPOY
+    0x0e16461a, // TERAI
+    0x0e164624, // TERAS
+    0x0e164658, // TERCE
+    0x0e1646a0, // TEREK
+    0x0e1646a8, // TERES
+    0x0e1646bb, // TERFE
+    0x0e1646c9, // TERFS
+    0x0e1646d8, // TERGA
+    0x0e1647b0, // TERMS
+    0x0e1647c3, // TERNE
+    0x0e1647d1, // TERNS
+    0x0e16485b, // TERRY
+    0x0e164897, // TERTS
+    0x0e164bbe, // TESLA
+    0x0e164cc6, // TESTA
+    0x0e164cca, // TESTE
+    0x0e164cd8, // TESTS
+    0x0e164f2a, // TETES
+    0x0e164f8d, // TETHS
+    0x0e1650c5, // TETRA
+    0x0e1650cd, // TETRI
+    0x0e16531e, // TEUCH
+    0x0e1653a2, // TEUGH
+    0x0e165bde, // TEWED
+    0x0e165be6, // TEWEL
+    0x0e165c72, // TEWIT
+    0x0e165faa, // TEXAS
+    0x0e16602e, // TEXES
+    0x0e16621d, // TEXTS
+    0x0e17a330, // THACK
+    0x0e17a3b2, // THAGI
+    0x0e17a3f8, // THAIM
+    0x0e17a453, // THALE
+    0x0e17a457, // THALI
+    0x0e17a491, // THANA
+    0x0e17a495, // THANE
+    0x0e17a497, // THANG
+    0x0e17a4a3, // THANS
+    0x0e17a4a8, // THANX
+    0x0e17a521, // THARM
+    0x0e17a527, // THARS
+    0x0e17a5cc, // THAWS
+    0x0e17a5d2, // THAWY
+    0x0e17b40d, // THEBE
+    0x0e17b42a, // THECA
+    0x0e17b46f, // THEED
+    0x0e17b476, // THEEK
+    0x0e17b47e, // THEES
+    0x0e17b4bb, // THEGN
+    0x0e17b4f2, // THEIC
+    0x0e17b4fd, // THEIN
+    0x0e17b558, // THELF
+    0x0e17b574, // THEMA
+    0x0e17b5a7, // THENS
+    0x0e17b5cc, // THEOW
+    0x0e17b625, // THERM
+    0x0e17b649, // THESP
+    0x0e17b65f, // THETE
+    0x0e17b6d0, // THEWS
+    0x0e17b6d6, // THEWY
+    0x0e17c5c4, // THIGS
+    0x0e17c661, // THILK
+    0x0e17c662, // THILL
+    0x0e17c69d, // THINE
+    0x0e17c6ab, // THINS
+    0x0e17c6c5, // THIOL
+    0x0e17c728, // THIRL
+    0x0e17df2a, // THOFT
+    0x0e17dfe1, // THOLE
+    0x0e17dfe5, // THOLI
+    0x0e17e0b1, // THORO
+    0x0e17e0b2, // THORP
+    0x0e17e118, // THOUS
+    0x0e17e153, // THOWL
+    0x0e17eb39, // THRAE
+    0x0e17eb4b, // THRAW
+    0x0e17ec40, // THRID
+    0x0e17ec4c, // THRIP
+    0x0e17ed07, // THROE
+    0x0e17f86d, // THUDS
+    0x0e17f8d0, // THUGS
+    0x0e17f921, // THUJA
+    0x0e17f9af, // THUNK
+    0x0e17fa34, // THURL
+    0x0e17fb10, // THUYA
+    0x0e180a90, // THYMI
+    0x0e180aa0, // THYMY
+    0x0e183104, // TIANS
+    0x0e183188, // TIARS
+    0x0e1837d2, // TICAL
+    0x0e183809, // TICCA
+    0x0e18384e, // TICED
+    0x0e18385d, // TICES
+    0x0e1838c6, // TICHY
+    0x0e183923, // TICKS
+    0x0e183929, // TICKY
+    0x0e183c83, // TIDDY
+    0x0e183c8f, // TIDED
+    0x0e183c9e, // TIDES
+    0x0e18428c, // TIERS
+    0x0e184541, // TIFFS
+    0x0e18466a, // TIFOS
+    0x0e18470f, // TIFTS
+    0x0e184961, // TIGES
+    0x0e184aa6, // TIGON
+    0x0e1859e1, // TIKAS
+    0x0e185a65, // TIKES
+    0x0e185ae9, // TIKIS
+    0x0e185b19, // TIKKA
+    0x0e185e1a, // TILAK
+    0x0e185e97, // TILED
+    0x0e185ea5, // TILER
+    0x0e185ea6, // TILES
+    0x0e185f8d, // TILLS
+    0x0e185f93, // TILLY
+    0x0e18608a, // TILTH
+    0x0e186095, // TILTS
+    0x0e186280, // TIMBO
+    0x0e1862d8, // TIMED
+    0x0e1862e7, // TIMES
+    0x0e18642c, // TIMON
+    0x0e186452, // TIMPS
+    0x0e1866a4, // TINAS
+    0x0e1866e7, // TINCT
+    0x0e186707, // TINDS
+    0x0e186716, // TINEA
+    0x0e186719, // TINED
+    0x0e186728, // TINES
+    0x0e18675c, // TINGE
+    0x0e18676a, // TINGS
+    0x0e1867ee, // TINKS
+    0x0e186857, // TINNY
+    0x0e186917, // TINTS
+    0x0e18691d, // TINTY
+    0x0e18702e, // TIPIS
+    0x0e18711b, // TIPPY
+    0x0e18781d, // TIRED
+    0x0e18782c, // TIRES
+    0x0e187913, // TIRLS
+    0x0e187976, // TIROS
+    0x0e1879d9, // TIRRS
+    0x0e188061, // TITCH
+    0x0e1880ad, // TITER
+    0x0e188132, // TITIS
+    0x0e18824d, // TITRE
+    0x0e1882a3, // TITTY
+    0x0e1882bb, // TITUP
+    0x0e189672, // TIYIN
+    0x0e18971c, // TIYNS
+    0x0e189a34, // TIZES
+    0x0e189cef, // TIZZY
+    0x0e1b7a00, // TOADS
+    0x0e1b7a06, // TOADY
+    0x0e1b7cc8, // TOAZE
+    0x0e1b8369, // TOCKS
+    0x0e1b836f, // TOCKY
+    0x0e1b83ed, // TOCOS
+    0x0e1b86b5, // TODDE
+    0x0e1b8aa1, // TOEAS
+    0x0e1b8f87, // TOFFS
+    0x0e1b8f8d, // TOFFY
+    0x0e1b9155, // TOFTS
+    0x0e1b9176, // TOFUS
+    0x0e1b9315, // TOGAE
+    0x0e1b9323, // TOGAS
+    0x0e1b9398, // TOGED
+    0x0e1b93a7, // TOGES
+    0x0e1b95a9, // TOGUE
+    0x0e1b9932, // TOHOS
+    0x0e1b9d02, // TOILE
+    0x0e1b9d10, // TOILS
+    0x0e1b9d46, // TOING
+    0x0e1b9de9, // TOISE
+    0x0e1b9e18, // TOITS
+    0x0e1ba42d, // TOKAY
+    0x0e1ba49c, // TOKED
+    0x0e1ba4aa, // TOKER
+    0x0e1ba4ab, // TOKES
+    0x0e1ba5f5, // TOKOS
+    0x0e1ba863, // TOLAN
+    0x0e1ba867, // TOLAR
+    0x0e1ba868, // TOLAS
+    0x0e1ba8dd, // TOLED
+    0x0e1ba8ec, // TOLES
+    0x0e1ba9d3, // TOLLS
+    0x0e1ba9d9, // TOLLY
+    0x0e1baadb, // TOLTS
+    0x0e1baafc, // TOLUS
+    0x0e1bab79, // TOLYL
+    0x0e1baca4, // TOMAN
+    0x0e1bacca, // TOMBS
+    0x0e1bad2d, // TOMES
+    0x0e1bad9f, // TOMIA
+    0x0e1bae3b, // TOMMY
+    0x0e1bae77, // TOMOS
+    0x0e1bb143, // TONDI
+    0x0e1bb149, // TONDO
+    0x0e1bb15f, // TONED
+    0x0e1bb16d, // TONER
+    0x0e1bb16e, // TONES
+    0x0e1bb174, // TONEY
+    0x0e1bb1b0, // TONGS
+    0x0e1bb222, // TONKA
+    0x0e1bb234, // TONKS
+    0x0e1bb289, // TONNE
+    0x0e1bb37e, // TONUS
+    0x0e1bb696, // TOOLS
+    0x0e1bb6b7, // TOOMS
+    0x0e1bb6d8, // TOONS
+    0x0e1bb79e, // TOOTS
+    0x0e1bb9e1, // TOPED
+    0x0e1bb9e2, // TOPEE
+    0x0e1bb9e8, // TOPEK
+    0x0e1bb9ef, // TOPER
+    0x0e1bb9f0, // TOPES
+    0x0e1bba45, // TOPHE
+    0x0e1bba49, // TOPHI
+    0x0e1bba53, // TOPHS
+    0x0e1bba74, // TOPIS
+    0x0e1bbb30, // TOPOI
+    0x0e1bbb3a, // TOPOS
+    0x0e1bbb61, // TOPPY
+    0x0e1bc033, // TOQUE
+    0x0e1bc1e3, // TORAH
+    0x0e1bc1e9, // TORAN
+    0x0e1bc1ee, // TORAS
+    0x0e1bc230, // TORCS
+    0x0e1bc272, // TORES
+    0x0e1bc2e6, // TORIC
+    0x0e1bc2ec, // TORII
+    0x0e1bc3bc, // TOROS
+    0x0e1bc3bd, // TOROT
+    0x0e1bc41f, // TORRS
+    0x0e1bc432, // TORSE
+    0x0e1bc436, // TORSI
+    0x0e1bc438, // TORSK
+    0x0e1bc44f, // TORTA
+    0x0e1bc453, // TORTE
+    0x0e1bc461, // TORTS
+    0x0e1bc62f, // TOSAS
+    0x0e1bc6a4, // TOSED
+    0x0e1bc6b3, // TOSES
+    0x0e1bc71c, // TOSHY
+    0x0e1bc887, // TOSSY
+    0x0e1bcae5, // TOTED
+    0x0e1bcaf3, // TOTER
+    0x0e1bcaf4, // TOTES
+    0x0e1bcce9, // TOTTY
+    0x0e1bcffb, // TOUKS
+    0x0e1bd05e, // TOUNS
+    0x0e1bd0e2, // TOURS
+    0x0e1bd0f5, // TOUSE
+    0x0e1bd109, // TOUSY
+    0x0e1bd124, // TOUTS
+    0x0e1bd1dc, // TOUZE
+    0x0e1bd1f0, // TOUZY
+    0x0e1bd7a8, // TOWED
+    0x0e1bd82d, // TOWIE
+    0x0e1bd8e0, // TOWNS
+    0x0e1bd8e6, // TOWNY
+    0x0e1bd977, // TOWSE
+    0x0e1bd98b, // TOWSY
+    0x0e1bd9a6, // TOWTS
+    0x0e1bda5e, // TOWZE
+    0x0e1bda72, // TOWZY
+    0x0e1be02a, // TOYED
+    0x0e1be038, // TOYER
+    0x0e1be17e, // TOYON
+    0x0e1be183, // TOYOS
+    0x0e1be46b, // TOZED
+    0x0e1be47a, // TOZES
+    0x0e1be4f0, // TOZIE
+    0x0e1d1ee1, // TRABS
+    0x0e1d1f23, // TRADS
+    0x0e1d1f7c, // TRAGI
+    0x0e1d1fc0, // TRAIK
+    0x0e1d204c, // TRAMS
+    0x0e1d2065, // TRANK
+    0x0e1d206b, // TRANQ
+    0x0e1d206d, // TRANS
+    0x0e1d206e, // TRANT
+    0x0e1d20a1, // TRAPE
+    0x0e1d20af, // TRAPS
+    0x0e1d20b0, // TRAPT
+    0x0e1d2112, // TRASS
+    0x0e1d2133, // TRATS
+    0x0e1d2134, // TRATT
+    0x0e1d2167, // TRAVE
+    0x0e1d21cb, // TRAYF
+    0x0e1d21d8, // TRAYS
+    0x0e1d2ffe, // TRECK
+    0x0e1d3039, // TREED
+    0x0e1d3043, // TREEN
+    0x0e1d3048, // TREES
+    0x0e1d3057, // TREFA
+    0x0e1d30bf, // TREIF
+    0x0e1d310e, // TREKS
+    0x0e1d313e, // TREMA
+    0x0e1d3150, // TREMS
+    0x0e1d3216, // TRESS
+    0x0e1d3217, // TREST
+    0x0e1d3237, // TRETS
+    0x0e1d329a, // TREWS
+    0x0e1d32cf, // TREYF
+    0x0e1d32dc, // TREYS
+    0x0e1d40b8, // TRIAC
+    0x0e1d411d, // TRIDE
+    0x0e1d414b, // TRIER
+    0x0e1d414c, // TRIES
+    0x0e1d4160, // TRIFF
+    0x0e1d418a, // TRIGO
+    0x0e1d418e, // TRIGS
+    0x0e1d4204, // TRIKE
+    0x0e1d4224, // TRILD
+    0x0e1d422c, // TRILL
+    0x0e1d4254, // TRIMS
+    0x0e1d4267, // TRINE
+    0x0e1d4275, // TRINS
+    0x0e1d428f, // TRIOL
+    0x0e1d4295, // TRIOR
+    0x0e1d4296, // TRIOS
+    0x0e1d42b7, // TRIPS
+    0x0e1d42bd, // TRIPY
+    0x0e1d431b, // TRIST
+    0x0e1d5a3f, // TROAD
+    0x0e1d5a46, // TROAK
+    0x0e1d5a4f, // TROAT
+    0x0e1d5a88, // TROCK
+    0x0e1d5aa3, // TRODE
+    0x0e1d5ab1, // TRODS
+    0x0e1d5b14, // TROGS
+    0x0e1d5b56, // TROIS
+    0x0e1d5b8a, // TROKE
+    0x0e1d5bd7, // TROMP
+    0x0e1d5be9, // TRONA
+    0x0e1d5beb, // TRONC
+    0x0e1d5bed, // TRONE
+    0x0e1d5bf3, // TRONK
+    0x0e1d5bfb, // TRONS
+    0x0e1d5c23, // TROOZ
+    0x0e1d5cb6, // TROTH
+    0x0e1d5cc1, // TROTS
+    0x0e1d5d24, // TROWS
+    0x0e1d5d66, // TROYS
+    0x0e1d7449, // TRUED
+    0x0e1d7458, // TRUES
+    0x0e1d7496, // TRUGO
+    0x0e1d749a, // TRUGS
+    0x0e1d7538, // TRULL
+    0x0e1d855b, // TRYER
+    0x0e1d8614, // TRYKE
+    0x0e1d8652, // TRYMA
+    0x0e1d86c7, // TRYPS
+    0x0e1dab76, // TSADE
+    0x0e1dab7a, // TSADI
+    0x0e1dad52, // TSARS
+    0x0e1dd620, // TSKED
+    0x0e1e0044, // TSUBA
+    0x0e1e0052, // TSUBO
+    0x0e1ec590, // TUANS
+    0x0e1ec615, // TUART
+    0x0e1ec64b, // TUATH
+    0x0e1ec816, // TUBAE
+    0x0e1ec823, // TUBAR
+    0x0e1ec824, // TUBAS
+    0x0e1ec84b, // TUBBY
+    0x0e1ec899, // TUBED
+    0x0e1ec8a8, // TUBES
+    0x0e1ecdaf, // TUCKS
+    0x0e1ed928, // TUFAS
+    0x0e1ed9bf, // TUFFE
+    0x0e1ed9cd, // TUFFS
+    0x0e1edb9b, // TUFTS
+    0x0e1edba1, // TUFTY
+    0x0e1edf88, // TUGRA
+    0x0e1ee748, // TUILE
+    0x0e1ee786, // TUINA
+    0x0e1ee837, // TUISM
+    0x0e1ef0e2, // TUKTU
+    0x0e1ef332, // TULES
+    0x0e1ef48b, // TULPA
+    0x0e1ef4f6, // TULSI
+    0x0e1ef7e8, // TUMID
+    0x0e1ef881, // TUMMY
+    0x0e1ef8de, // TUMPS
+    0x0e1ef8e4, // TUMPY
+    0x0e1efb30, // TUNAS
+    0x0e1efb93, // TUNDS
+    0x0e1efba5, // TUNED
+    0x0e1efbb3, // TUNER
+    0x0e1efbb4, // TUNES
+    0x0e1efbf6, // TUNGS
+    0x0e1efce3, // TUNNY
+    0x0e1f042e, // TUPEK
+    0x0e1f04b2, // TUPIK
+    0x0e1f050f, // TUPLE
+    0x0e1f0a79, // TUQUE
+    0x0e1f0c97, // TURDS
+    0x0e1f0cd9, // TURFS
+    0x0e1f0cdf, // TURFY
+    0x0e1f0d7e, // TURKS
+    0x0e1f0db2, // TURME
+    0x0e1f0dc0, // TURMS
+    0x0e1f0de1, // TURNS
+    0x0e1f0de2, // TURNT
+    0x0e1f0e23, // TURPS
+    0x0e1f0e65, // TURRS
+    0x0e1f1162, // TUSHY
+    0x0e1f11bf, // TUSKS
+    0x0e1f11c5, // TUSKY
+    0x0e1f152c, // TUTEE
+    0x0e1f171f, // TUTTI
+    0x0e1f172f, // TUTTY
+    0x0e1f174a, // TUTUS
+    0x0e1f263e, // TUXES
+    0x0e1f2a7e, // TUYER
+    0x0e1fdd29, // TWAES
+    0x0e1fdda8, // TWAIN
+    0x0e1fde10, // TWALS
+    0x0e1fde4a, // TWANK
+    0x0e1fdf18, // TWATS
+    0x0e1fdfbd, // TWAYS
+    0x0e1fee26, // TWEEL
+    0x0e1fee28, // TWEEN
+    0x0e1fee2a, // TWEEP
+    0x0e1fee2c, // TWEER
+    0x0e1fefd2, // TWERK
+    0x0e1fefd7, // TWERP
+    0x0e1fff30, // TWIER
+    0x0e1fff73, // TWIGS
+    0x0e200011, // TWILL
+    0x0e200019, // TWILT
+    0x0e200052, // TWINK
+    0x0e20005a, // TWINS
+    0x0e200060, // TWINY
+    0x0e2000d0, // TWIRE
+    0x0e2000db, // TWIRP
+    0x0e200112, // TWITE
+    0x0e200120, // TWITS
+    0x0e2018b6, // TWOER
+    0x0e204340, // TWYER
+    0x0e2106ef, // TYEES
+    0x0e21089c, // TYERS
+    0x0e211a82, // TYIYN
+    0x0e212075, // TYKES
+    0x0e2124b5, // TYLER
+    0x0e212a62, // TYMPS
+    0x0e212d09, // TYNDE
+    0x0e212d29, // TYNED
+    0x0e212d38, // TYNES
+    0x0e21352f, // TYPAL
+    0x0e2135ab, // TYPED
+    0x0e2135ba, // TYPES
+    0x0e2135c0, // TYPEY
+    0x0e21362e, // TYPIC
+    0x0e213704, // TYPOS
+    0x0e213725, // TYPPS
+    0x0e2137a5, // TYPTO
+    0x0e213db3, // TYRAN
+    0x0e213e2d, // TYRED
+    0x0e213e3c, // TYRES
+    0x0e213f86, // TYROS
+    0x0e214713, // TYTHE
+    0x0e2183f9, // TZARS
+    0x0e278b5e, // UDALS
+    0x0e27c72e, // UDONS
+    0x0e293077, // UGALI
+    0x0e294911, // UGGED
+    0x0e29ea3d, // UHLAN
+    0x0e2a12be, // UHURU
+    0x0e2b62de, // UKASE
+    0x0e2bee75, // ULAMA
+    0x0e2beea8, // ULANS
+    0x0e2bff79, // ULEMA
+    0x0e2c210a, // ULMIN
+    0x0e2c2439, // ULNAD
+    0x0e2c243a, // ULNAE
+    0x0e2c2447, // ULNAR
+    0x0e2c2448, // ULNAS
+    0x0e2c2cc5, // ULPAN
+    0x0e2c4650, // ULVAS
+    0x0e2c540d, // ULYIE
+    0x0e2c584e, // ULZIE
+    0x0e2c7ade, // UMAMI
+    0x0e2c7e1a, // UMBEL
+    0x0e2c7e20, // UMBER
+    0x0e2c7efa, // UMBLE
+    0x0e2c7f6b, // UMBOS
+    0x0e2c7fc0, // UMBRE
+    0x0e2c9b54, // UMIAC
+    0x0e2c9b5c, // UMIAK
+    0x0e2c9b62, // UMIAQ
+    0x0e2cac5d, // UMMAH
+    0x0e2cac68, // UMMAS
+    0x0e2cacdd, // UMMED
+    0x0e2cb9a0, // UMPED
+    0x0e2cba12, // UMPHS
+    0x0e2cba25, // UMPIE
+    0x0e2cbba4, // UMPTY
+    0x0e2cc1a2, // UMRAH
+    0x0e2cc1ad, // UMRAS
+    0x0e2d06c5, // UNAIS
+    0x0e2d07ad, // UNAPT
+    0x0e2d07e8, // UNARM
+    0x0e2d07f4, // UNARY
+    0x0e2d0851, // UNAUS
+    0x0e2d09f2, // UNBAG
+    0x0e2d09f9, // UNBAN
+    0x0e2d09fd, // UNBAR
+    0x0e2d0a73, // UNBED
+    0x0e2d0af7, // UNBID
+    0x0e2d0bd1, // UNBOX
+    0x0e2d0e3c, // UNCAP
+    0x0e2d0ec3, // UNCES
+    0x0e2d0f35, // UNCIA
+    0x0e2d100d, // UNCOS
+    0x0e2d1013, // UNCOY
+    0x0e2d10d3, // UNCUS
+    0x0e2d127a, // UNDAM
+    0x0e2d12f6, // UNDEE
+    0x0e2d144e, // UNDOS
+    0x0e2d1508, // UNDUG
+    0x0e2d1929, // UNETH
+    0x0e2d1c0f, // UNFIX
+    0x0e2d1f37, // UNGAG
+    0x0e2d1fc8, // UNGET
+    0x0e2d2102, // UNGOD
+    0x0e2d2112, // UNGOT
+    0x0e2d21d1, // UNGUM
+    0x0e2d2385, // UNHAT
+    0x0e2d2489, // UNHIP
+    0x0e2d27f5, // UNICA
+    0x0e2d2a38, // UNITS
+    0x0e2d2c00, // UNJAM
+    0x0e2d30bc, // UNKED
+    0x0e2d30cc, // UNKET
+    0x0e2d3140, // UNKID
+    0x0e2d348c, // UNLAW
+    0x0e2d348e, // UNLAY
+    0x0e2d34fd, // UNLED
+    0x0e2d350d, // UNLET
+    0x0e2d3581, // UNLID
+    0x0e2d38c4, // UNMAN
+    0x0e2d3951, // UNMEW
+    0x0e2d39d6, // UNMIX
+    0x0e2d4592, // UNPAY
+    0x0e2d4604, // UNPEG
+    0x0e2d460b, // UNPEN
+    0x0e2d468f, // UNPIN
+    0x0e2d4e83, // UNRED
+    0x0e2d4f07, // UNRID
+    0x0e2d4f0a, // UNRIG
+    0x0e2d4f13, // UNRIP
+    0x0e2d5253, // UNSAW
+    0x0e2d5255, // UNSAY
+    0x0e2d52c5, // UNSEE
+    0x0e2d52d7, // UNSEW
+    0x0e2d52d8, // UNSEX
+    0x0e2d540e, // UNSOD
+    0x0e2d5695, // UNTAX
+    0x0e2d5793, // UNTIN
+    0x0e2d63d8, // UNWET
+    0x0e2d645c, // UNWIT
+    0x0e2d651c, // UNWON
+    0x0e2e2492, // UPBOW
+    0x0e2e25ca, // UPBYE
+    0x0e2e2d10, // UPDOS
+    0x0e2e2d79, // UPDRY
+    0x0e2e3121, // UPEND
+    0x0e2e454d, // UPJET
+    0x0e2e4d50, // UPLAY
+    0x0e2e4dbf, // UPLED
+    0x0e2e4e53, // UPLIT
+    0x0e2e5ec3, // UPPED
+    0x0e2e66cb, // UPRAN
+    0x0e2e695f, // UPRUN
+    0x0e2e6b87, // UPSEE
+    0x0e2e6b9b, // UPSEY
+    0x0e2e6f4a, // UPTAK
+    0x0e2e6fd5, // UPTER
+    0x0e2e704c, // UPTIE
+    0x0e2f37bb, // URAEI
+    0x0e2f38a2, // URALI
+    0x0e2f390f, // URAOS
+    0x0e2f3964, // URARE
+    0x0e2f3968, // URARI
+    0x0e2f3985, // URASE
+    0x0e2f39a6, // URATE
+    0x0e2f3c0b, // URBEX
+    0x0e2f3c78, // URBIA
+    0x0e2f447a, // URDEE
+    0x0e2f483e, // UREAL
+    0x0e2f4845, // UREAS
+    0x0e2f48a4, // UREDO
+    0x0e2f493d, // UREIC
+    0x0e2f49e0, // URENA
+    0x0e2f49f3, // URENT
+    0x0e2f513c, // URGED
+    0x0e2f514a, // URGER
+    0x0e2f514b, // URGES
+    0x0e2f5942, // URIAL
+    0x0e2f5bae, // URITE
+    0x0e2f6a48, // URMAN
+    0x0e2f6e87, // URNAL
+    0x0e2f6f03, // URNED
+    0x0e2f7785, // URPED
+    0x0e2f83c5, // URSAE
+    0x0e2f84cc, // URSID
+    0x0e2f859c, // URSON
+    0x0e2f8c78, // URUBU
+    0x0e2f9096, // URVAS
+    0x0e2fd6d7, // USERS
+    0x0e2ffb61, // USNEA
+    0x0e300a38, // USQUE
+    0x0e301ad9, // USURE
+    0x0e301aed, // USURY
+    0x0e30632e, // UTERI
+    0x0e3179c2, // UVEAL
+    0x0e3179c9, // UVEAS
+    0x0e31bf32, // UVULA
+    0x0e380855, // VACUA
+    0x0e380a89, // VADED
+    0x0e380a98, // VADES
+    0x0e3816d0, // VAGAL
+    0x0e38196b, // VAGUS
+    0x0e3820c4, // VAILS
+    0x0e38217c, // VAIRE
+    0x0e38218a, // VAIRS
+    0x0e382190, // VAIRY
+    0x0e3827db, // VAKAS
+    0x0e3828dc, // VAKIL
+    0x0e382ca0, // VALES
+    0x0e382d24, // VALIS
+    0x0e382e60, // VALSE
+    0x0e38324c, // VAMPS
+    0x0e383252, // VAMPY
+    0x0e3834ef, // VANDA
+    0x0e383513, // VANED
+    0x0e383522, // VANES
+    0x0e383564, // VANGS
+    0x0e383711, // VANTS
+    0x0e383d95, // VAPED
+    0x0e383da3, // VAPER
+    0x0e383da4, // VAPES
+    0x0e38459d, // VARAN
+    0x0e3845a2, // VARAS
+    0x0e38460b, // VARDY
+    0x0e384616, // VAREC
+    0x0e384626, // VARES
+    0x0e384698, // VARIA
+    0x0e3846af, // VARIX
+    0x0e38473d, // VARNA
+    0x0e384836, // VARUS
+    0x0e384849, // VARVE
+    0x0e3849dc, // VASAL
+    0x0e384a67, // VASES
+    0x0e384c56, // VASTS
+    0x0e384c5c, // VASTY
+    0x0e384f1c, // VATIC
+    0x0e3850b8, // VATUS
+    0x0e38529c, // VAUCH
+    0x0e3854ca, // VAUTE
+    0x0e3854d8, // VAUTS
+    0x0e385d4c, // VAWTE
+    0x0e385fac, // VAXES
+    0x0e3a3032, // VEALE
+    0x0e3a3040, // VEALS
+    0x0e3a3046, // VEALY
+    0x0e3a4174, // VEENA
+    0x0e3a41c8, // VEEPS
+    0x0e3a420a, // VEERS
+    0x0e3a4210, // VEERY
+    0x0e3a485b, // VEGAS
+    0x0e3a48df, // VEGES
+    0x0e3a4955, // VEGIE
+    0x0e3a4a29, // VEGOS
+    0x0e3a4e1a, // VEHME
+    0x0e3a5248, // VEILS
+    0x0e3a524e, // VEILY
+    0x0e3a528a, // VEINS
+    0x0e3a5290, // VEINY
+    0x0e3a5d9f, // VELAR
+    0x0e3a5e03, // VELDS
+    0x0e3a5e04, // VELDT
+    0x0e3a5e24, // VELES
+    0x0e3a5f0b, // VELLS
+    0x0e3a602e, // VELUM
+    0x0e3a6614, // VENAE
+    0x0e3a661b, // VENAL
+    0x0e3a6685, // VENDS
+    0x0e3a6687, // VENDU
+    0x0e3a66ac, // VENEY
+    0x0e3a66da, // VENGE
+    0x0e3a6725, // VENIN
+    0x0e3a6895, // VENTS
+    0x0e3a68b6, // VENUS
+    0x0e3a7747, // VERBS
+    0x0e3a7945, // VERRA
+    0x0e3a795d, // VERRY
+    0x0e3a7979, // VERST
+    0x0e3a7999, // VERTS
+    0x0e3a799b, // VERTU
+    0x0e3a7d44, // VESPA
+    0x0e3a7dc8, // VESTA
+    0x0e3a7dda, // VESTS
+    0x0e3a7fdf, // VETCH
+    0x0e3a9121, // VEXED
+    0x0e3a912f, // VEXER
+    0x0e3a9130, // VEXES
+    0x0e3a91ad, // VEXIL
+    0x0e3a9a35, // VEZIR
+    0x0e3c61c4, // VIALS
+    0x0e3c61f7, // VIAND
+    0x0e3c651e, // VIBES
+    0x0e3c6523, // VIBEX
+    0x0e3c6524, // VIBEY
+    0x0e3c6950, // VICED
+    0x0e3c695f, // VICES
+    0x0e3c69c8, // VICHY
+    0x0e3c738e, // VIERS
+    0x0e3c7433, // VIEWS
+    0x0e3c7439, // VIEWY
+    0x0e3c75ef, // VIFDA
+    0x0e3c7643, // VIFFS
+    0x0e3c79df, // VIGAS
+    0x0e3c7ad5, // VIGIA
+    0x0e3c8f79, // VILDE
+    0x0e3c8fa7, // VILER
+    0x0e3c9085, // VILLI
+    0x0e3c908f, // VILLS
+    0x0e3c93e4, // VIMEN
+    0x0e3c979f, // VINAL
+    0x0e3c97a6, // VINAS
+    0x0e3c97d6, // VINCA
+    0x0e3c981b, // VINED
+    0x0e3c9829, // VINER
+    0x0e3c982a, // VINES
+    0x0e3c982e, // VINEW
+    0x0e3c989e, // VINIC
+    0x0e3c9974, // VINOS
+    0x0e3c9a19, // VINTS
+    0x0e3c9d43, // VIOLD
+    0x0e3c9d52, // VIOLS
+    0x0e3ca91f, // VIRED
+    0x0e3ca92a, // VIREO
+    0x0e3ca92e, // VIRES
+    0x0e3ca95e, // VIRGA
+    0x0e3ca962, // VIRGE
+    0x0e3ca9a3, // VIRID
+    0x0e3caa15, // VIRLS
+    0x0e3cab1f, // VIRTU
+    0x0e3caceb, // VISAS
+    0x0e3cad60, // VISED
+    0x0e3cad6f, // VISES
+    0x0e3cade5, // VISIE
+    0x0e3cae8a, // VISNE
+    0x0e3caeb4, // VISON
+    0x0e3caf5a, // VISTO
+    0x0e3cb11e, // VITAE
+    0x0e3cb12c, // VITAS
+    0x0e3cb1b5, // VITEX
+    0x0e3cb359, // VITRO
+    0x0e3cb38d, // VITTA
+    0x0e3cb9ae, // VIVAS
+    0x0e3cb9af, // VIVAT
+    0x0e3cb9ff, // VIVDA
+    0x0e3cba31, // VIVER
+    0x0e3cba32, // VIVES
+    0x0e3ccbb9, // VIZIR
+    0x0e3ccc7f, // VIZOR
+    0x0e3e1788, // VLEIS
+    0x0e3e2808, // VLIES
+    0x0e3e41d0, // VLOGS
+    0x0e3facd0, // VOARS
+    0x0e3fb310, // VOCAB
+    0x0e3fb3a5, // VOCES
+    0x0e3fb7cb, // VODDY
+    0x0e3fb932, // VODOU
+    0x0e3fb9f1, // VODUN
+    0x0e3fbd1d, // VOEMA
+    0x0e3fc51f, // VOGIE
+    0x0e3fcd0a, // VOIDS
+    0x0e3fce04, // VOILE
+    0x0e3fce96, // VOIPS
+    0x0e3fd95c, // VOLAE
+    0x0e3fd969, // VOLAR
+    0x0e3fd9df, // VOLED
+    0x0e3fd9ee, // VOLES
+    0x0e3fd9ef, // VOLET
+    0x0e3fdab4, // VOLKS
+    0x0e3fdbcb, // VOLTA
+    0x0e3fdbcf, // VOLTE
+    0x0e3fdbd3, // VOLTI
+    0x0e3fdbdd, // VOLTS
+    0x0e3fdc0d, // VOLVA
+    0x0e3fdc11, // VOLVE
+    0x0e3fde2e, // VOMER
+    0x0e3ffbe7, // VOTED
+    0x0e3ffbf6, // VOTES
+    0x0e40006b, // VOUGE
+    0x0e400120, // VOULU
+    0x0e4008aa, // VOWED
+    0x0e4008b8, // VOWER
+    0x0e400cf3, // VOXEL
+    0x0e4015d0, // VOZHD
+    0x0e4150ba, // VRAIC
+    0x0e417335, // VRILS
+    0x0e418d18, // VROOM
+    0x0e418de4, // VROUS
+    0x0e418de8, // VROUW
+    0x0e418e26, // VROWS
+    0x0e430f31, // VUGGS
+    0x0e430f37, // VUGGY
+    0x0e430f52, // VUGHS
+    0x0e430f58, // VUGHY
+    0x0e432472, // VULGO
+    0x0e43255d, // VULNS
+    0x0e432653, // VULVA
+    0x0e434831, // VUTTY
+    0x0e4a1614, // WAACS
+    0x0e4a1f90, // WACKE
+    0x0e4a1f9a, // WACKO
+    0x0e4a1f9e, // WACKS
+    0x0e4a22f8, // WADDS
+    0x0e4a22fe, // WADDY
+    0x0e4a230a, // WADED
+    0x0e4a2318, // WADER
+    0x0e4a2319, // WADES
+    0x0e4a234d, // WADGE
+    0x0e4a239d, // WADIS
+    0x0e4a2508, // WADTS
+    0x0e4a2bbc, // WAFFS
+    0x0e4a2d8a, // WAFTS
+    0x0e4a2fcd, // WAGED
+    0x0e4a2fdc, // WAGES
+    0x0e4a300c, // WAGGA
+    0x0e4a3272, // WAGYU
+    0x0e4a3563, // WAHOO
+    0x0e4a382f, // WAIDE
+    0x0e4a387f, // WAIFS
+    0x0e4a3880, // WAIFT
+    0x0e4a3945, // WAILS
+    0x0e4a3987, // WAINS
+    0x0e4a3a0b, // WAIRS
+    0x0e4a3a3f, // WAITE
+    0x0e4a3a4d, // WAITS
+    0x0e4a405c, // WAKAS
+    0x0e4a40d1, // WAKED
+    0x0e4a40db, // WAKEN
+    0x0e4a40df, // WAKER
+    0x0e4a40e0, // WAKES
+    0x0e4a4101, // WAKFS
+    0x0e4a44fc, // WALDO
+    0x0e4a4500, // WALDS
+    0x0e4a4512, // WALED
+    0x0e4a4520, // WALER
+    0x0e4a4521, // WALES
+    0x0e4a4597, // WALIE
+    0x0e4a45a5, // WALIS
+    0x0e4a45e7, // WALKS
+    0x0e4a45f6, // WALLA
+    0x0e4a4608, // WALLS
+    0x0e4a460e, // WALLY
+    0x0e4a4716, // WALTY
+    0x0e4a4953, // WAMED
+    0x0e4a4962, // WAMES
+    0x0e4a4b72, // WAMUS
+    0x0e4a4d82, // WANDS
+    0x0e4a4d94, // WANED
+    0x0e4a4da3, // WANES
+    0x0e4a4da9, // WANEY
+    0x0e4a4de5, // WANGS
+    0x0e4a4e69, // WANKS
+    0x0e4a4e6f, // WANKY
+    0x0e4a4e7c, // WANLE
+    0x0e4a4e90, // WANLY
+    0x0e4a4eba, // WANNA
+    0x0e4a4f92, // WANTS
+    0x0e4a4f98, // WANTY
+    0x0e4a504a, // WANZE
+    0x0e4a5a87, // WAQFS
+    0x0e4a5e44, // WARBS
+    0x0e4a5e4a, // WARBY
+    0x0e4a5e86, // WARDS
+    0x0e4a5e98, // WARED
+    0x0e4a5ea7, // WARES
+    0x0e4a5eae, // WAREZ
+    0x0e4a5f6d, // WARKS
+    0x0e4a5faf, // WARMS
+    0x0e4a5fd0, // WARNS
+    0x0e4a6012, // WARPS
+    0x0e4a6046, // WARRE
+    0x0e4a6076, // WARST
+    0x0e4a6096, // WARTS
+    0x0e4a62e8, // WASES
+    0x0e4a6351, // WASHY
+    0x0e4a63f0, // WASMS
+    0x0e4a6453, // WASPS
+    0x0e4a6459, // WASPY
+    0x0e4a64d7, // WASTS
+    0x0e4a66a2, // WATAP
+    0x0e4a6918, // WATTS
+    0x0e4a6b7e, // WAUFF
+    0x0e4a6ba1, // WAUGH
+    0x0e4a6c30, // WAUKS
+    0x0e4a6c49, // WAULK
+    0x0e4a6c51, // WAULS
+    0x0e4a6d17, // WAURS
+    0x0e4a6f9c, // WAVED
+    0x0e4a6fab, // WAVES
+    0x0e4a6fb1, // WAVEY
+    0x0e4a7368, // WAWAS
+    0x0e4a73ec, // WAWES
+    0x0e4a74d3, // WAWLS
+    0x0e4a781e, // WAXED
+    0x0e4a782c, // WAXER
+    0x0e4a782d, // WAXES
+    0x0e4a7c5f, // WAYED
+    0x0e4a8132, // WAZIR
+    0x0e4a81f5, // WAZOO
+    0x0e4c48b2, // WEALD
+    0x0e4c48c1, // WEALS
+    0x0e4c48d1, // WEAMB
+    0x0e4c4903, // WEANS
+    0x0e4c4987, // WEARS
+    0x0e4c4bbe, // WEBBY
+    0x0e4c4c1a, // WEBER
+    0x0e4c50c0, // WECHT
+    0x0e4c5496, // WEDEL
+    0x0e4c54e5, // WEDGY
+    0x0e4c58bd, // WEEDS
+    0x0e4c5996, // WEEKE
+    0x0e4c59a4, // WEEKS
+    0x0e4c59c5, // WEELS
+    0x0e4c59e6, // WEEMS
+    0x0e4c5a07, // WEENS
+    0x0e4c5a0d, // WEENY
+    0x0e4c5a49, // WEEPS
+    0x0e4c5a4f, // WEEPY
+    0x0e4c5aad, // WEEST
+    0x0e4c5abf, // WEETE
+    0x0e4c5acd, // WEETS
+    0x0e4c5f00, // WEFTE
+    0x0e4c5f0e, // WEFTS
+    0x0e4c69c1, // WEIDS
+    0x0e4c6ac9, // WEILS
+    0x0e4c6b8f, // WEIRS
+    0x0e4c6ba2, // WEISE
+    0x0e4c6c89, // WEIZE
+    0x0e4c71e0, // WEKAS
+    0x0e4c7684, // WELDS
+    0x0e4c775d, // WELKE
+    0x0e4c776b, // WELKS
+    0x0e4c776c, // WELKT
+    0x0e4c778c, // WELLS
+    0x0e4c7792, // WELLY
+    0x0e4c7894, // WELTS
+    0x0e4c7a83, // WEMBS
+    0x0e4c7f06, // WENDS
+    0x0e4c7f5b, // WENGE
+    0x0e4c8056, // WENNY
+    0x0e4c8116, // WENTS
+    0x0e4c9175, // WEROS
+    0x0e4c91ee, // WERSH
+    0x0e4c965b, // WESTS
+    0x0e4c9829, // WETAS
+    0x0e4c999a, // WETLY
+    0x0e4ca9a2, // WEXED
+    0x0e4ca9b1, // WEXES
+    0x0e4dee01, // WHAMO
+    0x0e4dee05, // WHAMS
+    0x0e4dee1a, // WHANG
+    0x0e4dee68, // WHAPS
+    0x0e4dee9c, // WHARE
+    0x0e4deeda, // WHATA
+    0x0e4deeec, // WHATS
+    0x0e4def0a, // WHAUP
+    0x0e4def0c, // WHAUR
+    0x0e4dfd76, // WHEAL
+    0x0e4dfd7c, // WHEAR
+    0x0e4dfdfc, // WHEEN
+    0x0e4dfdfe, // WHEEP
+    0x0e4dfe23, // WHEFT
+    0x0e4dfee0, // WHELK
+    0x0e4dfee2, // WHELM
+    0x0e4dff2a, // WHENS
+    0x0e4dfff0, // WHETS
+    0x0e4e0053, // WHEWS
+    0x0e4e0095, // WHEYS
+    0x0e4e0ee4, // WHIDS
+    0x0e4e0f27, // WHIFT
+    0x0e4e0f47, // WHIGS
+    0x0e4e0fe4, // WHILK
+    0x0e4e100d, // WHIMS
+    0x0e4e102e, // WHINS
+    0x0e4e104f, // WHIOS
+    0x0e4e1070, // WHIPS
+    0x0e4e1071, // WHIPT
+    0x0e4e10b1, // WHIRR
+    0x0e4e10b2, // WHIRS
+    0x0e4e10c8, // WHISH
+    0x0e4e10d3, // WHISS
+    0x0e4e10d4, // WHIST
+    0x0e4e10f4, // WHITS
+    0x0e4e10fa, // WHITY
+    0x0e4e11c1, // WHIZZ
+    0x0e4e2990, // WHOMP
+    0x0e4e29c8, // WHOOF
+    0x0e4e29d6, // WHOOT
+    0x0e4e29f6, // WHOPS
+    0x0e4e2a31, // WHORL
+    0x0e4e2a39, // WHORT
+    0x0e4e2a55, // WHOSO
+    0x0e4e2add, // WHOWS
+    0x0e4e4316, // WHUMP
+    0x0e4e437c, // WHUPS
+    0x0e4e52e2, // WHYDA
+    0x0e4e818c, // WICCA
+    0x0e4e82a6, // WICKS
+    0x0e4e82ac, // WICKY
+    0x0e4e8606, // WIDDY
+    0x0e4e8621, // WIDES
+    0x0e4e8b49, // WIELS
+    0x0e4e8e94, // WIFED
+    0x0e4e8ea3, // WIFES
+    0x0e4e8ea9, // WIFEY
+    0x0e4e8f19, // WIFIE
+    0x0e4e9098, // WIFTY
+    0x0e4e925b, // WIGAN
+    0x0e4e9314, // WIGGA
+    0x0e4e932c, // WIGGY
+    0x0e4ea46c, // WIKIS
+    0x0e4ea7e3, // WILCO
+    0x0e4ea808, // WILDS
+    0x0e4ea81a, // WILED
+    0x0e4ea829, // WILES
+    0x0e4ea859, // WILGA
+    0x0e4ea8ad, // WILIS
+    0x0e4ea8bc, // WILJA
+    0x0e4ea910, // WILLS
+    0x0e4eaa18, // WILTS
+    0x0e4eadd5, // WIMPS
+    0x0e4eb08a, // WINDS
+    0x0e4eb09c, // WINED
+    0x0e4eb0ab, // WINES
+    0x0e4eb0b1, // WINEY
+    0x0e4eb0df, // WINGE
+    0x0e4eb0ed, // WINGS
+    0x0e4eb0f3, // WINGY
+    0x0e4eb171, // WINKS
+    0x0e4eb1c2, // WINNA
+    0x0e4eb1d4, // WINNS
+    0x0e4eb1f5, // WINOS
+    0x0e4eb352, // WINZE
+    0x0e4eb91e, // WIPED
+    0x0e4eb92c, // WIPER
+    0x0e4eb92d, // WIPES
+    0x0e4ec1a0, // WIRED
+    0x0e4ec1ae, // WIRER
+    0x0e4ec1af, // WIRES
+    0x0e4ec34a, // WIRRA
+    0x0e4ec5e1, // WISED
+    0x0e4ec5f0, // WISES
+    0x0e4ec641, // WISHA
+    0x0e4ec654, // WISHT
+    0x0e4ec75b, // WISPS
+    0x0e4ec7df, // WISTS
+    0x0e4ec9a8, // WITAN
+    0x0e4eca22, // WITED
+    0x0e4eca31, // WITES
+    0x0e4eca86, // WITHE
+    0x0e4eca94, // WITHS
+    0x0e4eca9a, // WITHY
+    0x0e4ed2a4, // WIVED
+    0x0e4ed2b2, // WIVER
+    0x0e4ed2b3, // WIVES
+    0x0e4ee3b2, // WIZEN
+    0x0e4ee3b7, // WIZES
+    0x0e51c383, // WOADS
+    0x0e51c47c, // WOALD
+    0x0e51ccec, // WOCKS
+    0x0e51d09b, // WODGE
+    0x0e51daf2, // WOFUL
+    0x0e51ebfd, // WOJUS
+    0x0e51ee2d, // WOKER
+    0x0e51eee2, // WOKKA
+    0x0e51f24e, // WOLDS
+    0x0e51f290, // WOLFS
+    0x0e51f35c, // WOLLY
+    0x0e51f492, // WOLVE
+    0x0e51f64d, // WOMBS
+    0x0e51f653, // WOMBY
+    0x0e51f93f, // WOMYN
+    0x0e51fb21, // WONGA
+    0x0e51fb29, // WONGI
+    0x0e51fbb7, // WONKS
+    0x0e51fbbd, // WONKY
+    0x0e51fce0, // WONTS
+    0x0e51ff11, // WOODS
+    0x0e51ff23, // WOOED
+    0x0e51ff53, // WOOFS
+    0x0e51ff59, // WOOFY
+    0x0e52000a, // WOOLD
+    0x0e520019, // WOOLS
+    0x0e52005b, // WOONS
+    0x0e52009d, // WOOPS
+    0x0e5200a3, // WOOPY
+    0x0e5200f2, // WOOSE
+    0x0e5200f5, // WOOSH
+    0x0e520128, // WOOTZ
+    0x0e520bd4, // WORDS
+    0x0e520cbb, // WORKS
+    0x0e520cfd, // WORMS
+    0x0e520d03, // WORMY
+    0x0e520de4, // WORTS
+    0x0e52212b, // WOWED
+    0x0e52212c, // WOWEE
+    0x0e522576, // WOXEN
+    0x0e5369e4, // WRANG
+    0x0e536a32, // WRAPS
+    0x0e536a33, // WRAPT
+    0x0e536a96, // WRAST
+    0x0e536aa8, // WRATE
+    0x0e536b12, // WRAWL
+    0x0e537af4, // WRENS
+    0x0e538a85, // WRICK
+    0x0e538ac0, // WRIED
+    0x0e538ace, // WRIER
+    0x0e538acf, // WRIES
+    0x0e538cbe, // WRITS
+    0x0e53a50d, // WROKE
+    0x0e53a5a0, // WROOT
+    0x0e53a639, // WROTH
+    0x0e53cede, // WRYER
+    0x0e551a92, // WUDDY
+    0x0e551cbd, // WUDUS
+    0x0e553d9c, // WULLS
+    0x0e55580a, // WURST
+    0x0e555a7c, // WUSES
+    0x0e555ae1, // WUSHU
+    0x0e555c50, // WUSSY
+    0x0e557033, // WUXIA
+    0x0e576e2a, // WYLED
+    0x0e576e39, // WYLES
+    0x0e57769a, // WYNDS
+    0x0e5777e4, // WYNNS
+    0x0e579032, // WYTED
+    0x0e579041, // WYTES
+    0x0e5e648c, // XEBEC
+    0x0e5e981a, // XENIA
+    0x0e5e981c, // XENIC
+    0x0e5e98ed, // XENON
+    0x0e5ea920, // XERIC
+    0x0e5ea9fb, // XEROX
+    0x0e5eaabc, // XERUS
+    0x0e63dd3c, // XOANA
+    0x0e6583dc, // XRAYS
+    0x0e698631, // XYLAN
+    0x0e6986b4, // XYLEM
+    0x0e69872e, // XYLIC
+    0x0e6987fd, // XYLOL
+    0x0e698947, // XYLYL
+    0x0e69a666, // XYSTI
+    0x0e69a670, // XYSTS
+    0x0e6e4905, // YAARS
+    0x0e6e4b15, // YABAS
+    0x0e6e4b24, // YABBA
+    0x0e6e4b3c, // YABBY
+    0x0e6e4f86, // YACCA
+    0x0e6e508e, // YACKA
+    0x0e6e50a0, // YACKS
+    0x0e6e5cbe, // YAFFS
+    0x0e6e60dd, // YAGER
+    0x0e6e60de, // YAGES
+    0x0e6e6162, // YAGIS
+    0x0e6e6665, // YAHOO
+    0x0e6e6afe, // YAIRD
+    0x0e6e7296, // YAKKA
+    0x0e6e7330, // YAKOW
+    0x0e6e7623, // YALES
+    0x0e6e7a5f, // YAMEN
+    0x0e6e7bd5, // YAMPY
+    0x0e6e7c6f, // YAMUN
+    0x0e6e7ee7, // YANGS
+    0x0e6e7f6b, // YANKS
+    0x0e6e8869, // YAPOK
+    0x0e6e886c, // YAPON
+    0x0e6e8892, // YAPPS
+    0x0e6e8898, // YAPPY
+    0x0e6e8f1d, // YARAK
+    0x0e6e8f63, // YARCO
+    0x0e6e8f88, // YARDS
+    0x0e6e8fa8, // YARER
+    0x0e6e8fb8, // YARFA
+    0x0e6e906f, // YARKS
+    0x0e6e90d2, // YARNS
+    0x0e6e9156, // YARRS
+    0x0e6e9186, // YARTA
+    0x0e6e9194, // YARTO
+    0x0e6e982b, // YATES
+    0x0e6e9c4b, // YAUDS
+    0x0e6e9d44, // YAULD
+    0x0e6e9dd7, // YAUPS
+    0x0e6ea4df, // YAWED
+    0x0e6ea4f4, // YAWEY
+    0x0e6ea5d5, // YAWLS
+    0x0e6ea617, // YAWNS
+    0x0e6ea61d, // YAWNY
+    0x0e6ea659, // YAWPS
+    0x0e6f10e6, // YBORE
+    0x0e6f8e52, // YCLAD
+    0x0e6f8ed6, // YCLED
+    0x0e6f9cc2, // YCOND
+    0x0e703439, // YDRAD
+    0x0e7034bd, // YDRED
+    0x0e7078bb, // YEADS
+    0x0e70793f, // YEAHS
+    0x0e7079bd, // YEALM
+    0x0e707a05, // YEANS
+    0x0e707a7a, // YEARD
+    0x0e707a89, // YEARS
+    0x0e708111, // YECCH
+    0x0e7081c1, // YECHS
+    0x0e7081c7, // YECHY
+    0x0e70859f, // YEDES
+    0x0e7089bf, // YEEDS
+    0x0e708ba3, // YEESH
+    0x0e7092a4, // YEGGS
+    0x0e70a86d, // YELKS
+    0x0e70a88e, // YELLS
+    0x0e70a8af, // YELMS
+    0x0e70a912, // YELPS
+    0x0e70a996, // YELTS
+    0x0e70b206, // YENTA
+    0x0e70b20a, // YENTE
+    0x0e70c0b8, // YERBA
+    0x0e70c10c, // YERDS
+    0x0e70c1f3, // YERKS
+    0x0e70c56e, // YESES
+    0x0e70c634, // YESKS
+    0x0e70c75d, // YESTS
+    0x0e70c763, // YESTY
+    0x0e70ca33, // YETIS
+    0x0e70cb9e, // YETTS
+    0x0e70ceb6, // YEUKS
+    0x0e70cebc, // YEUKY
+    0x0e70d22c, // YEVEN
+    0x0e70d231, // YEVES
+    0x0e70d66d, // YEWEN
+    0x0e70daa4, // YEXED
+    0x0e70dab3, // YEXES
+    0x0e7117e0, // YFERE
+    0x0e72d4db, // YIKED
+    0x0e72d4ea, // YIKES
+    0x0e72da12, // YILLS
+    0x0e72e15d, // YINCE
+    0x0e72ea2f, // YIPES
+    0x0e72eba0, // YIPPY
+    0x0e72f290, // YIRDS
+    0x0e72f377, // YIRKS
+    0x0e72f45e, // YIRRS
+    0x0e72f495, // YIRTH
+    0x0e72fb33, // YITES
+    0x0e72fba9, // YITIE
+    0x0e74618f, // YLEMS
+    0x0e747243, // YLIKE
+    0x0e747a0d, // YLKES
+    0x0e75185a, // YMOLT
+    0x0e751bb3, // YMPES
+    0x0e75f880, // YOBBO
+    0x0e75f88a, // YOBBY
+    0x0e75fdee, // YOCKS
+    0x0e760162, // YODEL
+    0x0e7601cc, // YODHS
+    0x0e760242, // YODLE
+    0x0e760da8, // YOGAS
+    0x0e760e1e, // YOGEE
+    0x0e760e8f, // YOGHS
+    0x0e760ea0, // YOGIC
+    0x0e760eab, // YOGIN
+    0x0e760eb0, // YOGIS
+    0x0e761664, // YOICK
+    0x0e761a66, // YOJAN
+    0x0e761f21, // YOKED
+    0x0e761f29, // YOKEL
+    0x0e761f2f, // YOKER
+    0x0e761f30, // YOKES
+    0x0e762139, // YOKUL
+    0x0e762437, // YOLKS
+    0x0e76243d, // YOLKY
+    0x0e762830, // YOMIM
+    0x0e76291d, // YOMPS
+    0x0e762c67, // YONIC
+    0x0e762c77, // YONIS
+    0x0e762cb9, // YONKS
+    0x0e763055, // YOOFS
+    0x0e76319f, // YOOPS
+    0x0e763cf7, // YORES
+    0x0e763dbd, // YORKS
+    0x0e763e62, // YORPS
+    0x0e764a80, // YOUKS
+    0x0e764b62, // YOURN
+    0x0e764b67, // YOURS
+    0x0e764b68, // YOURT
+    0x0e764b7a, // YOUSE
+    0x0e76522d, // YOWED
+    0x0e76523c, // YOWES
+    0x0e7652b2, // YOWIE
+    0x0e765323, // YOWLS
+    0x0e7654df, // YOWZA
+    0x0e779b35, // YRAPT
+    0x0e77abf7, // YRENT
+    0x0e77bdf3, // YRIVD
+    0x0e77d10b, // YRNEH
+    0x0e782724, // YSAME
+    0x0e78efe8, // YTOST
+    0x0e794015, // YUANS
+    0x0e7946ea, // YUCAS
+    0x0e79471a, // YUCCA
+    0x0e794721, // YUCCH
+    0x0e794830, // YUCKO
+    0x0e794834, // YUCKS
+    0x0e79483a, // YUCKY
+    0x0e795620, // YUFTS
+    0x0e7957ee, // YUGAS
+    0x0e796967, // YUKED
+    0x0e796976, // YUKES
+    0x0e796a42, // YUKKY
+    0x0e796ac0, // YUKOS
+    0x0e796d2e, // YULAN
+    0x0e796db7, // YULES
+    0x0e7972fc, // YUMMO
+    0x0e797306, // YUMMY
+    0x0e797363, // YUMPS
+    0x0e798000, // YUPON
+    0x0e79802c, // YUPPY
+    0x0e79891a, // YURTA
+    0x0e79892c, // YURTS
+    0x0e79ab55, // YUZUS
+    0x0e8065b5, // ZABRA
+    0x0e806921, // ZACKS
+    0x0e8081ae, // ZAIDA
+    0x0e8081c6, // ZAIDY
+    0x0e808380, // ZAIRE
+    0x0e8089e0, // ZAKAT
+    0x0e80925c, // ZAMAN
+    0x0e80927e, // ZAMBO
+    0x0e809357, // ZAMIA
+    0x0e8097b9, // ZANJA
+    0x0e809907, // ZANTE
+    0x0e8099c9, // ZANZA
+    0x0e8099cd, // ZANZE
+    0x0e80a119, // ZAPPY
+    0x0e80a84b, // ZARFS
+    0x0e80a8ae, // ZARIS
+    0x0e80b130, // ZATIS
+    0x0e80c1b0, // ZAXES
+    0x0e80c670, // ZAYIN
+    0x0e80ca2d, // ZAZEN
+    0x0e829244, // ZEALS
+    0x0e82958e, // ZEBEC
+    0x0e82979d, // ZEBUB
+    0x0e8297ae, // ZEBUS
+    0x0e829d9c, // ZEDAS
+    0x0e82b48e, // ZEINS
+    0x0e82c885, // ZENDO
+    0x0e82d97b, // ZERDA
+    0x0e82da74, // ZERKS
+    0x0e82daf8, // ZEROS
+    0x0e82dfde, // ZESTS
+    0x0e82e1ac, // ZETAS
+    0x0e82f334, // ZEXES
+    0x0e82fbb6, // ZEZES
+    0x0e847312, // ZHOMO
+    0x0e84c723, // ZIBET
+    0x0e84d847, // ZIFFS
+    0x0e84dbde, // ZIGAN
+    0x0e84f128, // ZILAS
+    0x0e84f15f, // ZILCH
+    0x0e84f281, // ZILLA
+    0x0e84f293, // ZILLS
+    0x0e84f580, // ZIMBI
+    0x0e84f58a, // ZIMBS
+    0x0e84f9e8, // ZINCO
+    0x0e84f9ec, // ZINCS
+    0x0e84f9f2, // ZINCY
+    0x0e84fa1d, // ZINEB
+    0x0e84fa2e, // ZINES
+    0x0e84fa70, // ZINGS
+    0x0e84fa76, // ZINGY
+    0x0e84fae6, // ZINKE
+    0x0e84fafa, // ZINKY
+    0x0e850417, // ZIPPO
+    0x0e850421, // ZIPPY
+    0x0e850aa8, // ZIRAM
+    0x0e851438, // ZITIS
+    0x0e852d33, // ZIZEL
+    0x0e852dbf, // ZIZIT
+    0x0e86a573, // ZLOTE
+    0x0e86a587, // ZLOTY
+    0x0e880d15, // ZOAEA
+    0x0e8812b2, // ZOBOS
+    0x0e881378, // ZOBUS
+    0x0e881563, // ZOCCO
+    0x0e881d99, // ZOEAE
+    0x0e881da0, // ZOEAL
+    0x0e881da7, // ZOEAS
+    0x0e8830f7, // ZOISM
+    0x0e8830fe, // ZOIST
+    0x0e883fc6, // ZOMBI
+    0x0e8843e2, // ZONAE
+    0x0e884441, // ZONDA
+    0x0e884465, // ZONED
+    0x0e884473, // ZONER
+    0x0e884474, // ZONES
+    0x0e88453a, // ZONKS
+    0x0e8848a3, // ZOOEA
+    0x0e8848bb, // ZOOEY
+    0x0e88492a, // ZOOID
+    0x0e88497b, // ZOOKS
+    0x0e8849bd, // ZOOMS
+    0x0e8849de, // ZOONS
+    0x0e884aaa, // ZOOTY
+    0x0e884e4f, // ZOPPA
+    0x0e884e5d, // ZOPPO
+    0x0e8855f5, // ZORIL
+    0x0e8855fc, // ZORIS
+    0x0e885721, // ZORRO
+    0x0e886301, // ZOUKS
+    0x0e886aaf, // ZOWEE
+    0x0e886b33, // ZOWIE
+    0x0e8b8848, // ZULUS
+    0x0e8b96b3, // ZUPAN
+    0x0e8b96b8, // ZUPAS
+    0x0e8b9895, // ZUPPA
+    0x0e8b9fdf, // ZURFS
+    0x0e8bc244, // ZUZIM
+    0x0e8da1ec, // ZYGAL
+    0x0e8da3bc, // ZYGON
+    0x0e8dbbfd, // ZYMES
+    0x0e8dbc71  // ZYMIC
 };
+
+SDL_bool is_guess_allowed(const char* guess)
+{
+    Uint32       guess_hash;
+    unsigned int offset_index;
+
+    const int offset[27] = {
+        0x0000, // A
+        0x0254, // B
+        0x0533, // C
+        0x0805, // D
+        0x0a3f, // E
+        0x0b26, // F
+        0x0cf2, // G
+        0x0efc, // H
+        0x109f, // I
+        0x1122, // J
+        0x11d8, // K
+        0x133b, // L
+        0x1523, // M
+        0x176d, // N
+        0x188d, // O
+        0x196a, // P
+        0x1c36, // Q
+        0x1c6d, // R
+        0x1e78, // S
+        0x2323, // T
+        0x25bd, // U
+        0x2659, // V
+        0x2720, // W
+        0x2869, // X
+        0x2879, // Y
+        0x2928, // Z
+        0x298d  // END
+    };
+
+    if (NULL == guess)
+    {
+        return SDL_FALSE;
+    }
+
+    guess_hash   = generate_hash(guess);
+    offset_index = guess[0] - 'A';
+
+    if (offset_index >= 0 && offset_index <= 25)
+    {
+        int index;
+        int start_index = offset[offset_index];
+        int end_index   = offset[offset_index + 1];
+
+        for (index = start_index; index < end_index; index +=1)
+        {
+            if (guess_hash == allowed_guesses[index])
+            {
+                return SDL_TRUE;
+            }
+        }
+    }
+
+    return SDL_FALSE;
+}

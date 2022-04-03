@@ -57,3 +57,19 @@ int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t*
 
     return 0;
 }
+
+/* djb2 by Dan Bernstein
+ * http://www.cse.yorku.ca/~oz/hash.html
+ */
+Uint32 generate_hash(const unsigned char* name)
+{
+    Uint64 hash = 5381;
+    Uint32 c;
+
+    while ((c = *name++))
+    {
+        hash = ((hash << 5) + hash) + c;
+    }
+
+    return (Uint32)(hash & 0xffffffff);
+}

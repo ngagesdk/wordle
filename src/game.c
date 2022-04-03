@@ -16,7 +16,6 @@ static void goto_next_letter(game_t* core);
 static void delete_letter(game_t* core);
 
 extern const char answers[2309][6];
-extern const char allowed_guesses[10638][6];
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -453,7 +452,7 @@ static void goto_next_letter(game_t* core)
     if (core->tile[core->current_index].letter != 0)
     {
         core->current_index                    += 1;
-        core->current_index                     = SDL_clamp(core->current_index, 0, 24);
+        core->current_index                     = SDL_clamp(core->current_index, 0, 25);
         core->tile[core->current_index].letter  = 'A';
     }
 }
@@ -467,5 +466,5 @@ static void delete_letter(game_t* core)
 
     core->tile[core->current_index].letter  = 0;
     core->current_index                    -= 1;
-    core->current_index                     = SDL_clamp(core->current_index, 0, 24);
+    core->current_index                     = SDL_clamp(core->current_index, 0, 25);
 }
