@@ -10,7 +10,7 @@
             "name": "wordle.exe",
             "args": [
                 "--app",
-                "E:\\wordle.exe"
+                "E:\\System\\Apps\\wordle\\wordle.exe"
             ]
         }
     ]

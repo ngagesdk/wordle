@@ -53,8 +53,8 @@ add_library(wordle STATIC ${wordle_sources})
 build_exe(wordle exe ${UID1} ${UID2} ${UID3} "${wordle_libs}")
 pack_assets(${RESOURCE_DIR} "${wordle_resources}")
 if(INSTALL_EKA2L1)
-    copy_file(wordle.exe ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE} wordle.exe)
-    copy_file(data.pfs   ${RESOURCE_DIR}             ${EKA2L1_E_DRIVE} data.pfs)
+    copy_file(wordle.exe ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle wordle.exe)
+    copy_file(data.pfs   ${RESOURCE_DIR}             ${EKA2L1_E_DRIVE}/System/Apps/wordle data.pfs)
 endif()
 
 add_dependencies(

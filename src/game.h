@@ -45,6 +45,7 @@ typedef struct game
     int           valid_answer_index;
     char          current_guess[6];
     Uint8         attempt;
+    unsigned int  seed;
 
 } game_t;
 

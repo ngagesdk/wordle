@@ -2,10 +2,6 @@
 
 A clone of Wordle for the Nokie N-Gage.
 
-## Status
-
-The game is in development and is not yet playable.
-
 ## Licence and Credits
 
 - Packed file loader by [Daniel

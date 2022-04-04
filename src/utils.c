@@ -73,3 +73,11 @@ Uint32 generate_hash(const unsigned char* name)
 
     return (Uint32)(hash & 0xffffffff);
 }
+
+unsigned int xorshift(unsigned int* xs)
+{
+    *xs ^= *xs << 7;
+    *xs ^= *xs >> 9;
+    *xs ^= *xs << 8;
+    return *xs;
+}

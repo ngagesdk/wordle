@@ -11,7 +11,7 @@
 #include "game.h"
 
 #if defined __SYMBIAN32__
-#define RES_FILE "E:\\data.pfs"
+#define RES_FILE "E:\\System\\Apps\\wordle\\data.pfs"
 #else
 #define RES_FILE "data.pfs"
 #endif
