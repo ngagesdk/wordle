@@ -2,7 +2,7 @@
 
 A clone of Wordle for the Nokie N-Gage.
 
-[![Wordle](https://raw.githubusercontent.com/ngagesdk/wordle/master/res/mockup.png)](https://raw.githubusercontent.com/ngagesdk/wordle/master/res/mockup.png?raw=true "Wordle")
+[![Wordle](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo-tn.jpg)](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo.jpg?raw=true "Wordle")
 
 ## Licence and Credits
 
