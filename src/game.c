@@ -98,11 +98,11 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     (*core)->tile[13].letter = 'D';
     (*core)->tile[14].letter = 'L';
 
-    (*core)->tile[5].state   = CORRECT_LETTER;
-    (*core)->tile[6].state   = WRONG_POSITION;
-    (*core)->tile[7].state   = WRONG_LETTER;
-    (*core)->tile[8].state   = WRONG_LETTER;
-    (*core)->tile[9].state   = WRONG_LETTER;
+    (*core)->tile[10].state  = CORRECT_LETTER;
+    (*core)->tile[11].state  = WRONG_POSITION;
+    (*core)->tile[12].state  = CORRECT_LETTER;
+    (*core)->tile[13].state  = CORRECT_LETTER;
+    (*core)->tile[14].state  = CORRECT_LETTER;
 
     srand(time(0));
 
@@ -508,31 +508,73 @@ static int draw_tiles(game_t* core)
 
     for (index = 0; index < 30; index += 1)
     {
-        switch(core->tile[index].state)
+        static SDL_bool is_ngage = SDL_FALSE;
+
+        if ((0 == index) || (0 == (index % 5)))
         {
-            default:
-            case LETTER_SELECT:
-                src.x = 0;
-                src.y = 0;
-                break;
-            case CORRECT_LETTER:
-                src.x = 0;
-                src.y = 96;
-                break;
-            case WRONG_LETTER:
-                src.x = 0;
-                src.y = 32;
-                break;
-            case WRONG_POSITION:
-                src.x = 0;
-                src.y = 64;
-                break;
+            const int hash_ngage  = 0x0daa8447; // NGAGE
+            char check_pattern[6] = { 0 };
+            int  letter_index;
+
+            for (letter_index = 0; letter_index < 5; letter_index += 1)
+            {
+                check_pattern[letter_index] = core->tile[index + letter_index].letter;
+            }
+
+            if (hash_ngage == generate_hash(check_pattern))
+            {
+                is_ngage = SDL_TRUE;
+            }
         }
 
-        if (core->tile[index].letter >= 'A' && core->tile[index].letter <= 'Z')
+        if (SDL_FALSE == is_ngage)
         {
-            src.x  = (core->tile[index].letter - 'A') * 32;
-            src.x += 32;
+            switch(core->tile[index].state)
+            {
+                default:
+                case LETTER_SELECT:
+                    src.x = 0;
+                    src.y = 0;
+                    break;
+                case CORRECT_LETTER:
+                    src.x = 0;
+                    src.y = 96;
+                    break;
+                case WRONG_LETTER:
+                    src.x = 0;
+                    src.y = 32;
+                    break;
+                case WRONG_POSITION:
+                    src.x = 0;
+                    src.y = 64;
+                    break;
+            }
+
+            if (core->tile[index].letter >= 'A' && core->tile[index].letter <= 'Z')
+            {
+                src.x  = (core->tile[index].letter - 'A') * 32;
+                src.x += 32;
+            }
+        }
+        else
+        {
+            src.x = 1024;
+            switch(core->tile[index].letter)
+            {
+                case 'N':
+                    src.y = 0;
+                    break;
+                case 'G':
+                    src.y = 32;
+                    break;
+                case 'A':
+                    src.y = 64;
+                    break;
+                case 'E':
+                    src.y    = 96;
+                    is_ngage = SDL_FALSE;
+                    break;
+            }
         }
 
         SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
@@ -636,6 +678,7 @@ static void delete_letter(game_t* core)
 static void reset_game(game_t* core)
 {
     int index;
+    char valid_answer[6] = { 0 };
 
     if (NULL == core)
     {

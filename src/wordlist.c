@@ -4699,6 +4699,11 @@ SDL_bool is_guess_allowed(const char* guess)
     guess_hash   = generate_hash(guess);
     offset_index = guess[0] - 'A';
 
+    if (0x0daa8447 == guess_hash) // NGAGE
+    {
+        return SDL_TRUE; // ;-)
+    }
+
     if (offset_index >= 0 && offset_index <= 25)
     {
         int index;
