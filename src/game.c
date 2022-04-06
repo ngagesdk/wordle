@@ -92,11 +92,26 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     (*core)->tile[8].letter  = 'G';
     (*core)->tile[9].letter  = 'E';
 
-    (*core)->tile[10].letter = 'W';
-    (*core)->tile[11].letter = 'O';
-    (*core)->tile[12].letter = 'R';
-    (*core)->tile[13].letter = 'D';
-    (*core)->tile[14].letter = 'L';
+    set_language(LANG_ENGLISH, (*core));
+
+    switch ((*core)->wordlist.language)
+    {
+        case LANG_RUSSIAN:
+            (*core)->tile[10].letter = 0xe4; // С
+            (*core)->tile[11].letter = 0xd1; // Л
+            (*core)->tile[12].letter = 0xd7; // О
+            (*core)->tile[13].letter = 0xec; // В
+            (*core)->tile[14].letter = 0xa9; // Е
+            break;
+        case LANG_ENGLISH:
+        default:
+            (*core)->tile[10].letter = 'W';
+            (*core)->tile[11].letter = 'O';
+            (*core)->tile[12].letter = 'R';
+            (*core)->tile[13].letter = 'D';
+            (*core)->tile[14].letter = 'L';
+            break;
+    }
 
     (*core)->tile[10].state  = CORRECT_LETTER;
     (*core)->tile[11].state  = WRONG_POSITION;
@@ -160,7 +175,10 @@ int game_update(game_t *core)
 
     if (SDL_PollEvent(&event))
     {
-        char* current_letter = &core->tile[core->current_index].letter;
+        char*   current_letter   = &core->tile[core->current_index].letter;
+        lang_t* current_language = &core->wordlist.language;
+        char    start_char;
+        char    end_char;
 
         switch (event.type)
         {
@@ -174,111 +192,241 @@ int game_update(game_t *core)
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_2:
-                        if (*current_letter >= 'A' && *current_letter < 'C')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xa1; // А
+                                end_char   = 0xad; // Г
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'A';
+                                end_char   = 'C';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'A';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_3:
-                        if (*current_letter >= 'D' && *current_letter < 'F')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xa7; // Д
+                                end_char   = 0xf8; // З
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'D';
+                                end_char   = 'F';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'D';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_4:
-                        if (*current_letter >= 'G' && *current_letter < 'I')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xdd; // И
+                                end_char   = 0xd1; // Л
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'G';
+                                end_char   = 'I';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'G';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_5:
-                        if (*current_letter >= 'J' && *current_letter < 'L')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xd3; // М
+                                end_char   = 0xdd; // П
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'J';
+                                end_char   = 'L';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'J';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_6:
-                        if (*current_letter >= 'M' && *current_letter < 'O')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xe2; // Р
+                                end_char   = 0xe8; // У
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'M';
+                                end_char   = 'O';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'M';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_7:
-                        if (*current_letter >= 'P' && *current_letter < 'S')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xab; // Ф
+                                end_char   = 0xfc; // Ч
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'P';
+                                end_char   = 'S';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'P';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_8:
-                        if (*current_letter >= 'T' && *current_letter < 'V')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xf6; // Ш
+                                end_char   = 0xf2; // Ы
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'T';
+                                end_char   = 'V';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'T';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_9:
-                        if (*current_letter >= 'W' && *current_letter < 'Z')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xee; // Ь
+                                end_char   = 0xe0; // Я
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'W';
+                                end_char   = 'Z';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
                         }
                         else
                         {
-                            *current_letter = 'W';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_UP:
-                        if (*current_letter >= 'A' && *current_letter <= 'Z')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xa1; // А
+                                end_char   = 0xe0; // Я
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'A';
+                                end_char   = 'Z';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter <= end_char)
                         {
                             *current_letter += 1;
-                            if (*current_letter > 'Z')
+                            if (*current_letter > end_char)
                             {
-                                *current_letter = 'A';
+                                *current_letter = start_char;
                             }
                         }
                         else if (0 == *current_letter)
                         {
-                            *current_letter = 'A';
+                            *current_letter = start_char;
                         }
                         break;
                     case SDLK_DOWN:
-                        if (*current_letter >= 'A' && *current_letter <= 'Z')
+                        switch (*current_language)
+                        {
+                            case LANG_RUSSIAN:
+                                start_char = 0xa1; // А
+                                end_char   = 0xe0; // Я
+                                break;
+                            case LANG_ENGLISH:
+                            default:
+                                start_char = 'A';
+                                end_char   = 'Z';
+                                break;
+                        }
+
+                        if (*current_letter >= start_char && *current_letter <= end_char)
                         {
                             *current_letter -= 1;
-                            if (*current_letter < 'A')
+                            if (*current_letter < start_char)
                             {
-                                *current_letter = 'Z';
+                                *current_letter = end_char;
                             }
                         }
                         else if (0 == *current_letter)
                         {
-                            *current_letter = 'Z';
+                            *current_letter = end_char;
                         }
                         break;
                     case SDLK_RETURN:
@@ -550,10 +698,118 @@ static int draw_tiles(game_t* core)
                     break;
             }
 
-            if (core->tile[index].letter >= 'A' && core->tile[index].letter <= 'Z')
+            if (LANG_RUSSIAN == core->wordlist.language)
             {
-                src.x  = (core->tile[index].letter - 'A') * 32;
+                switch (core->tile[index].letter)
+                {
+                    case 0xa1: // А
+                        src.x = 0;
+                        break;
+                    case 0xa2: // Б
+                        src.x = 1;
+                        break;
+                    case 0xec: // В
+                        src.x = 2;
+                        break;
+                    case 0xad: // Г
+                        src.x = 3;
+                        break;
+                    case 0xa7: // Д
+                        src.x = 4;
+                        break;
+                    case 0xa9: // Е
+                        src.x = 5;
+                        break;
+                    case 0xea: // Ж
+                        src.x = 6;
+                        break;
+                    case 0xf4: // З
+                        src.x = 7;
+                        break;
+                    case 0xb8: // И
+                        src.x = 8;
+                        break;
+                    case 0xbe: // Й
+                        src.x = 9;
+                        break;
+                    case 0xc7: // К
+                        src.x = 10;
+                        break;
+                    case 0xd1: // Л
+                        src.x = 11;
+                        break;
+                    case 0xd3: // М
+                        src.x = 12;
+                        break;
+                    case 0xd5: // Н
+                        src.x = 13;
+                        break;
+                    case 0xd7: // О
+                        src.x = 14;
+                        break;
+                    case 0xdd: // П
+                        src.x = 15;
+                        break;
+                    case 0xe2: // Р
+                        src.x = 16;
+                        break;
+                    case 0xe4: // С
+                        src.x = 17;
+                        break;
+                    case 0xe6: // Т
+                        src.x = 18;
+                        break;
+                    case 0xe8: // У
+                        src.x = 19;
+                        break;
+                    case 0xab: // Ф
+                        src.x = 20;
+                        break;
+                    case 0xb6: // Х
+                        src.x = 21;
+                        break;
+                    case 0xa5: // Ц
+                        src.x = 22;
+                        break;
+                    case 0xfc: // Ч
+                        src.x = 23;
+                        break;
+                    case 0xf6: // Ш
+                        src.x = 24;
+                        break;
+                    case 0xfa: // Щ
+                        src.x = 25;
+                        break;
+                    case 0x9f: // Ъ
+                        src.x = 26;
+                        break;
+                    case 0xf2: // Ы
+                        src.x = 27;
+                        break;
+                    case 0xee: // Ь
+                        src.x = 28;
+                        break;
+                    case 0xf8: // Э
+                        src.x = 29;
+                        break;
+                    case 0x9d: // Ю
+                        src.x = 30;
+                        break;
+                    case 0xe0: // Я
+                        src.x = 31;
+                        break;
+                }
+                src.x *= 32;
                 src.x += 32;
+                src.y += 128;
+            }
+            else
+            {
+                if (core->tile[index].letter >= 'A' && core->tile[index].letter <= 'Z')
+                {
+                    src.x  = (core->tile[index].letter - 'A') * 32;
+                    src.x += 32;
+                }
             }
         }
         else
@@ -575,6 +831,12 @@ static int draw_tiles(game_t* core)
                     is_ngage = SDL_FALSE;
                     break;
             }
+        }
+
+        if (0 == core->tile[index].letter)
+        {
+            src.x = 0;
+            src.y = 0;
         }
 
         SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
@@ -691,9 +953,11 @@ static void reset_game(game_t* core)
     core->attempt            = 0;
     core->current_index      = 0;
 
-    core->valid_answer_index = xorshift(&core->seed) % 0x90b;
-    while (core->valid_answer_index < 0 || core->valid_answer_index > 0x90a)
+    core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
+    while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
     {
-        core->valid_answer_index = xorshift(&core->seed) % 0x90b;
+        core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
     }
+    get_valid_answer(valid_answer, core);
+    dbgprint("%s", valid_answer);
 }

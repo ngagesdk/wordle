@@ -21,12 +21,32 @@ typedef enum
 
 } state_t;
 
+typedef enum
+{
+    LANG_ENGLISH = 0,
+    LANG_RUSSIAN
+
+} lang_t;
+
 typedef struct tile
 {
-    char    letter;
-    state_t state;
+    char         letter;
+    unsigned int letter_index;
+    state_t      state;
 
 } tile_t;
+
+typedef struct wordlist
+{
+    lang_t                language;
+    unsigned int          letter_count;
+    unsigned int          word_count;
+    const Uint32*         hash;
+    const unsigned char (*list)[6];
+    const unsigned int*   lookup;
+    const unsigned int*   offset;
+
+} wordlist_t;
 
 typedef struct game
 {
@@ -46,6 +66,7 @@ typedef struct game
     char          current_guess[6];
     Uint8         attempt;
     unsigned int  seed;
+    wordlist_t    wordlist;
 
 } game_t;
 

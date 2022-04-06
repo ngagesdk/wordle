@@ -1,17 +1,15 @@
-/** @file wordlist.c
+/** @file wordlist_en.c
  *
- *  Wordlist.
+ *  Wordlist (English).
  *
  **/
 
 #include <SDL.h>
-#include "game.h"
 
-void     get_valid_answer(char valid_answer[6], game_t* core);
-SDL_bool is_guess_allowed(const char* guess);
-void     validate_current_guess(SDL_bool* is_won, game_t* core);
+const unsigned int wordlist_en_letter_count = 26;
+const unsigned int wordlist_en_word_count   = 0x90b;
 
-static const Uint32 wordlist_hash[0x90b] = {
+const Uint32 wordlist_en_hash[0x90b] = {
     0x0cbc8757, // ABACK
     0x0cbc8961, // ABASE
     0x0cbc8982, // ABATE
@@ -2329,7 +2327,7 @@ static const Uint32 wordlist_hash[0x90b] = {
     0x0e8843e9, // ZONAL
 };
 
-static const char wordlist[0x90b][6] = {
+const unsigned char wordlist_en[0x90b][6] = {
     "ABACK",
     "ABASE",
     "ABATE",
@@ -4641,7 +4639,36 @@ static const char wordlist[0x90b][6] = {
     "ZONAL"
 };
 
-static const int word_offset[27] = {
+const unsigned int wordlist_en_lookup[26] = {
+    0x41, // A
+    0x42, // B
+    0x43, // C
+    0x44, // D
+    0x45, // E
+    0x46, // F
+    0x47, // G
+    0x48, // H
+    0x49, // I
+    0x4a, // J
+    0x4b, // K
+    0x4c, // L
+    0x4d, // M
+    0x4e, // N
+    0x4f, // O
+    0x50, // P
+    0x51, // Q
+    0x52, // R
+    0x53, // S
+    0x54, // T
+    0x55, // U
+    0x56, // V
+    0x57, // W
+    0x58, // X
+    0x59, // Y
+    0x5a  // Z
+};
+
+const unsigned int wordlist_en_offset[27] = {
     0x000, // A
     0x08d, // B
     0x13a, // C
@@ -4670,149 +4697,3 @@ static const int word_offset[27] = {
     0x908, // Z
     0x90a  // END
 };
-
-void get_valid_answer(char valid_answer[6], game_t* core)
-{
-    int index;
-
-    if (NULL == core)
-    {
-        return;
-    }
-
-    for (index = 0; index < 5; index += 1)
-    {
-        valid_answer[index] = wordlist[core->valid_answer_index][index];
-    }
-}
-
-SDL_bool is_guess_allowed(const char* guess)
-{
-    Uint32       guess_hash;
-    unsigned int offset_index;
-
-    if (NULL == guess)
-    {
-        return SDL_FALSE;
-    }
-
-    guess_hash   = generate_hash(guess);
-    offset_index = guess[0] - 'A';
-
-    if (0x0daa8447 == guess_hash) // NGAGE
-    {
-        return SDL_TRUE; // ;-)
-    }
-
-    if (offset_index >= 0 && offset_index <= 25)
-    {
-        int index;
-        int start_index = word_offset[offset_index];
-        int end_index   = word_offset[offset_index + 1];
-
-        for (index = start_index; index < end_index; index +=1)
-        {
-            if (guess_hash == wordlist_hash[index])
-            {
-                return SDL_TRUE;
-            }
-        }
-    }
-
-    return SDL_FALSE;
-}
-
-void validate_current_guess(SDL_bool* is_won, game_t* core)
-{
-    Uint32       guess_hash;
-    unsigned int offset_index;
-
-    if (NULL == core)
-    {
-        return;
-    }
-
-    guess_hash   = generate_hash(core->current_guess);
-    offset_index = core->current_guess[0] - 'A';
-
-    if (offset_index >= 0 && offset_index <= 25)
-    {
-        int    letter_index;
-        int    answer_index;
-        Uint32 answer_hash;
-        int    start_index     = word_offset[offset_index];
-        int    end_index       = word_offset[offset_index + 1];
-        char   valid_answer[6] = { 0 };
-        char   shelf[5]        = { 0 };
-
-        for (answer_index = start_index; answer_index < end_index; answer_index +=1)
-        {
-            if (guess_hash == wordlist_hash[answer_index])
-            {
-                break;
-            }
-        }
-
-        get_valid_answer(valid_answer, core);
-        answer_hash = generate_hash(valid_answer);
-
-        // First check for exact matches.
-        for (letter_index = 0; letter_index < 5; letter_index += 1)
-        {
-            int     tile_index   = (core->current_index - 4) + letter_index;
-            tile_t* current_tile = &core->tile[tile_index];
-
-            if (core->current_guess[letter_index] == valid_answer[letter_index])
-            {
-                current_tile->state        = CORRECT_LETTER;
-                shelf[letter_index]        = valid_answer[letter_index];
-                valid_answer[letter_index] = 0;
-            }
-        }
-
-        // Then check for matches in the wrong location.
-        for (letter_index = 0; letter_index < 5; letter_index += 1)
-        {
-            int     tile_index   = (core->current_index - 4) + letter_index;
-            tile_t* current_tile = &core->tile[tile_index];
-
-            if (CORRECT_LETTER == current_tile->state)
-            {
-                continue;
-            }
-            else
-            {
-                int temp_index;
-                for (temp_index = 0; temp_index < 5; temp_index += 1)
-                {
-                    if (core->current_guess[letter_index] == valid_answer[temp_index])
-                    {
-                        current_tile->state = WRONG_POSITION;
-                    }
-                }
-            }
-        }
-
-        // Finally, check for wrong letters.
-        for (letter_index = 0; letter_index < 5; letter_index += 1)
-        {
-            int     tile_index   = (core->current_index - 4) + letter_index;
-            tile_t* current_tile = &core->tile[tile_index];
-
-            if (LETTER_SELECT == current_tile->state)
-            {
-                current_tile->state = WRONG_LETTER;
-            }
-        }
-
-        // Do we have a winner?
-        if (guess_hash == answer_hash)
-        {
-            *is_won = SDL_TRUE;
-        }
-        else
-        {
-            *is_won = SDL_FALSE;
-        }
-    }
-}
