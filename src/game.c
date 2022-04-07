@@ -97,11 +97,11 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     switch ((*core)->wordlist.language)
     {
         case LANG_RUSSIAN:
-            (*core)->tile[10].letter = 0xe4; // С
-            (*core)->tile[11].letter = 0xd1; // Л
-            (*core)->tile[12].letter = 0xd7; // О
-            (*core)->tile[13].letter = 0xec; // В
-            (*core)->tile[14].letter = 0xa9; // Е
+            (*core)->tile[10].letter = 0xc2; // В
+            (*core)->tile[11].letter = 0xce; // О
+            (*core)->tile[12].letter = 0xd0; // Р
+            (*core)->tile[13].letter = 0xc4; // Д
+            (*core)->tile[14].letter = 0xcb; // Л
             break;
         case LANG_ENGLISH:
         default:
