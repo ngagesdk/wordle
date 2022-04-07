@@ -189,9 +189,9 @@ int game_update(game_t *core)
                         {
                             start_char = 'D';
                             end_char   = 'F';
-                            break;
                         }
 
+                        dbgprint("%c", *current_letter);
                         if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
