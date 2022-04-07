@@ -87,35 +87,6 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     }
 
     set_language(LANG_ENGLISH, (*core));
-<<<<<<< HEAD
-=======
-
-    switch ((*core)->wordlist.language)
-    {
-        case LANG_RUSSIAN:
-            (*core)->tile[10].letter = 0xc2; // В
-            (*core)->tile[11].letter = 0xce; // О
-            (*core)->tile[12].letter = 0xd0; // Р
-            (*core)->tile[13].letter = 0xc4; // Д
-            (*core)->tile[14].letter = 0xcb; // Л
-            break;
-        case LANG_ENGLISH:
-        default:
-            (*core)->tile[10].letter = 'W';
-            (*core)->tile[11].letter = 'O';
-            (*core)->tile[12].letter = 'R';
-            (*core)->tile[13].letter = 'D';
-            (*core)->tile[14].letter = 'L';
-            break;
-    }
-
-    (*core)->tile[10].state  = CORRECT_LETTER;
-    (*core)->tile[11].state  = WRONG_POSITION;
-    (*core)->tile[12].state  = CORRECT_LETTER;
-    (*core)->tile[13].state  = CORRECT_LETTER;
-    (*core)->tile[14].state  = CORRECT_LETTER;
-
->>>>>>> 775ebd722c3c27e25ec3213313c2daf294c2b184
     srand(time(0));
 
     (*core)->seed       = (unsigned int)rand();
