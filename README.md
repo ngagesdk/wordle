@@ -4,6 +4,11 @@ A clone of Wordle for the Nokia N-Gage.
 
 [![Wordle](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo-tn.jpg)](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo.jpg?raw=true "Wordle")
 
+## Features
+
+- Multiple language support such as English and Russian.  Finnish and
+  German are in the works.
+
 ## Licence and Credits
 
 - Packed file loader by [Daniel
