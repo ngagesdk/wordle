@@ -8,6 +8,10 @@
 
 const unsigned int wordlist_en_letter_count = 26;
 const unsigned int wordlist_en_word_count   = 0x90b;
+const char         wordlist_en_first_letter = 0x41; // А
+const char         wordlist_en_last_letter  = 0x5a; // Z
+const SDL_bool     wordlist_en_is_cyrillic  = SDL_FALSE;
+const char         wordlist_en_title[5]     = { 'W', 'O', 'R', 'D', 'L' };
 
 const Uint32 wordlist_en_hash[0x90b] = {
     0x0cbc8757, // ABACK
@@ -4637,35 +4641,6 @@ const unsigned char wordlist_en[0x90b][6] = {
     "ZEBRA",
     "ZESTY",
     "ZONAL"
-};
-
-const unsigned int wordlist_en_lookup[26] = {
-    0x41, // A
-    0x42, // B
-    0x43, // C
-    0x44, // D
-    0x45, // E
-    0x46, // F
-    0x47, // G
-    0x48, // H
-    0x49, // I
-    0x4a, // J
-    0x4b, // K
-    0x4c, // L
-    0x4d, // M
-    0x4e, // N
-    0x4f, // O
-    0x50, // P
-    0x51, // Q
-    0x52, // R
-    0x53, // S
-    0x54, // T
-    0x55, // U
-    0x56, // V
-    0x57, // W
-    0x58, // X
-    0x59, // Y
-    0x5a  // Z
 };
 
 const unsigned int wordlist_en_offset[27] = {

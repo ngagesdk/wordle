@@ -14,44 +14,79 @@ void     validate_current_guess(SDL_bool* is_won, game_t* core);
 
 extern const unsigned int  wordlist_en_letter_count;
 extern const unsigned int  wordlist_en_word_count;
+extern const char          wordlist_en_first_letter;
+extern const char          wordlist_en_last_letter;
 extern const Uint32        wordlist_en_hash[0x90b];
 extern const unsigned char wordlist_en[0x90b][6];
 extern const unsigned int  wordlist_en_lookup[26];
 extern const unsigned int  wordlist_en_offset[27];
+extern const SDL_bool      wordlist_en_is_cyrillic;
+extern const char          wordlist_en_title[5];
 
 extern const unsigned int  wordlist_ru_letter_count;
 extern const unsigned int  wordlist_ru_word_count;
+extern const char          wordlist_ru_first_letter;
+extern const char          wordlist_ru_last_letter;
 extern const Uint32        wordlist_ru_hash[0x1039];
 extern const unsigned char wordlist_ru[0x1039][6];
 extern const unsigned int  wordlist_ru_lookup[32];
 extern const unsigned int  wordlist_ru_offset[33];
+extern const SDL_bool      wordlist_ru_is_cyrillic;
+extern const char          wordlist_ru_title[5];
 
 void set_language(const lang_t language, game_t* core)
 {
+    int index;
+
     if (NULL == core)
     {
         return;
     }
 
     core->wordlist.language = language;
+    core->title_screen      = SDL_TRUE;
+    core->tile[5].letter    = 'N';
+    core->tile[6].letter    = 'G';
+    core->tile[7].letter    = 'A';
+    core->tile[8].letter    = 'G';
+    core->tile[9].letter    = 'E';
+    core->tile[10].state    = CORRECT_LETTER;
+    core->tile[11].state    = WRONG_POSITION;
+    core->tile[12].state    = CORRECT_LETTER;
+    core->tile[13].state    = CORRECT_LETTER;
+    core->tile[14].state    = CORRECT_LETTER;
 
     switch (language)
     {
         default:
         case LANG_ENGLISH:
+            for (index = 10; index <= 14; index += 1)
+            {
+                core->tile[index].letter = wordlist_en_title[index - 10];
+            }
+
             core->wordlist.letter_count = wordlist_en_letter_count;
             core->wordlist.word_count   = wordlist_en_word_count;
+            core->wordlist.first_letter = wordlist_en_first_letter;
+            core->wordlist.last_letter  = wordlist_en_last_letter;
+            core->wordlist.is_cyrillic  = wordlist_en_is_cyrillic;
             core->wordlist.hash         = wordlist_en_hash;
             core->wordlist.list         = wordlist_en;
-            core->wordlist.lookup       = wordlist_en_lookup;
             core->wordlist.offset       = wordlist_en_offset;
             break;
         case LANG_RUSSIAN:
+            for (index = 10; index <= 14; index += 1)
+            {
+                core->tile[index].letter = wordlist_ru_title[index - 10];
+            }
+
             core->wordlist.letter_count = wordlist_ru_letter_count;
             core->wordlist.word_count   = wordlist_ru_word_count;
+            core->wordlist.first_letter = wordlist_ru_first_letter;
+            core->wordlist.last_letter  = wordlist_ru_last_letter;
+            core->wordlist.is_cyrillic  = wordlist_ru_is_cyrillic;
             core->wordlist.hash         = wordlist_ru_hash;
             core->wordlist.list         = wordlist_ru;
-            core->wordlist.lookup       = wordlist_ru_lookup;
             core->wordlist.offset       = wordlist_ru_offset;
             break;
     }
@@ -83,7 +118,7 @@ SDL_bool is_guess_allowed(const char* guess, game_t* core)
     }
 
     guess_hash   = generate_hash(guess);
-    offset_index = guess[0] - core->wordlist.lookup[0];
+    offset_index = guess[0] - core->wordlist.first_letter;
 
     if (0x0daa8447 == guess_hash) // NGAGE
     {
@@ -119,7 +154,7 @@ void validate_current_guess(SDL_bool* is_won, game_t* core)
     }
 
     guess_hash   = generate_hash(core->current_guess);
-    offset_index = core->current_guess[0] - core->wordlist.lookup[0];
+    offset_index = core->current_guess[0] - core->wordlist.first_letter;
 
     if (offset_index >= 0 && offset_index < core->wordlist.letter_count)
     {

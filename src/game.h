@@ -41,9 +41,11 @@ typedef struct wordlist
     lang_t                language;
     unsigned int          letter_count;
     unsigned int          word_count;
+    char                  first_letter;
+    char                  last_letter;
+    SDL_bool              is_cyrillic;
     const Uint32*         hash;
     const unsigned char (*list)[6];
-    const unsigned int*   lookup;
     const unsigned int*   offset;
 
 } wordlist_t;

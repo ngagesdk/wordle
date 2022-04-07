@@ -86,13 +86,9 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    (*core)->tile[5].letter  = 'N';
-    (*core)->tile[6].letter  = 'G';
-    (*core)->tile[7].letter  = 'A';
-    (*core)->tile[8].letter  = 'G';
-    (*core)->tile[9].letter  = 'E';
-
     set_language(LANG_ENGLISH, (*core));
+<<<<<<< HEAD
+=======
 
     switch ((*core)->wordlist.language)
     {
@@ -119,11 +115,11 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     (*core)->tile[13].state  = CORRECT_LETTER;
     (*core)->tile[14].state  = CORRECT_LETTER;
 
+>>>>>>> 775ebd722c3c27e25ec3213313c2daf294c2b184
     srand(time(0));
 
-    (*core)->seed            = (unsigned int)rand();
-    (*core)->title_screen    = SDL_TRUE;
-    (*core)->is_running      = SDL_TRUE;
+    (*core)->seed       = (unsigned int)rand();
+    (*core)->is_running = SDL_TRUE;
 
     return status;
 }
@@ -192,17 +188,15 @@ int game_update(game_t *core)
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_2:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xa1; // А
-                                end_char   = 0xad; // Г
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'A';
-                                end_char   = 'C';
-                                break;
+                            start_char = 0xc0; // А
+                            end_char   = 0xc3; // Г
+                        }
+                        else
+                        {
+                            start_char = 'A';
+                            end_char   = 'C';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -215,17 +209,16 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_3:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xa7; // Д
-                                end_char   = 0xf8; // З
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'D';
-                                end_char   = 'F';
-                                break;
+                            start_char = 0xc4; // Д
+                            end_char   = 0xc7; // З
+                        }
+                        else
+                        {
+                            start_char = 'D';
+                            end_char   = 'F';
+                            break;
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -238,17 +231,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_4:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xdd; // И
-                                end_char   = 0xd1; // Л
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'G';
-                                end_char   = 'I';
-                                break;
+                            start_char = 0xc8; // И
+                            end_char   = 0xca; // Л
+                        }
+                        else
+                        {
+                            start_char = 'G';
+                            end_char   = 'I';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -261,17 +252,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_5:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xd3; // М
-                                end_char   = 0xdd; // П
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'J';
-                                end_char   = 'L';
-                                break;
+                            start_char = 0xcb; // М
+                            end_char   = 0xcf; // П
+                        }
+                        else
+                        {
+                            start_char = 'J';
+                            end_char   = 'L';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -284,17 +273,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_6:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xe2; // Р
-                                end_char   = 0xe8; // У
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'M';
-                                end_char   = 'O';
-                                break;
+                            start_char = 0xd0; // Р
+                            end_char   = 0xd3; // У
+                        }
+                        else
+                        {
+                            start_char = 'M';
+                            end_char   = 'O';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -307,17 +294,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_7:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xab; // Ф
-                                end_char   = 0xfc; // Ч
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'P';
-                                end_char   = 'S';
-                                break;
+                            start_char = 0xd4; // Ф
+                            end_char   = 0xd7; // Ч
+                        }
+                        else
+                        {
+                            start_char = 'P';
+                            end_char   = 'S';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -330,17 +315,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_8:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xf6; // Ш
-                                end_char   = 0xf2; // Ы
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'T';
-                                end_char   = 'V';
-                                break;
+                            start_char = 0xd8; // Ш
+                            end_char   = 0xdb; // Ы
+                        }
+                        else
+                        {
+                            start_char = 'T';
+                            end_char   = 'V';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -353,17 +336,15 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_9:
-                        switch (*current_language)
+                        if (SDL_TRUE == core->wordlist.is_cyrillic)
                         {
-                            case LANG_RUSSIAN:
-                                start_char = 0xee; // Ь
-                                end_char   = 0xe0; // Я
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'W';
-                                end_char   = 'Z';
-                                break;
+                            start_char = 0xdc; // Ь
+                            end_char   = 0xdf; // Я
+                        }
+                        else
+                        {
+                            start_char = 'W';
+                            end_char   = 'Z';
                         }
 
                         if (*current_letter >= start_char && *current_letter < end_char)
@@ -376,18 +357,8 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_UP:
-                        switch (*current_language)
-                        {
-                            case LANG_RUSSIAN:
-                                start_char = 0xa1; // А
-                                end_char   = 0xe0; // Я
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'A';
-                                end_char   = 'Z';
-                                break;
-                        }
+                        start_char = core->wordlist.first_letter;
+                        end_char   = core->wordlist.last_letter;
 
                         if (*current_letter >= start_char && *current_letter <= end_char)
                         {
@@ -403,18 +374,8 @@ int game_update(game_t *core)
                         }
                         break;
                     case SDLK_DOWN:
-                        switch (*current_language)
-                        {
-                            case LANG_RUSSIAN:
-                                start_char = 0xa1; // А
-                                end_char   = 0xe0; // Я
-                                break;
-                            case LANG_ENGLISH:
-                            default:
-                                start_char = 'A';
-                                end_char   = 'Z';
-                                break;
-                        }
+                        start_char = core->wordlist.first_letter;
+                        end_char   = core->wordlist.last_letter;
 
                         if (*current_letter >= start_char && *current_letter <= end_char)
                         {
@@ -531,7 +492,6 @@ int game_update(game_t *core)
                         delete_letter(core);
                         break;
                     case SDLK_0:
-                    case SDLK_ASTERISK:
                     case SDLK_RIGHT:
                         goto_next_letter(core);
                         break;
@@ -539,6 +499,17 @@ int game_update(game_t *core)
                     case SDLK_F2:
                         core->is_running = SDL_FALSE;
                         return 0;
+                    case SDLK_SLASH:
+                        if (LANG_ENGLISH == core->wordlist.language)
+                        {
+                            set_language(LANG_RUSSIAN, core);
+                        }
+                        else
+                        {
+                            set_language(LANG_ENGLISH, core);
+                        }
+                        core->title_screen = SDL_TRUE;
+                        break;
                 }
                 redraw_tiles = SDL_TRUE;
             }
@@ -698,118 +669,15 @@ static int draw_tiles(game_t* core)
                     break;
             }
 
-            if (LANG_RUSSIAN == core->wordlist.language)
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
             {
-                switch (core->tile[index].letter)
-                {
-                    case 0xa1: // А
-                        src.x = 0;
-                        break;
-                    case 0xa2: // Б
-                        src.x = 1;
-                        break;
-                    case 0xec: // В
-                        src.x = 2;
-                        break;
-                    case 0xad: // Г
-                        src.x = 3;
-                        break;
-                    case 0xa7: // Д
-                        src.x = 4;
-                        break;
-                    case 0xa9: // Е
-                        src.x = 5;
-                        break;
-                    case 0xea: // Ж
-                        src.x = 6;
-                        break;
-                    case 0xf4: // З
-                        src.x = 7;
-                        break;
-                    case 0xb8: // И
-                        src.x = 8;
-                        break;
-                    case 0xbe: // Й
-                        src.x = 9;
-                        break;
-                    case 0xc7: // К
-                        src.x = 10;
-                        break;
-                    case 0xd1: // Л
-                        src.x = 11;
-                        break;
-                    case 0xd3: // М
-                        src.x = 12;
-                        break;
-                    case 0xd5: // Н
-                        src.x = 13;
-                        break;
-                    case 0xd7: // О
-                        src.x = 14;
-                        break;
-                    case 0xdd: // П
-                        src.x = 15;
-                        break;
-                    case 0xe2: // Р
-                        src.x = 16;
-                        break;
-                    case 0xe4: // С
-                        src.x = 17;
-                        break;
-                    case 0xe6: // Т
-                        src.x = 18;
-                        break;
-                    case 0xe8: // У
-                        src.x = 19;
-                        break;
-                    case 0xab: // Ф
-                        src.x = 20;
-                        break;
-                    case 0xb6: // Х
-                        src.x = 21;
-                        break;
-                    case 0xa5: // Ц
-                        src.x = 22;
-                        break;
-                    case 0xfc: // Ч
-                        src.x = 23;
-                        break;
-                    case 0xf6: // Ш
-                        src.x = 24;
-                        break;
-                    case 0xfa: // Щ
-                        src.x = 25;
-                        break;
-                    case 0x9f: // Ъ
-                        src.x = 26;
-                        break;
-                    case 0xf2: // Ы
-                        src.x = 27;
-                        break;
-                    case 0xee: // Ь
-                        src.x = 28;
-                        break;
-                    case 0xf8: // Э
-                        src.x = 29;
-                        break;
-                    case 0x9d: // Ю
-                        src.x = 30;
-                        break;
-                    case 0xe0: // Я
-                        src.x = 31;
-                        break;
-                }
-                src.x *= 32;
-                src.x += 32;
                 src.y += 128;
             }
-            else
+
+            if (core->tile[index].letter >= core->wordlist.first_letter && core->tile[index].letter <= core->wordlist.last_letter)
             {
-                if (core->tile[index].letter >= 'A' && core->tile[index].letter <= 'Z')
-                {
-                    src.x  = (core->tile[index].letter - 'A') * 32;
-                    src.x += 32;
-                }
+                src.x  = (core->tile[index].letter - core->wordlist.first_letter) * 32;
+                src.x += 32;
             }
         }
         else
@@ -940,7 +808,6 @@ static void delete_letter(game_t* core)
 static void reset_game(game_t* core)
 {
     int index;
-    char valid_answer[6] = { 0 };
 
     if (NULL == core)
     {
@@ -958,6 +825,4 @@ static void reset_game(game_t* core)
     {
         core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
     }
-    get_valid_answer(valid_answer, core);
-    dbgprint("%s", valid_answer);
 }
