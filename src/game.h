@@ -24,7 +24,8 @@ typedef enum
 typedef enum
 {
     LANG_ENGLISH = 0,
-    LANG_RUSSIAN
+    LANG_RUSSIAN,
+    LANG_GERMAN
 
 } lang_t;
 
@@ -44,6 +45,7 @@ typedef struct wordlist
     char                  first_letter;
     char                  last_letter;
     SDL_bool              is_cyrillic;
+    const char*           special_chars;
     const Uint32*         hash;
     const unsigned char (*list)[5];
     const unsigned int*   offset;

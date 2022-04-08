@@ -8,6 +8,7 @@
 #include "game.h"
 
 void     set_language(const lang_t language, game_t* core);
+void     set_next_language(game_t* core);
 void     get_valid_answer(char valid_answer[6], game_t* core);
 SDL_bool is_guess_allowed(const char* guess, game_t* core);
 void     validate_current_guess(SDL_bool* is_won, game_t* core);
@@ -21,6 +22,7 @@ extern const unsigned char wordlist_en[0x90b][5];
 extern const unsigned int  wordlist_en_lookup[26];
 extern const unsigned int  wordlist_en_offset[27];
 extern const SDL_bool      wordlist_en_is_cyrillic;
+extern const char          wordlist_en_special_chars[1];
 extern const char          wordlist_en_title[5];
 
 extern const unsigned int  wordlist_ru_letter_count;
@@ -32,7 +34,20 @@ extern const unsigned char wordlist_ru[0x1039][5];
 extern const unsigned int  wordlist_ru_lookup[32];
 extern const unsigned int  wordlist_ru_offset[33];
 extern const SDL_bool      wordlist_ru_is_cyrillic;
+extern const char          wordlist_ru_special_chars[1];
 extern const char          wordlist_ru_title[5];
+
+extern const unsigned int  wordlist_de_letter_count;
+extern const unsigned int  wordlist_de_word_count;
+extern const char          wordlist_de_first_letter;
+extern const char          wordlist_de_last_letter;
+extern const Uint32        wordlist_de_hash[0x185d];
+extern const unsigned char wordlist_de[0x185d][5];
+extern const unsigned int  wordlist_de_lookup[30];
+extern const unsigned int  wordlist_de_offset[31];
+extern const SDL_bool      wordlist_de_is_cyrillic;
+extern const char          wordlist_de_special_chars[4];
+extern const char          wordlist_de_title[5];
 
 void set_language(const lang_t language, game_t* core)
 {
@@ -65,14 +80,15 @@ void set_language(const lang_t language, game_t* core)
                 core->tile[index].letter = wordlist_en_title[index - 10];
             }
 
-            core->wordlist.letter_count = wordlist_en_letter_count;
-            core->wordlist.word_count   = wordlist_en_word_count;
-            core->wordlist.first_letter = wordlist_en_first_letter;
-            core->wordlist.last_letter  = wordlist_en_last_letter;
-            core->wordlist.is_cyrillic  = wordlist_en_is_cyrillic;
-            core->wordlist.hash         = wordlist_en_hash;
-            core->wordlist.list         = wordlist_en;
-            core->wordlist.offset       = wordlist_en_offset;
+            core->wordlist.letter_count  = wordlist_en_letter_count;
+            core->wordlist.word_count    = wordlist_en_word_count;
+            core->wordlist.first_letter  = wordlist_en_first_letter;
+            core->wordlist.last_letter   = wordlist_en_last_letter;
+            core->wordlist.is_cyrillic   = wordlist_en_is_cyrillic;
+            core->wordlist.special_chars = wordlist_en_special_chars;
+            core->wordlist.hash          = wordlist_en_hash;
+            core->wordlist.list          = wordlist_en;
+            core->wordlist.offset        = wordlist_en_offset;
             break;
         case LANG_RUSSIAN:
             for (index = 10; index <= 14; index += 1)
@@ -80,16 +96,51 @@ void set_language(const lang_t language, game_t* core)
                 core->tile[index].letter = wordlist_ru_title[index - 10];
             }
 
-            core->wordlist.letter_count = wordlist_ru_letter_count;
-            core->wordlist.word_count   = wordlist_ru_word_count;
-            core->wordlist.first_letter = wordlist_ru_first_letter;
-            core->wordlist.last_letter  = wordlist_ru_last_letter;
-            core->wordlist.is_cyrillic  = wordlist_ru_is_cyrillic;
-            core->wordlist.hash         = wordlist_ru_hash;
-            core->wordlist.list         = wordlist_ru;
-            core->wordlist.offset       = wordlist_ru_offset;
+            core->wordlist.letter_count  = wordlist_ru_letter_count;
+            core->wordlist.word_count    = wordlist_ru_word_count;
+            core->wordlist.first_letter  = wordlist_ru_first_letter;
+            core->wordlist.last_letter   = wordlist_ru_last_letter;
+            core->wordlist.is_cyrillic   = wordlist_ru_is_cyrillic;
+            core->wordlist.special_chars = wordlist_ru_special_chars;
+            core->wordlist.hash          = wordlist_ru_hash;
+            core->wordlist.list          = wordlist_ru;
+            core->wordlist.offset        = wordlist_ru_offset;
+            break;
+        case LANG_GERMAN:
+            for (index = 10; index <= 14; index += 1)
+            {
+                core->tile[index].letter = wordlist_de_title[index - 10];
+            }
+
+            core->wordlist.letter_count  = wordlist_de_letter_count;
+            core->wordlist.word_count    = wordlist_de_word_count;
+            core->wordlist.first_letter  = wordlist_de_first_letter;
+            core->wordlist.last_letter   = wordlist_de_last_letter;
+            core->wordlist.is_cyrillic   = wordlist_de_is_cyrillic;
+            core->wordlist.special_chars = wordlist_de_special_chars;
+            core->wordlist.hash          = wordlist_de_hash;
+            core->wordlist.list          = wordlist_de;
+            core->wordlist.offset        = wordlist_de_offset;
             break;
     }
+}
+
+void set_next_language(game_t* core)
+{
+    switch (core->wordlist.language)
+    {
+        case LANG_ENGLISH:
+            set_language(LANG_RUSSIAN, core);
+            break;
+        case LANG_RUSSIAN:
+            set_language(LANG_GERMAN, core);
+            break;
+        case LANG_GERMAN:
+            set_language(LANG_ENGLISH, core);
+            break;
+    }
+
+    core->title_screen = SDL_TRUE;
 }
 
 void get_valid_answer(char valid_answer[6], game_t* core)

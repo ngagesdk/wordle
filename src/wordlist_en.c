@@ -6,12 +6,13 @@
 
 #include <SDL.h>
 
-const unsigned int wordlist_en_letter_count = 26;
-const unsigned int wordlist_en_word_count   = 0x90b;
-const char         wordlist_en_first_letter = 0x41; // А
-const char         wordlist_en_last_letter  = 0x5a; // Z
-const SDL_bool     wordlist_en_is_cyrillic  = SDL_FALSE;
-const char         wordlist_en_title[5]     = { 'W', 'O', 'R', 'D', 'L' };
+const unsigned int wordlist_en_letter_count     = 26;
+const unsigned int wordlist_en_word_count       = 0x90b;
+const char         wordlist_en_first_letter     = 0x41; // А
+const char         wordlist_en_last_letter      = 0x5a; // Z
+const SDL_bool     wordlist_en_is_cyrillic      = SDL_FALSE;
+const char         wordlist_en_special_chars[1] = { 0x00 };
+const char         wordlist_en_title[5]         = { 'W', 'O', 'R', 'D', 'L' };
 
 const Uint32 wordlist_en_hash[0x90b] = {
     0x0cbc8757, // ABACK

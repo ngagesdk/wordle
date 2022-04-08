@@ -6,8 +6,8 @@ A clone of Wordle for the Nokia N-Gage.
 
 ## Features
 
-- Multiple language support such as English and Russian.  Finnish and
-  German are in the works.
+- Multiple language support such as English, Russian and German.
+  Finnish is in the works.
 
 ## Licence and Credits
 

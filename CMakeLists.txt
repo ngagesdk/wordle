@@ -46,6 +46,7 @@ set(wordle_sources
     "${SRC_DIR}/utils.c"
     "${SRC_DIR}/wordlist_en.c"
     "${SRC_DIR}/wordlist_ru.c"
+    "${SRC_DIR}/wordlist_de.c"
     "${SRC_DIR}/wordlist_utils.c")
 
 set(wordle_resources

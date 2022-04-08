@@ -191,7 +191,6 @@ int game_update(game_t *core)
                             end_char   = 'F';
                         }
 
-                        dbgprint("%c", *current_letter);
                         if (*current_letter >= start_char && *current_letter < end_char)
                         {
                             *current_letter += 1;
@@ -327,6 +326,32 @@ int game_update(game_t *core)
                             *current_letter = start_char;
                         }
                         break;
+                    case SDLK_0:
+                        if (0 != core->wordlist.special_chars[0])
+                        {
+                            static unsigned int special_char_index = 0;
+                            size_t              special_char_count = sizeof(core->wordlist.special_chars) / sizeof(core->wordlist.special_chars[0]);
+
+                            dbgprint("%u", special_char_count);
+
+                            start_char = core->wordlist.first_letter;
+                            end_char   = core->wordlist.last_letter;
+
+                            if (*current_letter >= start_char && *current_letter < end_char)
+                            {
+                                *current_letter = core->wordlist.special_chars[0];
+                            }
+                            else
+                            {
+                                special_char_index += 1;
+                                if (special_char_index >= special_char_count)
+                                {
+                                    special_char_index = 0;
+                                }
+                                *current_letter = core->wordlist.special_chars[special_char_index];
+                            }
+                        }
+                        break;
                     case SDLK_UP:
                         start_char = core->wordlist.first_letter;
                         end_char   = core->wordlist.last_letter;
@@ -448,7 +473,6 @@ int game_update(game_t *core)
                     case SDLK_LEFT:
                         delete_letter(core);
                         break;
-                    case SDLK_0:
                     case SDLK_RIGHT:
                         goto_next_letter(core);
                         break;
@@ -457,15 +481,7 @@ int game_update(game_t *core)
                         core->is_running = SDL_FALSE;
                         return 0;
                     case SDLK_SLASH:
-                        if (LANG_ENGLISH == core->wordlist.language)
-                        {
-                            set_language(LANG_RUSSIAN, core);
-                        }
-                        else
-                        {
-                            set_language(LANG_ENGLISH, core);
-                        }
-                        core->title_screen = SDL_TRUE;
+                        set_next_language(core);
                         break;
                 }
                 redraw_tiles = SDL_TRUE;
@@ -629,7 +645,36 @@ static int draw_tiles(game_t* core)
                     break;
             }
 
-            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            // Special characters.
+            if (SDL_FALSE == core->wordlist.is_cyrillic)
+            {
+                switch (core->tile[index].letter)
+                {
+                    case 0xc4: // Ä
+                        src.x = 864;
+                        break;
+                    case 0xd6: // Ö
+                        src.x = 896;
+                        break;
+                    case 0xdc: // Ü
+                        src.x = 928;
+                        break;
+                    case 0xdf: // ß
+                        src.x = 960;
+                        break;
+                }
+            }
+            switch (core->tile[index].letter)
+            {
+                case 0x00: // Empty
+                    src.x = 0;
+                    break;
+                case 0x2d: // -
+                    src.x = 992;
+                    break;
+            }
+
+            if (SDL_TRUE == core->wordlist.is_cyrillic && 0x2d != core->tile[index].letter) // Exception for '-'
             {
                 src.y += 128;
             }
@@ -657,27 +702,6 @@ static int draw_tiles(game_t* core)
                 case 'E':
                     src.y    = 96;
                     is_ngage = SDL_FALSE;
-                    break;
-            }
-        }
-
-        if (0 == core->tile[index].letter)
-        {
-            src.x = 0;
-            switch (core->tile[index].state)
-            {
-                default:
-                case LETTER_SELECT:
-                    src.y = 0;
-                    break;
-                case CORRECT_LETTER:
-                    src.y = 96;
-                    break;
-                case WRONG_LETTER:
-                    src.y = 32;
-                    break;
-                case WRONG_POSITION:
-                    src.y = 64;
                     break;
             }
         }
@@ -782,8 +806,7 @@ static void delete_letter(game_t* core)
 
 static void reset_game(game_t* core)
 {
-    int  index;
-    char valid_answer[6] = { 0 };
+    int index;
 
     if (NULL == core)
     {
@@ -801,7 +824,4 @@ static void reset_game(game_t* core)
     {
         core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
     }
-
-    get_valid_answer(valid_answer, core);
-    dbgprint("%s", valid_answer);
 }
