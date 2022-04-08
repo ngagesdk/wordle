@@ -45,7 +45,7 @@ typedef struct wordlist
     char                  last_letter;
     SDL_bool              is_cyrillic;
     const Uint32*         hash;
-    const unsigned char (*list)[6];
+    const unsigned char (*list)[5];
     const unsigned int*   offset;
 
 } wordlist_t;

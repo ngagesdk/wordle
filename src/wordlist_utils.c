@@ -17,7 +17,7 @@ extern const unsigned int  wordlist_en_word_count;
 extern const char          wordlist_en_first_letter;
 extern const char          wordlist_en_last_letter;
 extern const Uint32        wordlist_en_hash[0x90b];
-extern const unsigned char wordlist_en[0x90b][6];
+extern const unsigned char wordlist_en[0x90b][5];
 extern const unsigned int  wordlist_en_lookup[26];
 extern const unsigned int  wordlist_en_offset[27];
 extern const SDL_bool      wordlist_en_is_cyrillic;
@@ -28,7 +28,7 @@ extern const unsigned int  wordlist_ru_word_count;
 extern const char          wordlist_ru_first_letter;
 extern const char          wordlist_ru_last_letter;
 extern const Uint32        wordlist_ru_hash[0x1039];
-extern const unsigned char wordlist_ru[0x1039][6];
+extern const unsigned char wordlist_ru[0x1039][5];
 extern const unsigned int  wordlist_ru_lookup[32];
 extern const unsigned int  wordlist_ru_offset[33];
 extern const SDL_bool      wordlist_ru_is_cyrillic;
@@ -105,6 +105,7 @@ void get_valid_answer(char valid_answer[6], game_t* core)
     {
         valid_answer[index] = core->wordlist.list[core->valid_answer_index][index];
     }
+    valid_answer[5] = 0;
 }
 
 SDL_bool is_guess_allowed(const char* guess, game_t* core)
