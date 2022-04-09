@@ -52,6 +52,11 @@ typedef struct wordlist
 
 } wordlist_t;
 
+typedef struct game_state
+{
+
+} game_state_t;
+
 typedef struct game
 {
     SDL_Renderer* renderer;

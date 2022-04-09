@@ -13,10 +13,11 @@
 
 static void clear_tiles(SDL_bool clear_state, game_t* core);
 static int  draw_tiles(game_t* core);
+static void delete_letter(game_t* core);
 static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
 static void goto_next_letter(game_t* core);
-static void delete_letter(game_t* core);
 static void reset_game(game_t* core);
+static void select_next_letter(const char start_char, const char end_char, game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -87,6 +88,7 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     }
 
     set_language(LANG_ENGLISH, (*core));
+
     srand(time(0));
 
     (*core)->seed       = (unsigned int)rand();
@@ -142,10 +144,8 @@ int game_update(game_t *core)
 
     if (SDL_PollEvent(&event))
     {
-        char*   current_letter   = &core->tile[core->current_index].letter;
-        lang_t* current_language = &core->wordlist.language;
-        char    start_char;
-        char    end_char;
+        char start_char;
+        char end_char;
 
         switch (event.type)
         {
@@ -170,14 +170,7 @@ int game_update(game_t *core)
                             end_char   = 'C';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_3:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -191,14 +184,7 @@ int game_update(game_t *core)
                             end_char   = 'F';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_4:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -212,14 +198,7 @@ int game_update(game_t *core)
                             end_char   = 'I';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_5:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -233,14 +212,7 @@ int game_update(game_t *core)
                             end_char   = 'L';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_6:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -254,14 +226,7 @@ int game_update(game_t *core)
                             end_char   = 'O';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_7:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -275,14 +240,7 @@ int game_update(game_t *core)
                             end_char   = 'S';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_8:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -296,14 +254,7 @@ int game_update(game_t *core)
                             end_char   = 'V';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_9:
                         if (SDL_TRUE == core->wordlist.is_cyrillic)
@@ -317,22 +268,14 @@ int game_update(game_t *core)
                             end_char   = 'Z';
                         }
 
-                        if (*current_letter >= start_char && *current_letter < end_char)
-                        {
-                            *current_letter += 1;
-                        }
-                        else
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_0:
                         if (0 != core->wordlist.special_chars[0])
                         {
+                            char*               current_letter     = &core->tile[core->current_index].letter;
                             static unsigned int special_char_index = 0;
                             size_t              special_char_count = sizeof(core->wordlist.special_chars) / sizeof(core->wordlist.special_chars[0]);
-
-                            dbgprint("%u", special_char_count);
 
                             start_char = core->wordlist.first_letter;
                             end_char   = core->wordlist.last_letter;
@@ -356,35 +299,13 @@ int game_update(game_t *core)
                         start_char = core->wordlist.first_letter;
                         end_char   = core->wordlist.last_letter;
 
-                        if (*current_letter >= start_char && *current_letter <= end_char)
-                        {
-                            *current_letter += 1;
-                            if (*current_letter > end_char)
-                            {
-                                *current_letter = start_char;
-                            }
-                        }
-                        else if (0 == *current_letter)
-                        {
-                            *current_letter = start_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_DOWN:
                         start_char = core->wordlist.first_letter;
                         end_char   = core->wordlist.last_letter;
 
-                        if (*current_letter >= start_char && *current_letter <= end_char)
-                        {
-                            *current_letter -= 1;
-                            if (*current_letter < start_char)
-                            {
-                                *current_letter = end_char;
-                            }
-                        }
-                        else if (0 == *current_letter)
-                        {
-                            *current_letter = end_char;
-                        }
+                        select_next_letter(start_char, end_char, core);
                         break;
                     case SDLK_RETURN:
                         if (core->attempt < 6)
@@ -823,5 +744,19 @@ static void reset_game(game_t* core)
     while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
     {
         core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
+    }
+}
+
+static void select_next_letter(const char start_char, const char end_char, game_t* core)
+{
+    char* current_letter = &core->tile[core->current_index].letter;
+
+    if (*current_letter >= start_char && *current_letter < end_char)
+    {
+        *current_letter += 1;
+    }
+    else
+    {
+        *current_letter = start_char;
     }
 }
