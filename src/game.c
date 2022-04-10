@@ -94,8 +94,11 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    game_load(&(*core));
+    //game_load(&(*core));
+    set_language(LANG_ENGLISH, SDL_TRUE, (*core));
+    srand(time(0));
 
+    (*core)->seed       = (unsigned int)rand();
     (*core)->is_running = SDL_TRUE;
 
     return status;
@@ -520,7 +523,6 @@ void game_save(game_t* core)
         return;
     }
 
-    // Error handling?
     fwrite(&state, sizeof(struct save_state), 1, save_file);
     fclose(save_file);
 }
@@ -545,8 +547,13 @@ void game_load(game_t* core)
     }
     else
     {
-        // tbd.
+        if (1 != fread(&state, sizeof(struct save_state), 1, save_file))
+        {
+            fclose(save_file);
+            goto load_defaults;
+        }
     }
+    fclose(save_file);
 
     core->show_title_screen  = state.show_title_screen;
 
