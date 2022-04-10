@@ -94,7 +94,6 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    //game_load(&(*core));
     set_language(LANG_ENGLISH, SDL_TRUE, (*core));
     srand(time(0));
 
@@ -160,7 +159,15 @@ int game_update(game_t *core)
             {
                 if (SDL_TRUE == core->show_title_screen)
                 {
-                    reset_game(core);
+                    switch (event.key.keysym.sym)
+                    {
+                        case SDLK_5:
+                            game_load(core);
+                            break;
+                        default:
+                            reset_game(core);
+                            break;
+                    }
                 }
 
                 switch (event.key.keysym.sym)
@@ -538,19 +545,17 @@ void game_load(game_t* core)
         return;
     }
 
-    goto load_defaults;
-
     save_file = fopen(SAVE_FILE, "rb");
     if (NULL == save_file)
     {
-        goto load_defaults;
+        return;
     }
     else
     {
         if (1 != fread(&state, sizeof(struct save_state), 1, save_file))
         {
             fclose(save_file);
-            goto load_defaults;
+            return;
         }
     }
     fclose(save_file);
@@ -570,14 +575,7 @@ void game_load(game_t* core)
     core->attempt            = state.attempt;
     core->seed               = state.seed;
 
-    set_language(state.language, core->show_title_screen, (*core));
-    return;
-
-load_defaults:
-    set_language(LANG_ENGLISH, SDL_TRUE, (*core));
-    srand(time(0));
-
-    core->seed = (unsigned int)rand();
+    set_language(state.language, core->show_title_screen, core);
 }
 
 static void clear_tiles(SDL_bool clear_state, game_t* core)

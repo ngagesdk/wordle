@@ -60,7 +60,6 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
     if (SDL_TRUE == set_title_screen)
     {
-        core->wordlist.language = language;
         core->show_title_screen = SDL_TRUE;
         core->tile[5].letter    = 'N';
         core->tile[6].letter    = 'G';
@@ -73,6 +72,8 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[13].state    = CORRECT_LETTER;
         core->tile[14].state    = CORRECT_LETTER;
     }
+
+    core->wordlist.language = language;
 
     switch (language)
     {
