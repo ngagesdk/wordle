@@ -52,10 +52,20 @@ typedef struct wordlist
 
 } wordlist_t;
 
-typedef struct game_state
+typedef struct save_state
 {
+    SDL_bool      show_title_screen;  // 1
+    tile_t        tile[30];           // 2
+    int           current_index;      // 3
+    char          previous_letter;    // 4
+    int           valid_answer_index; // 5
+    Uint8         attempt;            // 6
+    unsigned int  seed;               // 7
+    lang_t        language;           // 8
 
-} game_state_t;
+    // Add parity bit or checksum?
+
+} save_state_t;
 
 typedef struct game
 {
@@ -67,7 +77,7 @@ typedef struct game
     Uint32        time_a;
     Uint32        time_b;
     SDL_bool      is_running;
-    SDL_bool      title_screen;
+    SDL_bool      show_title_screen;
     tile_t        tile[30];
     int           current_index;
     char          previous_letter;
@@ -83,5 +93,7 @@ int      game_init(const char* resource_file, const char* title, game_t** core);
 SDL_bool game_is_running(game_t* core);
 int      game_update(game_t* core);
 void     game_quit(game_t* core);
+void     game_save(game_t* core);
+void     game_load(game_t* core);
 
 #endif /* GAME_H */

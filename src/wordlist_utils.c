@@ -7,7 +7,7 @@
 #include <SDL.h>
 #include "game.h"
 
-void     set_language(const lang_t language, game_t* core);
+void     set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);
 void     set_next_language(game_t* core);
 void     get_valid_answer(char valid_answer[6], game_t* core);
 SDL_bool is_guess_allowed(const char* guess, game_t* core);
@@ -49,7 +49,7 @@ extern const SDL_bool      wordlist_de_is_cyrillic;
 extern const char          wordlist_de_special_chars[4];
 extern const char          wordlist_de_title[5];
 
-void set_language(const lang_t language, game_t* core)
+void set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core)
 {
     int index;
 
@@ -58,26 +58,32 @@ void set_language(const lang_t language, game_t* core)
         return;
     }
 
-    core->wordlist.language = language;
-    core->title_screen      = SDL_TRUE;
-    core->tile[5].letter    = 'N';
-    core->tile[6].letter    = 'G';
-    core->tile[7].letter    = 'A';
-    core->tile[8].letter    = 'G';
-    core->tile[9].letter    = 'E';
-    core->tile[10].state    = CORRECT_LETTER;
-    core->tile[11].state    = WRONG_POSITION;
-    core->tile[12].state    = CORRECT_LETTER;
-    core->tile[13].state    = CORRECT_LETTER;
-    core->tile[14].state    = CORRECT_LETTER;
+    if (SDL_TRUE == set_title_screen)
+    {
+        core->wordlist.language = language;
+        core->show_title_screen = SDL_TRUE;
+        core->tile[5].letter    = 'N';
+        core->tile[6].letter    = 'G';
+        core->tile[7].letter    = 'A';
+        core->tile[8].letter    = 'G';
+        core->tile[9].letter    = 'E';
+        core->tile[10].state    = CORRECT_LETTER;
+        core->tile[11].state    = WRONG_POSITION;
+        core->tile[12].state    = CORRECT_LETTER;
+        core->tile[13].state    = CORRECT_LETTER;
+        core->tile[14].state    = CORRECT_LETTER;
+    }
 
     switch (language)
     {
         default:
         case LANG_ENGLISH:
-            for (index = 10; index <= 14; index += 1)
+            if (SDL_TRUE == set_title_screen)
             {
-                core->tile[index].letter = wordlist_en_title[index - 10];
+                for (index = 10; index <= 14; index += 1)
+                {
+                    core->tile[index].letter = wordlist_en_title[index - 10];
+                }
             }
 
             core->wordlist.letter_count  = wordlist_en_letter_count;
@@ -91,9 +97,12 @@ void set_language(const lang_t language, game_t* core)
             core->wordlist.offset        = wordlist_en_offset;
             break;
         case LANG_RUSSIAN:
-            for (index = 10; index <= 14; index += 1)
+            if (SDL_TRUE == set_title_screen)
             {
-                core->tile[index].letter = wordlist_ru_title[index - 10];
+                for (index = 10; index <= 14; index += 1)
+                {
+                    core->tile[index].letter = wordlist_ru_title[index - 10];
+                }
             }
 
             core->wordlist.letter_count  = wordlist_ru_letter_count;
@@ -107,9 +116,12 @@ void set_language(const lang_t language, game_t* core)
             core->wordlist.offset        = wordlist_ru_offset;
             break;
         case LANG_GERMAN:
-            for (index = 10; index <= 14; index += 1)
+            if (SDL_TRUE == set_title_screen)
             {
-                core->tile[index].letter = wordlist_de_title[index - 10];
+                for (index = 10; index <= 14; index += 1)
+                {
+                    core->tile[index].letter = wordlist_de_title[index - 10];
+                }
             }
 
             core->wordlist.letter_count  = wordlist_de_letter_count;
@@ -130,17 +142,15 @@ void set_next_language(game_t* core)
     switch (core->wordlist.language)
     {
         case LANG_ENGLISH:
-            set_language(LANG_RUSSIAN, core);
+            set_language(LANG_RUSSIAN, SDL_TRUE, core);
             break;
         case LANG_RUSSIAN:
-            set_language(LANG_GERMAN, core);
+            set_language(LANG_GERMAN, SDL_TRUE, core);
             break;
         case LANG_GERMAN:
-            set_language(LANG_ENGLISH, core);
+            set_language(LANG_ENGLISH, SDL_TRUE, core);
             break;
     }
-
-    core->title_screen = SDL_TRUE;
 }
 
 void get_valid_answer(char valid_answer[6], game_t* core)

@@ -11,6 +11,12 @@
 #include <time.h>
 #include "game.h"
 
+#if defined __SYMBIAN32__
+#define SAVE_FILE "C:\\wordle.sav"
+#else
+#define SAVE_FILE "wordle.sav"
+#endif
+
 static void clear_tiles(SDL_bool clear_state, game_t* core);
 static int  draw_tiles(game_t* core);
 static void delete_letter(game_t* core);
@@ -18,6 +24,7 @@ static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
 static void goto_next_letter(game_t* core);
 static void reset_game(game_t* core);
 static void select_next_letter(const char start_char, const char end_char, game_t* core);
+static void select_previous_letter(const char start_char, const char end_char, game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -87,11 +94,15 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    set_language(LANG_ENGLISH, (*core));
+    // LOAD GAME HERE.
+    game_load(&(*core));
+    /*
+    set_language(LANG_ENGLISH, SDL_TRUE, (*core));
 
     srand(time(0));
 
     (*core)->seed       = (unsigned int)rand();
+    */
     (*core)->is_running = SDL_TRUE;
 
     return status;
@@ -124,7 +135,7 @@ int game_update(game_t *core)
         core->tile[0].letter = 0;
     }
 
-    if (SDL_TRUE == core->title_screen)
+    if (SDL_TRUE == core->show_title_screen)
     {
         redraw_tiles = SDL_TRUE;
     }
@@ -151,7 +162,7 @@ int game_update(game_t *core)
         {
             case SDL_KEYDOWN:
             {
-                if (SDL_TRUE == core->title_screen)
+                if (SDL_TRUE == core->show_title_screen)
                 {
                     reset_game(core);
                 }
@@ -305,7 +316,7 @@ int game_update(game_t *core)
                         start_char = core->wordlist.first_letter;
                         end_char   = core->wordlist.last_letter;
 
-                        select_next_letter(start_char, end_char, core);
+                        select_previous_letter(start_char, end_char, core);
                         break;
                     case SDLK_RETURN:
                         if (core->attempt < 6)
@@ -335,8 +346,8 @@ int game_update(game_t *core)
 
                                         clear_tiles(SDL_FALSE, core);
 
-                                        core->title_screen  = SDL_TRUE;
-                                        core->current_index = -1;
+                                        core->show_title_screen = SDL_TRUE;
+                                        core->current_index     = -1;
 
                                         core->tile[phrase_index + 0].letter = 'E';
                                         core->tile[phrase_index + 1].letter = 'X';
@@ -351,31 +362,31 @@ int game_update(game_t *core)
                                         get_valid_answer(valid_answer, core);
 
                                         clear_tiles(SDL_TRUE, core);
-                                        core->title_screen  = SDL_TRUE;
-                                        core->current_index = -1;
+                                        core->show_title_screen  = SDL_TRUE;
+                                        core->current_index      = -1;
 
-                                        core->tile[5].letter  = 'T';
-                                        core->tile[6].letter  = 'O';
-                                        core->tile[7].letter  = 'O';
+                                        core->tile[5].letter     = 'T';
+                                        core->tile[6].letter     = 'O';
+                                        core->tile[7].letter     = 'O';
 
-                                        core->tile[12].letter = 'B';
-                                        core->tile[13].letter = 'A';
-                                        core->tile[14].letter = 'D';
+                                        core->tile[12].letter    = 'B';
+                                        core->tile[13].letter    = 'A';
+                                        core->tile[14].letter    = 'D';
 
-                                        core->tile[20].letter = valid_answer[0];
-                                        core->tile[21].letter = valid_answer[1];
-                                        core->tile[22].letter = valid_answer[2];
-                                        core->tile[23].letter = valid_answer[3];
-                                        core->tile[24].letter = valid_answer[4];
+                                        core->tile[20].letter    = valid_answer[0];
+                                        core->tile[21].letter    = valid_answer[1];
+                                        core->tile[22].letter    = valid_answer[2];
+                                        core->tile[23].letter    = valid_answer[3];
+                                        core->tile[24].letter    = valid_answer[4];
 
-                                        core->tile[6].state   = CORRECT_LETTER;
-                                        core->tile[13].state  = WRONG_POSITION;
+                                        core->tile[6].state      = CORRECT_LETTER;
+                                        core->tile[13].state     = WRONG_POSITION;
 
-                                        core->tile[20].state  = CORRECT_LETTER;
-                                        core->tile[21].state  = CORRECT_LETTER;
-                                        core->tile[22].state  = CORRECT_LETTER;
-                                        core->tile[23].state  = CORRECT_LETTER;
-                                        core->tile[24].state  = CORRECT_LETTER;
+                                        core->tile[20].state     = CORRECT_LETTER;
+                                        core->tile[21].state     = CORRECT_LETTER;
+                                        core->tile[22].state     = CORRECT_LETTER;
+                                        core->tile[23].state     = CORRECT_LETTER;
+                                        core->tile[24].state      = CORRECT_LETTER;
                                     }
                                     else
                                     {
@@ -399,6 +410,7 @@ int game_update(game_t *core)
                         break;
                     case SDLK_F1:
                     case SDLK_F2:
+                        game_save(core);
                         core->is_running = SDL_FALSE;
                         return 0;
                     case SDLK_SLASH:
@@ -474,6 +486,98 @@ void game_quit(game_t* core)
     }
 
     SDL_Quit();
+}
+
+/* Since this function neither compensates for a possible memory padding
+ * by the compiler nor checks the endianness of the system, this
+ * function is by definition not portable.  The worst that can happen,
+ * however, is that the resulting save file is not usable across
+ * different platforms.
+ */
+void game_save(game_t* core)
+{
+    save_state_t state;
+    FILE*        save_file;
+    int          index;
+
+    if (NULL == core)
+    {
+        return;
+    }
+
+    state.show_title_screen  = core->show_title_screen;
+
+    for (index = 0; index < 30; index += 1)
+    {
+        state.tile[index].letter       = core->tile[index].letter;
+        state.tile[index].letter_index = core->tile[index].letter_index;
+        state.tile[index].state        = core->tile[index].state;
+    }
+
+    state.current_index      = core->current_index;
+    state.previous_letter    = core->previous_letter;
+    state.valid_answer_index = core->valid_answer_index;
+    state.attempt            = core->attempt;
+    state.seed               = core->seed;
+    state.language           = core->wordlist.language;
+
+    save_file = fopen(SAVE_FILE, "wb");
+    if (NULL == save_file)
+    {
+        return;
+    }
+
+    // Error handling?
+    fwrite(&state, sizeof(struct save_state), 1, save_file);
+    fclose(save_file);
+}
+
+void game_load(game_t* core)
+{
+    save_state_t state;
+    FILE*        save_file;
+    int          index;
+
+    if (NULL == core)
+    {
+        return;
+    }
+
+    goto load_defaults;
+
+    save_file = fopen(SAVE_FILE, "rb");
+    if (NULL == save_file)
+    {
+        goto load_defaults;
+    }
+    else
+    {
+        // tbd.
+    }
+
+    core->show_title_screen  = state.show_title_screen;
+
+    for (index = 0; index < 30; index += 1)
+    {
+        core->tile[index].letter       = state.tile[index].letter;
+        core->tile[index].letter_index = state.tile[index].letter_index;
+        core->tile[index].state        = state.tile[index].state;
+    }
+
+    core->current_index      = state.current_index;
+    core->previous_letter    = state.previous_letter;
+    core->valid_answer_index = state.valid_answer_index;
+    core->attempt            = state.attempt;
+    core->seed               = state.seed;
+
+    set_language(state.language, core->show_title_screen, (*core));
+    return;
+
+load_defaults:
+    set_language(LANG_ENGLISH, SDL_TRUE, (*core));
+    srand(time(0));
+
+    core->seed = (unsigned int)rand();
 }
 
 static void clear_tiles(SDL_bool clear_state, game_t* core)
@@ -629,7 +733,7 @@ static int draw_tiles(game_t* core)
 
         SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
 
-        if (index == core->current_index && SDL_FALSE == core->title_screen)
+        if (index == core->current_index && SDL_FALSE == core->show_title_screen)
         {
             SDL_Rect inner_frame = { dst.x + 1, dst.y + 1, dst.w - 2, dst.h - 2 };
             SDL_SetRenderDrawColor(core->renderer, 0xf5, 0x79, 0x3a, 0x00);
@@ -736,9 +840,9 @@ static void reset_game(game_t* core)
 
     clear_tiles(SDL_TRUE, core);
 
-    core->title_screen  = SDL_FALSE;
-    core->attempt       = 0;
-    core->current_index = 0;
+    core->show_title_screen = SDL_FALSE;
+    core->attempt           = 0;
+    core->current_index     = 0;
 
     core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
     while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
@@ -758,5 +862,22 @@ static void select_next_letter(const char start_char, const char end_char, game_
     else
     {
         *current_letter = start_char;
+    }
+}
+
+static void select_previous_letter(const char start_char, const char end_char, game_t* core)
+{
+    char* current_letter = &core->tile[core->current_index].letter;
+
+    if (0 == *current_letter)
+    {
+        *current_letter = start_char;
+    }
+
+    *current_letter -= 1;
+
+    if (*current_letter < start_char)
+    {
+        *current_letter = end_char;
     }
 }
