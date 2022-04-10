@@ -94,15 +94,8 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
-    // LOAD GAME HERE.
     game_load(&(*core));
-    /*
-    set_language(LANG_ENGLISH, SDL_TRUE, (*core));
 
-    srand(time(0));
-
-    (*core)->seed       = (unsigned int)rand();
-    */
     (*core)->is_running = SDL_TRUE;
 
     return status;
