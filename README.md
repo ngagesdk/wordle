@@ -6,13 +6,20 @@ A clone of Wordle for the Nokia N-Gage.
 
 ## Features
 
-- Multiple language support such as English, Russian and German.
-  Finnish is in the works.
+- Multiple language support such as English, Russian, and Finnish.
+
+- Tailored for the N-Gage, but portable as the entire game is written in
+  C89 and only depends on [SDL
+  2.0.x](https://github.com/libsdl-org/SDL).
 
 ## Licence and Credits
 
 - Packed file loader by [Daniel
   Monteiro](https://montyontherun.itch.io/).
+
+- The finnish word list is based on the "nykysuomen sanalista" by
+  [Kotus](https://kaino.kotus.fi/sanat/nykysuomi/), licensed under a [CC
+  BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.fi) license.
 
 - This project's source code is, unless stated otherwise, licensed under
   the "The MIT License".  See the file [LICENSE.md](LICENSE.md) for

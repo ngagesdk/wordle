@@ -8,6 +8,7 @@
  **/
 
 #include <SDL.h>
+#include <stdio.h>
 #include <time.h>
 #include "game.h"
 
@@ -28,8 +29,9 @@ static void select_previous_letter(const char start_char, const char end_char, g
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
-    int status = 0;
-    int index;
+    int   status = 0;
+    int   index;
+    FILE* save_file;
 
     *core = (game_t*)calloc(1, sizeof(struct game));
     if (NULL == *core)
@@ -97,8 +99,21 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     set_language(LANG_ENGLISH, SDL_TRUE, (*core));
     srand(time(0));
 
-    (*core)->seed       = (unsigned int)rand();
-    (*core)->is_running = SDL_TRUE;
+    // Load and cache save file.
+    save_file = fopen(SAVE_FILE, "rb");
+    if (NULL == save_file)
+    {
+        /* Nothing to do here. */
+    }
+    else
+    {
+        fread(&(*core)->save_state_cache, sizeof(struct save_state), 1, save_file);
+        fclose(save_file);
+    }
+
+    (*core)->seed              = (unsigned int)rand();
+    (*core)->show_title_screen = SDL_TRUE;
+    (*core)->is_running        = SDL_TRUE;
 
     return status;
 }
@@ -161,264 +176,271 @@ int game_update(game_t *core)
                 {
                     switch (event.key.keysym.sym)
                     {
-                        case SDLK_5:
+                        case SDLK_F1:
                             game_load(core);
+                            break;
+                        case SDLK_SLASH:
+                            clear_tiles(SDL_TRUE, core);
+                            set_next_language(core);
                             break;
                         default:
                             reset_game(core);
                             break;
                     }
                 }
-
-                switch (event.key.keysym.sym)
+                else
                 {
-                    case SDLK_2:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xc0; // А
-                            end_char   = 0xc3; // Г
-                        }
-                        else
-                        {
-                            start_char = 'A';
-                            end_char   = 'C';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_3:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xc4; // Д
-                            end_char   = 0xc7; // З
-                        }
-                        else
-                        {
-                            start_char = 'D';
-                            end_char   = 'F';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_4:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xc8; // И
-                            end_char   = 0xca; // Л
-                        }
-                        else
-                        {
-                            start_char = 'G';
-                            end_char   = 'I';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_5:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xcb; // М
-                            end_char   = 0xcf; // П
-                        }
-                        else
-                        {
-                            start_char = 'J';
-                            end_char   = 'L';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_6:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xd0; // Р
-                            end_char   = 0xd3; // У
-                        }
-                        else
-                        {
-                            start_char = 'M';
-                            end_char   = 'O';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_7:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xd4; // Ф
-                            end_char   = 0xd7; // Ч
-                        }
-                        else
-                        {
-                            start_char = 'P';
-                            end_char   = 'S';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_8:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xd8; // Ш
-                            end_char   = 0xdb; // Ы
-                        }
-                        else
-                        {
-                            start_char = 'T';
-                            end_char   = 'V';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_9:
-                        if (SDL_TRUE == core->wordlist.is_cyrillic)
-                        {
-                            start_char = 0xdc; // Ь
-                            end_char   = 0xdf; // Я
-                        }
-                        else
-                        {
-                            start_char = 'W';
-                            end_char   = 'Z';
-                        }
-
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_0:
-                        if (0 != core->wordlist.special_chars[0])
-                        {
-                            char*               current_letter     = &core->tile[core->current_index].letter;
-                            static unsigned int special_char_index = 0;
-                            size_t              special_char_count = sizeof(core->wordlist.special_chars) / sizeof(core->wordlist.special_chars[0]);
-
-                            start_char = core->wordlist.first_letter;
-                            end_char   = core->wordlist.last_letter;
-
-                            if (*current_letter >= start_char && *current_letter < end_char)
+                    switch (event.key.keysym.sym)
+                    {
+                        case SDLK_2:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
-                                *current_letter = core->wordlist.special_chars[0];
+                                start_char = 0xc0; // А
+                                end_char   = 0xc3; // Г
                             }
                             else
                             {
-                                special_char_index += 1;
-                                if (special_char_index >= special_char_count)
-                                {
-                                    special_char_index = 0;
-                                }
-                                *current_letter = core->wordlist.special_chars[special_char_index];
+                                start_char = 'A';
+                                end_char   = 'C';
                             }
-                        }
-                        break;
-                    case SDLK_UP:
-                        start_char = core->wordlist.first_letter;
-                        end_char   = core->wordlist.last_letter;
 
-                        select_next_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_DOWN:
-                        start_char = core->wordlist.first_letter;
-                        end_char   = core->wordlist.last_letter;
-
-                        select_previous_letter(start_char, end_char, core);
-                        break;
-                    case SDLK_RETURN:
-                        if (core->attempt < 6)
-                        {
-                            if (0 == ((core->current_index + 1) % 5))
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_3:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
-                                int  index;
-                                int  letter_index;
-                                int  end_index;
+                                start_char = 0xc4; // Д
+                                end_char   = 0xc7; // З
+                            }
+                            else
+                            {
+                                start_char = 'D';
+                                end_char   = 'F';
+                            }
 
-                                get_index_limits(&index, &end_index, core);
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_4:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xc8; // И
+                                end_char   = 0xca; // Л
+                            }
+                            else
+                            {
+                                start_char = 'G';
+                                end_char   = 'I';
+                            }
 
-                                for (letter_index = 0; letter_index < 5; letter_index += 1)
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_5:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xcb; // М
+                                end_char   = 0xcf; // П
+                            }
+                            else
+                            {
+                                start_char = 'J';
+                                end_char   = 'L';
+                            }
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_6:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xd0; // Р
+                                end_char   = 0xd3; // У
+                            }
+                            else
+                            {
+                                start_char = 'M';
+                                end_char   = 'O';
+                            }
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_7:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xd4; // Ф
+                                end_char   = 0xd7; // Ч
+                            }
+                            else
+                            {
+                                start_char = 'P';
+                                end_char   = 'S';
+                            }
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_8:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xd8; // Ш
+                                end_char   = 0xdb; // Ы
+                            }
+                            else
+                            {
+                                start_char = 'T';
+                                end_char   = 'V';
+                            }
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_9:
+                            if (SDL_TRUE == core->wordlist.is_cyrillic)
+                            {
+                                start_char = 0xdc; // Ь
+                                end_char   = 0xdf; // Я
+                            }
+                            else
+                            {
+                                start_char = 'W';
+                                end_char   = 'Z';
+                            }
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_0:
+                            if (0 != core->wordlist.special_chars[0])
+                            {
+                                char*               current_letter     = &core->tile[core->current_index].letter;
+                                static unsigned int special_char_index = 0;
+                                size_t              special_char_count = sizeof(core->wordlist.special_chars) / sizeof(core->wordlist.special_chars[0]);
+
+                                start_char = core->wordlist.first_letter;
+                                end_char   = core->wordlist.last_letter;
+
+                                if (*current_letter >= start_char && *current_letter < end_char)
                                 {
-                                    core->current_guess[letter_index]  = core->tile[index].letter;
-                                    index                             += 1;
-                                }
-
-                                if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
-                                {
-                                    SDL_bool is_won = SDL_FALSE;
-                                    validate_current_guess(&is_won, core);
-
-                                    if (SDL_TRUE == is_won)
-                                    {
-                                        int phrase_index = core->attempt * 5;
-
-                                        clear_tiles(SDL_FALSE, core);
-
-                                        core->show_title_screen = SDL_TRUE;
-                                        core->current_index     = -1;
-
-                                        core->tile[phrase_index + 0].letter = 'E';
-                                        core->tile[phrase_index + 1].letter = 'X';
-                                        core->tile[phrase_index + 2].letter = 'A';
-                                        core->tile[phrase_index + 3].letter = 'C';
-                                        core->tile[phrase_index + 4].letter = 'T';
-                                    }
-                                    else if (SDL_FALSE == is_won && 5 == core->attempt)
-                                    {
-                                        char valid_answer[6] = { 0 };
-
-                                        get_valid_answer(valid_answer, core);
-
-                                        clear_tiles(SDL_TRUE, core);
-                                        core->show_title_screen  = SDL_TRUE;
-                                        core->current_index      = -1;
-
-                                        core->tile[5].letter     = 'T';
-                                        core->tile[6].letter     = 'O';
-                                        core->tile[7].letter     = 'O';
-
-                                        core->tile[12].letter    = 'B';
-                                        core->tile[13].letter    = 'A';
-                                        core->tile[14].letter    = 'D';
-
-                                        core->tile[20].letter    = valid_answer[0];
-                                        core->tile[21].letter    = valid_answer[1];
-                                        core->tile[22].letter    = valid_answer[2];
-                                        core->tile[23].letter    = valid_answer[3];
-                                        core->tile[24].letter    = valid_answer[4];
-
-                                        core->tile[6].state      = CORRECT_LETTER;
-                                        core->tile[13].state     = WRONG_POSITION;
-
-                                        core->tile[20].state     = CORRECT_LETTER;
-                                        core->tile[21].state     = CORRECT_LETTER;
-                                        core->tile[22].state     = CORRECT_LETTER;
-                                        core->tile[23].state     = CORRECT_LETTER;
-                                        core->tile[24].state      = CORRECT_LETTER;
-                                    }
-                                    else
-                                    {
-                                        core->attempt += 1;
-                                        goto_next_letter(core);
-                                    }
+                                    *current_letter = core->wordlist.special_chars[0];
                                 }
                                 else
                                 {
-                                    // Word not valid: shake row?
+                                    special_char_index += 1;
+                                    if (special_char_index >= special_char_count)
+                                    {
+                                        special_char_index = 0;
+                                    }
+                                    *current_letter = core->wordlist.special_chars[special_char_index];
                                 }
                             }
-                        }
-                        break;
-                    case SDLK_BACKSPACE:
-                    case SDLK_LEFT:
-                        delete_letter(core);
-                        break;
-                    case SDLK_RIGHT:
-                        goto_next_letter(core);
-                        break;
-                    case SDLK_F1:
-                    case SDLK_F2:
-                        game_save(core);
-                        core->is_running = SDL_FALSE;
-                        return 0;
-                    case SDLK_SLASH:
-                        set_next_language(core);
-                        break;
+                            break;
+                        case SDLK_UP:
+                            start_char = core->wordlist.first_letter;
+                            end_char   = core->wordlist.last_letter;
+
+                            select_next_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_DOWN:
+                            start_char = core->wordlist.first_letter;
+                            end_char   = core->wordlist.last_letter;
+
+                            select_previous_letter(start_char, end_char, core);
+                            break;
+                        case SDLK_RETURN:
+                            if (core->attempt < 6)
+                            {
+                                if (0 == ((core->current_index + 1) % 5))
+                                {
+                                    int  index;
+                                    int  letter_index;
+                                    int  end_index;
+
+                                    get_index_limits(&index, &end_index, core);
+
+                                    for (letter_index = 0; letter_index < 5; letter_index += 1)
+                                    {
+                                        core->current_guess[letter_index]  = core->tile[index].letter;
+                                        index                             += 1;
+                                    }
+
+                                    if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
+                                    {
+                                        SDL_bool is_won = SDL_FALSE;
+                                        validate_current_guess(&is_won, core);
+
+                                        if (SDL_TRUE == is_won)
+                                        {
+                                            int phrase_index = core->attempt * 5;
+
+                                            clear_tiles(SDL_FALSE, core);
+
+                                            core->show_title_screen = SDL_TRUE;
+                                            core->current_index     = -1;
+
+                                            core->tile[phrase_index + 0].letter = 'E';
+                                            core->tile[phrase_index + 1].letter = 'X';
+                                            core->tile[phrase_index + 2].letter = 'A';
+                                            core->tile[phrase_index + 3].letter = 'C';
+                                            core->tile[phrase_index + 4].letter = 'T';
+                                        }
+                                        else if (SDL_FALSE == is_won && 5 == core->attempt)
+                                        {
+                                            char valid_answer[6] = { 0 };
+
+                                            get_valid_answer(valid_answer, core);
+
+                                            clear_tiles(SDL_TRUE, core);
+                                            core->show_title_screen  = SDL_TRUE;
+                                            core->current_index      = -1;
+
+                                            core->tile[5].letter     = 'T';
+                                            core->tile[6].letter     = 'O';
+                                            core->tile[7].letter     = 'O';
+
+                                            core->tile[12].letter    = 'B';
+                                            core->tile[13].letter    = 'A';
+                                            core->tile[14].letter    = 'D';
+
+                                            core->tile[20].letter    = valid_answer[0];
+                                            core->tile[21].letter    = valid_answer[1];
+                                            core->tile[22].letter    = valid_answer[2];
+                                            core->tile[23].letter    = valid_answer[3];
+                                            core->tile[24].letter    = valid_answer[4];
+
+                                            core->tile[6].state      = CORRECT_LETTER;
+                                            core->tile[13].state     = WRONG_POSITION;
+
+                                            core->tile[20].state     = CORRECT_LETTER;
+                                            core->tile[21].state     = CORRECT_LETTER;
+                                            core->tile[22].state     = CORRECT_LETTER;
+                                            core->tile[23].state     = CORRECT_LETTER;
+                                            core->tile[24].state     = CORRECT_LETTER;
+                                        }
+                                        else
+                                        {
+                                            core->attempt += 1;
+                                            goto_next_letter(core);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Word not valid: shake row?
+                                    }
+                                }
+                            }
+                            break;
+                        case SDLK_BACKSPACE:
+                        case SDLK_LEFT:
+                            delete_letter(core);
+                            break;
+                        case SDLK_RIGHT:
+                            goto_next_letter(core);
+                            break;
+                        case SDLK_F1:
+                        case SDLK_F2:
+                            game_save(core);
+                            core->is_running = SDL_FALSE;
+                            return 0;
+                        case SDLK_SLASH:
+                            clear_tiles(SDL_TRUE, core);
+                            set_next_language(core);
+                            break;
+                    }
                 }
                 redraw_tiles = SDL_TRUE;
             }
@@ -491,10 +513,10 @@ void game_quit(game_t* core)
     SDL_Quit();
 }
 
-/* Since this function neither compensates for a possible memory padding
- * by the compiler nor checks the endianness of the system, this
- * function is by definition not portable.  The worst that can happen,
- * however, is that the resulting save file is not usable across
+/* Since a compiler often appends padding bytes to structures and
+ * because this function does not checks the endianness of the system,
+ * this function is by definition not portable.  The worst that can
+ * happen, however, is that the resulting save file is not usable across
  * different platforms.
  */
 void game_save(game_t* core)
@@ -508,6 +530,7 @@ void game_save(game_t* core)
         return;
     }
 
+    state.version            = SAVE_VERSION;
     state.show_title_screen  = core->show_title_screen;
 
     for (index = 0; index < 30; index += 1)
@@ -536,46 +559,36 @@ void game_save(game_t* core)
 
 void game_load(game_t* core)
 {
-    save_state_t state;
-    FILE*        save_file;
-    int          index;
+    int index;
 
     if (NULL == core)
     {
         return;
     }
 
-    save_file = fopen(SAVE_FILE, "rb");
-    if (NULL == save_file)
+    if (SAVE_VERSION != core->save_state_cache.version)
     {
+        // Do not load outdated or invalid save states.
         return;
     }
-    else
-    {
-        if (1 != fread(&state, sizeof(struct save_state), 1, save_file))
-        {
-            fclose(save_file);
-            return;
-        }
-    }
-    fclose(save_file);
 
-    core->show_title_screen  = state.show_title_screen;
+    clear_tiles(SDL_TRUE, core);
+    core->show_title_screen  = core->save_state_cache.show_title_screen;
 
     for (index = 0; index < 30; index += 1)
     {
-        core->tile[index].letter       = state.tile[index].letter;
-        core->tile[index].letter_index = state.tile[index].letter_index;
-        core->tile[index].state        = state.tile[index].state;
+        core->tile[index].letter       = core->save_state_cache.tile[index].letter;
+        core->tile[index].letter_index = core->save_state_cache.tile[index].letter_index;
+        core->tile[index].state        = core->save_state_cache.tile[index].state;
     }
 
-    core->current_index      = state.current_index;
-    core->previous_letter    = state.previous_letter;
-    core->valid_answer_index = state.valid_answer_index;
-    core->attempt            = state.attempt;
-    core->seed               = state.seed;
+    core->current_index      = core->save_state_cache.current_index;
+    core->previous_letter    = core->save_state_cache.previous_letter;
+    core->valid_answer_index = core->save_state_cache.valid_answer_index;
+    core->attempt            = core->save_state_cache.attempt;
+    core->seed               = core->save_state_cache.seed;
 
-    set_language(state.language, core->show_title_screen, core);
+    set_language(core->save_state_cache.language, core->show_title_screen, core);
 }
 
 static void clear_tiles(SDL_bool clear_state, game_t* core)
@@ -687,17 +700,30 @@ static int draw_tiles(game_t* core)
                         break;
                 }
             }
+
             switch (core->tile[index].letter)
             {
-                case 0x00: // Empty
+                case 0x00: // Empty tile
                     src.x = 0;
                     break;
-                case 0x2d: // -
+                case 0x2d: // Hyphen
                     src.x = 992;
+                    break;
+                case 0x01: // Load game icon
+                    src.x = 0;
+                    src.y = 128;
+                    break;
+                case 0x02: // New game icon
+                    src.x = 0;
+                    src.y = 160;
                     break;
             }
 
-            if (SDL_TRUE == core->wordlist.is_cyrillic && 0x2d != core->tile[index].letter) // Exception for '-'
+            if (SDL_TRUE == core->wordlist.is_cyrillic &&
+                0x00     != core->tile[index].letter   &&
+                0x2d     != core->tile[index].letter   &&
+                0x01     != core->tile[index].letter   &&
+                0x02     != core->tile[index].letter)
             {
                 src.y += 128;
             }

@@ -12,6 +12,10 @@
 
 #include <SDL.h>
 
+#ifndef SAVE_VERSION
+#define SAVE_VERSION 1
+#endif
+
 typedef enum
 {
     LETTER_SELECT = 0,
@@ -25,7 +29,8 @@ typedef enum
 {
     LANG_ENGLISH = 0,
     LANG_RUSSIAN,
-    LANG_GERMAN
+    LANG_GERMAN,
+    LANG_FINNISH
 
 } lang_t;
 
@@ -54,16 +59,15 @@ typedef struct wordlist
 
 typedef struct save_state
 {
-    SDL_bool      show_title_screen;  // 1
-    tile_t        tile[30];           // 2
-    int           current_index;      // 3
-    char          previous_letter;    // 4
-    int           valid_answer_index; // 5
-    Uint8         attempt;            // 6
-    unsigned int  seed;               // 7
-    lang_t        language;           // 8
-
-    // Add parity bit or checksum?
+    unsigned int version;
+    SDL_bool     show_title_screen;
+    tile_t       tile[30];
+    int          current_index;
+    char         previous_letter;
+    int          valid_answer_index;
+    Uint8        attempt;
+    unsigned int seed;
+    lang_t       language;
 
 } save_state_t;
 
@@ -86,6 +90,7 @@ typedef struct game
     Uint8         attempt;
     unsigned int  seed;
     wordlist_t    wordlist;
+    save_state_t  save_state_cache;
 
 } game_t;
 
