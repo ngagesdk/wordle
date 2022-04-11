@@ -13,7 +13,7 @@
 #include <SDL.h>
 
 #ifndef SAVE_VERSION
-#define SAVE_VERSION 1
+#define SAVE_VERSION 2
 #endif
 
 typedef enum
@@ -60,7 +60,6 @@ typedef struct wordlist
 typedef struct save_state
 {
     unsigned int version;
-    SDL_bool     show_title_screen;
     tile_t       tile[30];
     int          current_index;
     char         previous_letter;
@@ -81,7 +80,8 @@ typedef struct game
     Uint32        time_a;
     Uint32        time_b;
     SDL_bool      is_running;
-    SDL_bool      show_title_screen;
+    SDL_bool      show_menu;
+    SDL_bool      nyt_mode;
     tile_t        tile[30];
     int           current_index;
     char          previous_letter;

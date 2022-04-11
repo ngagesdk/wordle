@@ -5,13 +5,15 @@
  **/
 
 #include <SDL.h>
+#include <time.h>
 #include "game.h"
 
-void     set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);
-void     set_next_language(game_t* core);
-void     get_valid_answer(char valid_answer[6], game_t* core);
-SDL_bool is_guess_allowed(const char* guess, game_t* core);
-void     validate_current_guess(SDL_bool* is_won, game_t* core);
+void         set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);
+void         set_next_language(game_t* core);
+unsigned int get_nyt_daily_index(void);
+void         get_valid_answer(char valid_answer[6], game_t* core);
+SDL_bool     is_guess_allowed(const char* guess, game_t* core);
+void         validate_current_guess(SDL_bool* is_won, game_t* core);
 
 extern const unsigned int  wordlist_en_letter_count;
 extern const unsigned int  wordlist_en_word_count;
@@ -72,20 +74,23 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
     if (SDL_TRUE == set_title_screen)
     {
-        core->show_title_screen = SDL_TRUE;
-        core->tile[5].letter    = 'N';
-        core->tile[6].letter    = 'G';
-        core->tile[7].letter    = 'A';
-        core->tile[8].letter    = 'G';
-        core->tile[9].letter    = 'E';
-        core->tile[10].state    = CORRECT_LETTER;
-        core->tile[11].state    = WRONG_POSITION;
-        core->tile[12].state    = CORRECT_LETTER;
-        core->tile[13].state    = CORRECT_LETTER;
-        core->tile[14].state    = CORRECT_LETTER;
+        core->show_menu       = SDL_TRUE;
+        core->tile[5].letter  = 'N';
+        core->tile[6].letter  = 'G';
+        core->tile[7].letter  = 'A';
+        core->tile[8].letter  = 'G';
+        core->tile[9].letter  = 'E';
+        core->tile[10].state  = CORRECT_LETTER;
+        core->tile[11].state  = WRONG_POSITION;
+        core->tile[12].state  = CORRECT_LETTER;
+        core->tile[13].state  = CORRECT_LETTER;
+        core->tile[14].state  = CORRECT_LETTER;
 
         core->tile[25].letter = 0x01; // Load game icon
-        core->tile[29].letter = 0x02; // New game icon
+        core->tile[26].letter = 0x02; // New game icon
+        core->tile[27].letter = 0x03; // NYT mode icon
+        core->tile[28].letter = 0x04; // Set lang. icon
+        core->tile[29].letter = 0x05; // Quit game icon
     }
 
     core->wordlist.language = language;
@@ -110,7 +115,6 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
             core->wordlist.special_chars = wordlist_en_special_chars;
             core->wordlist.hash          = wordlist_en_hash;
             core->wordlist.list          = wordlist_en;
-            core->wordlist.offset        = wordlist_en_offset;
             break;
         case LANG_RUSSIAN:
             if (SDL_TRUE == set_title_screen)
@@ -129,7 +133,6 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
             core->wordlist.special_chars = wordlist_ru_special_chars;
             core->wordlist.hash          = wordlist_ru_hash;
             core->wordlist.list          = wordlist_ru;
-            core->wordlist.offset        = wordlist_ru_offset;
             break;
         case LANG_GERMAN:
             if (SDL_TRUE == set_title_screen)
@@ -148,7 +151,6 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
             core->wordlist.special_chars = wordlist_de_special_chars;
             core->wordlist.hash          = wordlist_de_hash;
             core->wordlist.list          = wordlist_de;
-            core->wordlist.offset        = wordlist_de_offset;
             break;
         case LANG_FINNISH:
             if (SDL_TRUE == set_title_screen)
@@ -167,7 +169,6 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
             core->wordlist.special_chars = wordlist_fi_special_chars;
             core->wordlist.hash          = wordlist_fi_hash;
             core->wordlist.list          = wordlist_fi;
-            core->wordlist.offset        = wordlist_fi_offset;
             break;
     }
 }
@@ -191,6 +192,29 @@ void set_next_language(game_t* core)
     }
 }
 
+unsigned int get_nyt_daily_index(void)
+{
+    time_t seconds;
+    int    days_since_epoch;
+    int    daily_index;
+
+    seconds          = time(NULL);
+    days_since_epoch = seconds / (60 * 60 * 24);
+    daily_index      = days_since_epoch - 18797u;
+
+    if (daily_index < 0)
+    {
+        daily_index = 0;
+    }
+    else if (daily_index >= (wordlist_en_word_count - 1))
+    {
+        // Tbd: implement overrun;
+        daily_index = (wordlist_en_word_count - 1);
+    }
+
+    return daily_index;
+}
+
 void get_valid_answer(char valid_answer[6], game_t* core)
 {
     int index;
@@ -209,27 +233,24 @@ void get_valid_answer(char valid_answer[6], game_t* core)
 
 SDL_bool is_guess_allowed(const char* guess, game_t* core)
 {
-    Uint32       guess_hash;
-    unsigned int offset_index;
+    Uint32 guess_hash;
 
     if (NULL == guess)
     {
         return SDL_FALSE;
     }
 
-    guess_hash   = generate_hash(guess);
-    offset_index = guess[0] - core->wordlist.first_letter;
+    guess_hash = generate_hash(guess);
 
     if (0x0daa8447 == guess_hash) // NGAGE
     {
         return SDL_TRUE; // ;-)
     }
 
-    if (offset_index >= 0 && offset_index < core->wordlist.letter_count)
     {
         int index;
-        int start_index = core->wordlist.offset[offset_index];
-        int end_index   = core->wordlist.offset[offset_index + 1];
+        int start_index = 0;
+        int end_index   = core->wordlist.word_count - 1;
 
         for (index = start_index; index < end_index; index +=1)
         {
@@ -245,24 +266,21 @@ SDL_bool is_guess_allowed(const char* guess, game_t* core)
 
 void validate_current_guess(SDL_bool* is_won, game_t* core)
 {
-    Uint32       guess_hash;
-    unsigned int offset_index;
+    Uint32 guess_hash;
 
     if (NULL == core)
     {
         return;
     }
 
-    guess_hash   = generate_hash(core->current_guess);
-    offset_index = core->current_guess[0] - core->wordlist.first_letter;
+    guess_hash = generate_hash(core->current_guess);
 
-    if (offset_index >= 0 && offset_index < core->wordlist.letter_count)
     {
         int    letter_index;
         int    answer_index;
         Uint32 answer_hash;
-        int    start_index     = core->wordlist.offset[offset_index];
-        int    end_index       = core->wordlist.offset[offset_index + 1];
+        int    start_index     = 0;
+        int    end_index       = core->wordlist.word_count - 1;
         char   valid_answer[6] = { 0 };
         char   shelf[5]        = { 0 };
 

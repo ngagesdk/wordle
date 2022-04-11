@@ -23,7 +23,7 @@ static int  draw_tiles(game_t* core);
 static void delete_letter(game_t* core);
 static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
 static void goto_next_letter(game_t* core);
-static void reset_game(game_t* core);
+static void reset_game(SDL_bool nyt_mode, game_t* core);
 static void select_next_letter(const char start_char, const char end_char, game_t* core);
 static void select_previous_letter(const char start_char, const char end_char, game_t* core);
 
@@ -111,9 +111,10 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         fclose(save_file);
     }
 
-    (*core)->seed              = (unsigned int)rand();
-    (*core)->show_title_screen = SDL_TRUE;
-    (*core)->is_running        = SDL_TRUE;
+    (*core)->seed          = (unsigned int)rand();
+    (*core)->current_index = 27;
+    (*core)->show_menu     = SDL_TRUE;
+    (*core)->is_running    = SDL_TRUE;
 
     return status;
 }
@@ -145,7 +146,7 @@ int game_update(game_t *core)
         core->tile[0].letter = 0;
     }
 
-    if (SDL_TRUE == core->show_title_screen)
+    if (SDL_TRUE == core->show_menu)
     {
         redraw_tiles = SDL_TRUE;
     }
@@ -172,19 +173,46 @@ int game_update(game_t *core)
         {
             case SDL_KEYDOWN:
             {
-                if (SDL_TRUE == core->show_title_screen)
+                if (SDL_TRUE == core->show_menu)
                 {
                     switch (event.key.keysym.sym)
                     {
-                        case SDLK_F1:
-                            game_load(core);
+                        case SDLK_RETURN:
+                        case SDLK_5:
+                            switch (core->current_index)
+                            {
+                                case 25:
+                                    reset_game(SDL_FALSE, core);
+                                    break;
+                                case 26:
+                                    game_load(core);
+                                    break;
+                                case 27:
+                                    reset_game(SDL_TRUE, core);
+                                    break;
+                                case 28:
+                                    set_next_language(core);
+                                    break;
+                                case 29:
+                                    core->is_running = SDL_FALSE;
+                                    return 0;
+                                default:
+                                    break;
+                            }
                             break;
-                        case SDLK_SLASH:
-                            clear_tiles(SDL_TRUE, core);
-                            set_next_language(core);
+                        case SDLK_LEFT:
+                            core->current_index -= 1;
+                            if (core->current_index < 25)
+                            {
+                                core->current_index = 29;
+                            }
                             break;
-                        default:
-                            reset_game(core);
+                        case SDLK_RIGHT:
+                            core->current_index += 1;
+                            if (core->current_index > 29)
+                            {
+                                core->current_index = 25;
+                            }
                             break;
                     }
                 }
@@ -368,14 +396,8 @@ int game_update(game_t *core)
 
                                             clear_tiles(SDL_FALSE, core);
 
-                                            core->show_title_screen = SDL_TRUE;
-                                            core->current_index     = -1;
-
-                                            core->tile[phrase_index + 0].letter = 'E';
-                                            core->tile[phrase_index + 1].letter = 'X';
-                                            core->tile[phrase_index + 2].letter = 'A';
-                                            core->tile[phrase_index + 3].letter = 'C';
-                                            core->tile[phrase_index + 4].letter = 'T';
+                                            core->attempt       =  6;
+                                            core->current_index = -1;
                                         }
                                         else if (SDL_FALSE == is_won && 5 == core->attempt)
                                         {
@@ -384,31 +406,34 @@ int game_update(game_t *core)
                                             get_valid_answer(valid_answer, core);
 
                                             clear_tiles(SDL_TRUE, core);
-                                            core->show_title_screen  = SDL_TRUE;
-                                            core->current_index      = -1;
+                                            core->attempt         =  6;
+                                            core->current_index   = -1;
 
-                                            core->tile[5].letter     = 'T';
-                                            core->tile[6].letter     = 'O';
-                                            core->tile[7].letter     = 'O';
+                                            core->tile[5].letter  = 'T';
+                                            core->tile[6].letter  = 'O';
+                                            core->tile[7].letter  = 'O';
 
-                                            core->tile[12].letter    = 'B';
-                                            core->tile[13].letter    = 'A';
-                                            core->tile[14].letter    = 'D';
+                                            core->tile[12].letter = 'B';
+                                            core->tile[13].letter = 'A';
+                                            core->tile[14].letter = 'D';
 
-                                            core->tile[20].letter    = valid_answer[0];
-                                            core->tile[21].letter    = valid_answer[1];
-                                            core->tile[22].letter    = valid_answer[2];
-                                            core->tile[23].letter    = valid_answer[3];
-                                            core->tile[24].letter    = valid_answer[4];
+                                            if (SDL_FALSE == core->nyt_mode)
+                                            {
+                                                core->tile[20].letter = valid_answer[0];
+                                                core->tile[21].letter = valid_answer[1];
+                                                core->tile[22].letter = valid_answer[2];
+                                                core->tile[23].letter = valid_answer[3];
+                                                core->tile[24].letter = valid_answer[4];
 
-                                            core->tile[6].state      = CORRECT_LETTER;
-                                            core->tile[13].state     = WRONG_POSITION;
+                                                core->tile[6].state   = CORRECT_LETTER;
+                                                core->tile[13].state  = WRONG_POSITION;
 
-                                            core->tile[20].state     = CORRECT_LETTER;
-                                            core->tile[21].state     = CORRECT_LETTER;
-                                            core->tile[22].state     = CORRECT_LETTER;
-                                            core->tile[23].state     = CORRECT_LETTER;
-                                            core->tile[24].state     = CORRECT_LETTER;
+                                                core->tile[20].state  = CORRECT_LETTER;
+                                                core->tile[21].state  = CORRECT_LETTER;
+                                                core->tile[22].state  = CORRECT_LETTER;
+                                                core->tile[23].state  = CORRECT_LETTER;
+                                                core->tile[24].state  = CORRECT_LETTER;
+                                            }
                                         }
                                         else
                                         {
@@ -422,6 +447,13 @@ int game_update(game_t *core)
                                     }
                                 }
                             }
+                            else
+                            {
+                                game_save(core);
+                                clear_tiles(SDL_TRUE, core);
+                                core->current_index = 27;
+                                set_language(core->wordlist.language, SDL_TRUE, core);
+                            }
                             break;
                         case SDLK_BACKSPACE:
                         case SDLK_LEFT:
@@ -433,11 +465,9 @@ int game_update(game_t *core)
                         case SDLK_F1:
                         case SDLK_F2:
                             game_save(core);
-                            core->is_running = SDL_FALSE;
-                            return 0;
-                        case SDLK_SLASH:
                             clear_tiles(SDL_TRUE, core);
-                            set_next_language(core);
+                            core->current_index = 27;
+                            set_language(core->wordlist.language, SDL_TRUE, core);
                             break;
                     }
                 }
@@ -530,7 +560,6 @@ void game_save(game_t* core)
     }
 
     state.version            = SAVE_VERSION;
-    state.show_title_screen  = core->show_title_screen;
 
     for (index = 0; index < 30; index += 1)
     {
@@ -571,8 +600,8 @@ void game_load(game_t* core)
         return;
     }
 
+    core->show_menu = SDL_FALSE;
     clear_tiles(SDL_TRUE, core);
-    core->show_title_screen  = core->save_state_cache.show_title_screen;
 
     for (index = 0; index < 30; index += 1)
     {
@@ -587,7 +616,7 @@ void game_load(game_t* core)
     core->attempt            = core->save_state_cache.attempt;
     core->seed               = core->save_state_cache.seed;
 
-    set_language(core->save_state_cache.language, core->show_title_screen, core);
+    set_language(core->save_state_cache.language, SDL_FALSE, core);
 }
 
 static void clear_tiles(SDL_bool clear_state, game_t* core)
@@ -635,6 +664,7 @@ static int draw_tiles(game_t* core)
     {
         return 1;
     }
+    SDL_RenderClear(core->renderer);
 
     for (index = 0; index < 30; index += 1)
     {
@@ -708,13 +738,25 @@ static int draw_tiles(game_t* core)
                 case 0x2d: // Hyphen
                     src.x = 992;
                     break;
-                case 0x01: // Load game icon
+                case 0x01: // New game icon
+                    src.x = 0;
+                    src.y = 160;
+                    break;
+                case 0x02: // Load game icon
                     src.x = 0;
                     src.y = 128;
                     break;
-                case 0x02: // New game icon
+                case 0x03: // NYT mode icon
                     src.x = 0;
-                    src.y = 160;
+                    src.y = 192;
+                    break;
+                case 0x04: // Set lang. icon
+                    src.x = 1056;
+                    src.y = 224;
+                    break;
+                case 0x05: // Quit game icon
+                    src.x = 0;
+                    src.y = 224;
                     break;
             }
 
@@ -722,7 +764,10 @@ static int draw_tiles(game_t* core)
                 0x00     != core->tile[index].letter   &&
                 0x2d     != core->tile[index].letter   &&
                 0x01     != core->tile[index].letter   &&
-                0x02     != core->tile[index].letter)
+                0x02     != core->tile[index].letter   &&
+                0x03     != core->tile[index].letter   &&
+                0x04     != core->tile[index].letter   &&
+                0x05     != core->tile[index].letter)
             {
                 src.y += 128;
             }
@@ -754,9 +799,23 @@ static int draw_tiles(game_t* core)
             }
         }
 
-        SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
+        /*if (SDL_TRUE == core->show_menu)
+        {
+            if ((index >= 5 && index <= 14) || (index >= 25 && index <= 29))
+            {
+                SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
+            }
+            else
+            {
+                // Nothing to do here.
+            }
+        }
+        else*/
+        {
+            SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
+        }
 
-        if (index == core->current_index && SDL_FALSE == core->show_title_screen)
+        if (index == core->current_index)
         {
             SDL_Rect inner_frame = { dst.x + 1, dst.y + 1, dst.w - 2, dst.h - 2 };
             SDL_SetRenderDrawColor(core->renderer, 0xf5, 0x79, 0x3a, 0x00);
@@ -852,7 +911,7 @@ static void delete_letter(game_t* core)
     core->current_index                     = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
 }
 
-static void reset_game(game_t* core)
+static void reset_game(SDL_bool nyt_mode, game_t* core)
 {
     int index;
 
@@ -863,14 +922,23 @@ static void reset_game(game_t* core)
 
     clear_tiles(SDL_TRUE, core);
 
-    core->show_title_screen = SDL_FALSE;
-    core->attempt           = 0;
-    core->current_index     = 0;
+    core->show_menu     = SDL_FALSE;
+    core->attempt       = 0;
+    core->current_index = 0;
 
-    core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
-    while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
+    if (SDL_FALSE == nyt_mode)
     {
         core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
+        while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
+        {
+            core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
+        }
+        core->nyt_mode = SDL_FALSE;
+    }
+    else
+    {
+        core->valid_answer_index = get_nyt_daily_index();
+        core->nyt_mode           = SDL_TRUE;
     }
 }
 
