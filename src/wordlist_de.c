@@ -11,7 +11,7 @@ const unsigned int wordlist_de_word_count       = 0x1855;
 const char         wordlist_de_first_letter     = 0x41; // А
 const char         wordlist_de_last_letter      = 0x5a; // Z
 const SDL_bool     wordlist_de_is_cyrillic      = SDL_FALSE;
-const char         wordlist_de_special_chars[4] = { 0xc4, 0xd6, 0xdc, 0xdf }; // Ä, Ö, Ü, ß
+const char         wordlist_de_special_chars[5] = { 0xc4, 0xd6, 0xdc, 0xdf, 0x00 }; // Ä, Ö, Ü, ß
 const char         wordlist_de_title[5]         = { 'W', 0xd6, 'R', 'D', 'L' };
 
 const Uint32 wordlist_de_hash[0x1855] = {

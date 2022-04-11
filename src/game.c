@@ -309,7 +309,6 @@ int game_update(game_t *core)
                             {
                                 char*               current_letter     = &core->tile[core->current_index].letter;
                                 static unsigned int special_char_index = 0;
-                                size_t              special_char_count = sizeof(core->wordlist.special_chars) / sizeof(core->wordlist.special_chars[0]);
 
                                 start_char = core->wordlist.first_letter;
                                 end_char   = core->wordlist.last_letter;
@@ -321,7 +320,7 @@ int game_update(game_t *core)
                                 else
                                 {
                                     special_char_index += 1;
-                                    if (special_char_index >= special_char_count)
+                                    if (0x00 == core->wordlist.special_chars[special_char_index])
                                     {
                                         special_char_index = 0;
                                     }

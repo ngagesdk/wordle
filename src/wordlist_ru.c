@@ -11,7 +11,7 @@ const unsigned int wordlist_ru_word_count       = 0x1039;
 const char         wordlist_ru_first_letter     = 0xc0; // А
 const char         wordlist_ru_last_letter      = 0xdf; // Я
 const SDL_bool     wordlist_ru_is_cyrillic      = SDL_TRUE;
-const char         wordlist_ru_special_chars[1] = { 0x2d }; // -
+const char         wordlist_ru_special_chars[2] = { 0x2d, 0x00 }; // -
 const char         wordlist_ru_title[5]         = { 0xd1, 0xcb, 0xce, 0xc2, 0xce }; // СЛОВО
 
 const Uint32 wordlist_ru_hash[0x1039] = {
