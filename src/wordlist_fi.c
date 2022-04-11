@@ -2,6 +2,9 @@
  *
  *  Wordlist (Suomalainen).
  *
+ *  Based on the "nykysuomen sanalista" by Kotus.
+ *  SPDX-License-Identifier: CC-BY-3.0
+ *
  **/
 
 #include <SDL.h>
