@@ -937,6 +937,7 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
     }
     else
     {
+        set_language(LANG_ENGLISH, SDL_FALSE, core);
         core->valid_answer_index = get_nyt_daily_index();
         core->nyt_mode           = SDL_TRUE;
     }
