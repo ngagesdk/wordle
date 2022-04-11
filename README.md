@@ -6,7 +6,8 @@ A clone of Wordle for the Nokia N-Gage.
 
 ## Features
 
-- Multiple language support such as English, Russian, and Finnish.
+- Multiple language settings such as English, Russian (СЛОВО), German
+  (WÖRDL) and Finnish (SANIS).
 
 - Tailored for the N-Gage, but portable as the entire game is written in
   C89 and only depends on [SDL
