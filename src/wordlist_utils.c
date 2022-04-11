@@ -49,6 +49,18 @@ extern const SDL_bool      wordlist_de_is_cyrillic;
 extern const char          wordlist_de_special_chars[4];
 extern const char          wordlist_de_title[5];
 
+extern const unsigned int  wordlist_fi_letter_count;
+extern const unsigned int  wordlist_fi_word_count;
+extern const char          wordlist_fi_first_letter;
+extern const char          wordlist_fi_last_letter;
+extern const Uint32        wordlist_fi_hash[0xcc7];
+extern const unsigned char wordlist_fi[0xcc7][5];
+extern const unsigned int  wordlist_fi_lookup[32];
+extern const unsigned int  wordlist_fi_offset[33];
+extern const SDL_bool      wordlist_fi_is_cyrillic;
+extern const char          wordlist_fi_special_chars[1];
+extern const char          wordlist_fi_title[5];
+
 void set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core)
 {
     int index;
@@ -71,6 +83,9 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[12].state    = CORRECT_LETTER;
         core->tile[13].state    = CORRECT_LETTER;
         core->tile[14].state    = CORRECT_LETTER;
+
+        core->tile[25].letter = 0x01; // Load game icon
+        core->tile[29].letter = 0x02; // New game icon
     }
 
     core->wordlist.language = language;
@@ -135,6 +150,25 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
             core->wordlist.list          = wordlist_de;
             core->wordlist.offset        = wordlist_de_offset;
             break;
+        case LANG_FINNISH:
+            if (SDL_TRUE == set_title_screen)
+            {
+                for (index = 10; index <= 14; index += 1)
+                {
+                    core->tile[index].letter = wordlist_fi_title[index - 10];
+                }
+            }
+
+            core->wordlist.letter_count  = wordlist_fi_letter_count;
+            core->wordlist.word_count    = wordlist_fi_word_count;
+            core->wordlist.first_letter  = wordlist_fi_first_letter;
+            core->wordlist.last_letter   = wordlist_fi_last_letter;
+            core->wordlist.is_cyrillic   = wordlist_fi_is_cyrillic;
+            core->wordlist.special_chars = wordlist_fi_special_chars;
+            core->wordlist.hash          = wordlist_fi_hash;
+            core->wordlist.list          = wordlist_fi;
+            core->wordlist.offset        = wordlist_fi_offset;
+            break;
     }
 }
 
@@ -149,6 +183,9 @@ void set_next_language(game_t* core)
             set_language(LANG_GERMAN, SDL_TRUE, core);
             break;
         case LANG_GERMAN:
+            set_language(LANG_FINNISH, SDL_TRUE, core);
+            break;
+        case LANG_FINNISH:
             set_language(LANG_ENGLISH, SDL_TRUE, core);
             break;
     }
