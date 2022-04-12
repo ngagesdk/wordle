@@ -26,6 +26,7 @@ static void goto_next_letter(game_t* core);
 static void reset_game(SDL_bool nyt_mode, game_t* core);
 static void select_next_letter(const char start_char, const char end_char, game_t* core);
 static void select_previous_letter(const char start_char, const char end_char, game_t* core);
+static void select_utf8_letter(const char *text, game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -171,6 +172,11 @@ int game_update(game_t *core)
 
         switch (event.type)
         {
+            case SDL_QUIT:
+            {
+                core->is_running = SDL_FALSE;
+                return 0;
+            }
             case SDL_KEYDOWN:
             {
                 if (SDL_TRUE == core->show_menu)
@@ -178,7 +184,9 @@ int game_update(game_t *core)
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_RETURN:
+                        case SDLK_KP_ENTER:
                         case SDLK_5:
+                        case SDLK_KP_5:
                             switch (core->current_index)
                             {
                                 case 25:
@@ -223,6 +231,7 @@ int game_update(game_t *core)
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_2:
+                        case SDLK_KP_2:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xc0; // А
@@ -237,6 +246,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_3:
+                        case SDLK_KP_3:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xc4; // Д
@@ -251,6 +261,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_4:
+                        case SDLK_KP_4:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xc8; // И
@@ -265,6 +276,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_5:
+                        case SDLK_KP_5:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xcb; // М
@@ -279,6 +291,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_6:
+                        case SDLK_KP_6:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xd0; // Р
@@ -293,6 +306,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_7:
+                        case SDLK_KP_7:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xd4; // Ф
@@ -307,6 +321,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_8:
+                        case SDLK_KP_8:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xd8; // Ш
@@ -321,6 +336,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_9:
+                        case SDLK_KP_9:
                             if (SDL_TRUE == core->wordlist.is_cyrillic)
                             {
                                 start_char = 0xdc; // Ь
@@ -335,6 +351,7 @@ int game_update(game_t *core)
                             select_next_letter(start_char, end_char, core);
                             break;
                         case SDLK_0:
+                        case SDLK_KP_0:
                             if (0 != core->wordlist.special_chars[0])
                             {
                                 char*               current_letter     = &core->tile[core->current_index].letter;
@@ -371,6 +388,7 @@ int game_update(game_t *core)
                             select_previous_letter(start_char, end_char, core);
                             break;
                         case SDLK_RETURN:
+                        case SDLK_KP_ENTER:
                             if (core->attempt < 6)
                             {
                                 if (0 == ((core->current_index + 1) % 5))
@@ -474,6 +492,7 @@ int game_update(game_t *core)
                     }
                 }
                 redraw_tiles = SDL_TRUE;
+                break;
             }
             case SDL_KEYUP:
             {
@@ -482,6 +501,16 @@ int game_update(game_t *core)
                     default:
                         break;
                 }
+                break;
+            }
+            case SDL_TEXTINPUT:
+            {
+                if (SDL_TRUE != core->show_menu)
+                {
+                    select_utf8_letter(event.text.text, core);
+                    redraw_tiles = SDL_TRUE;
+                }
+                break;
             }
         }
     }
@@ -973,5 +1002,19 @@ static void select_previous_letter(const char start_char, const char end_char, g
     if (*current_letter < start_char)
     {
         *current_letter = end_char;
+    }
+}
+
+static void select_utf8_letter(const char *text, game_t* core)
+{
+    char* current_letter = &core->tile[core->current_index].letter;
+
+    if (SDL_isalpha(*text))
+    {
+        *current_letter = SDL_toupper(*text);
+    }
+
+    if (0 != ((core->current_index + 1) % 5)) {
+        core->current_index++;
     }
 }
