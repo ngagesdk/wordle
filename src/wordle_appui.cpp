@@ -25,7 +25,7 @@ void CWordleAppUi::ConstructL()
 CWordleAppUi::CWordleAppUi()
 {
     RProcess Proc;
-    if (KErrNone == Proc.Create(_L("E:\\System\\Apps\\wordle\\game.exe"),_L("")))
+    if (KErrNone == Proc.Create(_L("E:\\System\\Apps\\wordle\\game.exe"), _L("")))
     {
         Proc.Resume();
         Proc.Close();
