@@ -182,12 +182,14 @@ int game_update(game_t *core)
                             switch (core->current_index)
                             {
                                 case 25:
+                                    game_save(core);
                                     reset_game(SDL_FALSE, core);
                                     break;
                                 case 26:
                                     game_load(core);
                                     break;
                                 case 27:
+                                    game_save(core);
                                     reset_game(SDL_TRUE, core);
                                     break;
                                 case 28:
@@ -799,7 +801,7 @@ static int draw_tiles(game_t* core)
             }
         }
 
-        /*if (SDL_TRUE == core->show_menu)
+        if (SDL_TRUE == core->show_menu)
         {
             if ((index >= 5 && index <= 14) || (index >= 25 && index <= 29))
             {
@@ -810,7 +812,7 @@ static int draw_tiles(game_t* core)
                 // Nothing to do here.
             }
         }
-        else*/
+        else
         {
             SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
         }

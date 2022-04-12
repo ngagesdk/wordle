@@ -13,7 +13,7 @@
 #include <SDL.h>
 
 #ifndef SAVE_VERSION
-#define SAVE_VERSION 2
+#define SAVE_VERSION 3
 #endif
 
 typedef enum
@@ -47,13 +47,15 @@ typedef struct wordlist
     lang_t                language;
     unsigned int          letter_count;
     unsigned int          word_count;
+    unsigned int          allowed_count;
     char                  first_letter;
     char                  last_letter;
     SDL_bool              is_cyrillic;
     const char*           special_chars;
     const Uint32*         hash;
     const unsigned char (*list)[5];
-    const unsigned int*   offset;
+    const Uint32*         allowed_hash;
+    const unsigned char (*allowed_list)[5];
 
 } wordlist_t;
 
@@ -66,6 +68,7 @@ typedef struct save_state
     int          valid_answer_index;
     Uint8        attempt;
     unsigned int seed;
+    unsigned int last_nyt_index;
     lang_t       language;
 
 } save_state_t;

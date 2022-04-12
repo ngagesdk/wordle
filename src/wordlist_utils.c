@@ -17,12 +17,13 @@ void         validate_current_guess(SDL_bool* is_won, game_t* core);
 
 extern const unsigned int  wordlist_en_letter_count;
 extern const unsigned int  wordlist_en_word_count;
+extern const unsigned int  wordlist_en_allowed_count;
 extern const char          wordlist_en_first_letter;
 extern const char          wordlist_en_last_letter;
 extern const Uint32        wordlist_en_hash[0x90b];
 extern const unsigned char wordlist_en[0x90b][5];
-extern const unsigned int  wordlist_en_lookup[26];
-extern const unsigned int  wordlist_en_offset[27];
+extern const Uint32        wordlist_en_allowed_hash[0x29a7];
+extern const unsigned char wordlist_en_allowed[0x29a7][5];
 extern const SDL_bool      wordlist_en_is_cyrillic;
 extern const char          wordlist_en_special_chars[1];
 extern const char          wordlist_en_title[5];
@@ -33,8 +34,6 @@ extern const char          wordlist_ru_first_letter;
 extern const char          wordlist_ru_last_letter;
 extern const Uint32        wordlist_ru_hash[0x1039];
 extern const unsigned char wordlist_ru[0x1039][5];
-extern const unsigned int  wordlist_ru_lookup[32];
-extern const unsigned int  wordlist_ru_offset[33];
 extern const SDL_bool      wordlist_ru_is_cyrillic;
 extern const char          wordlist_ru_special_chars[1];
 extern const char          wordlist_ru_title[5];
@@ -45,8 +44,6 @@ extern const char          wordlist_de_first_letter;
 extern const char          wordlist_de_last_letter;
 extern const Uint32        wordlist_de_hash[0x185d];
 extern const unsigned char wordlist_de[0x185d][5];
-extern const unsigned int  wordlist_de_lookup[30];
-extern const unsigned int  wordlist_de_offset[31];
 extern const SDL_bool      wordlist_de_is_cyrillic;
 extern const char          wordlist_de_special_chars[4];
 extern const char          wordlist_de_title[5];
@@ -57,8 +54,6 @@ extern const char          wordlist_fi_first_letter;
 extern const char          wordlist_fi_last_letter;
 extern const Uint32        wordlist_fi_hash[0xcc7];
 extern const unsigned char wordlist_fi[0xcc7][5];
-extern const unsigned int  wordlist_fi_lookup[32];
-extern const unsigned int  wordlist_fi_offset[33];
 extern const SDL_bool      wordlist_fi_is_cyrillic;
 extern const char          wordlist_fi_special_chars[1];
 extern const char          wordlist_fi_title[5];
@@ -109,12 +104,15 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
             core->wordlist.letter_count  = wordlist_en_letter_count;
             core->wordlist.word_count    = wordlist_en_word_count;
+            core->wordlist.allowed_count = wordlist_en_allowed_count;
             core->wordlist.first_letter  = wordlist_en_first_letter;
             core->wordlist.last_letter   = wordlist_en_last_letter;
             core->wordlist.is_cyrillic   = wordlist_en_is_cyrillic;
             core->wordlist.special_chars = wordlist_en_special_chars;
             core->wordlist.hash          = wordlist_en_hash;
             core->wordlist.list          = wordlist_en;
+            core->wordlist.allowed_hash  = wordlist_en_allowed_hash;
+            core->wordlist.allowed_list  = wordlist_en_allowed;
             break;
         case LANG_RUSSIAN:
             if (SDL_TRUE == set_title_screen)
@@ -127,12 +125,15 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
             core->wordlist.letter_count  = wordlist_ru_letter_count;
             core->wordlist.word_count    = wordlist_ru_word_count;
+            core->wordlist.allowed_count = 0;
             core->wordlist.first_letter  = wordlist_ru_first_letter;
             core->wordlist.last_letter   = wordlist_ru_last_letter;
             core->wordlist.is_cyrillic   = wordlist_ru_is_cyrillic;
             core->wordlist.special_chars = wordlist_ru_special_chars;
             core->wordlist.hash          = wordlist_ru_hash;
             core->wordlist.list          = wordlist_ru;
+            core->wordlist.allowed_hash  = NULL;
+            core->wordlist.allowed_list  = NULL;
             break;
         case LANG_GERMAN:
             if (SDL_TRUE == set_title_screen)
@@ -145,12 +146,15 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
             core->wordlist.letter_count  = wordlist_de_letter_count;
             core->wordlist.word_count    = wordlist_de_word_count;
+            core->wordlist.allowed_count = 0;
             core->wordlist.first_letter  = wordlist_de_first_letter;
             core->wordlist.last_letter   = wordlist_de_last_letter;
             core->wordlist.is_cyrillic   = wordlist_de_is_cyrillic;
             core->wordlist.special_chars = wordlist_de_special_chars;
             core->wordlist.hash          = wordlist_de_hash;
             core->wordlist.list          = wordlist_de;
+            core->wordlist.allowed_hash  = NULL;
+            core->wordlist.allowed_list  = NULL;
             break;
         case LANG_FINNISH:
             if (SDL_TRUE == set_title_screen)
@@ -163,12 +167,15 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
 
             core->wordlist.letter_count  = wordlist_fi_letter_count;
             core->wordlist.word_count    = wordlist_fi_word_count;
+            core->wordlist.allowed_count = 0;
             core->wordlist.first_letter  = wordlist_fi_first_letter;
             core->wordlist.last_letter   = wordlist_fi_last_letter;
             core->wordlist.is_cyrillic   = wordlist_fi_is_cyrillic;
             core->wordlist.special_chars = wordlist_fi_special_chars;
             core->wordlist.hash          = wordlist_fi_hash;
             core->wordlist.list          = wordlist_fi;
+            core->wordlist.allowed_hash  = NULL;
+            core->wordlist.allowed_list  = NULL;
             break;
     }
 }
@@ -257,6 +264,20 @@ SDL_bool is_guess_allowed(const char* guess, game_t* core)
             if (guess_hash == core->wordlist.hash[index])
             {
                 return SDL_TRUE;
+            }
+        }
+
+        if ((NULL != core->wordlist.allowed_hash) &&
+            (NULL != core->wordlist.allowed_list) &&
+            (core->wordlist.allowed_count > 0))
+        {
+            end_index = core->wordlist.allowed_count;
+            for (index = start_index; index < end_index; index +=1)
+            {
+                if (guess_hash == core->wordlist.allowed_hash[index])
+                {
+                    return SDL_TRUE;
+                }
             }
         }
     }
