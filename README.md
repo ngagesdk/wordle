@@ -9,6 +9,8 @@ A clone of Wordle for the Nokia N-Gage.
 - Multiple language settings such as English, Russian (СЛОВО), German
   (WÖRDL) and Finnish (SANIS).
 
+- Play the NYT's Daily Word!
+
 - Tailored for the N-Gage, but portable as the entire game is written in
   C89 and only depends on [SDL
   2.0.x](https://github.com/libsdl-org/SDL).
