@@ -76,10 +76,10 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[8].letter  = 'G';
         core->tile[9].letter  = 'E';
         core->tile[10].state  = CORRECT_LETTER;
-        core->tile[11].state  = WRONG_POSITION;
+        core->tile[11].state  = CORRECT_LETTER;
         core->tile[12].state  = CORRECT_LETTER;
-        core->tile[13].state  = CORRECT_LETTER;
-        core->tile[14].state  = CORRECT_LETTER;
+        core->tile[13].state  = WRONG_POSITION;
+        core->tile[14].state  = WRONG_POSITION;
 
         core->tile[25].letter = 0x01; // Load game icon
         core->tile[26].letter = 0x02; // New game icon
