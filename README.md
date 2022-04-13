@@ -17,6 +17,9 @@ A clone of Wordle for the Nokia N-Gage.
 
 ## Licence and Credits
 
+- Special thanks to Josh Wardle for developing this brilliant game in
+  the first place.
+
 - Packed file loader by [Daniel
   Monteiro](https://montyontherun.itch.io/).
 
