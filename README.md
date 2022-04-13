@@ -23,6 +23,9 @@ A clone of Wordle for the Nokia N-Gage.
 - Packed file loader by [Daniel
   Monteiro](https://montyontherun.itch.io/).
 
+- The application menu icon has been designed by geekahedron from the
+  [Wordleverse](https://discord.com/invite/FdQKzenz) Discord community.
+
 - The finnish word list is based on the "nykysuomen sanalista" by
   [Kotus](https://kaino.kotus.fi/sanat/nykysuomi/), licensed under a [CC
   BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.fi) license.
