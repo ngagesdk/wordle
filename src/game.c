@@ -801,21 +801,7 @@ static int draw_tiles(game_t* core)
             }
         }
 
-        if (SDL_TRUE == core->show_menu)
-        {
-            if ((index >= 5 && index <= 14) || (index >= 25 && index <= 29))
-            {
-                SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
-            }
-            else
-            {
-                // Nothing to do here.
-            }
-        }
-        else
-        {
-            SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
-        }
+        SDL_RenderCopy(core->renderer, core->tile_texture, &src, &dst);
 
         if (index == core->current_index)
         {
