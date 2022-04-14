@@ -2,6 +2,7 @@
 
 A clone of Wordle for the Nokia N-Gage.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d77291d1f0554c7c8469707bcabcc6fa)](https://app.codacy.com/gh/ngagesdk/wordle?utm_source=github.com&utm_medium=referral&utm_content=ngagesdk/wordle&utm_campaign=Badge_Grade_Settings)
 [![Wordle](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo-tn.jpg)](https://raw.githubusercontent.com/ngagesdk/wordle/master/media/promo.jpg?raw=true "Wordle")
 
 ## Features
