@@ -1,6 +1,18 @@
 # Wordle
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d91244e94a37417fbd1649ae5f2def6f)](https://www.codacy.com/gh/ngagesdk/wordle/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ngagesdk/wordle&amp;utm_campaign=Badge_Grade)
+<p>
+  <a href="https://github.com/ngagesdk/wordle">
+    <img src="https://img.shields.io/badge/project-GitHub-blue?style=flat?svg=true" alt="GitHub project" />
+  </a>
+  <a href="https://github.com/ngagesdk/wordle/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/licence-MIT-blue?style=flat?svg=true" alt="Licence" />
+  </a>
+  <a href="https://www.codacy.com/gh/ngagesdk/wordle/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ngagesdk/wordle&amp;utm_campaign=Badge_Grade">
+    <img src="https://app.codacy.com/project/badge/Grade/d91244e94a37417fbd1649ae5f2def6f"/>
+  </a>
+</p>
+
+## About
 
 A clone of Wordle for the Nokia N-Gage.
 
