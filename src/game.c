@@ -166,9 +166,6 @@ int game_update(game_t *core)
 
     if (SDL_PollEvent(&event))
     {
-        char start_char;
-        char end_char;
-
         switch (event.type)
         {
             case SDL_KEYDOWN:
@@ -220,6 +217,9 @@ int game_update(game_t *core)
                 }
                 else
                 {
+                    char start_char;
+                    char end_char;
+
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_2:
@@ -337,8 +337,7 @@ int game_update(game_t *core)
                         case SDLK_0:
                             if (0 != core->wordlist.special_chars[0])
                             {
-                                char*               current_letter     = &core->tile[core->current_index].letter;
-                                static unsigned int special_char_index = 0;
+                                char* current_letter = &core->tile[core->current_index].letter;
 
                                 start_char = core->wordlist.first_letter;
                                 end_char   = core->wordlist.last_letter;
@@ -349,6 +348,8 @@ int game_update(game_t *core)
                                 }
                                 else
                                 {
+                                    static unsigned int special_char_index = 0;
+
                                     special_char_index += 1;
                                     if (0x00 == core->wordlist.special_chars[special_char_index])
                                     {
