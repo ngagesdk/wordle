@@ -42,6 +42,10 @@ int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t*
     }
     free(resource_buf);
 
+    if (0 != SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xff, 0x00, 0xff)))
+    {
+        /* Nothing to do here. */
+    }
     if (0 != SDL_SetSurfaceRLE(surface, 1))
     {
         /* Nothing to do here. */

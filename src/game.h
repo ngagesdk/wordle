@@ -68,32 +68,34 @@ typedef struct save_state
     int          valid_answer_index;
     Uint8        attempt;
     unsigned int seed;
-    unsigned int last_nyt_index;
     lang_t       language;
 
 } save_state_t;
 
 typedef struct game
 {
-    SDL_Renderer* renderer;
-    SDL_Texture*  render_target;
-    SDL_Texture*  tile_texture;
-    SDL_Window*   window;
-    Uint32        time_since_last_frame;
-    Uint32        time_a;
-    Uint32        time_b;
-    SDL_bool      is_running;
-    SDL_bool      show_menu;
-    SDL_bool      nyt_mode;
-    tile_t        tile[30];
-    int           current_index;
-    char          previous_letter;
-    int           valid_answer_index;
-    char          current_guess[6];
-    Uint8         attempt;
-    unsigned int  seed;
-    wordlist_t    wordlist;
-    save_state_t  save_state_cache;
+    SDL_Renderer*  renderer;
+    SDL_Texture*   render_target;
+    SDL_Texture*   tile_texture;
+    SDL_Texture*   font_texture;
+    SDL_Window*    window;
+    Uint32         time_since_last_frame;
+    Uint32         time_a;
+    Uint32         time_b;
+    SDL_bool       is_running;
+    SDL_bool       show_menu;
+    SDL_bool       nyt_mode;
+    SDL_bool       show_stats;
+    unsigned short nyt_attempt_count;
+    tile_t         tile[30];
+    int            current_index;
+    char           previous_letter;
+    int            valid_answer_index;
+    char           current_guess[6];
+    Uint8          attempt;
+    unsigned int   seed;
+    wordlist_t     wordlist;
+    save_state_t   save_state_cache;
 
 } game_t;
 

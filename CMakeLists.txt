@@ -50,6 +50,7 @@ set(RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 set(game_sources
     "${SRC_DIR}/main.c"
     "${SRC_DIR}/game.c"
+    "${SRC_DIR}/osd.c"
     "${SRC_DIR}/pfs.c"
     "${SRC_DIR}/utils.c"
     "${SRC_DIR}/wordlist_de.c"
@@ -59,7 +60,8 @@ set(game_sources
     "${SRC_DIR}/wordlist_utils.c")
 
 set(game_resources
-    "tiles.bmp")
+    "tiles.bmp"
+    "font.bmp")
 
 set(wordle_sources
     "${SRC_DIR}/wordle.cpp"

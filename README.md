@@ -42,6 +42,10 @@ A clone of Wordle for the Nokia N-Gage.
   [Kotus](https://kaino.kotus.fi/sanat/nykysuomi/), licensed under a [CC
   BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.fi) license.
 
+- [ASCII Bitmap Font
+  "cellphone"](https://opengameart.org/content/ascii-bitmap-font-cellphone)
+  by domsson.
+
 - This project's source code is, unless stated otherwise, licensed under
   the "The MIT License".  See the file [LICENSE.md](LICENSE.md) for
   details.

@@ -12,20 +12,25 @@
 #include <time.h>
 #include "game.h"
 
+#define STB_SPRINTF_IMPLEMENTATION
+#include <stb_sprintf.h>
+
 #if defined __SYMBIAN32__
 #define SAVE_FILE "C:\\wordle.sav"
 #else
 #define SAVE_FILE "wordle.sav"
 #endif
 
-static void clear_tiles(SDL_bool clear_state, game_t* core);
-static int  draw_tiles(game_t* core);
-static void delete_letter(game_t* core);
-static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
-static void goto_next_letter(game_t* core);
-static void reset_game(SDL_bool nyt_mode, game_t* core);
-static void select_next_letter(const char start_char, const char end_char, game_t* core);
-static void select_previous_letter(const char start_char, const char end_char, game_t* core);
+static void     clear_tiles(SDL_bool clear_state, game_t* core);
+static int      draw_tiles(game_t* core);
+static void     delete_letter(game_t* core);
+static void     get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
+static void     goto_next_letter(game_t* core);
+static void     reset_game(SDL_bool nyt_mode, game_t* core);
+static void     select_next_letter(const char start_char, const char end_char, game_t* core);
+static void     select_previous_letter(const char start_char, const char end_char, game_t* core);
+static SDL_bool has_game_ended(game_t* core);
+static void     show_results(game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
@@ -96,6 +101,12 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
+    status = osd_init((*core));
+    if (0 != status)
+    {
+        return status;
+    }
+
     set_language(LANG_ENGLISH, SDL_TRUE, (*core));
     srand(time(0));
 
@@ -148,7 +159,8 @@ int game_update(game_t *core)
 
     if (SDL_TRUE == core->show_menu)
     {
-        redraw_tiles = SDL_TRUE;
+        core->show_stats = SDL_FALSE;
+        redraw_tiles     = SDL_TRUE;
     }
 
     core->time_b = core->time_a;
@@ -390,53 +402,9 @@ int game_update(game_t *core)
 
                                     if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
                                     {
-                                        SDL_bool is_won = SDL_FALSE;
-                                        validate_current_guess(&is_won, core);
-
-                                        if (SDL_TRUE == is_won)
+                                        if (SDL_TRUE == has_game_ended(core))
                                         {
-                                            int phrase_index = core->attempt * 5;
-
-                                            clear_tiles(SDL_FALSE, core);
-
-                                            core->attempt       =  6;
-                                            core->current_index = -1;
-                                        }
-                                        else if (SDL_FALSE == is_won && 5 == core->attempt)
-                                        {
-                                            char valid_answer[6] = { 0 };
-
-                                            get_valid_answer(valid_answer, core);
-
-                                            clear_tiles(SDL_TRUE, core);
-                                            core->attempt         =  6;
-                                            core->current_index   = -1;
-
-                                            core->tile[5].letter  = 'T';
-                                            core->tile[6].letter  = 'O';
-                                            core->tile[7].letter  = 'O';
-
-                                            core->tile[12].letter = 'B';
-                                            core->tile[13].letter = 'A';
-                                            core->tile[14].letter = 'D';
-
-                                            if (SDL_FALSE == core->nyt_mode)
-                                            {
-                                                core->tile[20].letter = valid_answer[0];
-                                                core->tile[21].letter = valid_answer[1];
-                                                core->tile[22].letter = valid_answer[2];
-                                                core->tile[23].letter = valid_answer[3];
-                                                core->tile[24].letter = valid_answer[4];
-
-                                                core->tile[6].state   = CORRECT_LETTER;
-                                                core->tile[13].state  = WRONG_POSITION;
-
-                                                core->tile[20].state  = CORRECT_LETTER;
-                                                core->tile[21].state  = CORRECT_LETTER;
-                                                core->tile[22].state  = CORRECT_LETTER;
-                                                core->tile[23].state  = CORRECT_LETTER;
-                                                core->tile[24].state  = CORRECT_LETTER;
-                                            }
+                                            show_results(core);
                                         }
                                         else
                                         {
@@ -493,6 +461,19 @@ int game_update(game_t *core)
         if (0 != status)
         {
             return status;
+        }
+        if (SDL_TRUE == core->show_stats)
+        {
+            char stats[16]   = { 0 };
+            int  stats_pos_x = 64;
+
+            if (get_nyt_daily_index() >= 1000)
+            {
+                stats_pos_x = 57;
+            }
+
+            stbsp_snprintf(stats, 16, "Wordle %u %1u/6", get_nyt_daily_index(), core->nyt_attempt_count);
+            osd_print(stats, stats_pos_x, 12, core);
         }
     }
 
@@ -873,6 +854,11 @@ static void goto_next_letter(game_t* core)
         return;
     }
 
+    if (core->attempt >= 6)
+    {
+        return;
+    }
+
     get_index_limits(&lower_index_limit, &upper_index_limit, core);
 
     if (core->tile[core->current_index].letter != 0)
@@ -889,6 +875,11 @@ static void delete_letter(game_t* core)
     int upper_index_limit = 0;
 
     if (NULL == core)
+    {
+        return;
+    }
+
+    if (core->attempt >= 6)
     {
         return;
     }
@@ -911,9 +902,15 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
 
     clear_tiles(SDL_TRUE, core);
 
-    core->show_menu     = SDL_FALSE;
     core->attempt       = 0;
     core->current_index = 0;
+    core->show_menu     = SDL_FALSE;
+
+    if (SDL_TRUE == core->show_stats)
+    {
+        core->show_stats = SDL_FALSE;
+        draw_tiles(core);
+    }
 
     if (SDL_FALSE == nyt_mode)
     {
@@ -936,6 +933,11 @@ static void select_next_letter(const char start_char, const char end_char, game_
 {
     char* current_letter = &core->tile[core->current_index].letter;
 
+    if (core->attempt >= 6)
+    {
+        return;
+    }
+
     if (*current_letter >= start_char && *current_letter < end_char)
     {
         *current_letter += 1;
@@ -950,6 +952,11 @@ static void select_previous_letter(const char start_char, const char end_char, g
 {
     char* current_letter = &core->tile[core->current_index].letter;
 
+    if (core->attempt >= 6)
+    {
+        return;
+    }
+
     if (0 == *current_letter)
     {
         *current_letter = start_char;
@@ -961,4 +968,51 @@ static void select_previous_letter(const char start_char, const char end_char, g
     {
         *current_letter = end_char;
     }
+}
+
+static SDL_bool has_game_ended(game_t* core)
+{
+    SDL_bool is_won = SDL_FALSE;
+    validate_current_guess(&is_won, core);
+
+    if ((SDL_TRUE == is_won) || (SDL_FALSE == is_won && 5 == core->attempt))
+    {
+        return SDL_TRUE;
+    }
+
+    return SDL_FALSE;
+}
+
+static void show_results(game_t* core)
+{
+    char valid_answer[6] = { 0 };
+
+    get_valid_answer(valid_answer, core);
+    clear_tiles(SDL_FALSE, core);
+
+    if (SDL_TRUE == core->nyt_mode)
+    {
+        core->nyt_attempt_count = core->attempt + 1;
+        core->show_stats        = SDL_TRUE;
+    }
+    else
+    {
+        core->tile[20].letter = valid_answer[0];
+        core->tile[21].letter = valid_answer[1];
+        core->tile[22].letter = valid_answer[2];
+        core->tile[23].letter = valid_answer[3];
+        core->tile[24].letter = valid_answer[4];
+
+        core->tile[6].state   = CORRECT_LETTER;
+        core->tile[13].state  = WRONG_POSITION;
+
+        core->tile[20].state  = CORRECT_LETTER;
+        core->tile[21].state  = CORRECT_LETTER;
+        core->tile[22].state  = CORRECT_LETTER;
+        core->tile[23].state  = CORRECT_LETTER;
+        core->tile[24].state  = CORRECT_LETTER;
+    }
+
+    core->attempt       = 6;
+    core->current_index = -1;
 }
