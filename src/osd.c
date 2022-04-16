@@ -23,7 +23,7 @@ int osd_init(game_t* core)
 void osd_print(const char* display_text, const int pos_x, const int pos_y, game_t* core)
 {
     int      char_index  = 0;
-    size_t   text_length = strlen(display_text);
+    size_t   text_length = SDL_strlen(display_text);
     SDL_Rect src         = { 0,         0,         7, 9 };
     SDL_Rect dst         = { pos_x + 1, pos_y + 1, 7, 9 };
     SDL_Rect frame       = { pos_x, pos_y, (text_length * 7) + 2, 11 };
