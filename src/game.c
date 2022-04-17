@@ -56,18 +56,27 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         176, 208,
-        SDL_WINDOW_FULLSCREEN);
+#ifdef __SYMBIAN32__
+        SDL_WINDOW_FULLSCREEN
+#else
+        0
+#endif
+        );
 
     if (NULL == (*core)->window)
     {
         return 1;
     }
 
-    (*core)->renderer = SDL_CreateRenderer((*core)->window, 0, SDL_RENDERER_SOFTWARE);
+    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_ACCELERATED);
     if (NULL == (*core)->renderer)
     {
-        SDL_DestroyWindow((*core)->window);
-        return 1;
+        (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_SOFTWARE);
+        if (NULL == (*core)->renderer)
+        {
+            SDL_DestroyWindow((*core)->window);
+            return 1;
+        }
     }
     if (0 != SDL_RenderSetIntegerScale((*core)->renderer, SDL_TRUE))
     {
