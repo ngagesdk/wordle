@@ -213,10 +213,10 @@ unsigned int get_nyt_daily_index(void)
     {
         daily_index = 0;
     }
-    else if (daily_index >= (wordlist_en_word_count - 1))
+    else if (daily_index > (wordlist_en_word_count - 1))
     {
-        // Tbd: implement overrun;
-        daily_index = (wordlist_en_word_count - 1);
+        unsigned int overlap_index = daily_index % (wordlist_en_word_count - 1);
+        daily_index = overlap_index;
     }
 
     return daily_index;
