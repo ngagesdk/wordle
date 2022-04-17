@@ -743,7 +743,22 @@ static int draw_tiles(game_t* core)
                     break;
                 case 0x04: // Set lang. icon
                     src.x = 1056;
-                    src.y = 224;
+                    switch (core->wordlist.language)
+                    {
+                        default:
+                        case LANG_ENGLISH:
+                            src.y = 224;
+                            break;
+                        case LANG_RUSSIAN:
+                            src.y = 192;
+                            break;
+                        case LANG_GERMAN:
+                            src.y = 160;
+                            break;
+                        case LANG_FINNISH:
+                            src.y = 128;
+                            break;
+                    }
                     break;
                 case 0x05: // Quit game icon
                     src.x = 0;
