@@ -21,6 +21,7 @@
 #define SAVE_FILE "wordle.sav"
 #endif
 
+static void     load_and_cache_save_file(game_t* core);
 static void     clear_tiles(SDL_bool clear_state, game_t* core);
 static int      draw_tiles(game_t* core);
 static void     delete_letter(game_t* core);
@@ -34,9 +35,8 @@ static void     show_results(game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
-    int   status = 0;
-    int   index;
-    FILE* save_file;
+    int status = 0;
+    int index;
 
     *core = (game_t*)calloc(1, sizeof(struct game));
     if (NULL == *core)
@@ -117,17 +117,7 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     set_language(LANG_ENGLISH, SDL_TRUE, (*core));
     srand(time(0));
 
-    // Load and cache save file.
-    save_file = fopen(SAVE_FILE, "rb");
-    if (NULL == save_file)
-    {
-        /* Nothing to do here. */
-    }
-    else
-    {
-        fread(&(*core)->save_state_cache, sizeof(struct save_state), 1, save_file);
-        fclose(save_file);
-    }
+    load_and_cache_save_file((*core));
 
     (*core)->seed          = (unsigned int)rand();
     (*core)->current_index = 27;
@@ -231,12 +221,6 @@ int game_update(game_t *core)
                             {
                                 core->current_index = 25;
                             }
-                            break;
-                        case SDLK_F1:
-                            core->current_index = 25;
-                            break;
-                        case SDLK_F2:
-                            core->current_index = 29;
                             break;
                     }
                 }
@@ -591,6 +575,8 @@ void game_load(game_t* core)
         return;
     }
 
+    load_and_cache_save_file(core);
+
     if (SAVE_VERSION != core->save_state_cache.version)
     {
         // Do not load outdated or invalid save states.
@@ -614,6 +600,22 @@ void game_load(game_t* core)
     core->seed               = core->save_state_cache.seed;
 
     set_language(core->save_state_cache.language, SDL_FALSE, core);
+}
+
+static void load_and_cache_save_file(game_t* core)
+{
+    FILE* save_file;
+
+    save_file = fopen(SAVE_FILE, "rb");
+    if (NULL == save_file)
+    {
+        /* Nothing to do here. */
+    }
+    else
+    {
+        fread(&core->save_state_cache, sizeof(struct save_state), 1, save_file);
+        fclose(save_file);
+    }
 }
 
 static void clear_tiles(SDL_bool clear_state, game_t* core)
