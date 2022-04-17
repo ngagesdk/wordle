@@ -72,6 +72,17 @@ typedef struct save_state
 
 } save_state_t;
 
+typedef struct nyt_save_state
+{
+    tile_t   tile[30];
+    int      current_index;
+    char     previous_letter;
+    int      valid_answer_index;
+    Uint8    attempt;
+    SDL_bool has_ended;
+
+} nyt_save_state_t;
+
 typedef struct game
 {
     SDL_Renderer*  renderer;

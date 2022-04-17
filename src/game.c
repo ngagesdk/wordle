@@ -16,9 +16,11 @@
 #include <stb_sprintf.h>
 
 #if defined __SYMBIAN32__
-#define SAVE_FILE "C:\\wordle.sav"
+#define SAVE_FILE       "C:\\wordle.sav"
+#define DAILY_SAVE_FILE "C:\\daily.sav"
 #else
-#define SAVE_FILE "wordle.sav"
+#define SAVE_FILE       "wordle.sav"
+#define DAILY_SAVE_FILE "daily.sav"
 #endif
 
 static void     load_and_cache_save_file(game_t* core);
@@ -540,7 +542,7 @@ void game_save(game_t* core)
         return;
     }
 
-    state.version            = SAVE_VERSION;
+    state.version = SAVE_VERSION;
 
     for (index = 0; index < 30; index += 1)
     {
