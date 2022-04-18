@@ -482,6 +482,7 @@ int game_update(game_t *core)
         {
             return status;
         }
+
         if (SDL_TRUE == core->show_stats)
         {
             char stats[16]   = { 0 };
