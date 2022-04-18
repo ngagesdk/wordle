@@ -97,6 +97,7 @@ typedef struct game
     SDL_bool       show_menu;
     SDL_bool       nyt_mode;
     SDL_bool       show_stats;
+    SDL_bool       language_set_once;
     unsigned short nyt_attempt_count;
     tile_t         tile[30];
     int            current_index;

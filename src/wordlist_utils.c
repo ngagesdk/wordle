@@ -86,6 +86,11 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[27].letter = 0x03; // NYT mode icon
         core->tile[28].letter = 0x04; // Set lang. icon
         core->tile[29].letter = 0x05; // Quit game icon
+
+        if (SDL_TRUE == core->language_set_once)
+        {
+            core->tile[23].letter = 0x06; // Flag icon
+        }
     }
 
     core->wordlist.language = language;
