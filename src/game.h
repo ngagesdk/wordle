@@ -80,6 +80,7 @@ typedef struct nyt_save_state
     int      valid_answer_index;
     Uint8    attempt;
     SDL_bool has_ended;
+    Uint8    final_attempt;
 
 } nyt_save_state_t;
 
@@ -99,7 +100,6 @@ typedef struct game
     SDL_bool       show_stats;
     SDL_bool       language_set_once;
     SDL_bool       nyt_has_ended;
-    unsigned int   nyt_attempt_count;
     tile_t         tile[30];
     int            current_index;
     char           previous_letter;

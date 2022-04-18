@@ -422,7 +422,7 @@ int game_update(game_t *core)
                                         {
                                             if (SDL_TRUE == core->nyt_mode)
                                             {
-                                                core->nyt_final_attempt = core->attempt;
+                                                core->nyt_final_attempt = core->attempt + 1;
                                                 core->nyt_has_ended     = SDL_TRUE;
                                                 game_save(core);
                                             }
@@ -495,7 +495,7 @@ int game_update(game_t *core)
                 stats_pos_x = 57;
             }
 
-            stbsp_snprintf(stats, 16, "Wordle %u %1u/6", get_nyt_daily_index(), core->nyt_attempt_count);
+            stbsp_snprintf(stats, 16, "Wordle %u %1u/6", get_nyt_daily_index(), core->nyt_final_attempt);
             osd_print(stats, stats_pos_x, 12, core);
         }
     }
@@ -576,13 +576,13 @@ void game_save(game_t* core)
             state.tile[index].state        = core->tile[index].state;
         }
 
-        state.version  = SAVE_VERSION;
+        state.version            = SAVE_VERSION;
         state.current_index      = core->current_index;
         state.previous_letter    = core->previous_letter;
         state.valid_answer_index = core->valid_answer_index;
         state.attempt            = core->attempt;
-        state.seed     = core->seed;
-        state.language = core->wordlist.language;
+        state.seed               = core->seed;
+        state.language           = core->wordlist.language;
 
         save_file = fopen(SAVE_FILE, "wb");
         if (NULL == save_file)
@@ -608,15 +608,8 @@ void game_save(game_t* core)
         state.previous_letter    = core->previous_letter;
         state.valid_answer_index = core->valid_answer_index;
         state.has_ended          = core->nyt_has_ended;
-
-        if (SDL_TRUE == state.has_ended)
-        {
-            state.attempt = core->nyt_final_attempt;
-        }
-        else
-        {
-            state.attempt = core->attempt;
-        }
+        state.attempt            = core->attempt;
+        state.final_attempt      = core->nyt_final_attempt;
 
         save_file = fopen(DAILY_SAVE_FILE, "wb");
         if (NULL == save_file)
@@ -715,6 +708,7 @@ void game_load(SDL_bool load_daily, game_t* core)
             core->valid_answer_index = state.valid_answer_index;
             core->attempt            = state.attempt;
             core->nyt_has_ended      = state.has_ended;
+            core->nyt_final_attempt  = state.final_attempt;
 
             set_language(LANG_ENGLISH, SDL_FALSE, core);
         }
@@ -1135,8 +1129,7 @@ static void show_results(game_t* core)
 
     if (SDL_TRUE == core->nyt_mode)
     {
-        core->nyt_attempt_count = core->attempt + 1;
-        core->show_stats        = SDL_TRUE;
+        core->show_stats = SDL_TRUE;
     }
     else
     {
