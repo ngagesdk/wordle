@@ -225,6 +225,12 @@ int game_update(game_t *core)
                                 core->current_index = 25;
                             }
                             break;
+                        case SDLK_F1:
+                            core->current_index = 25;
+                            break;
+                        case SDLK_F2:
+                            core->current_index = 29;
+                            break;
                     }
                 }
                 else
