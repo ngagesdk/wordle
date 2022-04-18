@@ -99,12 +99,14 @@ typedef struct game
     SDL_bool       show_stats;
     SDL_bool       language_set_once;
     SDL_bool       nyt_has_ended;
+    unsigned int   nyt_attempt_count;
     tile_t         tile[30];
     int            current_index;
     char           previous_letter;
     int            valid_answer_index;
     char           current_guess[6];
     Uint8          attempt;
+    Uint8          nyt_final_attempt;
     unsigned int   seed;
     wordlist_t     wordlist;
 

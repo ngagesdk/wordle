@@ -422,7 +422,8 @@ int game_update(game_t *core)
                                         {
                                             if (SDL_TRUE == core->nyt_mode)
                                             {
-                                                core->nyt_has_ended = SDL_TRUE;
+                                                core->nyt_final_attempt = core->attempt;
+                                                core->nyt_has_ended     = SDL_TRUE;
                                             }
                                             show_results(core);
                                         }
@@ -493,7 +494,7 @@ int game_update(game_t *core)
                 stats_pos_x = 57;
             }
 
-            stbsp_snprintf(stats, 16, "Wordle %u %1u/6", get_nyt_daily_index(), core->attempt + 1);
+            stbsp_snprintf(stats, 16, "Wordle %u %1u/6", get_nyt_daily_index(), core->nyt_attempt_count);
             osd_print(stats, stats_pos_x, 12, core);
         }
     }
@@ -605,8 +606,16 @@ void game_save(game_t* core)
         state.current_index      = core->current_index;
         state.previous_letter    = core->previous_letter;
         state.valid_answer_index = core->valid_answer_index;
-        state.attempt            = core->attempt;
         state.has_ended          = core->nyt_has_ended;
+
+        if (SDL_TRUE == state.has_ended)
+        {
+            state.attempt = core->nyt_final_attempt;
+        }
+        else
+        {
+            state.attempt = core->attempt;
+        }
 
         save_file = fopen(DAILY_SAVE_FILE, "wb");
         if (NULL == save_file)
@@ -1125,7 +1134,8 @@ static void show_results(game_t* core)
 
     if (SDL_TRUE == core->nyt_mode)
     {
-        core->show_stats = SDL_TRUE;
+        core->nyt_attempt_count = core->attempt + 1;
+        core->show_stats        = SDL_TRUE;
     }
     else
     {
