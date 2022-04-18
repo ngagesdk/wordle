@@ -424,6 +424,7 @@ int game_update(game_t *core)
                                             {
                                                 core->nyt_final_attempt = core->attempt;
                                                 core->nyt_has_ended     = SDL_TRUE;
+                                                game_save(core);
                                             }
                                             show_results(core);
                                         }
