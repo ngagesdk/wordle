@@ -98,7 +98,7 @@ typedef struct game
     SDL_bool       nyt_mode;
     SDL_bool       show_stats;
     SDL_bool       language_set_once;
-    unsigned short nyt_attempt_count;
+    SDL_bool       nyt_has_ended;
     tile_t         tile[30];
     int            current_index;
     char           previous_letter;
@@ -107,7 +107,6 @@ typedef struct game
     Uint8          attempt;
     unsigned int   seed;
     wordlist_t     wordlist;
-    save_state_t   save_state_cache;
 
 } game_t;
 
@@ -116,6 +115,6 @@ SDL_bool game_is_running(game_t* core);
 int      game_update(game_t* core);
 void     game_quit(game_t* core);
 void     game_save(game_t* core);
-void     game_load(game_t* core);
+void     game_load(SDL_bool load_daily, game_t* core);
 
 #endif /* GAME_H */
