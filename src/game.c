@@ -229,22 +229,20 @@ int game_update(game_t *core)
                             if (core->current_index != 22)
                             {
                                 core->current_index -= 1;
-                            }
-
-                            if (core->current_index < 25)
-                            {
-                                core->current_index = 29;
+                                if (core->current_index < 25)
+                                {
+                                    core->current_index = 29;
+                                }
                             }
                             break;
                         case SDLK_RIGHT:
                             if (core->current_index != 22)
                             {
                                 core->current_index += 1;
-                            }
-
-                            if (core->current_index > 29)
-                            {
-                                core->current_index = 25;
+                                if (core->current_index > 29)
+                                {
+                                    core->current_index = 25;
+                                }
                             }
                             break;
                         case SDLK_UP:

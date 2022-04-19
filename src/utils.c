@@ -11,7 +11,7 @@
 #include "game.h"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include "stb_image.h"
 
 int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core)
 {
