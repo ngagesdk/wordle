@@ -60,8 +60,8 @@ set(game_sources
     "${SRC_DIR}/wordlist_utils.c")
 
 set(game_resources
-    "tiles.bmp"
-    "font.bmp")
+    "tiles.png"
+    "font.png")
 
 set(wordle_sources
     "${SRC_DIR}/wordle.cpp"
@@ -101,6 +101,7 @@ target_compile_definitions(
     PUBLIC
     __EXE__
     FUNCTION_NAME=__FUNCTION__
+    STBI_NO_THREAD_LOCALS
     ${GCC_DEFS}
     UID1=${UID1}
     UID2=${UID2}
