@@ -634,7 +634,7 @@ void game_load(SDL_bool load_daily, game_t* core)
 
     if (SDL_FALSE == load_daily)
     {
-        save_state_t state;
+        save_state_t state = { 0 };
 
         save_file = fopen(SAVE_FILE, "rb");
         if (NULL == save_file)
@@ -673,7 +673,7 @@ void game_load(SDL_bool load_daily, game_t* core)
     }
     else
     {
-        nyt_save_state_t state;
+        nyt_save_state_t state = { 0 };
 
         save_file = fopen(DAILY_SAVE_FILE, "rb");
         if (NULL == save_file)
