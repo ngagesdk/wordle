@@ -103,7 +103,7 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     SDL_SetRenderDrawColor((*core)->renderer, 0xff, 0xff, 0xff, 0x00);
     SDL_RenderClear((*core)->renderer);
 
-    status = load_texture_from_file((const char*)"tiles.bmp", &(*core)->tile_texture, (*core));
+    status = load_texture_from_file((const char*)"tiles.png", &(*core)->tile_texture, (*core));
     if (0 != status)
     {
         return status;

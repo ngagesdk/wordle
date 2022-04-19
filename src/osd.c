@@ -16,7 +16,7 @@ int osd_init(game_t* core)
 {
     int status;
 
-    status = load_texture_from_file((const char*)"font.bmp", &core->font_texture, core);
+    status = load_texture_from_file((const char*)"font.png", &core->font_texture, core);
     return status;
 }
 
