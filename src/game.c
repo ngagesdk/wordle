@@ -25,9 +25,10 @@
 
 static void     clear_tiles(SDL_bool clear_state, game_t* core);
 static int      draw_tiles(game_t* core);
-static void     delete_letter(game_t* core);
 static void     get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
 static void     goto_next_letter(game_t* core);
+static void     delete_letter(game_t* core);
+static void     move_rows_up(game_t* core);
 static void     reset_game(SDL_bool nyt_mode, game_t* core);
 static void     select_next_letter(const char start_char, const char end_char, game_t* core);
 static void     select_previous_letter(const char start_char, const char end_char, game_t* core);
@@ -186,17 +187,26 @@ int game_update(game_t *core)
                         case SDLK_5:
                             switch (core->current_index)
                             {
+                                case 22:
+                                    core->endless_mode = SDL_TRUE;
+                                    core->nyt_mode     = SDL_FALSE;
+                                    game_save(core);
+                                    reset_game(SDL_FALSE, core);
+                                    break;
                                 case 25:
-                                    core->nyt_mode = SDL_FALSE;
+                                    core->endless_mode = SDL_FALSE;
+                                    core->nyt_mode     = SDL_FALSE;
                                     game_save(core);
                                     reset_game(SDL_FALSE, core);
                                     break;
                                 case 26:
-                                    core->nyt_mode = SDL_FALSE;
+                                    core->endless_mode = SDL_FALSE;
+                                    core->nyt_mode     = SDL_FALSE;
                                     game_load(SDL_FALSE, core);
                                     break;
                                 case 27:
-                                    core->nyt_mode = SDL_TRUE;
+                                    core->endless_mode = SDL_FALSE;
+                                    core->nyt_mode     = SDL_TRUE;
                                     game_load(SDL_TRUE, core);
 
                                     if (SDL_TRUE == core->nyt_has_ended)
@@ -216,17 +226,37 @@ int game_update(game_t *core)
                             }
                             break;
                         case SDLK_LEFT:
-                            core->current_index -= 1;
+                            if (core->current_index != 22)
+                            {
+                                core->current_index -= 1;
+                            }
+
                             if (core->current_index < 25)
                             {
                                 core->current_index = 29;
                             }
                             break;
                         case SDLK_RIGHT:
-                            core->current_index += 1;
+                            if (core->current_index != 22)
+                            {
+                                core->current_index += 1;
+                            }
+
                             if (core->current_index > 29)
                             {
                                 core->current_index = 25;
+                            }
+                            break;
+                        case SDLK_UP:
+                            if (27 == core->current_index)
+                            {
+                                core->current_index = 22;
+                            }
+                            break;
+                        case SDLK_DOWN:
+                            if (22 == core->current_index)
+                            {
+                                core->current_index = 27;
                             }
                             break;
                         case SDLK_F1:
@@ -430,7 +460,15 @@ int game_update(game_t *core)
                                         }
                                         else
                                         {
-                                            core->attempt += 1;
+                                            if ((SDL_TRUE == core->endless_mode) && (4 == core->attempt))
+                                            {
+                                                move_rows_up(core);
+                                                core->current_index -= 5;
+                                            }
+                                            else
+                                            {
+                                                core->attempt += 1;
+                                            }
                                             goto_next_letter(core);
                                         }
                                     }
@@ -846,15 +884,19 @@ static int draw_tiles(game_t* core)
                     src.x = 0;
                     src.y = 192;
                     break;
-                case 0x04: // Set lang. icon
+                case 0x04: // Endless mode icon
+                    src.x = 1056;
+                    src.y = 0;
+                    break;
+                case 0x05: // Set lang. icon
                     src.x = 1056;
                     src.y = 32;
                     break;
-                case 0x05: // Quit game icon
+                case 0x06: // Quit game icon
                     src.x = 0;
                     src.y = 224;
                     break;
-                case 0x06: // Flag icon
+                case 0x07: // Flag icon
                     src.x = 1056;
                     switch (core->wordlist.language)
                     {
@@ -883,7 +925,8 @@ static int draw_tiles(game_t* core)
                 0x03     != core->tile[index].letter   &&
                 0x04     != core->tile[index].letter   &&
                 0x05     != core->tile[index].letter   &&
-                0x06     != core->tile[index].letter)
+                0x06     != core->tile[index].letter   &&
+                0x07     != core->tile[index].letter)
             {
                 src.y += 128;
             }
@@ -1021,6 +1064,21 @@ static void delete_letter(game_t* core)
     core->tile[core->current_index].letter  = 0;
     core->current_index                    -= 1;
     core->current_index                     = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
+}
+
+static void move_rows_up(game_t* core)
+{
+    int counter;
+    int tile_index;
+    for (counter = 0; counter < 5; counter += 1)
+    {
+        for (tile_index = 1; tile_index < 30; tile_index += 1)
+        {
+            core->tile[tile_index - 1].letter       = core->tile[tile_index].letter;
+            core->tile[tile_index - 1].letter_index = core->tile[tile_index].letter_index;
+            core->tile[tile_index - 1].state        = core->tile[tile_index].state;
+        }
+    }
 }
 
 static void reset_game(SDL_bool nyt_mode, game_t* core)

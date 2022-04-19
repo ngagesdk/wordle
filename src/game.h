@@ -96,6 +96,7 @@ typedef struct game
     Uint32         time_b;
     SDL_bool       is_running;
     SDL_bool       show_menu;
+    SDL_bool       endless_mode;
     SDL_bool       nyt_mode;
     SDL_bool       show_stats;
     SDL_bool       language_set_once;
