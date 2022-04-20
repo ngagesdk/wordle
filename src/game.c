@@ -730,7 +730,10 @@ void game_load(SDL_bool load_daily, game_t* core)
         }
         else
         {
-            fread(&state, sizeof(struct save_state), 1, save_file);
+            if (1 != fread(&state, sizeof(struct save_state), 1, save_file))
+            {
+                /* Nothing to do here. */
+            }
             fclose(save_file);
         }
 
@@ -769,7 +772,10 @@ void game_load(SDL_bool load_daily, game_t* core)
         }
         else
         {
-            fread(&state, sizeof(struct nyt_save_state), 1, save_file);
+            if (1 != fread(&state, sizeof(struct nyt_save_state), 1, save_file))
+            {
+                /* Nothing to do here. */
+            }
             fclose(save_file);
         }
 
