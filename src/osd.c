@@ -10,7 +10,12 @@
 #include <SDL.h>
 #include "game.h"
 
+int  osd_init(game_t* core);
+void osd_print(const char* display_text, const int pos_x, const int pos_y, game_t* core);
+
 static void get_character_position(const unsigned char character, int* pos_x, int* pos_y);
+
+extern int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core);
 
 int osd_init(game_t* core)
 {

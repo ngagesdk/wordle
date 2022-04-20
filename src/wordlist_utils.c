@@ -11,52 +11,54 @@
 void         set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);
 void         set_next_language(game_t* core);
 unsigned int get_nyt_daily_index(void);
-void         get_valid_answer(char valid_answer[6], game_t* core);
-SDL_bool     is_guess_allowed(const char* guess, game_t* core);
+void         get_valid_answer(unsigned char valid_answer[6], game_t* core);
+SDL_bool     is_guess_allowed(const unsigned char* guess, game_t* core);
 void         validate_current_guess(SDL_bool* is_won, game_t* core);
+
+extern Uint32 generate_hash(const unsigned char* name);
 
 extern const unsigned int  wordlist_en_letter_count;
 extern const unsigned int  wordlist_en_word_count;
 extern const unsigned int  wordlist_en_allowed_count;
-extern const char          wordlist_en_first_letter;
-extern const char          wordlist_en_last_letter;
+extern const unsigned char wordlist_en_first_letter;
+extern const unsigned char wordlist_en_last_letter;
 extern const Uint32        wordlist_en_hash[0x90b];
 extern const unsigned char wordlist_en[0x90b][5];
 extern const Uint32        wordlist_en_allowed_hash[0x29a7];
 extern const unsigned char wordlist_en_allowed[0x29a7][5];
 extern const SDL_bool      wordlist_en_is_cyrillic;
-extern const char          wordlist_en_special_chars[1];
-extern const char          wordlist_en_title[5];
+extern const unsigned char wordlist_en_special_chars[1];
+extern const unsigned char wordlist_en_title[5];
 
 extern const unsigned int  wordlist_ru_letter_count;
 extern const unsigned int  wordlist_ru_word_count;
-extern const char          wordlist_ru_first_letter;
-extern const char          wordlist_ru_last_letter;
+extern const unsigned char wordlist_ru_first_letter;
+extern const unsigned char wordlist_ru_last_letter;
 extern const Uint32        wordlist_ru_hash[0x1039];
 extern const unsigned char wordlist_ru[0x1039][5];
 extern const SDL_bool      wordlist_ru_is_cyrillic;
-extern const char          wordlist_ru_special_chars[1];
-extern const char          wordlist_ru_title[5];
+extern const unsigned char wordlist_ru_special_chars[1];
+extern const unsigned char wordlist_ru_title[5];
 
 extern const unsigned int  wordlist_de_letter_count;
 extern const unsigned int  wordlist_de_word_count;
-extern const char          wordlist_de_first_letter;
-extern const char          wordlist_de_last_letter;
+extern const unsigned char wordlist_de_first_letter;
+extern const unsigned char wordlist_de_last_letter;
 extern const Uint32        wordlist_de_hash[0x185d];
 extern const unsigned char wordlist_de[0x185d][5];
 extern const SDL_bool      wordlist_de_is_cyrillic;
-extern const char          wordlist_de_special_chars[4];
-extern const char          wordlist_de_title[5];
+extern const unsigned char wordlist_de_special_chars[4];
+extern const unsigned char wordlist_de_title[5];
 
 extern const unsigned int  wordlist_fi_letter_count;
 extern const unsigned int  wordlist_fi_word_count;
-extern const char          wordlist_fi_first_letter;
-extern const char          wordlist_fi_last_letter;
+extern const unsigned char wordlist_fi_first_letter;
+extern const unsigned char wordlist_fi_last_letter;
 extern const Uint32        wordlist_fi_hash[0xcc7];
 extern const unsigned char wordlist_fi[0xcc7][5];
 extern const SDL_bool      wordlist_fi_is_cyrillic;
-extern const char          wordlist_fi_special_chars[1];
-extern const char          wordlist_fi_title[5];
+extern const unsigned char wordlist_fi_special_chars[1];
+extern const unsigned char wordlist_fi_title[5];
 
 void set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core)
 {
@@ -218,16 +220,16 @@ unsigned int get_nyt_daily_index(void)
     {
         daily_index = 0;
     }
-    else if (daily_index > (wordlist_en_word_count - 1))
+    else if (daily_index > (int)(wordlist_en_word_count - 1))
     {
-        unsigned int overlap_index = daily_index % (wordlist_en_word_count - 1);
+        int overlap_index = daily_index % (wordlist_en_word_count - 1);
         daily_index = overlap_index;
     }
 
     return daily_index;
 }
 
-void get_valid_answer(char valid_answer[6], game_t* core)
+void get_valid_answer(unsigned char valid_answer[6], game_t* core)
 {
     int index;
 
@@ -243,7 +245,7 @@ void get_valid_answer(char valid_answer[6], game_t* core)
     valid_answer[5] = 0;
 }
 
-SDL_bool is_guess_allowed(const char* guess, game_t* core)
+SDL_bool is_guess_allowed(const unsigned char* guess, game_t* core)
 {
     Uint32 guess_hash;
 
@@ -302,13 +304,13 @@ void validate_current_guess(SDL_bool* is_won, game_t* core)
     guess_hash = generate_hash(core->current_guess);
 
     {
-        int    letter_index;
-        int    answer_index;
-        Uint32 answer_hash;
-        int    start_index     = 0;
-        int    end_index       = core->wordlist.word_count - 1;
-        char   valid_answer[6] = { 0 };
-        char   shelf[5]        = { 0 };
+        int           letter_index;
+        int           answer_index;
+        Uint32        answer_hash;
+        int           start_index     = 0;
+        int           end_index       = core->wordlist.word_count - 1;
+        unsigned char valid_answer[6] = { 0 };
+        //unsigned char shelf[5];       = { 0 };
 
         for (answer_index = start_index; answer_index < end_index; answer_index +=1)
         {
@@ -330,7 +332,7 @@ void validate_current_guess(SDL_bool* is_won, game_t* core)
             if (core->current_guess[letter_index] == valid_answer[letter_index])
             {
                 current_tile->state        = CORRECT_LETTER;
-                shelf[letter_index]        = valid_answer[letter_index];
+                //shelf[letter_index]        = valid_answer[letter_index];
                 valid_answer[letter_index] = 0;
             }
         }

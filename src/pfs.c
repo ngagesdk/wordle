@@ -19,6 +19,11 @@
 
 char mDataPath[kDataPath_MaxLength];
 
+void    init_file_reader(const char * dataFilePath);
+size_t  size_of_file(const char * path);
+Uint8  *load_binary_file_from_path(const char * path);
+FILE   *open_binary_file_from_path(const char * path);
+
 void init_file_reader(const char * dataFilePath)
 {
     sprintf (mDataPath, "%s", dataFilePath);

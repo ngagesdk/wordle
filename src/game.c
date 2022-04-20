@@ -30,16 +30,30 @@ static void     goto_next_letter(game_t* core);
 static void     delete_letter(game_t* core);
 static void     move_rows_up(game_t* core);
 static void     reset_game(SDL_bool nyt_mode, game_t* core);
-static void     select_next_letter(const char start_char, const char end_char, game_t* core);
-static void     select_previous_letter(const char start_char, const char end_char, game_t* core);
+static void     select_next_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
+static void     select_previous_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
 static void     select_utf8_letter(const char *text, game_t* core);
 static SDL_bool has_game_ended(game_t* core);
 static void     show_results(game_t* core);
 
+extern void          init_file_reader(const char * dataFilePath);
+extern size_t        size_of_file(const char * path);
+extern Uint8        *load_binary_file_from_path(const char * path);
+extern int           osd_init(game_t* core);
+extern void          osd_print(const char* display_text, const int pos_x, const int pos_y, game_t* core);
+extern int           load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core);
+extern Uint32        generate_hash(const unsigned char* name);
+extern unsigned int  xorshift(unsigned int* xs);
+extern void          set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);
+extern void          set_next_language(game_t* core);
+extern unsigned int  get_nyt_daily_index(void);
+extern void          get_valid_answer(unsigned char valid_answer[6], game_t* core);
+extern SDL_bool      is_guess_allowed(const unsigned char* guess, game_t* core);
+extern void          validate_current_guess(SDL_bool* is_won, game_t* core);
+
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
     int status = 0;
-    int index;
 
     *core = (game_t*)calloc(1, sizeof(struct game));
     if (NULL == *core)
@@ -146,7 +160,6 @@ int game_update(game_t *core)
     SDL_bool     redraw_tiles = SDL_FALSE;
     SDL_Rect     dst          = { 0, 0, 176, 208 };
     Uint32       delta_time   = 0;
-    const Uint8* keystate     = SDL_GetKeyboardState(NULL);
     SDL_Event    event;
 
     if (0 == core->tile[0].letter)
@@ -278,8 +291,8 @@ int game_update(game_t *core)
                 }
                 else
                 {
-                    char start_char;
-                    char end_char;
+                    unsigned char start_char;
+                    unsigned char end_char;
 
                     switch (event.key.keysym.sym)
                     {
@@ -407,7 +420,7 @@ int game_update(game_t *core)
                         case SDLK_KP_0:
                             if (0 != core->wordlist.special_chars[0])
                             {
-                                char* current_letter = &core->tile[core->current_index].letter;
+                                unsigned char* current_letter = &core->tile[core->current_index].letter;
 
                                 start_char = core->wordlist.first_letter;
                                 end_char   = core->wordlist.last_letter;
@@ -836,9 +849,9 @@ static int draw_tiles(game_t* core)
 
         if ((0 == index) || (0 == (index % 5)))
         {
-            const int hash_ngage  = 0x0daa8447; // NGAGE
-            char check_pattern[6] = { 0 };
-            int  letter_index;
+            const Uint32  hash_ngage       = 0x0daa8447; // NGAGE
+            unsigned char check_pattern[6] = { 0 };
+            int           letter_index;
 
             for (letter_index = 0; letter_index < 5; letter_index += 1)
             {
@@ -1123,8 +1136,6 @@ static void move_rows_up(game_t* core)
 
 static void reset_game(SDL_bool nyt_mode, game_t* core)
 {
-    int index;
-
     if (NULL == core)
     {
         return;
@@ -1145,7 +1156,7 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
     if (SDL_FALSE == nyt_mode)
     {
         core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
-        while (core->valid_answer_index < 0 || core->valid_answer_index > core->wordlist.word_count)
+        while (core->valid_answer_index > core->wordlist.word_count)
         {
             core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
         }
@@ -1159,9 +1170,9 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
     }
 }
 
-static void select_next_letter(const char start_char, const char end_char, game_t* core)
+static void select_next_letter(const unsigned char start_char, const unsigned char end_char, game_t* core)
 {
-    char* current_letter = &core->tile[core->current_index].letter;
+    unsigned char* current_letter = &core->tile[core->current_index].letter;
 
     if (core->attempt >= 6)
     {
@@ -1178,9 +1189,9 @@ static void select_next_letter(const char start_char, const char end_char, game_
     }
 }
 
-static void select_previous_letter(const char start_char, const char end_char, game_t* core)
+static void select_previous_letter(const unsigned char start_char, const unsigned char end_char, game_t* core)
 {
-    char* current_letter = &core->tile[core->current_index].letter;
+    unsigned char* current_letter = &core->tile[core->current_index].letter;
 
     if (core->attempt >= 6)
     {
@@ -1202,7 +1213,7 @@ static void select_previous_letter(const char start_char, const char end_char, g
 
 static void select_utf8_letter(const char *text, game_t* core)
 {
-    char* current_letter = &core->tile[core->current_index].letter;
+    unsigned char* current_letter = (unsigned char*)&core->tile[core->current_index].letter;
 
     if (SDL_isalpha(*text))
     {
@@ -1235,7 +1246,7 @@ static SDL_bool has_game_ended(game_t* core)
 
 static void show_results(game_t* core)
 {
-    char valid_answer[6] = { 0 };
+    unsigned char valid_answer[6] = { 0 };
 
     get_valid_answer(valid_answer, core);
     clear_tiles(SDL_FALSE, core);

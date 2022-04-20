@@ -1,0 +1,11 @@
+image: ubuntu
+
+before_build:
+- sudo apt-get update
+- sudo apt-get install -y libsdl2-dev
+
+build_script:
+- mkdir -p build
+- cd build
+- cmake ../cmake/
+- make

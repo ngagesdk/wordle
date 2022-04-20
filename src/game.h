@@ -43,9 +43,9 @@ typedef enum
 
 typedef struct tile
 {
-    char         letter;
-    unsigned int letter_index;
-    state_t      state;
+    unsigned char letter;
+    unsigned int  letter_index;
+    state_t       state;
 
 } tile_t;
 
@@ -55,10 +55,10 @@ typedef struct wordlist
     unsigned int          letter_count;
     unsigned int          word_count;
     unsigned int          allowed_count;
-    char                  first_letter;
-    char                  last_letter;
+    unsigned char         first_letter;
+    unsigned char         last_letter;
     SDL_bool              is_cyrillic;
-    const char*           special_chars;
+    const unsigned char*  special_chars;
     const Uint32*         hash;
     const unsigned char (*list)[5];
     const Uint32*         allowed_hash;
@@ -68,26 +68,26 @@ typedef struct wordlist
 
 typedef struct save_state
 {
-    unsigned int version;
-    tile_t       tile[30];
-    int          current_index;
-    char         previous_letter;
-    int          valid_answer_index;
-    Uint8        attempt;
-    unsigned int seed;
-    lang_t       language;
+    unsigned int  version;
+    tile_t        tile[30];
+    int           current_index;
+    unsigned char previous_letter;
+    unsigned int  valid_answer_index;
+    Uint8         attempt;
+    unsigned int  seed;
+    lang_t        language;
 
 } save_state_t;
 
 typedef struct nyt_save_state
 {
-    tile_t   tile[30];
-    int      current_index;
-    char     previous_letter;
-    int      valid_answer_index;
-    Uint8    attempt;
-    SDL_bool has_ended;
-    Uint8    final_attempt;
+    tile_t        tile[30];
+    int           current_index;
+    unsigned char previous_letter;
+    unsigned int  valid_answer_index;
+    Uint8         attempt;
+    SDL_bool      has_ended;
+    Uint8         final_attempt;
 
 } nyt_save_state_t;
 
@@ -110,9 +110,9 @@ typedef struct game
     SDL_bool       nyt_has_ended;
     tile_t         tile[30];
     int            current_index;
-    char           previous_letter;
-    int            valid_answer_index;
-    char           current_guess[6];
+    unsigned char  previous_letter;
+    unsigned int   valid_answer_index;
+    unsigned char  current_guess[6];
     Uint8          attempt;
     Uint8          nyt_final_attempt;
     unsigned int   seed;

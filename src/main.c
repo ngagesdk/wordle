@@ -21,6 +21,9 @@ int main(int argc, char *argv[])
     int     status = 0;
     game_t* core   = NULL;
 
+    (void)argc;
+    (void)argv;
+
     status = game_init(RES_FILE, "Wordle", &core);
     if (0 != status)
     {

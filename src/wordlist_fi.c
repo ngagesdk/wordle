@@ -9,13 +9,13 @@
 
 #include <SDL.h>
 
-const unsigned int wordlist_fi_letter_count     = 26;
-const unsigned int wordlist_fi_word_count       = 0xcc7;
-const char         wordlist_fi_first_letter     = 0x41; // А
-const char         wordlist_fi_last_letter      = 0x5a; // Z
-const SDL_bool     wordlist_fi_is_cyrillic      = SDL_FALSE;
-const char         wordlist_fi_special_chars[3] = { 0xc4, 0xd6, 0x00 }; // Ä, Ö
-const char         wordlist_fi_title[5]         = { 'S', 'A', 'N', 'I', 'S' };
+const unsigned int  wordlist_fi_letter_count     = 26;
+const unsigned int  wordlist_fi_word_count       = 0xcc7;
+const unsigned char wordlist_fi_first_letter     = 0x41; // А
+const unsigned char wordlist_fi_last_letter      = 0x5a; // Z
+const SDL_bool      wordlist_fi_is_cyrillic      = SDL_FALSE;
+const unsigned char wordlist_fi_special_chars[3] = { 0xc4, 0xd6, 0x00 }; // Ä, Ö
+const unsigned char wordlist_fi_title[5]         = { 'S', 'A', 'N', 'I', 'S' };
 
 const unsigned int wordlist_fi_hash[0xcc7] =
 {

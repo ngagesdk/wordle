@@ -13,6 +13,13 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+int          load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core);
+Uint32       generate_hash(const unsigned char* name);
+unsigned int xorshift(unsigned int* xs);
+
+extern size_t  size_of_file(const char * path);
+extern Uint8  *load_binary_file_from_path(const char * path);
+
 int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core)
 {
     Uint8*         resource_buf;
