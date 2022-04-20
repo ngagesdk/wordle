@@ -38,17 +38,31 @@ size_t size_of_file(const char * path)
     Uint32  offset    = 0;
     Uint16  entries   = 0;
 
-    fread(&entries, 2, 1, mDataPack);
+    if (1 != fread(&entries, 2, 1, mDataPack))
+    {
+        /* Nothing to do here. */
+    }
 
     for (c = 0; c < entries; ++c)
     {
         uint8_t stringSize = 0;
 
-        fread(&offset, 4, 1, mDataPack);
-        fread(&stringSize, 1, 1, mDataPack);
-        fread(&buffer, stringSize + 1, 1, mDataPack);
+        if (1 != fread(&offset, 4, 1, mDataPack))
+        {
+            /* Nothing to do here. */
+        }
 
-        if (!strcmp(buffer, path))
+        if (1 != fread(&stringSize, 1, 1, mDataPack))
+        {
+            /* Nothing to do here. */
+        }
+
+        if (1 != fread(&buffer, stringSize + 1, 1, mDataPack))
+        {
+            /* Nothing to do here. */
+        }
+
+        if (0 == strcmp(buffer, path))
         {
             goto found;
         }
@@ -62,7 +76,12 @@ found:
     }
 
     fseek(mDataPack, offset, SEEK_SET);
-    fread(&size, 4, 1, mDataPack);
+
+    if (1 != fread(&size, 4, 1, mDataPack))
+    {
+        /* Nothing to do here. */
+    }
+
     fclose(mDataPack);
 
     return size;
@@ -102,7 +121,7 @@ Uint8 *load_binary_file_from_path(const char * path)
             /* Nothing to do here. */
         }
 
-        if (!strcmp(buffer, path))
+        if (0 == strcmp(buffer, path))
         {
             goto found;
         }
@@ -167,7 +186,7 @@ FILE *open_binary_file_from_path(const char * path)
             /* Nothing to do here. */
         }
 
-        if (!strcmp(buffer, path))
+        if (0 == strcmp(buffer, path))
         {
             goto found;
         }
