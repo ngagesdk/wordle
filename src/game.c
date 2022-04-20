@@ -9,6 +9,7 @@
 
 #include <SDL.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "game.h"
 
@@ -88,7 +89,7 @@ int game_init(const char* resource_file, const char* title, game_t** core)
 #ifdef __SYMBIAN32__
     (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_SOFTWARE);
 #else
-    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_ACCELERATED);
+    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 #endif
     if (NULL == (*core)->renderer)
     {
@@ -759,7 +760,7 @@ void game_load(SDL_bool load_daily, game_t* core)
     }
     else
     {
-        nyt_save_state_t state = { 0 };
+        nyt_save_state_t state = {{}, 0 };
 
         save_file = fopen(DAILY_SAVE_FILE, "rb");
         if (NULL == save_file)
