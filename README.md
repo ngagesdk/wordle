@@ -1,6 +1,7 @@
 # Wordle
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d91244e94a37417fbd1649ae5f2def6f)](https://www.codacy.com/gh/ngagesdk/wordle/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ngagesdk/wordle&amp;utm_campaign=Badge_Grade)
+[![CMake](https://github.com/ngagesdk/wordle/actions/workflows/cmake.yml/badge.svg)](https://github.com/ngagesdk/wordle/actions/workflows/cmake.yml)
 
 A clone of Wordle for the Nokia N-Gage.
 
