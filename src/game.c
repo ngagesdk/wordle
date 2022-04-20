@@ -187,12 +187,6 @@ int game_update(game_t *core)
                         case SDLK_5:
                             switch (core->current_index)
                             {
-                                case 22:
-                                    core->endless_mode = SDL_TRUE;
-                                    core->nyt_mode     = SDL_FALSE;
-                                    game_save(core);
-                                    reset_game(SDL_FALSE, core);
-                                    break;
                                 case 25:
                                     core->endless_mode = SDL_FALSE;
                                     core->nyt_mode     = SDL_FALSE;
@@ -877,13 +871,13 @@ static int draw_tiles(game_t* core)
                 case 0x2d: // Hyphen
                     src.x = 992;
                     break;
-                case 0x01: // Load game icon
-                    src.x = 0;
-                    src.y = 128;
-                    break;
-                case 0x02: // New game icon
+                case 0x01: // New game icon
                     src.x = 0;
                     src.y = 160;
+                    break;
+                case 0x02: // Load game icon
+                    src.x = 0;
+                    src.y = 128;
                     break;
                 case 0x03: // Game mode icon
                     src.x = 1056;
