@@ -50,5 +50,4 @@ target_compile_options(
 target_compile_definitions(
     wordle
     PUBLIC
-    HAVE_CTYPE_H
     SDL_MAIN_HANDLED)
