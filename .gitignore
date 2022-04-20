@@ -1,4 +1,6 @@
 .vs
+build
 out
 CMakeSettings.json
+sis
 tmp

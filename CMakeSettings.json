@@ -15,6 +15,11 @@
           "name": "INSTALL_EKA2L1",
           "value": "True",
           "type": "BOOL"
+        },
+        {
+          "name": "GENERATE_SIS",
+          "value": "True",
+          "type": "BOOL"
         }
       ]
     }

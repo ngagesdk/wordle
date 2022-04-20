@@ -28,7 +28,8 @@ add_executable(
 
 target_link_libraries(
     wordle
-    ${SDL2_LIBRARIES})
+    ${SDL2_LIBRARIES}
+    ${SDL_LIBS})
 
 target_link_options(
     wordle

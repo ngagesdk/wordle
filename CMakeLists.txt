@@ -13,7 +13,8 @@ include(SDL)
 include(dbgprint)
 
 # Use CMake or Visual Studio to enable these settings.
-option(INSTALL_EKA2L1 "Install app for EKA2L1" OFF)
+option(INSTALL_EKA2L1 "Install app for EKA2L1"         OFF)
+option(GENERATE_SIS   "Generate Symbian SIS installer" OFF)
 
 set(UID1    0x1000007a) # KExecutableImageUidValue, e32uid.h
 set(UID2    0x100039ce) # KAppUidValue16, apadef.h
@@ -88,6 +89,15 @@ if(INSTALL_EKA2L1)
     copy_file(wordle.aif ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle wordle.aif)
 endif()
 
+if(GENERATE_SIS)
+    copy_file(data.pfs   ${RESOURCE_DIR}             ${CMAKE_CURRENT_SOURCE_DIR}/sis data.pfs)
+    copy_file(game.exe   ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/sis game.exe)
+    copy_file(wordle.app ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/sis wordle.app)
+    copy_file(wordle.rsc ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/sis wordle.rsc)
+    copy_file(wordle.aif ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/sis wordle.aif)
+    build_sis(${RESOURCE_DIR} wordle)
+endif()
+
 add_dependencies(
     game.exe
     game)
@@ -110,6 +120,7 @@ target_compile_definitions(
 target_compile_options(
     game
     PUBLIC
+    -Wall
     -O3)
 
 target_include_directories(
