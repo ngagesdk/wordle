@@ -226,7 +226,7 @@ int game_update(game_t *core)
                                             core->endless_mode = SDL_TRUE;
                                             core->nyt_mode     = SDL_FALSE;
 
-                                            game_load(SDL_FALSE, core);
+                                            reset_game(SDL_FALSE, core);
                                             break;
                                     }
                                     break;
