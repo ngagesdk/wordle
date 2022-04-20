@@ -23,6 +23,11 @@
 #define DAILY_SAVE_FILE "daily.sav"
 #endif
 
+#if ! SDL_VERSION_ATLEAST(2, 0, 20)
+int SDL_isalpha(int x) { return isalpha(x); }
+#define SDL_clamp(x, a, b) (((x) < (a)) ? (a) : (((x) > (b)) ? (b) : (x)))
+#endif
+
 static void     clear_tiles(SDL_bool clear_state, game_t* core);
 static int      draw_tiles(game_t* core);
 static void     get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
