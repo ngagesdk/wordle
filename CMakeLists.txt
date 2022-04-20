@@ -50,6 +50,7 @@ set(RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 set(game_sources
     "${SRC_DIR}/main.c"
     "${SRC_DIR}/game.c"
+    "${SRC_DIR}/osd.c"
     "${SRC_DIR}/pfs.c"
     "${SRC_DIR}/utils.c"
     "${SRC_DIR}/wordlist_de.c"
@@ -59,7 +60,8 @@ set(game_sources
     "${SRC_DIR}/wordlist_utils.c")
 
 set(game_resources
-    "tiles.bmp")
+    "tiles.png"
+    "font.png")
 
 set(wordle_sources
     "${SRC_DIR}/wordle.cpp"
@@ -75,6 +77,7 @@ build_exe(game exe   ${UID1} ${UID2} ${UID3}    "${game_libs}")
 build_dll(wordle app ${UID1} ${UID2} ${APP_UID} "${wordle_libs}")
 
 pack_assets(${RESOURCE_DIR} "${game_resources}")
+build_aif(${RESOURCE_DIR} wordle ${APP_UID})
 build_resource(${SRC_DIR} wordle "")
 
 if(INSTALL_EKA2L1)
@@ -82,6 +85,7 @@ if(INSTALL_EKA2L1)
     copy_file(game.exe   ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle game.exe)
     copy_file(wordle.app ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle wordle.app)
     copy_file(wordle.rsc ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle wordle.rsc)
+    copy_file(wordle.aif ${CMAKE_CURRENT_BINARY_DIR} ${EKA2L1_E_DRIVE}/System/Apps/wordle wordle.aif)
 endif()
 
 add_dependencies(
@@ -97,6 +101,7 @@ target_compile_definitions(
     PUBLIC
     __EXE__
     FUNCTION_NAME=__FUNCTION__
+    STBI_NO_THREAD_LOCALS
     ${GCC_DEFS}
     UID1=${UID1}
     UID2=${UID2}

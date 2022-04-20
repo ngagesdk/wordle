@@ -76,16 +76,21 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[8].letter  = 'G';
         core->tile[9].letter  = 'E';
         core->tile[10].state  = CORRECT_LETTER;
-        core->tile[11].state  = WRONG_POSITION;
+        core->tile[11].state  = CORRECT_LETTER;
         core->tile[12].state  = CORRECT_LETTER;
-        core->tile[13].state  = CORRECT_LETTER;
-        core->tile[14].state  = CORRECT_LETTER;
+        core->tile[13].state  = WRONG_POSITION;
+        core->tile[14].state  = WRONG_POSITION;
 
-        core->tile[25].letter = 0x01; // Load game icon
-        core->tile[26].letter = 0x02; // New game icon
-        core->tile[27].letter = 0x03; // NYT mode icon
+        core->tile[25].letter = 0x01; // New game icon
+        core->tile[26].letter = 0x02; // Load game icon
+        core->tile[27].letter = 0x03; // Game mode icon
         core->tile[28].letter = 0x04; // Set lang. icon
         core->tile[29].letter = 0x05; // Quit game icon
+
+        if (SDL_TRUE == core->language_set_once)
+        {
+            core->tile[23].letter = 0x06; // Flag icon
+        }
     }
 
     core->wordlist.language = language;
@@ -213,10 +218,10 @@ unsigned int get_nyt_daily_index(void)
     {
         daily_index = 0;
     }
-    else if (daily_index >= (wordlist_en_word_count - 1))
+    else if (daily_index > (wordlist_en_word_count - 1))
     {
-        // Tbd: implement overrun;
-        daily_index = (wordlist_en_word_count - 1);
+        unsigned int overlap_index = daily_index % (wordlist_en_word_count - 1);
+        daily_index = overlap_index;
     }
 
     return daily_index;

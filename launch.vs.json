@@ -6,11 +6,11 @@
         {
             "type": "default",
             "project": "..\\..\\sdk\\eka2l1\\eka2l1_qt.exe",
-            "projectTarget": "wordle.exe",
-            "name": "wordle.exe",
+            "projectTarget": "wordle.app",
+            "name": "wordle.app",
             "args": [
                 "--app",
-                "E:\\System\\Apps\\wordle\\wordle.exe"
+                "E:\\System\\Apps\\wordle\\wordle.app"
             ]
         }
     ]

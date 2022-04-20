@@ -10,11 +10,19 @@
 #include <SDL.h>
 #include "game.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t* core)
 {
-    Uint8*       resource_buf;
-    SDL_RWops*   resource;
-    SDL_Surface* surface;
+    Uint8*         resource_buf;
+    SDL_RWops*     resource;
+    SDL_Surface*   surface;
+    unsigned char* image_data;
+    int            req_format = STBI_rgb;
+    int            width;
+    int            height;
+    int            orig_format;
 
     if (NULL == file_name)
     {
@@ -34,26 +42,31 @@ int load_texture_from_file(const char* file_name, SDL_Texture** texture, game_t*
         return 1;
     }
 
-    surface = SDL_LoadBMP_RW(resource, SDL_TRUE);
-    if (NULL == surface)
+    image_data = stbi_load_from_memory(resource_buf, size_of_file(file_name), &width, &height, &orig_format, req_format);
+    if (NULL == image_data)
     {
         free(resource_buf);
         return 1;
     }
     free(resource_buf);
 
-    if (0 != SDL_SetSurfaceRLE(surface, 1))
+    surface = SDL_CreateRGBSurfaceWithFormatFrom((void*)image_data, width, height, 24, 3 * width, SDL_PIXELFORMAT_RGB24);
+
+    if (NULL == surface)
     {
-        /* Nothing to do here. */
+        stbi_image_free(image_data);
+        return 1;
     }
 
     *texture = SDL_CreateTextureFromSurface(core->renderer, surface);
     if (NULL == *texture)
     {
         SDL_FreeSurface(surface);
+        stbi_image_free(image_data);
         return 1;
     }
     SDL_FreeSurface(surface);
+    stbi_image_free(image_data);
 
     return 0;
 }
