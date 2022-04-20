@@ -209,8 +209,8 @@ int game_update(game_t *core)
                                     {
                                         default:
                                         case MODE_NYT:
-                                            core->endless_mode = SDL_TRUE;
-                                            core->nyt_mode     = SDL_FALSE;
+                                            core->endless_mode = SDL_FALSE;
+                                            core->nyt_mode     = SDL_TRUE;
 
                                             game_load(SDL_TRUE, core);
 
@@ -220,8 +220,8 @@ int game_update(game_t *core)
                                             }
                                             break;
                                         case MODE_ENDLESS:
-                                            core->endless_mode = SDL_FALSE;
-                                            core->nyt_mode     = SDL_TRUE;
+                                            core->endless_mode = SDL_TRUE;
+                                            core->nyt_mode     = SDL_FALSE;
 
                                             game_load(SDL_FALSE, core);
                                             break;
