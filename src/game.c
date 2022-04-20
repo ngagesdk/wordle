@@ -205,13 +205,26 @@ int game_update(game_t *core)
                                     game_load(SDL_FALSE, core);
                                     break;
                                 case 27:
-                                    core->endless_mode = SDL_FALSE;
-                                    core->nyt_mode     = SDL_TRUE;
-                                    game_load(SDL_TRUE, core);
-
-                                    if (SDL_TRUE == core->nyt_has_ended)
+                                    switch (core->selected_mode)
                                     {
-                                        show_results(core);
+                                        default:
+                                        case MODE_NYT:
+                                            core->endless_mode = SDL_TRUE;
+                                            core->nyt_mode     = SDL_FALSE;
+
+                                            game_load(SDL_TRUE, core);
+
+                                            if (SDL_TRUE == core->nyt_has_ended)
+                                            {
+                                                show_results(core);
+                                            }
+                                            break;
+                                        case MODE_ENDLESS:
+                                            core->endless_mode = SDL_FALSE;
+                                            core->nyt_mode     = SDL_TRUE;
+
+                                            game_load(SDL_FALSE, core);
+                                            break;
                                     }
                                     break;
                                 case 28:
@@ -226,35 +239,29 @@ int game_update(game_t *core)
                             }
                             break;
                         case SDLK_LEFT:
-                            if (core->current_index != 22)
+                            core->current_index -= 1;
+                            if (core->current_index < 25)
                             {
-                                core->current_index -= 1;
-                                if (core->current_index < 25)
-                                {
-                                    core->current_index = 29;
-                                }
+                                core->current_index = 29;
                             }
                             break;
                         case SDLK_RIGHT:
-                            if (core->current_index != 22)
+                            core->current_index += 1;
+                            if (core->current_index > 29)
                             {
-                                core->current_index += 1;
-                                if (core->current_index > 29)
-                                {
-                                    core->current_index = 25;
-                                }
+                                core->current_index = 25;
                             }
                             break;
                         case SDLK_UP:
                             if (27 == core->current_index)
                             {
-                                core->current_index = 22;
+                                core->selected_mode = MODE_ENDLESS;
                             }
                             break;
                         case SDLK_DOWN:
-                            if (22 == core->current_index)
+                            if (27 == core->current_index)
                             {
-                                core->current_index = 27;
+                                core->selected_mode = MODE_NYT;
                             }
                             break;
                         case SDLK_F1:
@@ -870,31 +877,42 @@ static int draw_tiles(game_t* core)
                 case 0x2d: // Hyphen
                     src.x = 992;
                     break;
-                case 0x01: // New game icon
-                    src.x = 0;
-                    src.y = 160;
-                    break;
-                case 0x02: // Load game icon
+                case 0x01: // Load game icon
                     src.x = 0;
                     src.y = 128;
                     break;
-                case 0x03: // NYT mode icon
+                case 0x02: // New game icon
+                    src.x = 0;
+                    src.y = 160;
+                    break;
+                case 0x03: // Game mode icon
+                    src.x = 1056;
+
+                    switch(core->selected_mode)
+                    {
+                        default:
+                        case MODE_NYT:
+                            src.y = 64;
+                            break;
+                        case MODE_ENDLESS:
+                            src.y = 0;
+                            break;
+                    }
+
+                    if (27 == core->current_index)
+                    {
+                        src.y += 32;
+                    }
+                    break;
+                case 0x04: // Set lang. icon
                     src.x = 0;
                     src.y = 192;
                     break;
-                case 0x04: // Endless mode icon
-                    src.x = 1056;
-                    src.y = 0;
-                    break;
-                case 0x05: // Set lang. icon
-                    src.x = 1056;
-                    src.y = 32;
-                    break;
-                case 0x06: // Quit game icon
+                case 0x05: // Quit game icon
                     src.x = 0;
                     src.y = 224;
                     break;
-                case 0x07: // Flag icon
+                case 0x06: // Flag icon
                     src.x = 1056;
                     switch (core->wordlist.language)
                     {
@@ -923,8 +941,7 @@ static int draw_tiles(game_t* core)
                 0x03     != core->tile[index].letter   &&
                 0x04     != core->tile[index].letter   &&
                 0x05     != core->tile[index].letter   &&
-                0x06     != core->tile[index].letter   &&
-                0x07     != core->tile[index].letter)
+                0x06     != core->tile[index].letter)
             {
                 src.y += 128;
             }

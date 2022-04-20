@@ -34,6 +34,13 @@ typedef enum
 
 } lang_t;
 
+typedef enum
+{
+    MODE_NYT = 0,
+    MODE_ENDLESS
+
+} game_mode_t;
+
 typedef struct tile
 {
     char         letter;
@@ -110,6 +117,7 @@ typedef struct game
     Uint8          nyt_final_attempt;
     unsigned int   seed;
     wordlist_t     wordlist;
+    game_mode_t    selected_mode;
 
 } game_t;
 

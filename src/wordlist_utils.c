@@ -81,16 +81,15 @@ void set_language(const lang_t language, const SDL_bool set_title_screen, game_t
         core->tile[13].state  = WRONG_POSITION;
         core->tile[14].state  = WRONG_POSITION;
 
-        core->tile[22].letter = 0x04; // Endless mode icon
         core->tile[25].letter = 0x01; // Load game icon
         core->tile[26].letter = 0x02; // New game icon
-        core->tile[27].letter = 0x03; // NYT mode icon
-        core->tile[28].letter = 0x05; // Set lang. icon
-        core->tile[29].letter = 0x06; // Quit game icon
+        core->tile[27].letter = 0x03; // Game mode icon
+        core->tile[28].letter = 0x04; // Set lang. icon
+        core->tile[29].letter = 0x05; // Quit game icon
 
         if (SDL_TRUE == core->language_set_once)
         {
-            core->tile[23].letter = 0x07; // Flag icon
+            core->tile[23].letter = 0x06; // Flag icon
         }
     }
 
