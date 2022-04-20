@@ -13,7 +13,7 @@
 #include "game.h"
 
 #define STB_SPRINTF_IMPLEMENTATION
-#include <stb_sprintf.h>
+#include "stb_sprintf.h"
 
 #if defined __SYMBIAN32__
 #define SAVE_FILE       "C:\\wordle.sav"
@@ -511,6 +511,7 @@ int game_update(game_t *core)
                         case SDLK_RIGHT:
                             goto_next_letter(core);
                             break;
+                        case SDLK_ESCAPE:
                         case SDLK_F1:
                         case SDLK_F2:
                             game_save(core);
