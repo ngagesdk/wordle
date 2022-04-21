@@ -4,7 +4,17 @@ project(wordle)
 
 find_package(SDL2 REQUIRED)
 
-set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../src")
+set(SRC_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/../src")
+set(RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../res")
+
+if(EMSCRIPTEN)
+    configure_file(${RESOURCE_DIR}/data.pfs ${CMAKE_CURRENT_BINARY_DIR}/data.pfs COPYONLY)
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -s USE_SDL=2")
+    set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS}   -s USE_SDL=2")
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -s USE_SDL=2")
+    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} --preload-file data.pfs")
+endif()
 
 include_directories(
   ${SDL2_INCLUDE_DIRS}

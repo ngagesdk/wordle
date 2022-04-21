@@ -647,6 +647,10 @@ void game_save(game_t* core)
     FILE* save_file;
     int   index;
 
+#ifdef __EMSCRIPTEN__
+    return;
+#endif
+
     if (NULL == core)
     {
         return;
@@ -713,6 +717,10 @@ void game_load(SDL_bool load_daily, game_t* core)
 {
     FILE* save_file;
     int   index;
+
+#ifdef __EMSCRIPTEN__
+    return;
+#endif
 
     if (NULL == core)
     {
