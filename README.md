@@ -22,7 +22,7 @@ A portable clone of Wordle designed for the Nokia N-Gage.
   2.0.x](https://github.com/libsdl-org/SDL).
 
 - A web version of the game can be found on my website: [N-Gage
-  Wordle](https://mupf.dev/wordle/).
+  Wordle](https://mupf.dev/wordle).
 
 ## Compiling
 
