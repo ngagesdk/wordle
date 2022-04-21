@@ -1156,6 +1156,8 @@ static void move_rows_up(game_t* core)
 
 static void reset_game(SDL_bool nyt_mode, game_t* core)
 {
+    unsigned char valid_answer[6] = { 0 };
+
     if (NULL == core)
     {
         return;
@@ -1181,6 +1183,9 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
             core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
         }
         core->nyt_mode = SDL_FALSE;
+
+        get_valid_answer(valid_answer, core);
+        dbgprint("%s", valid_answer);
     }
     else
     {
@@ -1277,20 +1282,13 @@ static void show_results(game_t* core)
     }
     else
     {
-        core->tile[20].letter = valid_answer[0];
-        core->tile[21].letter = valid_answer[1];
-        core->tile[22].letter = valid_answer[2];
-        core->tile[23].letter = valid_answer[3];
-        core->tile[24].letter = valid_answer[4];
+        unsigned int start_index = core->attempt * 5;
 
-        core->tile[6].state   = CORRECT_LETTER;
-        core->tile[13].state  = WRONG_POSITION;
-
-        core->tile[20].state  = CORRECT_LETTER;
-        core->tile[21].state  = CORRECT_LETTER;
-        core->tile[22].state  = CORRECT_LETTER;
-        core->tile[23].state  = CORRECT_LETTER;
-        core->tile[24].state  = CORRECT_LETTER;
+        core->tile[start_index].letter     = valid_answer[0];
+        core->tile[start_index + 1].letter = valid_answer[1];
+        core->tile[start_index + 2].letter = valid_answer[2];
+        core->tile[start_index + 3].letter = valid_answer[3];
+        core->tile[start_index + 4].letter = valid_answer[4];
     }
 
     core->attempt       = 6;
