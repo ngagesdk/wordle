@@ -1283,9 +1283,6 @@ static void show_results(game_t* core)
         core->tile[23].letter = valid_answer[3];
         core->tile[24].letter = valid_answer[4];
 
-        core->tile[6].state   = CORRECT_LETTER;
-        core->tile[13].state  = WRONG_POSITION;
-
         core->tile[20].state  = CORRECT_LETTER;
         core->tile[21].state  = CORRECT_LETTER;
         core->tile[22].state  = CORRECT_LETTER;
