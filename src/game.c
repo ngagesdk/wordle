@@ -1156,8 +1156,6 @@ static void move_rows_up(game_t* core)
 
 static void reset_game(SDL_bool nyt_mode, game_t* core)
 {
-    unsigned char valid_answer[6] = { 0 };
-
     if (NULL == core)
     {
         return;
@@ -1183,9 +1181,6 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
             core->valid_answer_index = xorshift(&core->seed) % core->wordlist.word_count;
         }
         core->nyt_mode = SDL_FALSE;
-
-        get_valid_answer(valid_answer, core);
-        dbgprint("%s", valid_answer);
     }
     else
     {
