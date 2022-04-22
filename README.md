@@ -52,7 +52,7 @@ Wordle can be compiled with the included CMake configuration. E.g:
 ```bash
 mkdir build
 cd build
-cmake ../cmake
+cmake ..
 make
 ```
 

@@ -4,8 +4,8 @@ project(wordle)
 
 find_package(SDL2 REQUIRED)
 
-set(SRC_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/../src")
-set(RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../res")
+set(SRC_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(RESOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 
 if(EMSCRIPTEN)
     configure_file(${RESOURCE_DIR}/data.pfs ${CMAKE_CURRENT_BINARY_DIR}/data.pfs COPYONLY)
