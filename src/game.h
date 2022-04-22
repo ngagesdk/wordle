@@ -16,6 +16,14 @@
 #define SAVE_VERSION 3
 #endif
 
+#if defined __SYMBIAN32__
+#define ZOOM_FACTOR 1u
+#else
+#define ZOOM_FACTOR 3u
+#endif
+#define WINDOW_WIDTH  176u * ZOOM_FACTOR
+#define WINDOW_HEIGHT 208u * ZOOM_FACTOR
+
 typedef enum
 {
     LETTER_SELECT = 0,

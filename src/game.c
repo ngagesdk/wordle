@@ -78,7 +78,8 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         title,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        176, 208,
+        WINDOW_WIDTH,
+        WINDOW_HEIGHT,
         0);
 
     if (NULL == (*core)->window)
@@ -110,7 +111,8 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         (*core)->renderer,
         SDL_PIXELFORMAT_RGB444,
         SDL_TEXTUREACCESS_TARGET,
-        176, 208);
+        WINDOW_WIDTH,
+        WINDOW_HEIGHT);
 
     if (NULL == (*core)->render_target)
     {
@@ -164,7 +166,7 @@ int game_update(game_t *core)
 {
     int          status       = 0;
     SDL_bool     redraw_tiles = SDL_FALSE;
-    SDL_Rect     dst          = { 0, 0, 176, 208 };
+    SDL_Rect     dst          = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
     Uint32       delta_time   = 0;
     SDL_Event    event;
 
@@ -843,7 +845,7 @@ static void clear_tiles(SDL_bool clear_state, game_t* core)
 static int draw_tiles(game_t* core)
 {
     SDL_Rect src   = { 0, 0, 32, 32 };
-    SDL_Rect dst   = { 4, 2, 32, 32 };
+    SDL_Rect dst   = { 4 * ZOOM_FACTOR, 2 * ZOOM_FACTOR, 32 * ZOOM_FACTOR, 32 * ZOOM_FACTOR};
     int      index = 0;
     int      count = 0;
 
@@ -1040,20 +1042,28 @@ static int draw_tiles(game_t* core)
 
         if (index == core->current_index)
         {
-            SDL_Rect inner_frame = { dst.x + 1, dst.y + 1, dst.w - 2, dst.h - 2 };
+            unsigned int frame_count = 0;
             SDL_SetRenderDrawColor(core->renderer, 0xf5, 0x79, 0x3a, 0x00);
-            SDL_RenderDrawRect(core->renderer, &dst);
-            SDL_RenderDrawRect(core->renderer, &inner_frame);
+            for (frame_count = 0; frame_count < (ZOOM_FACTOR * 2); frame_count += 1)
+            {
+                SDL_Rect inner_frame = {
+                    (dst.x + frame_count),
+                    (dst.y + frame_count),
+                    (dst.w - (frame_count * 2)),
+                    (dst.h - (frame_count * 2))
+                };
+                SDL_RenderDrawRect(core->renderer, &inner_frame);
+            }
         }
 
-        dst.x += 34;
+        dst.x += (34 * ZOOM_FACTOR);
         count += 1;
 
         if (count > 4)
         {
             count  = 0;
-            dst.x  = 4;
-            dst.y += 34;
+            dst.x  = (4  * ZOOM_FACTOR);
+            dst.y += (34 * ZOOM_FACTOR);
         }
     }
 

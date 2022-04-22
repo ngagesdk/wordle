@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(wordle)
+project(wordle C)
 
 find_package(SDL2 REQUIRED)
 

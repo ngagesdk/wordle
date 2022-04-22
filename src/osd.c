@@ -29,10 +29,28 @@ void osd_print(const char* display_text, const int pos_x, const int pos_y, game_
 {
     int      char_index  = 0;
     size_t   text_length = SDL_strlen(display_text);
-    SDL_Rect src         = { 0,         0,         7, 9 };
-    SDL_Rect dst         = { pos_x + 1, pos_y + 1, 7, 9 };
-    SDL_Rect frame       = { pos_x, pos_y, (text_length * 7) + 2, 11 };
-    SDL_Rect background  = { pos_x, pos_y, (text_length * 7) + 2, 11 };
+    SDL_Rect src         = { 0, 0, 7, 9 };
+
+    SDL_Rect dst         = {
+        (pos_x * ZOOM_FACTOR) + (1 * ZOOM_FACTOR),
+        (pos_y * ZOOM_FACTOR) + (1 * ZOOM_FACTOR),
+        7 * ZOOM_FACTOR,
+        9 * ZOOM_FACTOR
+    };
+
+    SDL_Rect frame = {
+        pos_x * ZOOM_FACTOR,
+        pos_y * ZOOM_FACTOR,
+        (text_length * (7 * ZOOM_FACTOR)) + (2 * ZOOM_FACTOR),
+        11 * ZOOM_FACTOR
+    };
+
+    SDL_Rect background = {
+        pos_x * ZOOM_FACTOR,
+        pos_y * ZOOM_FACTOR,
+        (text_length * (7 * ZOOM_FACTOR)) + (2 * ZOOM_FACTOR),
+        11 * ZOOM_FACTOR
+    };
 
     if (NULL == core)
     {
@@ -57,7 +75,7 @@ void osd_print(const char* display_text, const int pos_x, const int pos_y, game_
         char_index += 1;
 
         SDL_RenderCopy(core->renderer, core->font_texture, &src, &dst);
-        dst.x += 7;
+        dst.x += (7 * ZOOM_FACTOR);
     }
 }
 
