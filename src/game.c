@@ -168,6 +168,11 @@ int game_update(game_t *core)
     Uint32       delta_time   = 0;
     SDL_Event    event;
 
+    if (NULL == core)
+    {
+        return 1;
+    }
+
     if (0 == core->tile[0].letter)
     {
         redraw_tiles         = SDL_TRUE;
