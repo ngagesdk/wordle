@@ -59,7 +59,9 @@ extern void          validate_current_guess(SDL_bool* is_won, game_t* core);
 
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
-    int status = 0;
+    int    status         = 0;
+    Uint32 window_flags   = 0;
+    Uint32 renderer_flags = SDL_RENDERER_SOFTWARE;
 
     *core = (game_t*)calloc(1, sizeof(struct game));
     if (NULL == *core)
@@ -74,24 +76,38 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return 1;
     }
 
+#if ! defined __SYMBIAN32__ && ! defined __EMSCRIPTEN__
+    window_flags   = SDL_WINDOW_FULLSCREEN_DESKTOP;
+#endif
+#ifndef __SYMBIAN32__
+    renderer_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+#endif
+
     (*core)->window = SDL_CreateWindow(
         title,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         WINDOW_WIDTH,
         WINDOW_HEIGHT,
-        0);
+        window_flags);
 
     if (NULL == (*core)->window)
     {
         return 1;
     }
 
-#ifdef __SYMBIAN32__
-    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_SOFTWARE);
-#else
-    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+#ifndef __SYMBIAN32__
+    {
+        int desktop_width  = 0;
+        int desktop_height = 0;
+
+        SDL_GetWindowSize((*core)->window, &desktop_width, &desktop_height);
+        (*core)->render_offset_x = (desktop_width  / 2) - (WINDOW_WIDTH  / 2);
+        (*core)->render_offset_y = (desktop_height / 2) - (WINDOW_HEIGHT / 2);
+    }
 #endif
+
+    (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, renderer_flags);
     if (NULL == (*core)->renderer)
     {
         if (NULL == (*core)->renderer)
@@ -598,6 +614,9 @@ int game_update(game_t *core)
     {
         return 1;
     }
+
+    dst.x += core->render_offset_x;
+    dst.y += core->render_offset_y;
 
     if (0 > SDL_RenderCopy(core->renderer, core->render_target, NULL, &dst))
     {

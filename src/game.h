@@ -106,6 +106,8 @@ typedef struct game
     SDL_Texture*   tile_texture;
     SDL_Texture*   font_texture;
     SDL_Window*    window;
+    Uint16         render_offset_x;
+    Uint16         render_offset_y;
     Uint32         time_since_last_frame;
     Uint32         time_a;
     Uint32         time_b;
