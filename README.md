@@ -52,8 +52,10 @@ Wordle can be compiled with the included CMake configuration. E.g:
 ```bash
 mkdir build
 cd build
+cp ../res/data.pfs .
 cmake -DBUILD_ON_ALT_PLATFORM=ON ..
 make
+./wordle.exe
 ```
 
 ## Licence and Credits
