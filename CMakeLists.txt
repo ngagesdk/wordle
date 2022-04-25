@@ -1,21 +1,24 @@
 cmake_minimum_required(VERSION 3.00)
 
-if(DEFINED ENV{NGAGESDK})
+# Use CMake or Visual Studio to enable these settings.
+option(INSTALL_EKA2L1        "Install app for EKA2L1"         OFF)
+option(GENERATE_SIS          "Generate Symbian SIS installer" OFF)
+option(BUILD_ON_ALT_PLATFORM "Build on alternate platform"    OFF)
+
+if(BUILD_ON_ALT_PLATFORM)
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CMakeLists.txt)
+    return()
+elseif(DEFINED ENV{NGAGESDK})
     SET(NGAGESDK $ENV{NGAGESDK})
     set(CMAKE_TOOLCHAIN_FILE ${NGAGESDK}/cmake/ngage-toolchain.cmake)
 else()
-    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CMakeLists.txt)
-    return()
+    message(FATAL_ERROR "The environment variable NGAGESDK needs to be defined.")
 endif()
 
 project(wordle C CXX)
 
 include(SDL)
 include(dbgprint)
-
-# Use CMake or Visual Studio to enable these settings.
-option(INSTALL_EKA2L1 "Install app for EKA2L1"         OFF)
-option(GENERATE_SIS   "Generate Symbian SIS installer" OFF)
 
 set(UID1    0x1000007a) # KExecutableImageUidValue, e32uid.h
 set(UID2    0x100039ce) # KAppUidValue16, apadef.h
