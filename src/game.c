@@ -29,6 +29,7 @@ int SDL_isalpha(int x) { return isalpha(x); }
 #define SDL_clamp(x, a, b) (((x) < (a)) ? (a) : (((x) > (b)) ? (b) : (x)))
 #endif
 
+static event_t  get_current_event(game_t* core);
 static void     clear_tiles(SDL_bool clear_state, game_t* core);
 static int      draw_tiles(game_t* core);
 static void     get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
@@ -41,6 +42,9 @@ static void     select_previous_letter(const unsigned char start_char, const uns
 static void     select_utf8_letter(const char *text, game_t* core);
 static SDL_bool has_game_ended(game_t* core);
 static void     show_results(game_t* core);
+static void     set_zoom_factor(game_t* core);
+static void     set_render_offset(game_t* core);
+static void     toggle_fullscreen(game_t* core);
 
 extern void          init_file_reader(const char * dataFilePath);
 extern size_t        size_of_file(const char * path);
@@ -60,7 +64,6 @@ extern void          validate_current_guess(SDL_bool* is_won, game_t* core);
 int game_init(const char* resource_file, const char* title, game_t** core)
 {
     int    status         = 0;
-    Uint32 window_flags   = 0;
     Uint32 renderer_flags = SDL_RENDERER_SOFTWARE;
 
     *core = (game_t*)calloc(1, sizeof(struct game));
@@ -76,35 +79,27 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return 1;
     }
 
-#if ! defined __SYMBIAN32__ && ! defined __EMSCRIPTEN__
-    window_flags   = SDL_WINDOW_FULLSCREEN_DESKTOP;
-#endif
 #ifndef __SYMBIAN32__
     renderer_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 #endif
+
+    set_zoom_factor((*core));
 
     (*core)->window = SDL_CreateWindow(
         title,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        WINDOW_WIDTH,
-        WINDOW_HEIGHT,
-        window_flags);
+        WINDOW_WIDTH  * (*core)->zoom_factor,
+        WINDOW_HEIGHT * (*core)->zoom_factor,
+        0);
 
     if (NULL == (*core)->window)
     {
         return 1;
     }
 
-#ifndef __SYMBIAN32__
-    {
-        int desktop_width  = 0;
-        int desktop_height = 0;
-
-        SDL_GetWindowSize((*core)->window, &desktop_width, &desktop_height);
-        (*core)->render_offset_x = (desktop_width  / 2) - (WINDOW_WIDTH  / 2);
-        (*core)->render_offset_y = (desktop_height / 2) - (WINDOW_HEIGHT / 2);
-    }
+#ifdef __ANDROID__
+    toggle_fullscreen((*core));
 #endif
 
     (*core)->renderer = SDL_CreateRenderer((*core)->window, -1, renderer_flags);
@@ -127,8 +122,8 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         (*core)->renderer,
         SDL_PIXELFORMAT_RGB444,
         SDL_TEXTUREACCESS_TARGET,
-        WINDOW_WIDTH,
-        WINDOW_HEIGHT);
+        WINDOW_WIDTH  * (*core)->zoom_factor,
+        WINDOW_HEIGHT * (*core)->zoom_factor);
 
     if (NULL == (*core)->render_target)
     {
@@ -180,11 +175,13 @@ SDL_bool game_is_running(game_t* core)
 
 int game_update(game_t *core)
 {
-    int          status       = 0;
-    SDL_bool     redraw_tiles = SDL_FALSE;
-    SDL_Rect     dst          = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
-    Uint32       delta_time   = 0;
-    SDL_Event    event;
+    int           status       = 0;
+    SDL_bool      redraw_tiles = SDL_FALSE;
+    SDL_Rect      dst          = { 0, 0, WINDOW_WIDTH * core->zoom_factor, WINDOW_HEIGHT * core->zoom_factor };
+    Uint32        delta_time   = 0;
+    event_t       event        = get_current_event(core);
+    unsigned char start_char;
+    unsigned char end_char;
 
     if (NULL == core)
     {
@@ -203,6 +200,11 @@ int game_update(game_t *core)
         redraw_tiles     = SDL_TRUE;
     }
 
+    if (EVENT_NONE != event)
+    {
+        redraw_tiles = SDL_TRUE;
+    }
+
     core->time_b = core->time_a;
     core->time_a = SDL_GetTicks();
 
@@ -216,375 +218,293 @@ int game_update(game_t *core)
     }
     core->time_since_last_frame = delta_time;
 
-    if (SDL_PollEvent(&event))
+    switch (event)
     {
-        switch (event.type)
-        {
-            case SDL_QUIT:
+        default:
+        case EVENT_NONE:
+            break;
+        case EVENT_KEY_0:
+            if (0 != core->wordlist.special_chars[0])
             {
-                core->is_running = SDL_FALSE;
-                return 0;
-            }
+                unsigned char* current_letter = &core->tile[core->current_index].letter;
 
-            case SDL_KEYDOWN:
-            {
-                if (SDL_TRUE == core->show_menu)
+                start_char = core->wordlist.first_letter;
+                end_char   = core->wordlist.last_letter;
+
+                if (*current_letter >= start_char && *current_letter < end_char)
                 {
-                    switch (event.key.keysym.sym)
-                    {
-                        case SDLK_KP_ENTER:
-                        case SDLK_RETURN:
-                        case SDLK_5:
-                        case SDLK_KP_5:
-                            switch (core->current_index)
-                            {
-                                case 25:
-                                    core->endless_mode = SDL_FALSE;
-                                    core->nyt_mode     = SDL_FALSE;
-                                    game_save(core);
-                                    reset_game(SDL_FALSE, core);
-                                    break;
-                                case 26:
-                                    core->endless_mode = SDL_FALSE;
-                                    core->nyt_mode     = SDL_FALSE;
-                                    game_load(SDL_FALSE, core);
-                                    break;
-                                case 27:
-                                    switch (core->selected_mode)
-                                    {
-                                        default:
-                                        case MODE_NYT:
-                                            core->endless_mode = SDL_FALSE;
-                                            core->nyt_mode     = SDL_TRUE;
-
-                                            game_load(SDL_TRUE, core);
-
-                                            if (SDL_TRUE == core->nyt_has_ended)
-                                            {
-                                                show_results(core);
-                                            }
-                                            break;
-                                        case MODE_ENDLESS:
-                                            core->endless_mode = SDL_TRUE;
-                                            core->nyt_mode     = SDL_FALSE;
-
-                                            reset_game(SDL_FALSE, core);
-                                            break;
-                                    }
-                                    break;
-                                case 28:
-                                    core->language_set_once = SDL_TRUE;
-                                    set_next_language(core);
-                                    break;
-                                case 29:
-                                    core->is_running = SDL_FALSE;
-                                    return 0;
-                                default:
-                                    break;
-                            }
-                            break;
-                        case SDLK_LEFT:
-                            core->current_index -= 1;
-                            if (core->current_index < 25)
-                            {
-                                core->current_index = 29;
-                            }
-                            break;
-                        case SDLK_RIGHT:
-                            core->current_index += 1;
-                            if (core->current_index > 29)
-                            {
-                                core->current_index = 25;
-                            }
-                            break;
-                        case SDLK_UP:
-                            if (27 == core->current_index)
-                            {
-                                core->selected_mode = MODE_ENDLESS;
-                            }
-                            break;
-                        case SDLK_DOWN:
-                            if (27 == core->current_index)
-                            {
-                                core->selected_mode = MODE_NYT;
-                            }
-                            break;
-                        case SDLK_F1:
-                            core->current_index = 25;
-                            break;
-                        case SDLK_F2:
-
-                            core->current_index = 29;
-                            break;
-                    }
+                    *current_letter = core->wordlist.special_chars[0];
                 }
                 else
                 {
-                    unsigned char start_char;
-                    unsigned char end_char;
+                    static unsigned int special_char_index = 0;
 
-                    switch (event.key.keysym.sym)
+                    special_char_index += 1;
+                    if (0x00 == core->wordlist.special_chars[special_char_index])
                     {
-                        case SDLK_2:
-                        case SDLK_KP_2:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xc0; // А
-                                end_char   = 0xc3; // Г
-                            }
-                            else
-                            {
-                                start_char = 'A';
-                                end_char   = 'C';
-                            }
+                        special_char_index = 0;
+                    }
+                    *current_letter = core->wordlist.special_chars[special_char_index];
+                }
+            }
+            break;
+        case EVENT_KEY_2:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xc0; // А
+                end_char   = 0xc3; // Г
+            }
+            else
+            {
+                start_char = 'A';
+                end_char   = 'C';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_3:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xc4; // Д
+                end_char   = 0xc7; // З
+            }
+            else
+            {
+                start_char = 'D';
+                end_char   = 'F';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_4:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xc8; // И
+                end_char   = 0xca; // Л
+            }
+            else
+            {
+                start_char = 'G';
+                end_char   = 'I';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_5:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xcb; // М
+                end_char   = 0xcf; // П
+            }
+            else
+            {
+                start_char = 'J';
+                end_char   = 'L';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_6:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xd0; // Р
+                end_char   = 0xd3; // У
+            }
+            else
+            {
+                start_char = 'M';
+                end_char   = 'O';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_7:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xd4; // Ф
+                end_char   = 0xd7; // Ч
+            }
+            else
+            {
+                start_char = 'P';
+                end_char   = 'S';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_8:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xd8; // Ш
+                end_char   = 0xdb; // Ы
+            }
+            else
+            {
+                start_char = 'T';
+                end_char   = 'V';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_KEY_9:
+            if (SDL_TRUE == core->wordlist.is_cyrillic)
+            {
+                start_char = 0xdc; // Ь
+                end_char   = 0xdf; // Я
+            }
+            else
+            {
+                start_char = 'W';
+                end_char   = 'Z';
+            }
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_CONFIRM:
+            if (core->attempt < 6)
+            {
+                if (0 == ((core->current_index + 1) % 5))
+                {
+                    int  index;
+                    int  letter_index;
+                    int  end_index;
 
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_3:
-                        case SDLK_KP_3:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xc4; // Д
-                                end_char   = 0xc7; // З
-                            }
-                            else
-                            {
-                                start_char = 'D';
-                                end_char   = 'F';
-                            }
+                    get_index_limits(&index, &end_index, core);
 
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_4:
-                        case SDLK_KP_4:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xc8; // И
-                                end_char   = 0xca; // Л
-                            }
-                            else
-                            {
-                                start_char = 'G';
-                                end_char   = 'I';
-                            }
+                    for (letter_index = 0; letter_index < 5; letter_index += 1)
+                    {
+                        core->current_guess[letter_index]  = core->tile[index].letter;
+                        index                             += 1;
+                    }
 
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_5:
-                        case SDLK_KP_5:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xcb; // М
-                                end_char   = 0xcf; // П
-                            }
-                            else
-                            {
-                                start_char = 'J';
-                                end_char   = 'L';
-                            }
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_6:
-                        case SDLK_KP_6:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xd0; // Р
-                                end_char   = 0xd3; // У
-                            }
-                            else
-                            {
-                                start_char = 'M';
-                                end_char   = 'O';
-                            }
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_7:
-                        case SDLK_KP_7:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xd4; // Ф
-                                end_char   = 0xd7; // Ч
-                            }
-                            else
-                            {
-                                start_char = 'P';
-                                end_char   = 'S';
-                            }
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_8:
-                        case SDLK_KP_8:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xd8; // Ш
-                                end_char   = 0xdb; // Ы
-                            }
-                            else
-                            {
-                                start_char = 'T';
-                                end_char   = 'V';
-                            }
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_9:
-                        case SDLK_KP_9:
-                            if (SDL_TRUE == core->wordlist.is_cyrillic)
-                            {
-                                start_char = 0xdc; // Ь
-                                end_char   = 0xdf; // Я
-                            }
-                            else
-                            {
-                                start_char = 'W';
-                                end_char   = 'Z';
-                            }
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_0:
-                        case SDLK_KP_0:
-                            if (0 != core->wordlist.special_chars[0])
-                            {
-                                unsigned char* current_letter = &core->tile[core->current_index].letter;
-
-                                start_char = core->wordlist.first_letter;
-                                end_char   = core->wordlist.last_letter;
-
-                                if (*current_letter >= start_char && *current_letter < end_char)
-                                {
-                                    *current_letter = core->wordlist.special_chars[0];
-                                }
-                                else
-                                {
-                                    static unsigned int special_char_index = 0;
-
-                                    special_char_index += 1;
-                                    if (0x00 == core->wordlist.special_chars[special_char_index])
-                                    {
-                                        special_char_index = 0;
-                                    }
-                                    *current_letter = core->wordlist.special_chars[special_char_index];
-                                }
-                            }
-                            break;
-                        case SDLK_UP:
-                            start_char = core->wordlist.first_letter;
-                            end_char   = core->wordlist.last_letter;
-
-                            select_next_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_DOWN:
-                            start_char = core->wordlist.first_letter;
-                            end_char   = core->wordlist.last_letter;
-
-                            select_previous_letter(start_char, end_char, core);
-                            break;
-                        case SDLK_RETURN:
-                        case SDLK_KP_ENTER:
-                            if (core->attempt < 6)
-                            {
-                                if (0 == ((core->current_index + 1) % 5))
-                                {
-                                    int  index;
-                                    int  letter_index;
-                                    int  end_index;
-
-                                    get_index_limits(&index, &end_index, core);
-
-                                    for (letter_index = 0; letter_index < 5; letter_index += 1)
-                                    {
-                                        core->current_guess[letter_index]  = core->tile[index].letter;
-                                        index                             += 1;
-                                    }
-
-                                    if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
-                                    {
-                                        if (SDL_TRUE == core->nyt_mode)
-                                        {
-                                            game_save(core);
-                                        }
-
-                                        if (SDL_TRUE == has_game_ended(core))
-                                        {
-                                            if (SDL_TRUE == core->nyt_mode)
-                                            {
-                                                core->nyt_final_attempt = core->attempt + 1;
-                                                core->nyt_has_ended     = SDL_TRUE;
-                                                game_save(core);
-                                            }
-                                            show_results(core);
-                                        }
-                                        else
-                                        {
-                                            if ((SDL_TRUE == core->endless_mode) && (4 == core->attempt))
-                                            {
-                                                move_rows_up(core);
-                                                core->current_index -= 5;
-                                            }
-                                            else
-                                            {
-                                                core->attempt += 1;
-                                            }
-                                            goto_next_letter(core);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // Word not valid: shake row?
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                game_save(core);
-                                clear_tiles(SDL_TRUE, core);
-                                core->current_index = 27;
-                                set_language(core->wordlist.language, SDL_TRUE, core);
-                            }
-                            break;
-                        case SDLK_BACKSPACE:
-                        case SDLK_LEFT:
-                            delete_letter(core);
-                            break;
-                        case SDLK_RIGHT:
-                            goto_next_letter(core);
-                            break;
-                        case SDLK_ESCAPE:
-                        case SDLK_F1:
-                        case SDLK_F2:
+                    if (SDL_TRUE == is_guess_allowed(core->current_guess, core))
+                    {
+                        if (SDL_TRUE == core->nyt_mode)
+                        {
                             game_save(core);
-                            clear_tiles(SDL_TRUE, core);
-                            core->current_index = 27;
-                            set_language(core->wordlist.language, SDL_TRUE, core);
-                            break;
+                        }
+
+                        if (SDL_TRUE == has_game_ended(core))
+                        {
+                            if (SDL_TRUE == core->nyt_mode)
+                            {
+                                core->nyt_final_attempt = core->attempt + 1;
+                                core->nyt_has_ended     = SDL_TRUE;
+                                game_save(core);
+                            }
+                            show_results(core);
+                        }
+                        else
+                        {
+                            if ((SDL_TRUE == core->endless_mode) && (4 == core->attempt))
+                            {
+                                move_rows_up(core);
+                                core->current_index -= 5;
+                            }
+                            else
+                            {
+                                core->attempt += 1;
+                            }
+                            goto_next_letter(core);
+                        }
+                    }
+                    else
+                    {
+                        // Word not valid: shake row?
                     }
                 }
-                redraw_tiles = SDL_TRUE;
-                break;
             }
-            case SDL_KEYUP:
+            else
             {
-                switch (event.key.keysym.sym)
-                {
-                    default:
-                        break;
-                }
-                break;
+                game_save(core);
+                clear_tiles(SDL_TRUE, core);
+                core->current_index = 27;
+                set_language(core->wordlist.language, SDL_TRUE, core);
             }
-            case SDL_TEXTINPUT:
+            break;
+        case EVENT_CONFIRM_LETTER:
+            goto_next_letter(core);
+            break;
+        case EVENT_DELETE_LETTER:
+            delete_letter(core);
+            break;
+        case EVENT_NEXT_LETTER:
+            start_char = core->wordlist.first_letter;
+            end_char   = core->wordlist.last_letter;
+            select_next_letter(start_char, end_char, core);
+            break;
+        case EVENT_PREV_LETTER:
+            start_char = core->wordlist.first_letter;
+            end_char   = core->wordlist.last_letter;
+            select_previous_letter(start_char, end_char, core);
+            break;
+        case EVENT_TEXTINPUT:
+            if ((SDL_TRUE != core->show_menu) && (LANG_ENGLISH == core->wordlist.language))
             {
-                if ((SDL_TRUE != core->show_menu) && (LANG_ENGLISH == core->wordlist.language))
-                {
-                    select_utf8_letter(event.text.text, core);
-                    redraw_tiles = SDL_TRUE;
-                }
-                break;
+                select_utf8_letter(core->event.text.text, core);
             }
-        }
+            break;
+        case EVENT_CONFIRM_ENDLESS_MODE:
+            core->endless_mode = SDL_TRUE;
+            core->nyt_mode     = SDL_FALSE;
+            reset_game(SDL_FALSE, core);
+            break;
+        case EVENT_CONFIRM_LOAD_GAME:
+            core->endless_mode = SDL_FALSE;
+            core->nyt_mode     = SDL_FALSE;
+            game_load(SDL_FALSE, core);
+            break;
+        case EVENT_CONFIRM_NEW_GAME:
+            core->endless_mode = SDL_FALSE;
+            core->nyt_mode     = SDL_FALSE;
+            game_save(core);
+            reset_game(SDL_FALSE, core);
+            break;
+        case EVENT_CONFIRM_NYT_MODE:
+            core->endless_mode = SDL_FALSE;
+            core->nyt_mode     = SDL_TRUE;
+
+            game_load(SDL_TRUE, core);
+
+            if (SDL_TRUE == core->nyt_has_ended)
+            {
+                show_results(core);
+            }
+            break;
+        case EVENT_CONFIRM_SET_LANG:
+            core->language_set_once = SDL_TRUE;
+            set_next_language(core);
+            break;
+        case EVENT_MENU_NEXT:
+            core->current_index += 1;
+            if (core->current_index > 29)
+            {
+                core->current_index = 25;
+            }
+            break;
+        case EVENT_MENU_PREV:
+            core->current_index -= 1;
+            if (core->current_index < 25)
+            {
+                core->current_index = 29;
+            }
+            break;
+        case EVENT_MENU_SELECT_ENDLESS_MODE:
+            core->selected_mode = MODE_ENDLESS;
+            break;
+        case EVENT_MENU_SELECT_NYT_MODE:
+            core->selected_mode = MODE_NYT;
+            break;
+        case EVENT_MENU_SELECT_NEW_GAME:
+            core->current_index = 25;
+            break;
+        case EVENT_MENU_SELECT_QUIT:
+            core->current_index = 29;
+            break;
+        case EVENT_BACK:
+            game_save(core);
+            clear_tiles(SDL_TRUE, core);
+            core->current_index = 27;
+            set_language(core->wordlist.language, SDL_TRUE, core);
+            break;
+        case EVENT_QUIT:
+            core->is_running = SDL_FALSE;
+            return 0;
+        case EVENT_TOGGLE_FS:
+            toggle_fullscreen(core);
+            break;
     }
 
     if (SDL_TRUE == redraw_tiles)
@@ -744,14 +664,22 @@ void game_load(SDL_bool load_daily, game_t* core)
     FILE* save_file;
     int   index;
 
-#ifdef __EMSCRIPTEN__
-    return;
-#endif
-
     if (NULL == core)
     {
         return;
     }
+
+#ifdef __EMSCRIPTEN__
+    if (SDL_TRUE == load_daily)
+    {
+        reset_game(SDL_TRUE, core);
+    }
+    else
+    {
+        reset_game(SDL_FALSE, core);
+    }
+    return;
+#endif
 
     if (SDL_FALSE == load_daily)
     {
@@ -842,6 +770,194 @@ void game_load(SDL_bool load_daily, game_t* core)
     }
 }
 
+static event_t get_current_event(game_t* core)
+{
+    event_t current_event = EVENT_NONE;
+
+    if (NULL == core)
+    {
+        return current_event;
+    }
+
+    if (SDL_PollEvent(&core->event))
+    {
+        switch (core->event.type)
+        {
+            case SDL_QUIT:
+                return EVENT_QUIT;
+#ifdef __ANDROID__
+            case SDL_FINGERMOTION:
+                if (core->event.tfinger.dx > 0.f)
+                {
+                    if (core->swipe_h < 0.f)
+                    {
+                        core->swipe_h = 0.f;
+                    }
+                    core->swipe_h += core->event.tfinger.dx;
+                }
+                else if (core->event.tfinger.dx < 0.f)
+                {
+                    if (core->swipe_h > 0.f)
+                    {
+                        core->swipe_h = 0.f;
+                    }
+                    core->swipe_h += core->event.tfinger.dx;
+                }
+                break;
+            case SDL_FINGERUP:
+            case SDL_FINGERDOWN:
+                if (core->swipe_h <= -0.1f)
+                {
+                    core->swipe_h = 0.f;
+                    if (SDL_TRUE == core->show_menu)
+                    {
+                        return EVENT_MENU_PREV;
+                    }
+                    else
+                    {
+                        return EVENT_DELETE_LETTER;
+                    }
+                }
+                else if (core->swipe_h >= 0.1f)
+                {
+                    core->swipe_h = 0.f;
+                    if (SDL_TRUE == core->show_menu)
+                    {
+                        return EVENT_MENU_NEXT;
+                    }
+                    else
+                    {
+                        return EVENT_CONFIRM_LETTER;
+                    }
+                }
+                break;
+#endif
+            case SDL_KEYDOWN:
+            {
+#ifndef __SYMBIAN32__
+                switch (core->event.key.keysym.sym)
+                {
+                    case SDLK_F11:
+                    case SDLK_f:
+                        return EVENT_TOGGLE_FS;
+                }
+#endif
+                if (SDL_TRUE == core->show_menu)
+                {
+                    switch (core->event.key.keysym.sym)
+                    {
+                        case SDLK_KP_ENTER:
+                        case SDLK_RETURN:
+                        case SDLK_5:
+                        case SDLK_KP_5:
+                            switch (core->current_index)
+                            {
+                                case 25:
+                                    return EVENT_CONFIRM_NEW_GAME;
+                                case 26:
+                                    return EVENT_CONFIRM_LOAD_GAME;
+                                case 27:
+                                    switch (core->selected_mode)
+                                    {
+                                        default:
+                                        case MODE_NYT:
+                                            return EVENT_CONFIRM_NYT_MODE;
+                                        case MODE_ENDLESS:
+                                            return EVENT_CONFIRM_ENDLESS_MODE;
+                                    }
+                                case 28:
+                                    return EVENT_CONFIRM_SET_LANG;
+                                case 29:
+                                    return EVENT_QUIT;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case SDLK_LEFT:
+                            return EVENT_MENU_PREV;
+                        case SDLK_RIGHT:
+                            return EVENT_MENU_NEXT;
+                        case SDLK_UP:
+                            if (27 == core->current_index)
+                            {
+                                return EVENT_MENU_SELECT_ENDLESS_MODE;
+                            }
+                            break;
+                        case SDLK_DOWN:
+                            if (27 == core->current_index)
+                            {
+                                return EVENT_MENU_SELECT_NYT_MODE;
+                            }
+                            break;
+                        case SDLK_F1:
+                            return EVENT_MENU_SELECT_NEW_GAME;
+                        case SDLK_F2:
+                            return EVENT_MENU_SELECT_QUIT;
+                    }
+                }
+                else
+                {
+                    // Interpret key-presses while being not in the
+                    // menu.
+                    switch (core->event.key.keysym.sym)
+                    {
+                        case SDLK_2:
+                        case SDLK_KP_2:
+                            return EVENT_KEY_2;
+                        case SDLK_3:
+                        case SDLK_KP_3:
+                            return EVENT_KEY_3;
+                        case SDLK_4:
+                        case SDLK_KP_4:
+                            return EVENT_KEY_4;
+                        case SDLK_5:
+                        case SDLK_KP_5:
+                            return EVENT_KEY_5;
+                        case SDLK_6:
+                        case SDLK_KP_6:
+                            return EVENT_KEY_6;
+                        case SDLK_7:
+                        case SDLK_KP_7:
+                            return EVENT_KEY_7;
+                        case SDLK_8:
+                        case SDLK_KP_8:
+                            return EVENT_KEY_8;
+                        case SDLK_9:
+                        case SDLK_KP_9:
+                            return EVENT_KEY_9;
+                        case SDLK_0:
+                        case SDLK_KP_0:
+                            return EVENT_KEY_0;
+                        case SDLK_UP:
+                            return EVENT_NEXT_LETTER;
+                        case SDLK_DOWN:
+                            return EVENT_PREV_LETTER;
+                        case SDLK_RETURN:
+                        case SDLK_KP_ENTER:
+                            return EVENT_CONFIRM;
+                        case SDLK_BACKSPACE:
+                        case SDLK_LEFT:
+                            return EVENT_DELETE_LETTER;
+                        case SDLK_RIGHT:
+                            return EVENT_CONFIRM_LETTER;
+                        case SDLK_AC_BACK:
+                        case SDLK_ESCAPE:
+                        case SDLK_F1:
+                        case SDLK_F2:
+                            return EVENT_BACK;
+                    }
+                }
+            }
+            case SDL_TEXTINPUT:
+            {
+                return EVENT_TEXTINPUT;
+            }
+        }
+    }
+
+    return EVENT_NONE;
+}
+
 static void clear_tiles(SDL_bool clear_state, game_t* core)
 {
     int index;
@@ -864,7 +980,7 @@ static void clear_tiles(SDL_bool clear_state, game_t* core)
 static int draw_tiles(game_t* core)
 {
     SDL_Rect src   = { 0, 0, 32, 32 };
-    SDL_Rect dst   = { 4 * ZOOM_FACTOR, 2 * ZOOM_FACTOR, 32 * ZOOM_FACTOR, 32 * ZOOM_FACTOR};
+    SDL_Rect dst   = { 4 * core->zoom_factor, 2 * core->zoom_factor, 32 * core->zoom_factor, 32 * core->zoom_factor};
     int      index = 0;
     int      count = 0;
 
@@ -1063,7 +1179,7 @@ static int draw_tiles(game_t* core)
         {
             unsigned int frame_count = 0;
             SDL_SetRenderDrawColor(core->renderer, 0xf5, 0x79, 0x3a, 0x00);
-            for (frame_count = 0; frame_count < (ZOOM_FACTOR * 2); frame_count += 1)
+            for (frame_count = 0; frame_count < (core->zoom_factor * 2); frame_count += 1)
             {
                 SDL_Rect inner_frame = {
                     (dst.x + frame_count),
@@ -1075,14 +1191,14 @@ static int draw_tiles(game_t* core)
             }
         }
 
-        dst.x += (34 * ZOOM_FACTOR);
+        dst.x += (34 * core->zoom_factor);
         count += 1;
 
         if (count > 4)
         {
             count  = 0;
-            dst.x  = (4  * ZOOM_FACTOR);
-            dst.y += (34 * ZOOM_FACTOR);
+            dst.x  = (4  * core->zoom_factor);
+            dst.y += (34 * core->zoom_factor);
         }
     }
 
@@ -1322,4 +1438,71 @@ static void show_results(game_t* core)
 
     core->attempt       = 6;
     core->current_index = -1;
+}
+
+static void set_zoom_factor(game_t* core)
+{
+    SDL_DisplayMode display_mode;
+
+    core->zoom_factor = 1u;
+
+#if __SYMBIAN32__
+    return;
+#endif
+
+    if (0 == SDL_GetCurrentDisplayMode(0, &display_mode))
+    {
+        Uint8 zf_width  = (display_mode.w / WINDOW_WIDTH)  - 1;
+        Uint8 zf_height = (display_mode.h / WINDOW_HEIGHT) - 1;
+
+        if (zf_width <= zf_height)
+        {
+            core->zoom_factor = zf_width;
+        }
+        else
+        {
+            core->zoom_factor = zf_height;
+        }
+    }
+}
+
+static void set_render_offset(game_t* core)
+{
+    SDL_DisplayMode display_mode;
+
+    if (0 == SDL_GetCurrentDisplayMode(0, &display_mode))
+    {
+        core->render_offset_x = (display_mode.w / 2) - ((WINDOW_WIDTH  * core->zoom_factor) / 2);
+        core->render_offset_y = (display_mode.h / 2) - ((WINDOW_HEIGHT * core->zoom_factor) / 2);
+    }
+}
+
+static void toggle_fullscreen(game_t* core)
+{
+    if(core->is_fullscreen)
+    {
+        if (0 != SDL_SetWindowFullscreen(core->window, 0))
+        {
+            /* Nothing to do here. */
+        }
+        else
+        {
+            core->render_offset_x = 0;
+            core->render_offset_y = 0;
+            core->is_fullscreen   = !core->is_fullscreen;
+        }
+    }
+    else
+    {
+        if (0 != SDL_SetWindowFullscreen(core->window, SDL_WINDOW_FULLSCREEN_DESKTOP))
+        {
+            /* Nothing to do here. */
+        }
+        else
+        {
+            set_render_offset(core);
+            core->is_fullscreen = !core->is_fullscreen;
+            set_zoom_factor(core);
+        }
+    }
 }

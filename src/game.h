@@ -16,13 +16,8 @@
 #define SAVE_VERSION 3
 #endif
 
-#if defined __SYMBIAN32__
-#define ZOOM_FACTOR 1u
-#else
-#define ZOOM_FACTOR 3u
-#endif
-#define WINDOW_WIDTH  176u * ZOOM_FACTOR
-#define WINDOW_HEIGHT 208u * ZOOM_FACTOR
+#define WINDOW_WIDTH  176u
+#define WINDOW_HEIGHT 208u
 
 typedef enum
 {
@@ -48,6 +43,41 @@ typedef enum
     MODE_ENDLESS
 
 } game_mode_t;
+
+typedef enum
+{
+    EVENT_NONE = 0,
+    EVENT_KEY_0,
+    EVENT_KEY_2,
+    EVENT_KEY_3,
+    EVENT_KEY_4,
+    EVENT_KEY_5,
+    EVENT_KEY_6,
+    EVENT_KEY_7,
+    EVENT_KEY_8,
+    EVENT_KEY_9,
+    EVENT_CONFIRM,
+    EVENT_CONFIRM_LETTER,
+    EVENT_DELETE_LETTER,
+    EVENT_NEXT_LETTER,
+    EVENT_PREV_LETTER,
+    EVENT_TEXTINPUT,
+    EVENT_CONFIRM_ENDLESS_MODE,
+    EVENT_CONFIRM_LOAD_GAME,
+    EVENT_CONFIRM_NEW_GAME,
+    EVENT_CONFIRM_NYT_MODE,
+    EVENT_CONFIRM_SET_LANG,
+    EVENT_MENU_NEXT,
+    EVENT_MENU_PREV,
+    EVENT_MENU_SELECT_ENDLESS_MODE,
+    EVENT_MENU_SELECT_NYT_MODE,
+    EVENT_MENU_SELECT_NEW_GAME,
+    EVENT_MENU_SELECT_QUIT,
+    EVENT_BACK,
+    EVENT_QUIT,
+    EVENT_TOGGLE_FS
+
+} event_t;
 
 typedef struct tile
 {
@@ -106,8 +136,10 @@ typedef struct game
     SDL_Texture*   tile_texture;
     SDL_Texture*   font_texture;
     SDL_Window*    window;
+    SDL_Event      event;
     Uint16         render_offset_x;
     Uint16         render_offset_y;
+    Uint8          zoom_factor;
     Uint32         time_since_last_frame;
     Uint32         time_a;
     Uint32         time_b;
@@ -118,6 +150,7 @@ typedef struct game
     SDL_bool       show_stats;
     SDL_bool       language_set_once;
     SDL_bool       nyt_has_ended;
+    SDL_bool       is_fullscreen;
     tile_t         tile[30];
     int            current_index;
     unsigned char  previous_letter;
@@ -128,7 +161,9 @@ typedef struct game
     unsigned int   seed;
     wordlist_t     wordlist;
     game_mode_t    selected_mode;
-
+#ifdef __ANDROID__
+    float          swipe_h;
+#endif
 } game_t;
 
 int      game_init(const char* resource_file, const char* title, game_t** core);
