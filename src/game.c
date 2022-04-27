@@ -806,7 +806,7 @@ static event_t get_current_event(game_t* core)
                 break;
             case SDL_FINGERUP:
             case SDL_FINGERDOWN:
-                if (core->swipe_h <= -0.5f)
+                if (core->swipe_h <= -0.025f)
                 {
                     core->swipe_h = 0.f;
                     if (SDL_TRUE == core->show_menu)
@@ -818,7 +818,7 @@ static event_t get_current_event(game_t* core)
                         return EVENT_DELETE_LETTER;
                     }
                 }
-                else if (core->swipe_h >= 0.5f)
+                else if (core->swipe_h >= 0.025f)
                 {
                     core->swipe_h = 0.f;
                     if (SDL_TRUE == core->show_menu)
