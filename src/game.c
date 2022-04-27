@@ -806,7 +806,7 @@ static event_t get_current_event(game_t* core)
                 break;
             case SDL_FINGERUP:
             case SDL_FINGERDOWN:
-                if (core->swipe_h <= -0.1f)
+                if (core->swipe_h <= -0.5f)
                 {
                     core->swipe_h = 0.f;
                     if (SDL_TRUE == core->show_menu)
@@ -818,7 +818,7 @@ static event_t get_current_event(game_t* core)
                         return EVENT_DELETE_LETTER;
                     }
                 }
-                else if (core->swipe_h >= 0.1f)
+                else if (core->swipe_h >= 0.5f)
                 {
                     core->swipe_h = 0.f;
                     if (SDL_TRUE == core->show_menu)
@@ -830,6 +830,40 @@ static event_t get_current_event(game_t* core)
                         return EVENT_CONFIRM_LETTER;
                     }
                 }
+                /*
+                // Confirm.
+                {
+                    if (SDL_TRUE == core->show_menu)
+                    {
+                        switch (core->current_index)
+                        {
+                            case 25:
+                                return EVENT_CONFIRM_NEW_GAME;
+                            case 26:
+                                return EVENT_CONFIRM_LOAD_GAME;
+                            case 27:
+                                switch (core->selected_mode)
+                                {
+                                    default:
+                                    case MODE_NYT:
+                                        return EVENT_CONFIRM_NYT_MODE;
+                                    case MODE_ENDLESS:
+                                        return EVENT_CONFIRM_ENDLESS_MODE;
+                                }
+                            case 28:
+                                return EVENT_CONFIRM_SET_LANG;
+                            case 29:
+                                return EVENT_QUIT;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        // tbd.
+                    }
+                }
+                */
                 break;
 #endif
             case SDL_KEYDOWN:
@@ -893,6 +927,9 @@ static event_t get_current_event(game_t* core)
                             return EVENT_MENU_SELECT_NEW_GAME;
                         case SDLK_F2:
                             return EVENT_MENU_SELECT_QUIT;
+                        case SDLK_AC_BACK:
+                        case SDLK_ESCAPE:
+                            return EVENT_QUIT;
                     }
                 }
                 else
