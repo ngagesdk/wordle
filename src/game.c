@@ -8,7 +8,6 @@
  **/
 
 #include <SDL.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "game.h"
@@ -31,16 +30,17 @@ int SDL_isalpha(int x) { return isalpha(x); }
 
 static event_t  get_current_event(game_t* core);
 static void     clear_tiles(SDL_bool clear_state, game_t* core);
+static void     delete_letter(game_t* core);
 static int      draw_tiles(game_t* core);
 static void     get_index_limits(int* lower_limit, int* upper_limit, game_t* core);
+static void     go_back_to_menu(game_t* core);
 static void     goto_next_letter(game_t* core);
-static void     delete_letter(game_t* core);
+static SDL_bool has_game_ended(game_t* core);
 static void     move_rows_up(game_t* core);
 static void     reset_game(SDL_bool nyt_mode, game_t* core);
 static void     select_next_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
 static void     select_previous_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
-static void     select_utf8_letter(const char *text, game_t* core);
-static SDL_bool has_game_ended(game_t* core);
+static void     select_utf8_letter(const int *text, game_t* core);
 static void     show_results(game_t* core);
 static void     set_zoom_factor(game_t* core);
 static void     set_render_offset(game_t* core);
@@ -80,7 +80,10 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     }
 
 #ifndef __SYMBIAN32__
-    renderer_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    renderer_flags = SDL_RENDERER_ACCELERATED;
+# ifndef __ANDROID__
+    renderer_flags |= SDL_RENDERER_PRESENTVSYNC;
+#  endif
 #endif
 
     set_zoom_factor((*core));
@@ -144,6 +147,30 @@ int game_init(const char* resource_file, const char* title, game_t** core)
         return status;
     }
 
+#ifdef __ANDROID__
+    status = load_texture_from_file((const char*)"disclaimer.png", &(*core)->disclaimer_texture, (*core));
+    if (0 != status)
+    {
+        return status;
+    }
+
+    {
+        SDL_RWops* save_file           = NULL;
+        char       save_file_path[256] = { 0 };
+        stbsp_snprintf(save_file_path, 256, "%s/%s", SDL_AndroidGetInternalStoragePath(), SAVE_FILE);
+        save_file = SDL_RWFromFile(save_file_path, "rb");
+
+        if (NULL == save_file)
+        {
+            (*core)->show_disclaimer = SDL_TRUE;
+        }
+        else
+        {
+            SDL_RWclose(save_file);
+        }
+    }
+#endif
+
     status = osd_init((*core));
     if (0 != status)
     {
@@ -202,6 +229,9 @@ int game_update(game_t *core)
 
     if (EVENT_NONE != event)
     {
+#ifdef __ANDROID__
+        core->show_disclaimer = SDL_FALSE;
+#endif
         redraw_tiles = SDL_TRUE;
     }
 
@@ -419,6 +449,22 @@ int game_update(game_t *core)
             break;
         case EVENT_DELETE_LETTER:
             delete_letter(core);
+            switch((core->current_index))
+            {
+                case 0:
+                case 5:
+                case 10:
+                case 15:
+                case 20:
+                case 25:
+                    if (0 == core->tile[core->current_index].letter)
+                    {
+                        go_back_to_menu(core);
+                    }
+                    break;
+                default:
+                    break;
+            }
             break;
         case EVENT_NEXT_LETTER:
             start_char = core->wordlist.first_letter;
@@ -431,9 +477,9 @@ int game_update(game_t *core)
             select_previous_letter(start_char, end_char, core);
             break;
         case EVENT_TEXTINPUT:
-            if ((SDL_TRUE != core->show_menu) && (LANG_ENGLISH == core->wordlist.language))
+            if ((SDL_TRUE != core->show_menu) && (LANG_RUSSIAN != core->wordlist.language))
             {
-                select_utf8_letter(core->event.text.text, core);
+                select_utf8_letter((const int*)core->event.text.text, core);
             }
             break;
         case EVENT_CONFIRM_ENDLESS_MODE:
@@ -455,7 +501,6 @@ int game_update(game_t *core)
         case EVENT_CONFIRM_NYT_MODE:
             core->endless_mode = SDL_FALSE;
             core->nyt_mode     = SDL_TRUE;
-
             game_load(SDL_TRUE, core);
 
             if (SDL_TRUE == core->nyt_has_ended)
@@ -494,10 +539,7 @@ int game_update(game_t *core)
             core->current_index = 29;
             break;
         case EVENT_BACK:
-            game_save(core);
-            clear_tiles(SDL_TRUE, core);
-            core->current_index = 27;
-            set_language(core->wordlist.language, SDL_TRUE, core);
+            go_back_to_menu(core);
             break;
         case EVENT_QUIT:
             core->is_running = SDL_FALSE;
@@ -543,6 +585,16 @@ int game_update(game_t *core)
         return 1;
     }
 
+#ifdef __ANDROID__
+    if (SDL_TRUE == core->show_disclaimer)
+    {
+        if (0 > SDL_RenderCopy(core->renderer, core->disclaimer_texture, NULL, &dst))
+        {
+            return 1;
+        }
+    }
+#endif
+
     SDL_SetRenderDrawColor(core->renderer, 0xff, 0xff, 0xff, 0x00);
     SDL_RenderPresent(core->renderer);
     SDL_RenderClear(core->renderer);
@@ -552,6 +604,14 @@ int game_update(game_t *core)
 
 void game_quit(game_t* core)
 {
+#ifdef __ANDROID__
+    if (core->disclaimer_texture)
+    {
+        SDL_DestroyTexture(core->disclaimer_texture);
+        core->disclaimer_texture = NULL;
+    }
+#endif
+
     if (core->tile_texture)
     {
         SDL_DestroyTexture(core->tile_texture);
@@ -590,8 +650,8 @@ void game_quit(game_t* core)
  */
 void game_save(game_t* core)
 {
-    FILE* save_file;
-    int   index;
+    SDL_RWops* save_file;
+    int        index;
 
 #ifdef __EMSCRIPTEN__
     return;
@@ -621,14 +681,22 @@ void game_save(game_t* core)
         state.seed               = core->seed;
         state.language           = core->wordlist.language;
 
-        save_file = fopen(SAVE_FILE, "wb");
+#ifdef __ANDROID__
+        {
+            char save_file_path[256] = { 0 };
+            stbsp_snprintf(save_file_path, 256, "%s/%s", SDL_AndroidGetInternalStoragePath(), SAVE_FILE);
+            save_file = SDL_RWFromFile(save_file_path, "wb");
+        }
+#else
+        save_file = SDL_RWFromFile(SAVE_FILE, "wb");
+#endif
         if (NULL == save_file)
         {
             return;
         }
 
-        fwrite(&state, sizeof(struct save_state), 1, save_file);
-        fclose(save_file);
+        SDL_RWwrite(save_file, &state, sizeof(struct save_state), 1);
+        SDL_RWclose(save_file);
     }
     else
     {
@@ -648,21 +716,29 @@ void game_save(game_t* core)
         state.attempt            = core->attempt;
         state.final_attempt      = core->nyt_final_attempt;
 
-        save_file = fopen(DAILY_SAVE_FILE, "wb");
+#ifdef __ANDROID__
+        {
+            char save_file_path[256] = { 0 };
+            stbsp_snprintf(save_file_path, 256, "%s/%s", SDL_AndroidGetInternalStoragePath(), DAILY_SAVE_FILE);
+            save_file = SDL_RWFromFile(save_file_path, "wb");
+        }
+#else
+        save_file = SDL_RWFromFile(DAILY_SAVE_FILE, "wb");
+#endif
         if (NULL == save_file)
         {
             return;
         }
 
-        fwrite(&state, sizeof(struct nyt_save_state), 1, save_file);
-        fclose(save_file);
+        SDL_RWwrite(save_file, &state, sizeof(struct nyt_save_state), 1);
+        SDL_RWclose(save_file);
     }
 }
 
 void game_load(SDL_bool load_daily, game_t* core)
 {
-    FILE* save_file;
-    int   index;
+    SDL_RWops* save_file;
+    int        index;
 
     if (NULL == core)
     {
@@ -685,18 +761,26 @@ void game_load(SDL_bool load_daily, game_t* core)
     {
         save_state_t state = { 0 };
 
-        save_file = fopen(SAVE_FILE, "rb");
+#ifdef __ANDROID__
+        {
+            char save_file_path[256] = { 0 };
+            stbsp_snprintf(save_file_path, 256, "%s/%s", SDL_AndroidGetInternalStoragePath(), SAVE_FILE);
+            save_file = SDL_RWFromFile(save_file_path, "rb");
+        }
+#else
+        save_file = SDL_RWFromFile(SAVE_FILE, "rb");
+#endif
         if (NULL == save_file)
         {
             /* Nothing to do here. */
         }
         else
         {
-            if (1 != fread(&state, sizeof(struct save_state), 1, save_file))
+            if (1 != SDL_RWread(save_file, &state, sizeof(struct save_state), 1))
             {
                 /* Nothing to do here. */
             }
-            fclose(save_file);
+            SDL_RWclose(save_file);
         }
 
         if (SAVE_VERSION != state.version)
@@ -727,18 +811,26 @@ void game_load(SDL_bool load_daily, game_t* core)
     {
         nyt_save_state_t state = { 0 };
 
-        save_file = fopen(DAILY_SAVE_FILE, "rb");
+#ifdef __ANDROID__
+        {
+            char save_file_path[256] = { 0 };
+            stbsp_snprintf(save_file_path, 256, "%s/%s", SDL_AndroidGetInternalStoragePath(), DAILY_SAVE_FILE);
+            save_file = SDL_RWFromFile(save_file_path, "rb");
+        }
+#else
+        save_file = SDL_RWFromFile(DAILY_SAVE_FILE, "rb");
+#endif
         if (NULL == save_file)
         {
             /* Nothing to do here. */
         }
         else
         {
-            if (1 != fread(&state, sizeof(struct nyt_save_state), 1, save_file))
+            if (1 != SDL_RWread(save_file, &state, sizeof(struct nyt_save_state), 1))
             {
                 /* Nothing to do here. */
             }
-            fclose(save_file);
+            SDL_RWclose(save_file);
         }
 
         if (state.valid_answer_index != get_nyt_daily_index())
@@ -768,6 +860,7 @@ void game_load(SDL_bool load_daily, game_t* core)
             set_language(LANG_ENGLISH, SDL_FALSE, core);
         }
     }
+    SDL_StartTextInput();
 }
 
 static event_t get_current_event(game_t* core)
@@ -787,53 +880,53 @@ static event_t get_current_event(game_t* core)
                 return EVENT_QUIT;
 #ifdef __ANDROID__
             case SDL_FINGERMOTION:
-                if (core->event.tfinger.dx > 0.f)
-                {
-                    if (core->swipe_h < 0.f)
-                    {
-                        core->swipe_h = 0.f;
-                    }
-                    core->swipe_h += core->event.tfinger.dx;
-                }
-                else if (core->event.tfinger.dx < 0.f)
-                {
-                    if (core->swipe_h > 0.f)
-                    {
-                        core->swipe_h = 0.f;
-                    }
-                    core->swipe_h += core->event.tfinger.dx;
-                }
+                core->swipe_v += core->event.tfinger.dy;
+                core->swipe_h += core->event.tfinger.dx;
                 break;
             case SDL_FINGERUP:
             case SDL_FINGERDOWN:
-                if (core->swipe_h <= -0.025f)
+                if ((SDL_FINGERDOWN == core->event.type))
                 {
-                    core->swipe_h = 0.f;
-                    if (SDL_TRUE == core->show_menu)
-                    {
-                        return EVENT_MENU_PREV;
-                    }
-                    else
-                    {
-                        return EVENT_DELETE_LETTER;
-                    }
+                    core->touch_down_timestamp = core->event.tfinger.timestamp;
                 }
-                else if (core->swipe_h >= 0.025f)
+                if ((SDL_FINGERUP == core->event.type))
                 {
-                    core->swipe_h = 0.f;
-                    if (SDL_TRUE == core->show_menu)
+                    core->touch_up_timestamp = core->event.tfinger.timestamp;
+                }
+
+                if (SDL_TRUE == core->show_menu)
+                {
+                    Uint32 touch_duration = (core->touch_up_timestamp - core->touch_down_timestamp);
+
+                    if (core->swipe_h >= 0.1f)
                     {
+                        core->swipe_h = 0.f;
                         return EVENT_MENU_NEXT;
                     }
-                    else
+                    else if (core->swipe_h <= -0.1f)
                     {
-                        return EVENT_CONFIRM_LETTER;
+                        core->swipe_h = 0.f;
+                        return EVENT_MENU_PREV;
                     }
-                }
-                /*
-                // Confirm.
-                {
-                    if (SDL_TRUE == core->show_menu)
+
+                    if (core->swipe_v >= 0.1f)
+                    {
+                        if (27 == core->current_index)
+                        {
+                            core->swipe_v = 0.f;
+                            return EVENT_MENU_SELECT_NYT_MODE;
+                        }
+                    }
+                    else if (core->swipe_v <= -0.1f)
+                    {
+                        if (27 == core->current_index)
+                        {
+                            core->swipe_v = 0.f;
+                            return EVENT_MENU_SELECT_ENDLESS_MODE;
+                        }
+                    }
+
+                    if ((touch_duration >= 100) && (touch_duration <= 1000))
                     {
                         switch (core->current_index)
                         {
@@ -858,12 +951,16 @@ static event_t get_current_event(game_t* core)
                                 break;
                         }
                     }
-                    else
+                    break;
+                }
+                else
+                {
+                    Uint32 touch_duration = (core->touch_up_timestamp - core->touch_down_timestamp);
+                    if ((touch_duration >= 100) && (touch_duration <= 1000))
                     {
-                        // tbd.
+                        SDL_StartTextInput();
                     }
                 }
-                */
                 break;
 #endif
             case SDL_KEYDOWN:
@@ -872,7 +969,6 @@ static event_t get_current_event(game_t* core)
                 switch (core->event.key.keysym.sym)
                 {
                     case SDLK_F11:
-                    case SDLK_f:
                         return EVENT_TOGGLE_FS;
                 }
 #endif
@@ -929,6 +1025,7 @@ static event_t get_current_event(game_t* core)
                             return EVENT_MENU_SELECT_QUIT;
                         case SDLK_AC_BACK:
                         case SDLK_ESCAPE:
+                            SDL_StopTextInput();
                             return EVENT_QUIT;
                     }
                 }
@@ -981,14 +1078,15 @@ static event_t get_current_event(game_t* core)
                         case SDLK_ESCAPE:
                         case SDLK_F1:
                         case SDLK_F2:
+                            SDL_StopTextInput();
                             return EVENT_BACK;
                     }
                 }
+                break;
             }
             case SDL_TEXTINPUT:
-            {
                 return EVENT_TEXTINPUT;
-            }
+                break;
         }
     }
 
@@ -1012,6 +1110,28 @@ static void clear_tiles(SDL_bool clear_state, game_t* core)
             core->tile[index].state = LETTER_SELECT;
         }
     }
+}
+
+static void delete_letter(game_t* core)
+{
+    int lower_index_limit = 0;
+    int upper_index_limit = 0;
+
+    if (NULL == core)
+    {
+        return;
+    }
+
+    if (core->attempt >= 6)
+    {
+        return;
+    }
+
+    get_index_limits(&lower_index_limit, &upper_index_limit, core);
+
+    core->tile[core->current_index].letter  = 0;
+    core->current_index                    -= 1;
+    core->current_index                     = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
 }
 
 static int draw_tiles(game_t* core)
@@ -1279,6 +1399,15 @@ static void get_index_limits(int* lower_limit, int* upper_limit, game_t* core)
     }
 }
 
+static void go_back_to_menu(game_t* core)
+{
+    SDL_StopTextInput();
+    game_save(core);
+    clear_tiles(SDL_TRUE, core);
+    core->current_index = 27;
+    set_language(core->wordlist.language, SDL_TRUE, core);
+}
+
 static void goto_next_letter(game_t* core)
 {
     int lower_index_limit = 0;
@@ -1304,26 +1433,22 @@ static void goto_next_letter(game_t* core)
     }
 }
 
-static void delete_letter(game_t* core)
+static SDL_bool has_game_ended(game_t* core)
 {
-    int lower_index_limit = 0;
-    int upper_index_limit = 0;
+    SDL_bool is_won = SDL_FALSE;
+    validate_current_guess(&is_won, core);
 
-    if (NULL == core)
+    if ((SDL_TRUE == core->nyt_mode) && (core->nyt_has_ended))
     {
-        return;
+        return SDL_TRUE;
     }
 
-    if (core->attempt >= 6)
+    if ((SDL_TRUE == is_won) || (SDL_FALSE == is_won && 5 == core->attempt))
     {
-        return;
+        return SDL_TRUE;
     }
 
-    get_index_limits(&lower_index_limit, &upper_index_limit, core);
-
-    core->tile[core->current_index].letter  = 0;
-    core->current_index                    -= 1;
-    core->current_index                     = SDL_clamp(core->current_index, lower_index_limit, upper_index_limit);
+    return SDL_FALSE;
 }
 
 static void move_rows_up(game_t* core)
@@ -1375,6 +1500,7 @@ static void reset_game(SDL_bool nyt_mode, game_t* core)
         core->valid_answer_index = get_nyt_daily_index();
         core->nyt_mode           = SDL_TRUE;
     }
+    SDL_StartTextInput();
 }
 
 static void select_next_letter(const unsigned char start_char, const unsigned char end_char, game_t* core)
@@ -1418,37 +1544,48 @@ static void select_previous_letter(const unsigned char start_char, const unsigne
     }
 }
 
-static void select_utf8_letter(const char *text, game_t* core)
+static void select_utf8_letter(const int *text, game_t* core)
 {
     unsigned char* current_letter = (unsigned char*)&core->tile[core->current_index].letter;
+    SDL_bool       is_alpha       = SDL_FALSE;
 
-    if (SDL_isalpha(*text))
+    switch(*text)
     {
-        *current_letter = SDL_toupper(*text);
+        case 0xa4c3: // ä
+        case 0x84c3: // Ä
+            is_alpha        = SDL_TRUE;
+            *current_letter = 0xc4;
+            break;
+        case 0xb6c3: // ö
+        case 0x96c3: // Ö
+            is_alpha        = SDL_TRUE;
+            *current_letter = 0xd6;
+            break;
+        case 0xbcc3: // ü
+        case 0x9cc3: // Ü
+            is_alpha        = SDL_TRUE;
+            *current_letter = 0xdc;
+            break;
+        case 0x9fc3: // ß
+            is_alpha        = SDL_TRUE;
+            *current_letter = 0xdf;
+            break;
+        default:
+            if (SDL_isalpha(*text))
+            {
+                is_alpha        = SDL_TRUE;
+                *current_letter = (unsigned char)SDL_toupper(*text);
+            }
+            break;
     }
 
     if (0 != ((core->current_index + 1) % 5))
     {
-        core->current_index++;
+        if (SDL_TRUE == is_alpha)
+        {
+            core->current_index++;
+        }
     }
-}
-
-static SDL_bool has_game_ended(game_t* core)
-{
-    SDL_bool is_won = SDL_FALSE;
-    validate_current_guess(&is_won, core);
-
-    if ((SDL_TRUE == core->nyt_mode) && (core->nyt_has_ended))
-    {
-        return SDL_TRUE;
-    }
-
-    if ((SDL_TRUE == is_won) || (SDL_FALSE == is_won && 5 == core->attempt))
-    {
-        return SDL_TRUE;
-    }
-
-    return SDL_FALSE;
 }
 
 static void show_results(game_t* core)
@@ -1511,6 +1648,9 @@ static void set_render_offset(game_t* core)
     {
         core->render_offset_x = (display_mode.w / 2) - ((WINDOW_WIDTH  * core->zoom_factor) / 2);
         core->render_offset_y = (display_mode.h / 2) - ((WINDOW_HEIGHT * core->zoom_factor) / 2);
+        #if __ANDROID__
+        core->render_offset_y /= 2;
+        #endif
     }
 }
 

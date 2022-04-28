@@ -162,7 +162,12 @@ typedef struct game
     wordlist_t     wordlist;
     game_mode_t    selected_mode;
 #ifdef __ANDROID__
+    SDL_Texture*   disclaimer_texture;
+    SDL_bool       show_disclaimer;
     float          swipe_h;
+    float          swipe_v;
+    Uint32         touch_down_timestamp;
+    Uint32         touch_up_timestamp;
 #endif
 } game_t;
 

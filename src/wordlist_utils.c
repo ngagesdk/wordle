@@ -192,7 +192,11 @@ void set_next_language(game_t* core)
     switch (core->wordlist.language)
     {
         case LANG_ENGLISH:
+#ifdef __SYMBIAN32__
             set_language(LANG_RUSSIAN, SDL_TRUE, core);
+#else
+            set_language(LANG_GERMAN, SDL_TRUE, core);
+#endif
             break;
         case LANG_RUSSIAN:
             set_language(LANG_GERMAN, SDL_TRUE, core);
