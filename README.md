@@ -24,6 +24,10 @@ A portable clone of Wordle designed for the Nokia N-Gage.
 - A web version of the game can be found on my website: [N-Gage
   Wordle](https://mupf.dev/wordle/).
 
+- An Android version is available on Google Play:
+
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=de.mupfelofen.wordle)
+
 ## Compiling
 
 First clone the repository:
@@ -72,6 +76,11 @@ make
 
 - The application menu icon has been designed by geekahedron from the
   [Wordleverse](https://discord.com/invite/FdQKzenz) Discord community.
+
+- The Android [App icon and Feature graphic](media/) by [Dan
+  Whelan](https://danwhelan.ie) is licensed under a Creative Commons
+  [Attribution-ShareAlike 4.0 International (CC BY-SA
+  4.0)](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
 - The finnish word list is based on the "nykysuomen sanalista" by
   [Kotus](https://kaino.kotus.fi/sanat/nykysuomi/), licensed under a [CC
