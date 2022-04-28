@@ -40,7 +40,7 @@ static void     move_rows_up(game_t* core);
 static void     reset_game(SDL_bool nyt_mode, game_t* core);
 static void     select_next_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
 static void     select_previous_letter(const unsigned char start_char, const unsigned char end_char, game_t* core);
-static void     select_utf8_letter(const int *text, game_t* core);
+static void     select_utf8_letter(const Uint16 *text, game_t* core);
 static void     show_results(game_t* core);
 static void     set_zoom_factor(game_t* core);
 static void     set_render_offset(game_t* core);
@@ -479,7 +479,7 @@ int game_update(game_t *core)
         case EVENT_TEXTINPUT:
             if ((SDL_TRUE != core->show_menu) && (LANG_RUSSIAN != core->wordlist.language))
             {
-                select_utf8_letter((const int*)core->event.text.text, core);
+                select_utf8_letter((const Uint16*)core->event.text.text, core);
             }
             break;
         case EVENT_CONFIRM_ENDLESS_MODE:
@@ -1544,7 +1544,7 @@ static void select_previous_letter(const unsigned char start_char, const unsigne
     }
 }
 
-static void select_utf8_letter(const int *text, game_t* core)
+static void select_utf8_letter(const Uint16 *text, game_t* core)
 {
     unsigned char* current_letter = (unsigned char*)&core->tile[core->current_index].letter;
     SDL_bool       is_alpha       = SDL_FALSE;
