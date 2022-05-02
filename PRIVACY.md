@@ -1,8 +1,7 @@
 # Privacy Policy
 
-Michael Fitzmayer built N-Gage Wordle as an Open Source app. This
-SERVICE is provided by Michael Fitzmayer at no cost and is intended for
-use as is.
+Michael Fitzmayer built NG Wordl as an Open Source app.  This SERVICE is
+provided by Michael Fitzmayer at no cost and is intended for use as is.
 
 This page is used to inform visitors regarding my policies with the
 collection, use, and disclosure of Personal Information if anyone
@@ -15,8 +14,8 @@ not use or share your information with anyone except as described in
 this Privacy Policy.
 
 The terms used in this Privacy Policy have the same meanings as in our
-Terms and Conditions, which is accessible at N-Gage Wordle unless
-otherwise defined in this Privacy Policy.
+Terms and Conditions, which is accessible at NG Wordl unless otherwise
+defined in this Privacy Policy.
 
 ## Information Collection and Use
 
