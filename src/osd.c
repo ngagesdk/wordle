@@ -7,7 +7,7 @@
  *
  **/
 
-#include <SDL.h>
+#include "SDL.h"
 #include "game.h"
 
 int  osd_init(game_t* core);

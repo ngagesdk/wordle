@@ -4,7 +4,7 @@
  *
  **/
 
-#include <SDL.h>
+#include "SDL.h"
 
 const unsigned int  wordlist_ru_letter_count     = 32;
 const unsigned int  wordlist_ru_word_count       = 0x1039;

@@ -4,8 +4,8 @@
  *
  **/
 
-#include <SDL.h>
 #include <time.h>
+#include "SDL.h"
 #include "game.h"
 
 void         set_language(const lang_t language, const SDL_bool set_title_screen, game_t* core);

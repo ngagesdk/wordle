@@ -7,7 +7,7 @@
  *
  **/
 
-#include <SDL.h>
+#include "SDL.h"
 #include "game.h"
 
 #define STB_IMAGE_IMPLEMENTATION

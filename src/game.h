@@ -10,7 +10,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL.h>
+#include "SDL.h"
 
 #ifndef SAVE_VERSION
 #define SAVE_VERSION 3

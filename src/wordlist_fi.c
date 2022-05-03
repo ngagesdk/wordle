@@ -7,7 +7,7 @@
  *
  **/
 
-#include <SDL.h>
+#include "SDL.h"
 
 const unsigned int  wordlist_fi_letter_count     = 26;
 const unsigned int  wordlist_fi_word_count       = 0xcc7;

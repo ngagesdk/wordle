@@ -7,9 +7,9 @@
  *
  **/
 
-#include <SDL.h>
 #include <stdlib.h>
 #include <time.h>
+#include "SDL.h"
 #include "game.h"
 
 #define STB_SPRINTF_IMPLEMENTATION
