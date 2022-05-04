@@ -23,6 +23,10 @@ A portable clone of Wordle designed for the Nokia N-Gage.
 
 - A web version of the game can be found on my website: [N-Gage
   Wordle](https://mupf.dev/wordle/).
+  
+- An Android version is available on Google Play:
+
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=de.mupfelofen.wordle)
 
 ## Compiling
 
