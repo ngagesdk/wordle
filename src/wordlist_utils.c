@@ -22,10 +22,10 @@ extern const unsigned int  wordlist_en_word_count;
 extern const unsigned int  wordlist_en_allowed_count;
 extern const unsigned char wordlist_en_first_letter;
 extern const unsigned char wordlist_en_last_letter;
-extern const Uint32        wordlist_en_hash[0x90b];
-extern const unsigned char wordlist_en[0x90b][5];
-extern const Uint32        wordlist_en_allowed_hash[0x29a7];
-extern const unsigned char wordlist_en_allowed[0x29a7][5];
+extern const Uint32        wordlist_en_hash[0x905];
+extern const unsigned char wordlist_en[0x905][5];
+extern const Uint32        wordlist_en_allowed_hash[0x29a9];
+extern const unsigned char wordlist_en_allowed[0x29a9][5];
 extern const SDL_bool      wordlist_en_is_cyrillic;
 extern const unsigned char wordlist_en_special_chars[1];
 extern const unsigned char wordlist_en_title[5];
@@ -192,11 +192,7 @@ void set_next_language(game_t* core)
     switch (core->wordlist.language)
     {
         case LANG_ENGLISH:
-#ifdef __SYMBIAN32__
             set_language(LANG_RUSSIAN, SDL_TRUE, core);
-#else
-            set_language(LANG_GERMAN, SDL_TRUE, core);
-#endif
             break;
         case LANG_RUSSIAN:
             set_language(LANG_GERMAN, SDL_TRUE, core);
