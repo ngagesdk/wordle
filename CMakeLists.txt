@@ -9,7 +9,7 @@ if(BUILD_ON_ALT_PLATFORM)
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CMakeLists.txt)
     return()
 elseif(DEFINED ENV{NGAGESDK})
-    SET(NGAGESDK $ENV{NGAGESDK})
+    set(NGAGESDK $ENV{NGAGESDK})
     set(CMAKE_TOOLCHAIN_FILE ${NGAGESDK}/cmake/ngage-toolchain.cmake)
 else()
     message(FATAL_ERROR "The environment variable NGAGESDK needs to be defined.")
@@ -66,7 +66,8 @@ set(game_sources
 
 set(game_resources
     "tiles.png"
-    "font.png")
+    "font.png"
+    "disclaimer.png")
 
 set(wordle_sources
     "${SRC_DIR}/wordle.cpp"

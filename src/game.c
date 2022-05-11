@@ -7,9 +7,9 @@
  *
  **/
 
+#include <SDL.h>
 #include <stdlib.h>
 #include <time.h>
-#include "SDL.h"
 #include "game.h"
 
 #define STB_SPRINTF_IMPLEMENTATION
@@ -71,8 +71,6 @@ int game_init(const char* resource_file, const char* title, game_t** core)
     {
         return 1;
     }
-
-    SDL_SetMainReady();
 
     if (0 != SDL_Init(SDL_INIT_VIDEO))
     {
@@ -477,7 +475,7 @@ int game_update(game_t *core)
             select_previous_letter(start_char, end_char, core);
             break;
         case EVENT_TEXTINPUT:
-            if ((SDL_TRUE != core->show_menu) && (LANG_RUSSIAN != core->wordlist.language))
+            if (SDL_TRUE != core->show_menu)
             {
                 select_utf8_letter((const Uint16*)core->event.text.text, core);
             }
@@ -978,6 +976,7 @@ static event_t get_current_event(game_t* core)
                     {
                         case SDLK_KP_ENTER:
                         case SDLK_RETURN:
+                        case SDLK_SELECT:
                         case SDLK_5:
                         case SDLK_KP_5:
                             switch (core->current_index)
@@ -1019,10 +1018,12 @@ static event_t get_current_event(game_t* core)
                                 return EVENT_MENU_SELECT_NYT_MODE;
                             }
                             break;
-                        case SDLK_F1:
+#ifdef __SYMBIAN32__
+                        case SDLK_SOFTLEFT:
                             return EVENT_MENU_SELECT_NEW_GAME;
-                        case SDLK_F2:
+                        case SDLK_SOFTRIGHT:
                             return EVENT_MENU_SELECT_QUIT;
+#endif
                         case SDLK_AC_BACK:
                         case SDLK_ESCAPE:
                             SDL_StopTextInput();
@@ -1066,8 +1067,9 @@ static event_t get_current_event(game_t* core)
                             return EVENT_NEXT_LETTER;
                         case SDLK_DOWN:
                             return EVENT_PREV_LETTER;
-                        case SDLK_RETURN:
                         case SDLK_KP_ENTER:
+                        case SDLK_RETURN:
+                        case SDLK_SELECT:
                             return EVENT_CONFIRM;
                         case SDLK_BACKSPACE:
                         case SDLK_LEFT:
@@ -1076,8 +1078,10 @@ static event_t get_current_event(game_t* core)
                             return EVENT_CONFIRM_LETTER;
                         case SDLK_AC_BACK:
                         case SDLK_ESCAPE:
-                        case SDLK_F1:
-                        case SDLK_F2:
+#ifdef __SYMBIAN32__
+                        case SDLK_SOFTLEFT:
+                        case SDLK_SOFTRIGHT:
+#endif
                             SDL_StopTextInput();
                             return EVENT_BACK;
                     }
@@ -1546,38 +1550,223 @@ static void select_previous_letter(const unsigned char start_char, const unsigne
 
 static void select_utf8_letter(const Uint16 *text, game_t* core)
 {
-    unsigned char* current_letter = (unsigned char*)&core->tile[core->current_index].letter;
-    SDL_bool       is_alpha       = SDL_FALSE;
+    unsigned char* current_letter  = (unsigned char*)&core->tile[core->current_index].letter;
+    unsigned char  selected_letter = 0;
+    SDL_bool       is_alpha        = SDL_FALSE;
 
     switch(*text)
     {
         case 0xa4c3: // ä
         case 0x84c3: // Ä
             is_alpha        = SDL_TRUE;
-            *current_letter = 0xc4;
+            selected_letter = 0xc4;
             break;
         case 0xb6c3: // ö
         case 0x96c3: // Ö
             is_alpha        = SDL_TRUE;
-            *current_letter = 0xd6;
+            selected_letter = 0xd6;
             break;
         case 0xbcc3: // ü
         case 0x9cc3: // Ü
             is_alpha        = SDL_TRUE;
-            *current_letter = 0xdc;
+            selected_letter = 0xdc;
             break;
         case 0x9fc3: // ß
             is_alpha        = SDL_TRUE;
-            *current_letter = 0xdf;
+            selected_letter = 0xdf;
+            break;
+        case 0xb0d0: // а
+        case 0x90d0: // А
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc0;
+            break;
+        case 0xb1d0: // б
+        case 0x91d0: // Б
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc1;
+            break;
+        case 0xb2d0: // в
+        case 0x92d0: // В
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc2;
+            break;
+        case 0xb3d0: // г
+        case 0x93d0: // Г
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc3;
+            break;
+        case 0xb4d0: // д
+        case 0x94d0: // Д
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc4;
+            break;
+        case 0xb5d0: // е
+        case 0x95d0: // Е
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc5;
+            break;
+        case 0xb6d0: // ж
+        case 0x96d0: // Ж
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc6;
+            break;
+        case 0xb7d0: // з
+        case 0x97d0: // З
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc7;
+            break;
+        case 0xb8d0: // и
+        case 0x98d0: // И
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc8;
+            break;
+        case 0xb9d0: // й
+        case 0x99d0: // Й
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xc9;
+            break;
+        case 0xbad0: // к
+        case 0x9ad0: // К
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xca;
+            break;
+        case 0xbbd0: // л
+        case 0x9bd0: // Л
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xcb;
+            break;
+        case 0xbcd0: // м
+        case 0x9cd0: // М
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xcc;
+            break;
+        case 0xbdd0: // н
+        case 0x9dd0: // Н
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xcd;
+            break;
+        case 0xbed0: // о
+        case 0x9ed0: // О
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xce;
+            break;
+        case 0xbfd0: // п
+        case 0x9fd0: // П
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xcf;
+            break;
+        case 0x80d1: // р
+        case 0xa0d0: // Р
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd0;
+            break;
+        case 0x81d1: // с
+        case 0xa1d0: // С
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd1;
+            break;
+        case 0x82d1: // т
+        case 0xa2d0: // Т
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd2;
+            break;
+        case 0x83d1: // у
+        case 0xa3d0: // У
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd3;
+            break;
+        case 0x84d1: // ф
+        case 0xa4d0: // Ф
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd4;
+            break;
+        case 0x85d1: // х
+        case 0xa5d0: // Х
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd5;
+            break;
+        case 0x86d1: // ц
+        case 0xa6d0: // Ц
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd6;
+            break;
+        case 0x87d1: // ч
+        case 0xa7d0: // Ч
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd7;
+            break;
+        case 0x88d1: // ш
+        case 0xa8d0: // Ш
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd8;
+            break;
+        case 0x89d1: // щ
+        case 0xa9d0: // Щ
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xd9;
+            break;
+        case 0x8ad1: // ъ
+        case 0xaad0: // Ъ
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xda;
+            break;
+        case 0x8bd1: // ы
+        case 0xabd0: // Ы
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xdb;
+            break;
+        case 0x8cd1: // ь
+        case 0xacd0: // Ь
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xdc;
+            break;
+        case 0x8dd1: // э
+        case 0xadd0: // Э
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xdd;
+            break;
+        case 0x8ed1: // ю
+        case 0xaed0: // Ю
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xde;
+            break;
+        case 0x8fd1: // я
+        case 0xafd0: // Я
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0xdf;
+            break;
+        case 0x2d: // -
+            is_alpha        = SDL_TRUE;
+            selected_letter = 0x2d;
             break;
         default:
             if (SDL_isalpha(*text))
             {
                 is_alpha        = SDL_TRUE;
-                *current_letter = (unsigned char)SDL_toupper(*text);
+                selected_letter = (unsigned char)SDL_toupper(*text);
             }
             break;
     }
+
+    if (SDL_TRUE == core->wordlist.is_cyrillic)
+    {
+        if (((selected_letter < 0xc0) || (selected_letter > 0xdf)) && (selected_letter != 0x2d))
+        {
+            // Only accept cyrillic letters and hypen in cyrillic
+            // wordlists.
+            return;
+        }
+    }
+    else
+    {
+        if (((selected_letter >= 0xc0) && (selected_letter <= 0xdf)))
+        {
+            // Do not accept cyrillic letters in non-cyrillic wordlists.
+            return;
+        }
+    }
+
+    *current_letter = selected_letter;
 
     if (0 != ((core->current_index + 1) % 5))
     {

@@ -54,6 +54,7 @@ endif(UNIX)
 target_compile_options(
     wordle
     PUBLIC
+    -O3
     -Wall
     -Wextra
     -Wpedantic)

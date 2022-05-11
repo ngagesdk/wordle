@@ -4,7 +4,7 @@
 &EN
 
 ; standard SIS file header
-#{"Wordle"},(0x1000DCBA),1,1,0
+#{"Wordle"},(0x1000DCBA),1,3,0
 
 ;Supports Series 60 v 0.9
 (0x101F6F88), 0, 0, 0, {"Series60ProductID"}

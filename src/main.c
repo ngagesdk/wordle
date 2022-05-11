@@ -7,7 +7,7 @@
  *
  **/
 
-#include <SDL.h>
+#include "SDL.h"
 #include "game.h"
 
 #ifdef __EMSCRIPTEN__
