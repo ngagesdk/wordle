@@ -3,5 +3,4 @@ android
 build
 out
 CMakeSettings.json
-sis
 tmp

@@ -10,8 +10,8 @@
 (0x101F6F88), 0, 0, 0, {"Series60ProductID"}
 
 ;
-"..\sis\data.pfs"-"E:\System\Apps\wordle\data.pfs"
-"..\sis\game.exe"-"E:\System\Apps\wordle\game.exe"
-"..\sis\wordle.aif"-"E:\System\Apps\wordle\wordle.aif"
-"..\sis\wordle.app"-"E:\System\Apps\wordle\wordle.app"
-"..\sis\wordle.rsc"-"E:\System\Apps\wordle\wordle.rsc"
+"..\res\data.pfs"-"E:\System\Apps\wordle\data.pfs"
+"..\out\build\Release\game.exe"-"E:\System\Apps\wordle\game.exe"
+"..\out\build\Release\wordle.aif"-"E:\System\Apps\wordle\wordle.aif"
+"..\out\build\Release\wordle.app"-"E:\System\Apps\wordle\wordle.app"
+"..\out\build\Release\wordle.rsc"-"E:\System\Apps\wordle\wordle.rsc"
